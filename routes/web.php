@@ -9,6 +9,14 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\Week3Controller;
+
+//Kiểm tra kết quả tuần 3
+Route::get('/users', [Week3Controller::class,'view']);
+Route::get('/users/{id}', [Week3Controller::class,'detail']);
+Route::post('/users/add', [Week3Controller::class,'store']);
+Route::post('/users/update/{id}', [Week3Controller::class,'update']);
+Route::get('/users/delete/{id}', [Week3Controller::class,'delete']);
 
 //-----------------------------------------------------------------------------------
 Route::get('/', function () {
