@@ -10,6 +10,8 @@ class Week3 extends Model
 
     protected $fillable = [
         'id',
-        'name'
+        'name',
+        'email',
+        'phone'
     ];
 }

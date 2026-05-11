@@ -12,13 +12,17 @@
 
     <table border="1">
         <tr>
-            <th>ID</th>
-            <th>Name</th>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Phone</td>
         </tr>
         <?php $__currentLoopData = $user; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $u): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
             <td><?php echo e($u->id); ?></td>
             <td><?php echo e($u->name); ?></td>
+            <td><?php echo e($u->email); ?></td>
+            <td><?php echo e($u->phone); ?></td>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </table>

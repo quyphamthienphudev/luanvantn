@@ -12,13 +12,17 @@
 
     <table border="1">
         <tr>
-            <th>ID</th>
-            <th>Name</th>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Phone</td>
         </tr>
         @foreach($user as $u)
         <tr>
             <td>{{ $u->id }}</td>
             <td>{{ $u->name }}</td>
+            <td>{{ $u->email }}</td>
+            <td>{{ $u->phone }}</td>
         </tr>
         @endforeach
     </table>
