@@ -64,7 +64,7 @@
                 Xem danh sách chức vụ
             </a>
             @endif
-
+            
             @if(auth()->user()->role->name === 'admin')
             <a href="/admin/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
                 Quản lý nghỉ phép
@@ -77,11 +77,11 @@
             @endif
 
             @if(auth()->user()->role->name === 'admin')
-                <a href="{{ route('admin.payrolls.index') }}" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/admin/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700">
                     Quản lý lương
                 </a>
             @else
-                <a href="{{ route('user.payrolls.index') }}" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700">
                     Quản lý lương
                 </a>
             @endif

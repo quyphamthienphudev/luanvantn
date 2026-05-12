@@ -60,22 +60,22 @@
                         <td class="text-center">
                             <div class="d-flex justify-content-center align-items-center gap-2 action-group ">
                                 @if($leave->status == 'pending')
-                                    <form action="{{ route('admin.leave.approve', $leave->id) }}" method="POST" class="m-0 p-0">
+                                    <form action="/admin/leave/approve/{{ $leave->id }}" method="POST" class="m-0 p-0">
                                         @csrf
                                         <button class="btn btn-success btn-sm btn-action" title="Duyệt"><i class="fas fa-check"></i></button>
                                     </form>
 
-                                    <form action="{{ route('admin.leave.reject', $leave->id) }}" method="POST" class="m-0 p-0" onsubmit="return confirm('Từ chối đơn nghỉ phép này ?')">
+                                    <form action="/admin/leave/reject/{{ $leave->id }}" method="POST" class="m-0 p-0" onsubmit="return confirm('Từ chối đơn nghỉ phép này ?')">
                                         @csrf
                                         <button class="btn btn-outline-danger btn-sm btn-action" title="Từ chối"><i class="fas fa-ban"></i></button>
                                     </form>
 
-                                    <a href="{{ route('admin.leave.adminEdit', $leave->id) }}" class="btn btn-info btn-sm btn-action text-white" title="Chỉnh sửa">
+                                    <a href="/admin/leave/edit/{{ $leave->id }}" class="btn btn-info btn-sm btn-action text-white" title="Chỉnh sửa">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 @endif
 
-                                <form action="{{ route('admin.leave.destroy', $leave->id) }}" method="POST" class="m-0 p-0" onsubmit="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
+                                <form action="/admin/leave/delete/{{ $leave->id }}" method="POST" class="m-0 p-0" onsubmit="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger btn-sm btn-action" title="Xóa"><i class="fas fa-trash"></i></button>

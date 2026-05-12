@@ -58,7 +58,7 @@
 Chỉnh sửa đơn xin nghỉ phép
 </h1>
 
-<form action="{{ route('admin.leave.adminUpdate', $leave->id) }}" method="POST"
+<form action="/admin/leave/update/{{ $leave->id }}" method="POST"
 class="bg-white p-6 rounded shadow w-1/2">
 
 @csrf

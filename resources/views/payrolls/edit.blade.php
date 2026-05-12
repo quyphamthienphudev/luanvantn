@@ -12,9 +12,8 @@
         </div>
     @endif
     
-    <form action="{{ route('admin.payrolls.update', $payroll->id) }}" method="POST">
+    <form action="/admin/payrolls/update/{{ $payroll->id }}" method="POST">
         @csrf
-        @method('PUT')
         
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2">Nhân viên</label>
@@ -58,7 +57,7 @@
         </div>
         
         <div class="flex gap-2 justify-end">
-            <a href="{{ route('admin.payrolls.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded">Hủy</a>
+            <a href="/admin/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded">Hủy</a>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Cập nhật</button>
         </div>
     </form>

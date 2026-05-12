@@ -17,7 +17,8 @@
     @endif
     
     <div class="mb-6 flex justify-between items-center">
-        <form method="GET" action="{{ Auth::user()->role->name === 'admin' ? route('admin.payrolls.index') : route('user.payrolls.index') }}" class="flex gap-2">
+        @if(Auth::user()->role->name === 'admin')
+        <form method="GET" action="/admin/payrolls" class="flex gap-2">
             <select name="month" class="border rounded px-3 py-2">
                 @for($i = 1; $i <= 12; $i++)
                     <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng {{ $i }}</option>
@@ -30,13 +31,28 @@
             </select>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Xem bảng lương</button>
         </form>
-        
+        @endif
+        @if(Auth::user()->role->name === 'user')
+        <form method="GET" action="/payrolls" class="flex gap-2">
+            <select name="month" class="border rounded px-3 py-2">
+                @for($i = 1; $i <= 12; $i++)
+                    <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng {{ $i }}</option>
+                @endfor
+            </select>
+            <select name="year" class="border rounded px-3 py-2">
+                @for($i = 2020; $i <= date('Y')+1; $i++)
+                    <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>{{ $i }}</option>
+                @endfor
+            </select>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Xem bảng lương</button>
+        </form>
+        @endif
         <div class="flex gap-2">
             @if(Auth::user()->role->name === 'admin')
-                <a href="{{ route('admin.payrolls.create') }}" class="bg-green-500 text-white px-4 py-2 rounded">+ Tạo</a>
-                <a href="{{ route('admin.payrolls.export', ['month' => $month, 'year' => $year]) }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Xuất Excel</a>
+                <a href="/admin/payrolls/create" class="bg-green-500 text-white px-4 py-2 rounded">+ Tạo</a>
+                <a href="/admin/payrolls/export" class="bg-yellow-500 text-white px-4 py-2 rounded">Xuất Excel</a>
             @else
-                <a href="{{ route('user.payrolls.create') }}" class="bg-green-500 text-white px-4 py-2 rounded">+ Tạo</a>
+                <a href="/payrolls/create" class="bg-green-500 text-white px-4 py-2 rounded">+ Tạo</a>
             @endif
         </div>
     </div>
@@ -71,15 +87,14 @@
                     <td class="border px-4 py-2 text-right font-bold">{{ number_format($payroll->total_salary ?? 0) }} VNĐ</td>
                     <td class="border px-4 py-2 text-center">
                         @if(Auth::user()->role->name === 'admin')
-                            <a href="{{ route('admin.payrolls.show', $payroll->id) }}" class="text-blue-500">Xem</a>
-                            <a href="{{ route('admin.payrolls.edit', $payroll->id) }}" class="text-yellow-500 ml-2">Sửa</a>
-                            <form action="{{ route('admin.payrolls.destroy', $payroll->id) }}" method="POST" class="inline ml-2">
+                            <a href="/admin/payrolls/{{ $payroll->id }}" class="text-blue-500">Xem</a>
+                            <a href="/admin/payrolls/edit/{{ $payroll->id }}" class="text-yellow-500 ml-2">Sửa</a>
+                            <form action="/admin/payrolls/delete/{{ $payroll->id }}" method="POST" class="inline ml-2">
                                 @csrf
-                                @method('DELETE')
                                 <button type="submit" class="text-red-500" onclick="return confirm('Bạn có muốn xóa bảng lương này ?')">Xóa</button>
                             </form>
                         @else
-                            <a href="{{ route('user.payrolls.show', $payroll->id) }}" class="text-blue-500">Xem</a>
+                            <a href="/payrolls/{{ $payroll->id }}" class="text-blue-500">Xem</a>
                         @endif
                     </td>
                 </tr>

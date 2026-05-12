@@ -36,7 +36,7 @@
                     Tạo đơn xin nghỉ phép
                 </div>
                 <div class="card-body p-4">
-                    <form action="{{ route('leave.store') }}" method="POST">
+                    <form action="/leave/store" method="POST">
                         @csrf
                         <!-- NHÂN VIÊN -->
                         <div class="mb-3">
@@ -126,7 +126,7 @@
                                     </td>
                                     <td class="text-center pe-4">
                                         @if($leave->status == 'pending')
-                                            <a href="{{ route('leave.edit', $leave->id) }}" class="btn btn-sm btn-outline-primary shadow-sm px-3">
+                                            <a href="/leave/edit/{{ $leave->id }}" class="btn btn-sm btn-outline-primary shadow-sm px-3">
                                                 <i class="fas fa-edit me-1"></i> Sửa
                                             </a>
                                         @else
