@@ -1,5 +1,4 @@
 <?php
-use App\Http\Controllers\PayrollController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -8,6 +7,7 @@ use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\Week3Controller;
 
 //Kiểm tra kết quả tuần 3
@@ -28,11 +28,11 @@ Route::get('/', function () {
         return redirect('/home');
     }
 
-    return redirect()->route('login');
+    return redirect('/login');
 });
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+Route::get('/login', [AuthController::class, 'showLogin']);
+Route::post('/login', [AuthController::class, 'login']);
 
 //----------------------------------------------------------------------------
 Route::get('/logout', [AuthController::class, 'logout']);
@@ -49,11 +49,11 @@ Route::middleware('auth')->group(function () {
 
    
 
-    Route::get('/profile', [App\Http\Controllers\UserController::class, 'editProfile']);
-    Route::post('/profile', [App\Http\Controllers\UserController::class, 'updateProfile']);
+    Route::get('/profile', [UserController::class, 'editProfile']);
+    Route::post('/profile', [UserController::class, 'updateProfile']);
 
-    Route::get('/change-password', [App\Http\Controllers\UserController::class, 'showChangePassword']);
-    Route::post('/change-password', [App\Http\Controllers\UserController::class, 'changePassword']);
+    Route::get('/change-password', [UserController::class, 'showChangePassword']);
+    Route::post('/change-password', [UserController::class, 'changePassword']);
 
     Route::get('/admin/accounts', [UserController::class,'index']);
     Route::get('/admin/accounts/create', [UserController::class,'create']);
@@ -72,16 +72,17 @@ Route::middleware('auth')->group(function () {
 
 //Route::get('/dashboard',[DashboardController::class,'userdashboard'])->middleware('auth');
 
+
 // Chức năng quản lý đơn xin nghỉ phép
 
 Route::middleware(['auth'])->prefix('leave')->name('leave.')->group(function () {
     
     Route::get('/', [LeaveController::class, 'index'])->name('index');
     
-    Route::post('/store', [LeaveController::class, 'store'])->name('store');
+    Route::post('/store', [LeaveController::class, 'store']);
 
-    Route::get('/edit/{id}', [LeaveController::class, 'edit'])->name('edit');
-    Route::post('/update/{id}', [LeaveController::class, 'update'])->name('update');
+    Route::get('/edit/{id}', [LeaveController::class, 'edit']);
+    Route::post('/update/{id}', [LeaveController::class, 'update']);
     
 });
 
@@ -89,34 +90,34 @@ Route::middleware(['auth'])->prefix('admin/leave')->name('admin.leave.')->group(
   
     Route::get('/', [LeaveController::class, 'adminIndex'])->name('adminIndex');
     
-    Route::post('/approve/{id}', [LeaveController::class, 'approve'])->name('approve');
-    Route::post('/reject/{id}', [LeaveController::class, 'reject'])->name('reject');
-    Route::get('/edit/{id}', [LeaveController::class, 'adminEdit'])->name('adminEdit');
-    Route::post('/update/{id}', [LeaveController::class, 'adminUpdate'])->name('adminUpdate');
-    Route::delete('/delete/{id}', [LeaveController::class, 'destroy'])->name('destroy');
+    Route::post('/approve/{id}', [LeaveController::class, 'approve']);
+    Route::post('/reject/{id}', [LeaveController::class, 'reject']);
+    Route::get('/edit/{id}', [LeaveController::class, 'adminEdit']);
+    Route::post('/update/{id}', [LeaveController::class, 'adminUpdate']);
+    Route::delete('/delete/{id}', [LeaveController::class, 'destroy']);
     
 });
 
 // ====== CHỨC NĂNG QUẢN LÝ LƯƠNG ======
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('payrolls/export', [PayrollController::class, 'export'])->name('payrolls.export');
-    Route::get('payrolls/calculate/{month?}/{year?}', [PayrollController::class, 'calculate'])->name('payrolls.calculate');
-    Route::get('payrolls', [PayrollController::class, 'index'])->name('payrolls.index');
-    Route::get('payrolls/create', [PayrollController::class, 'create'])->name('payrolls.create');
-    Route::post('payrolls', [PayrollController::class, 'store'])->name('payrolls.store');
-    Route::get('payrolls/{id}', [PayrollController::class, 'show'])->name('payrolls.show');
-    Route::get('payrolls/{id}/edit', [PayrollController::class, 'edit'])->name('payrolls.edit');
-    Route::put('payrolls/{id}', [PayrollController::class, 'update'])->name('payrolls.update');
-    Route::delete('payrolls/{id}', [PayrollController::class, 'destroy'])->name('payrolls.destroy');
+    Route::get('payrolls/export', [PayrollController::class, 'export']);
+    Route::get('payrolls/calculate/{month?}/{year?}', [PayrollController::class, 'calculate']);
+    Route::get('payrolls', [PayrollController::class, 'index']);
+    Route::get('payrolls/create', [PayrollController::class, 'create']);
+    Route::post('payrolls', [PayrollController::class, 'store']);
+    Route::get('payrolls/{id}', [PayrollController::class, 'show']);
+    Route::get('payrolls/edit/{id}', [PayrollController::class, 'edit']);
+    Route::post('payrolls/update/{id}', [PayrollController::class, 'update']);
+    Route::post('payrolls/delete/{id}', [PayrollController::class, 'destroy']);
 });
 
 Route::prefix('/')->name('user.')->group(function () {
-    Route::get('payrolls/calculate/{month?}/{year?}', [PayrollController::class, 'calculate'])->name('payrolls.calculate');
-    Route::get('payrolls', [PayrollController::class, 'index'])->name('payrolls.index');
-    Route::get('payrolls/create', [PayrollController::class, 'create'])->name('payrolls.create');
-    Route::post('payrolls', [PayrollController::class, 'store'])->name('payrolls.store');
-    Route::get('payrolls/{id}', [PayrollController::class, 'show'])->name('payrolls.show');
+    Route::get('payrolls/calculate/{month?}/{year?}', [PayrollController::class, 'calculate']);
+    Route::get('payrolls', [PayrollController::class, 'index']);
+    Route::get('payrolls/create', [PayrollController::class, 'create']);
+    Route::post('payrolls', [PayrollController::class, 'store']);
+    Route::get('payrolls/{id}', [PayrollController::class, 'show']);
 });
 
 // Chức năng quản lý nhân viên
@@ -160,3 +161,14 @@ Route::post('/admin/positions/update/{id}', [PositionController::class,'update']
 Route::get('/admin/positions/delete/{id}', [PositionController::class,'delete']);
 
 Route::get('/positions', [PositionController::class,'userIndex']);
+
+// --- CHỨC NĂNG QUẢN LÝ CHẤM CÔNG ---
+Route::middleware('auth')->group(function () {
+    Route::get('/attendances', [AttendanceController::class, 'index']);
+    Route::get('/admin/attendances', [AttendanceController::class, 'adminIndex']);
+    Route::get('/admin/attendances/edit/{id}', [AttendanceController::class, 'adminEdit']);
+    Route::post('/admin/attendances/update/{id}', [AttendanceController::class, 'adminUpdate']);
+    Route::get('/admin/attendances/delete/{id}', [AttendanceController::class, 'adminDelete']);
+    Route::get('/attendances/edit/{id}', [AttendanceController::class, 'edit']);
+    Route::post('/attendances/update/{id}', [AttendanceController::class, 'update']);
+});
