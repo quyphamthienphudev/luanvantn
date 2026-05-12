@@ -64,18 +64,6 @@
                 Xem danh sách chức vụ
             </a>
             @endif
-            
-            @if(auth()->user()->role->name === 'admin')
-            <a href="/admin/attendances" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý chấm công
-            </a>
-            @endif
-
-            @if(auth()->user()->role->name === 'user')
-            <a href="/attendances" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý chấm công
-            </a>
-            @endif
 
             @if(auth()->user()->role->name === 'admin')
             <a href="/admin/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
