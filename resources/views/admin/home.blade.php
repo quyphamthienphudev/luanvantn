@@ -5,7 +5,7 @@
 @section('content')
 
 <h1 class="text-2xl font-bold mb-6">
-Danh sách sinh viên tham gia project
+Project luận văn tốt nghiệp
 </h1>
 
 <div class="grid grid-cols-3 gap-6">
