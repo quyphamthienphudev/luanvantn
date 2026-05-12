@@ -8,7 +8,6 @@ use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PositionController;
-use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Week3Controller;
 
 //Kiểm tra kết quả tuần 3
@@ -161,14 +160,3 @@ Route::post('/admin/positions/update/{id}', [PositionController::class,'update']
 Route::get('/admin/positions/delete/{id}', [PositionController::class,'delete']);
 
 Route::get('/positions', [PositionController::class,'userIndex']);
-
-// --- CHỨC NĂNG QUẢN LÝ CHẤM CÔNG ---
-Route::middleware('auth')->group(function () {
-    Route::get('/attendances', [AttendanceController::class, 'index']);
-    Route::get('/admin/attendances', [AttendanceController::class, 'adminIndex']);
-    Route::get('/admin/attendances/edit/{id}', [AttendanceController::class, 'adminEdit']);
-    Route::post('/admin/attendances/update/{id}', [AttendanceController::class, 'adminUpdate']);
-    Route::get('/admin/attendances/delete/{id}', [AttendanceController::class, 'adminDelete']);
-    Route::get('/attendances/edit/{id}', [AttendanceController::class, 'edit']);
-    Route::post('/attendances/update/{id}', [AttendanceController::class, 'update']);
-});
