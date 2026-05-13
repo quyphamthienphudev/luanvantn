@@ -14,10 +14,8 @@ class DashboardController extends Controller
 
         // ===== THỐNG KÊ LƯƠNG =====
         $year = $request->year;
-        $month = $request->month;
 
         $totalYearSalary = 0;
-        $totalMonthSalary = 0;
 
         // Tổng lương theo năm
         if($request->has('filter_year')){
@@ -31,23 +29,6 @@ class DashboardController extends Controller
             else {
                 $totalYearSalary = DB::table('payrolls')
                     ->whereRaw("year = ?", [$year])
-                    ->sum('total_salary');
-            }
-        }
-
-        // Tổng lương theo tháng + năm
-        if($request->has('filter_month')){
-            if(!$month || !$year){
-                return back()->with('error_month','Vui lòng điền đầy đủ tháng và năm để thống kê');
-            }
-            else if(!is_numeric($year))
-            {
-                return back()->with('error_year','Vui lòng nhập năm thống kê là số');
-            }
-            else {
-                $totalMonthSalary = DB::table('payrolls')
-                    ->whereRaw("year = ?", [$year])
-                    ->whereRaw("month = ?", [$month])
                     ->sum('total_salary');
             }
         }
@@ -85,8 +66,8 @@ class DashboardController extends Controller
         $leaveData = [$pendingCount, $approvedCount, $rejectedCount];
 
         return view('admin.dashboard',['working'=>$working,
-            'totalYearSalary'=>$totalYearSalary,'totalMonthSalary'=>$totalMonthSalary,
-            'year'=>$year,'month'=>$month,'deptLabels'=>$deptLabels,'deptData'=>$deptData,
+            'totalYearSalary'=>$totalYearSalary,
+            'year'=>$year,'deptLabels'=>$deptLabels,'deptData'=>$deptData,
             'leaveLabels'=>$leaveLabels,'leaveData'=>$leaveData
         ]);
     }
