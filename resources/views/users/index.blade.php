@@ -1,3 +1,4 @@
+@section('content')
 <form method="GET" action="/users">
     @csrf
     <h4>Tìm kiếm</h4>
@@ -63,3 +64,4 @@
     </tr>
     @endforeach
 </table>
+@endsection
