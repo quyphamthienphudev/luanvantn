@@ -1,3 +1,4 @@
+@extend('layouts.app')
 @section('content')
 <div>
 <form method="GET" action="/users">
