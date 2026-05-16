@@ -24,13 +24,6 @@ class Week3Controller extends Controller
 
         return view('users.index',compact('users','search','sort'));
     }
-    public function detail($id){
-        $user = DB::table('users_tuan03')
-        ->where('id',$id)
-        ->get();
-
-        return view('users.show',compact('user'));
-    }
     public function store(Request $request){
         DB::table('users_tuan03')->insert([
             'id'=>$request->id,
