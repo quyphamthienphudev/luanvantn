@@ -4,13 +4,7 @@
 
 @section('content')
 
-@if(auth()->user()->role->name=='admin')
-<a href="/admin/employees">← Quay lại</a>
-@endif
-
-@if(auth()->user()->role->name=='user')
 <a href="/employees">← Quay lại</a>
-@endif
 
 <div class="bg-white p-6">
 <p>Mã: {{ $employee->employee_code }}</p>

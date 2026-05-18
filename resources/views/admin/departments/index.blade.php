@@ -4,9 +4,7 @@
 
 @section('content')
 
-@if(auth()->user()->role->name=='admin')
 <a href="/admin/departments/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Thêm phòng ban</a>
-@endif
 
 @if(session('success'))
 <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
@@ -19,7 +17,7 @@
 {{ session('error') }}
 </div>
 @endif
-@if(auth()->user()->role->name=='admin')
+
 <div class="bg-white shadow rounded mt-6">
 <table class="w-full text-left">
 <thead class="bg-gray-200">
@@ -45,27 +43,5 @@ onclick="return confirm('Bạn có muốn xoá phòng ban này ?')">Xóa</a>
 </tbody>
 </table>
 </div>
-@endif
 
-@if(auth()->user()->role->name=='user')
-<div class="bg-white shadow rounded mt-6">
-<table class="w-full text-left">
-<thead class="bg-gray-200">
-<tr>
-<th class="p-3">Tên phòng ban</th>
-<th class="p-3">Mô tả thông tin</th>
-</tr>
-</thead>
-
-<tbody>
-@foreach($departments as $d)
-<tr class="border-b">
-<td class="p-3">{{ $d->name }}</td>
-<td class="p-3">{{ $d->description }}</td>
-</tr>
-@endforeach
-</tbody>
-</table>
-</div>
-@endif
 @endsection

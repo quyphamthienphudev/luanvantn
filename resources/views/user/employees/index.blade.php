@@ -4,17 +4,9 @@
 
 @section('content')
 
-@if(auth()->user()->role->name=='admin')
-<a href="/admin/employees/create" class="bg-blue-600 text-white px-4 py-2 rounded">
-Thêm nhân viên
-</a>
-@endif
-
-@if(auth()->user()->role->name=='user')
 <a href="/employees/create" class="bg-blue-600 text-white px-4 py-2 rounded">
 Thêm nhân viên
 </a>
-@endif
 
 <form method="GET" class="mt-4">
 Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2">
@@ -46,26 +38,11 @@ Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="borde
 <td class="p-3">{{ $e->department->name }}</td>
 
 <td class="p-3 space-x-2">
-@if(auth()->user()->role->name=='admin')
-<a href="/admin/employees/show/{{ $e->id }}" class="bg-blue-500 text-white px-3 py-1 rounded">Xem</a>
-@endif
 
-@if(auth()->user()->role->name=='user')
 <a href="/employees/show/{{ $e->id }}" class="bg-blue-500 text-white px-3 py-1 rounded">Xem</a>
-@endif
 
-@if(auth()->user()->role->name=='admin')
 <a href="/admin/employees/edit/{{ $e->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
-@endif
 
-@if(auth()->user()->role->name=='user')
-<a href="/employees/edit/{{ $e->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
-@endif
-
-@if(auth()->user()->role->name=='admin')
-<a href="/admin/employees/delete/{{ $e->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
-onclick="return confirm('Bạn có muốn xoá nhân viên này ?')">Xóa</a>
-@endif
 </td>
 
 </tr>
