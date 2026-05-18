@@ -1,4 +1,11 @@
-<form method="GET" action="/users">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <form method="GET" action="/users">
     @csrf
     <h4>Tìm kiếm</h4>
     <input type="text" name="search" value="{{ $search }}" placeholder="Tìm theo id hoặc theo tên">
@@ -7,29 +14,29 @@
         <option value="name">Sắp xếp theo tên</option>
     </select>
     <button>Tìm kiếm</button>
-</form>
-<h4>Thêm user</h4>
-<form method="POST" action="/users/add">
+    </form>
+    <h4>Thêm user</h4>
+    <form method="POST" action="/users/add">
     @csrf
     <input type="text" name="id" placeholder="ID">
     <input type="text" name="name" placeholder="Tên">
     <input type="text" name="email" placeholder="Email">
     <input type="text" name="phone" placeholder="Điện thoại">
     <button>Thêm</button>
-</form>
-<br>
-<!-- success -->
-@if(session('success'))
-{{ session('success') }}
-@endif
-<!-- error -->
-@if(session('error'))
-{{ session('error') }}
-@endif
-<!--  -->
-<br>
-<br>
-<table border="1">
+    </form>
+    <br>
+    <!-- success -->
+    @if(session('success'))
+    {{ session('success') }}
+    @endif
+    <!-- error -->
+    @if(session('error'))
+    {{ session('error') }}
+    @endif
+    <!--  -->
+    <br>
+    <br>
+    <table border="1">
     <tr>
         <td>ID</td>
         <td>Name</td>
@@ -62,4 +69,6 @@
         </td>
     </tr>
     @endforeach
-</table>
+    </table>
+</body>
+</html>
