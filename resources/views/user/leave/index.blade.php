@@ -1,8 +1,18 @@
-<!-- Giữ nguyên phần link CSS và Style của bạn -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+@extends('layouts.app')
 
-<style>
+@section('title', 'Quản lý nghỉ phép')
+
+@section('content')
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý nhân sự - Quản lý nghỉ phép</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
     body { background-color: #f8f9fa; }
     .card { border: none; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
     .card-header { background: linear-gradient(45deg, #007bff, #0056b3); color: white; border-radius: 15px 15px 0 0 !important; font-weight: bold; }
@@ -15,31 +25,27 @@
     @keyframes shake {
         0% { margin-left: 0rem; } 25% { margin-left: 0.5rem; } 75% { margin-left: -0.5rem; } 100% { margin-left: 0rem; }
     }
-</style>
-
-@extends('layouts.app')
-
-@section('title', 'Quản lý nghỉ phép')
-
-@section('content')
-@if(session('success'))
+    </style>
+</head>
+<body>
+    @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
         {{ session('success') }}
     </div>
-@endif
-<div class="rounded mt-6">
-    <div class="row">
+    @endif
+    <div class="rounded mt-6">
+        <div class="row">
         <!-- FORM ĐĂNG KÝ -->
-        <div class="col-lg-4 mb-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-header py-3 text-center">
-                    Tạo đơn xin nghỉ phép
-                </div>
-                <div class="card-body p-4">
-                    <form action="/leave/store" method="POST">
-                        @csrf
-                        <!-- NHÂN VIÊN -->
-                        <div class="mb-3">
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header py-3 text-center">
+                        Tạo đơn xin nghỉ phép
+                    </div>
+                    <div class="card-body p-4">
+                        <form action="/leave/store" method="POST">
+                            @csrf
+                            <!-- NHÂN VIÊN -->
+                            <div class="mb-3">
                             <select name="employee_id" class="form-select @error('employee_id') is-invalid @enderror">
                                 <option value="">-- Chọn nhân viên --</option>
                                 @foreach($allEmployees as $emp)
@@ -69,7 +75,6 @@
                                 @error('end_date') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
                             </div>
                         </div>
-
                         <!-- LÝ DO -->
                         <div class="mb-3">
                             <label class="form-label fw-bold small text-uppercase text-secondary">Lý do xin nghỉ phép<span class="text-danger"> *</span></label>
@@ -77,7 +82,6 @@
                                       rows="4" >{{ old('reason') }}</textarea>
                             @error('reason') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
                         </div>
-
                         <div class="d-grid mt-4">
                             <button type="submit" class="btn btn-primary shadow">
                                 Gửi đơn
@@ -87,7 +91,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-lg-8">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-dark text-white py-3">
@@ -149,13 +152,10 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 
-@endsection
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
     const startDateInput = document.getElementById('start_date');
     const endDateInput = document.getElementById('end_date');
     startDateInput.addEventListener('change', function() {
@@ -166,4 +166,9 @@
             }
         }
     });
-</script>
+    </script>
+
+</body>
+</html>
+
+@endsection

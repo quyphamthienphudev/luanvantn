@@ -3,7 +3,16 @@
 @section('title', 'Chi tiết bảng lương')
 
 @section('content')
-<div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý nhân sự - Chi tiết bảng lương</title>
+</head>
+<body>
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
     @if(!$payroll)
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             Không tìm thấy bảng lương!
@@ -57,5 +66,8 @@
             <a href="/admin/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded">Quay lại</a>
         </div>
     @endif
-</div>
+    </div>
+</body>
+</html>
+
 @endsection

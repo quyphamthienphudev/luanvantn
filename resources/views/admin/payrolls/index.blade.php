@@ -3,19 +3,26 @@
 @section('title', 'Quản lý lương')
 
 @section('content')
-<div class="bg-white rounded-lg shadow p-6">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý nhân sự - Quản lý lương</title>
+</head>
+<body>
+    <div class="bg-white rounded-lg shadow p-6">
     @if(session('success'))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
             {{ session('success') }}
         </div>
     @endif
-    
     @if(session('error'))
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             {{ session('error') }}
         </div>
     @endif
-    
     <div class="mb-6 flex justify-between items-center">
         <form method="GET" action="/admin/payrolls" class="flex gap-2">
             <select name="month" class="border rounded px-3 py-2">
@@ -31,11 +38,9 @@
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Xem bảng lương</button>
         </form>
         <div class="flex gap-2">
-                <a href="/admin/payrolls/create" class="bg-green-500 text-white px-4 py-2 rounded">+ Tạo</a>
                 <a href="/admin/payrolls/export" class="bg-yellow-500 text-white px-4 py-2 rounded">Xuất Excel</a>
         </div>
     </div>
-    
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border">
             <thead>
@@ -81,5 +86,8 @@
             </tbody>
         </table>
     </div>
-</div>
+    </div>
+</body>
+</html>
+
 @endsection

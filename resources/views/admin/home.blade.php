@@ -4,19 +4,29 @@
 
 @section('content')
 
-<h1 class="text-2xl font-bold mb-6">
-Project luận văn tốt nghiệp
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý nhân sự - Trang chủ</title>
+</head>
+<body>
+    <h1 class="text-2xl font-bold mb-6">
+        Project luận văn tốt nghiệp
+    </h1>
 
-<div class="grid grid-cols-3 gap-6">
+    <div class="grid grid-cols-3 gap-6">
 
-    <div class="bg-white p-6 rounded-xl shadow">
-        <p class="text-lg font-semibold">
-            Phạm Thiên Phú Quý
-        </p>
-        <h3 class="text-gray-500">DH52201333</h3>
+        <div class="bg-white p-6 rounded-xl shadow">
+            <p class="text-lg font-semibold">
+                Phạm Thiên Phú Quý
+            </p>
+            <h3 class="text-gray-500">DH52201333</h3>
+        </div>
+
     </div>
-
-</div>
+</body>
+</html>
 
 @endsection
