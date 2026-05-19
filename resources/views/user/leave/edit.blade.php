@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Chỉnh sửa đơn xin nghỉ phép</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
     body { background-color: #f4f7f6; }
@@ -82,10 +81,11 @@
             </div>              
         </div>
         <div class="mb-4">
-            <label class="form-label fw-bold small text-uppercase">
+            <p class="form-label fw-bold small text-uppercase">
                 Lý do xin nghỉ phép
-            </label>
-            <textarea name="reason" class="form-control shadow-sm" rows="4" required>{{ $leave->reason }}</textarea>
+            </p>
+            <br>
+            <textarea name="reason" class="form-control shadow-sm" rows="4" cols="50" required>{{ $leave->reason }}</textarea>
         </div>
         <div class="d-flex flex-column flex-sm-row gap-3">
             <button type="submit" class="btn btn-save flex-grow-1">

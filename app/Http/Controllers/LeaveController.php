@@ -60,7 +60,7 @@ class LeaveController extends Controller
 
     public function adminIndex() 
     {
-        $allLeaves = LeaveRequest::with('employee')->orderBy('id', 'desc')->paginate(10); 
+        $allLeaves = LeaveRequest::with('employee')->orderBy('id', 'desc')->get(); 
         return view('admin.leave.index', compact('allLeaves'));
     }
 

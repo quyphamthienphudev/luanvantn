@@ -10,13 +10,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Quản lý nghỉ phép</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
     body { background-color: #f8f9fa; }
     .card { border: none; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
     .card-header { background: linear-gradient(45deg, #007bff, #0056b3); color: white; border-radius: 15px 15px 0 0 !important; font-weight: bold; }
-    .btn-primary { border-radius: 8px; padding: 10px 25px; transition: all 0.3s; font-weight: 600; }
+    .btn-primary { border-radius: 8px; padding: 10px 25px; transition: all 0.3s; font-weight: 600; background: #007bff;  color: white;}
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,123,255,0.3); }
     .table { background: white; border-radius: 10px; overflow: hidden; }
     .badge { padding: 8px 12px; border-radius: 20px; }
@@ -46,6 +46,7 @@
                             @csrf
                             <!-- NHÂN VIÊN -->
                             <div class="mb-3">
+                            <label class="form-label fw-bold small text-uppercase text-secondary">Nhân viên <span class="text-danger">*</span></label>
                             <select name="employee_id" class="form-select @error('employee_id') is-invalid @enderror">
                                 <option value="">-- Chọn nhân viên --</option>
                                 @foreach($allEmployees as $emp)
@@ -77,9 +78,10 @@
                         </div>
                         <!-- LÝ DO -->
                         <div class="mb-3">
-                            <label class="form-label fw-bold small text-uppercase text-secondary">Lý do xin nghỉ phép<span class="text-danger"> *</span></label>
+                            <p class="form-label fw-bold small text-uppercase text-secondary">Lý do xin nghỉ phép<span class="text-danger"> *</span></p>
+                            <br>
                             <textarea name="reason" class="form-control @error('reason') is-invalid @enderror" 
-                                      rows="4" >{{ old('reason') }}</textarea>
+                                      rows="4" cols="50">{{ old('reason') }}</textarea>
                             @error('reason') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
                         </div>
                         <div class="d-grid mt-4">
@@ -93,43 +95,43 @@
         </div>
         <div class="col-lg-8">
             <div class="card shadow-sm border-0">
-                <div class="card-header bg-dark text-white py-3">
+                <div class="card-header py-3 text-center">
                     Lịch sử tạo đơn xin nghỉ phép
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table table-hover mb-0 align-middle">
+                        <table>
                             <thead class="table-light text-uppercase small fw-bold">
                                 <tr>
-                                    <th class="ps-4 py-3 text-secondary">Thời gian</th>
-                                    <th class="text-secondary">Nhân viên</th>
-                                    <th class="text-secondary">Trạng thái</th>
-                                    <th class="text-secondary text-center">Thao tác</th>
+                                    <th class="ps-4 py-3 text-left" width="25%">Thời gian</th>
+                                    <th class="text-left" width="40%">Nhân viên</th>
+                                    <th class="text-left" width="20%">Trạng thái</th>
+                                    <th class="text-left" width="50%">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($leaves as $leave)
                                 <tr>
-                                    <td class="ps-4">
+                                    <td class="ps-4" width="25%">
                                         <div class="fw-bold">{{ \Carbon\Carbon::parse($leave->start_date)->format('d/m/Y') }}</div>
                                         <div class="text-muted small">đến {{ \Carbon\Carbon::parse($leave->end_date)->format('d/m/Y') }}</div>
                                     </td>
-                                    <td>
+                                    <td width="40%">
                                         <div class="fw-bold text-primary">{{ $leave->employee->full_name ?? 'N/A' }}</div>
                                         <small class="text-muted">Lý do: {{ $leave->reason }}</small>
                                     </td>
-                                    <td>
+                                    <td width="20%">
                                         @if($leave->status == 'pending')
                                             <span class="badge bg-warning text-dark status-badge"><i class="fas fa-spinner fa-spin me-1"></i> Chờ duyệt</span>
                                         @elseif($leave->status == 'approved')
-                                            <span class="badge bg-success shadow-sm"><i class="fas fa-check-circle me-1"></i> Đồng ý</span>
+                                            <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i> Đồng ý</span>
                                         @else
-                                            <span class="badge bg-danger shadow-sm"><i class="fas fa-times-circle me-1"></i> Từ chối</span>
+                                            <span class="badge bg-danger"><i class="fas fa-times-circle me-1"></i> Từ chối</span>
                                         @endif
                                     </td>
-                                    <td class="text-center pe-4">
+                                    <td class="text-center pe-4" width="50%">
                                         @if($leave->status == 'pending')
-                                            <a href="/leave/edit/{{ $leave->id }}" class="btn btn-sm btn-outline-primary shadow-sm px-3">
+                                            <a href="/leave/edit/{{ $leave->id }}" class="btn btn-sm btn-outline-primary px-3">
                                                 <i class="fas fa-edit me-1"></i> Sửa
                                             </a>
                                         @else

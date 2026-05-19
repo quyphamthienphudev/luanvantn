@@ -10,7 +10,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Quản lý nghỉ phép</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .table th { vertical-align: middle; }
@@ -21,8 +20,8 @@
 </head>
 <body>
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
-            {{ session('success') }}
+        <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
+        {{ session('success') }}
         </div>
     @endif
     <div class="bg-white shadow rounded mt-6">
@@ -55,7 +54,7 @@
                     <span class="badge bg-warning text-dark status-badge">Chờ duyệt</span>
                     @elseif($leave->status == 'approved')
                     <span class="badge bg-success status-badge">Đã duyệt</span>
-                    @else
+                    @elseif($leave->status == 'rejected')
                     <span class="badge bg-danger status-badge">Từ chối</span>
                     @endif
                 </td>
@@ -70,9 +69,10 @@
                         @csrf
                         <button class="btn btn-outline-danger btn-sm btn-action" title="Từ chối"><i class="fas fa-ban"></i></button>
                     </form>
-                    <a href="/admin/leave/edit/{{ $leave->id }}" class="btn btn-info btn-sm btn-action text-white" title="Chỉnh sửa">
-                        <i class="fas fa-edit"></i>
-                    </a>
+                    <form action="/admin/leave/edit/{{ $leave->id }}" method="GET" class="m-0 p-0">
+                        @csrf
+                        <button class="btn btn-success btn-sm btn-action" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                    </form>
                     @endif
                     <form action="/admin/leave/delete/{{ $leave->id }}" method="POST" class="m-0 p-0" onsubmit="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
                         @csrf
