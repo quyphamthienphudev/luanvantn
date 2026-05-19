@@ -108,13 +108,10 @@ class PayrollController extends Controller
             'base_salary' => $base_salary,
             'bonus' => $bonus,
             'deduction' => $deduction,
-            'total_salary' => $total_salary,
-            'created_at' => now(),
-            'updated_at' => now()
+            'total_salary' => $total_salary
         ]);
 
-        $routeName = auth()->user()->role->name === 'user' ? 'user.payrolls.index' : '';
-        return redirect()->route($routeName, ['month' => $request->month, 'year' => $request->year])
+        return redirect('/payrolls')
             ->with('success', 'Tạo bảng lương thành công.');
     }
 
@@ -203,11 +200,10 @@ class PayrollController extends Controller
             'base_salary' => $base_salary,
             'bonus' => $bonus,
             'deduction' => $deduction,
-            'total_salary' => $total_salary,
-            'updated_at' => now()
+            'total_salary' => $total_salary
         ]);
 
-        return redirect()->route('admin.payrolls.index', ['month' => $request->month, 'year' => $request->year])
+        return redirect('/admin/payrolls')
             ->with('success', 'Cập nhật bảng lương thành công.');
     }
 
@@ -216,7 +212,7 @@ class PayrollController extends Controller
         $payroll = DB::table('payrolls')->where('id', $id)->first();
         DB::table('payrolls')->where('id', $id)->delete();
 
-        return redirect()->route('admin.payrolls.index', ['month' => $payroll->month, 'year' => $payroll->year])
+        return redirect('/admin/payrolls')
             ->with('success', 'Xóa bảng lương thành công.');
     }
 

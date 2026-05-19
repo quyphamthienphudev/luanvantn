@@ -31,14 +31,14 @@
                 @endfor
             </select>
             <select name="year" class="border rounded px-3 py-2">
-                @for($i = 2020; $i <= date('Y')+1; $i++)
+                @for($i = 2000; $i <= 2099; $i++)
                     <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>{{ $i }}</option>
                 @endfor
             </select>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Xem bảng lương</button>
         </form>
         <div class="flex gap-2">
-                <a href="/admin/payrolls/export" class="bg-yellow-500 text-white px-4 py-2 rounded">Xuất Excel</a>
+                <a href="/admin/payrolls/export?month={{ $month }}&year={{ $year }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Xuất Excel</a>
         </div>
     </div>
     <div class="overflow-x-auto">
@@ -58,7 +58,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($payrolls as $index => $payroll)
+                @foreach($payrolls as $index => $payroll)
                 <tr>
                     <td class="border px-4 py-2 text-center">{{ $index + 1 }}</td>
                     <td class="border px-4 py-2">{{ $payroll->employee_code ?? 'N/A' }}</td>
@@ -78,11 +78,7 @@
                             </form>
                     </td>
                 </tr>
-                @empty
-                <tr>
-                    <td colspan="10" class="text-center">Chưa có dữ liệu</td>
-                </tr>
-                @endforelse
+                @endforeach
             </tbody>
         </table>
     </div>

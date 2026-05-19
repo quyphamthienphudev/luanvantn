@@ -42,7 +42,7 @@
                 <td class="p-3">{{ $e->department->name }}</td>
                 <td class="p-3 space-x-2">
                     <a href="/employees/show/{{ $e->id }}" class="bg-blue-500 text-white px-3 py-1 rounded">Xem</a>
-                    <a href="/admin/employees/edit/{{ $e->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
+                    <a href="/employees/edit/{{ $e->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
                 </td>
             </tr>
         @endforeach
