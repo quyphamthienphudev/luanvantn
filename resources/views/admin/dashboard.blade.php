@@ -15,13 +15,17 @@
     <div class="container mt-4">
         <div class="row g-4">
             <h1 class="text-2xl font-bold mb-6">
-                Tổng nhân viên
+                Số lượng nhân viên và số lượng phòng ban
             </h1>
             <!-- EMPLOYEES -->
         <div class="grid grid-cols-4 gap-6">
             <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Tổng nhân viên</h3>
+                <h3 class="text-gray-500">Số lượng nhân viên</h3>
                 <p class="text-3xl font-bold text-blue-600">{{ $working }}</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h3 class="text-gray-500">Số lượng phòng ban</h3>
+                <p class="text-3xl font-bold text-blue-600">{{ $departments }}</p>
             </div>
             <!-- CONTENT -->
             <div class="flex-1 p-8">

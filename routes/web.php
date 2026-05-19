@@ -61,6 +61,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/accounts/update/{id}', [UserController::class,'update']);
     Route::get('/admin/accounts/delete/{id}', [UserController::class,'delete']);
 
+    Route::get('/admin/accounts', [UserController::class,'search']);
+    Route::get('/admin/accounts/export', [UserController::class,'export']);
+
     Route::post('/admin/accounts/{id}/reset-password', 
     [UserController::class, 'resetPassword'])
     ->name('admin.accounts.resetPassword');
@@ -104,8 +107,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('payrolls', [PayrollController::class, 'adminIndex']);
     Route::post('payrolls', [PayrollController::class, 'store']);
     Route::get('payrolls/{id}', [PayrollController::class, 'adminShow']);
-    Route::get('payrolls/edit/{id}', [PayrollController::class, 'edit']);
-    Route::post('payrolls/update/{id}', [PayrollController::class, 'update']);
+    Route::get('payrolls/edit/{id}', [PayrollController::class, 'adminEdit']);
+    Route::post('payrolls/update/{id}', [PayrollController::class, 'adminUpdate']);
     Route::post('payrolls/delete/{id}', [PayrollController::class, 'destroy']);
 });
 
@@ -114,6 +117,8 @@ Route::prefix('/')->name('user.')->group(function () {
     Route::get('payrolls/create', [PayrollController::class, 'create']);
     Route::post('payrolls', [PayrollController::class, 'store']);
     Route::get('payrolls/{id}', [PayrollController::class, 'show']);
+    Route::get('payrolls/edit/{id}', [PayrollController::class, 'edit']);
+    Route::post('payrolls/update/{id}', [PayrollController::class, 'update']);
 });
 
 // Chức năng quản lý nhân viên
@@ -135,12 +140,18 @@ Route::get('/admin/employees/show/{id}',[EmployeeController::class,'adminShow'])
 // Chức năng quản lý phòng ban
 Route::get('/departments',[DepartmentController::class,'index']);
 
+Route::get('/departments',[DepartmentController::class,'search']);
+
 Route::get('/admin/departments',[DepartmentController::class,'adminIndex']);
 Route::get('/admin/departments/create',[DepartmentController::class,'create']);
 Route::post('/admin/departments/store',[DepartmentController::class,'store']);
 Route::get('/admin/departments/edit/{id}',[DepartmentController::class,'edit']);
 Route::post('/admin/departments/update/{id}',[DepartmentController::class,'update']);
 Route::get('/admin/departments/delete/{id}',[DepartmentController::class,'delete']);
+
+Route::get('/admin/departments',[DepartmentController::class,'adminSearch']);
+Route::get('/admin/departments/export',[DepartmentController::class,'adminExport']);
+Route::get('/departments/export',[DepartmentController::class,'export']);
 
 // Chức năng quản lý chức vụ
 Route::get('/admin/positions', [PositionController::class,'index']);
@@ -150,7 +161,13 @@ Route::get('/admin/positions/edit/{id}', [PositionController::class,'edit']);
 Route::post('/admin/positions/update/{id}', [PositionController::class,'update']);
 Route::get('/admin/positions/delete/{id}', [PositionController::class,'delete']);
 
+Route::get('/admin/positions', [PositionController::class,'adminSearch']);
+Route::get('/admin/positions/export', [PositionController::class,'adminExport']);
+
 Route::get('/positions', [PositionController::class,'userIndex']);
+
+Route::get('/positions', [PositionController::class,'search']);
+Route::get('/positions/export', [PositionController::class,'export']);
 
 // --- CHỨC NĂNG QUẢN LÝ CHẤM CÔNG ---
 Route::middleware('auth')->group(function () {

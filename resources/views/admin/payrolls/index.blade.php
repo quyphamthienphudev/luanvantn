@@ -38,7 +38,7 @@
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Xem bảng lương</button>
         </form>
         <div class="flex gap-2">
-                <a href="/admin/payrolls/export?month={{ $month }}&year={{ $year }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Xuất Excel</a>
+            <a href="/admin/payrolls/export?month={{ $month }}&year={{ $year }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Xuất file Excel</a>
         </div>
     </div>
     <div class="overflow-x-auto">

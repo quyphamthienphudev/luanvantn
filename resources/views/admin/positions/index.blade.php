@@ -16,6 +16,14 @@
     class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         Thêm chức vụ
     </a>
+    <a href="/admin/positions/export"
+    class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">
+        Xuất file Excel
+    </a>
+    <form method="GET" action="/admin/positions" class="mt-4">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2">
+        <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
+    </form>
     @if(session('success'))
         <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
             {{ session('success') }}

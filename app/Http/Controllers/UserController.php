@@ -179,4 +179,64 @@ class UserController extends Controller
 
         return redirect()->back()->with('success','Reset mật khẩu thành công');
     }
+
+    public function search(Request $request)
+    {
+    $search = $request->search;
+
+    $users = DB::table('users')
+        ->when($search, function ($query) use ($search) {
+
+            // tìm theo name hoặc email
+            $query->where('name', 'like', '%' . $search . '%')
+                  ->orWhere('email', 'like', '%' . $search . '%');
+
+            // tìm theo quyền
+            if (strtolower($search) == 'admin') {
+                $query->orWhere('role_id', 1);
+            }
+
+            if (strtolower($search) == 'user') {
+                $query->orWhere('role_id', 2);
+            }
+        })
+        ->get();
+
+    return view('admin.accounts.index', compact('users', 'search'));
+    }
+
+    public function export()
+    {   
+        $users = DB::table('users')
+            ->select(
+                'id',
+                'name',
+                'email'
+            )
+            ->get();
+        
+        if ($users->isEmpty()) {
+            return redirect()->back()->with('error', 'Không có dữ liệu.');
+        }
+        
+        $filename = 'ds_tai_khoan' . '.csv';
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        
+        $output = fopen('php://output', 'w');
+        fwrite($output, "\xEF\xBB\xBF");
+        
+        fputcsv($output, ['STT', 'Họ tên nhân viên', 'Email']);
+        
+        foreach ($users as $user) {
+            fputcsv($output, [
+                $user->id ?? '',
+                $user->name ?? '',
+                $user->email ?? ''
+            ]);
+        }
+        
+        fclose($output);
+        exit;
+    }
 }

@@ -70,7 +70,8 @@
                     <td class="border px-4 py-2 text-right">{{ number_format($payroll->deduction ?? 0) }} VNĐ</td>
                     <td class="border px-4 py-2 text-right font-bold">{{ number_format($payroll->total_salary ?? 0) }} VNĐ</td>
                     <td class="border px-4 py-2 text-center">
-                            <a href="/payrolls/{{ $payroll->id }}" class="text-blue-500">Xem</a>
+                        <a href="/payrolls/edit/{{ $payroll->id }}" class="text-yellow-500 ml-2">Sửa</a>
+                        <a href="/payrolls/{{ $payroll->id }}" class="text-blue-500">Xem</a>
                     </td>
                 </tr>
                 @empty

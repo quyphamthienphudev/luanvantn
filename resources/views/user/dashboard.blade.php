@@ -13,16 +13,132 @@
 </head>
 <body>
     <h1 class="text-2xl font-bold mb-6">
-        Tổng nhân viên
+        Số lượng phòng ban
     </h1>
     <div class="grid grid-cols-3 gap-6">
         <div class="bg-white p-6 rounded-xl shadow">
-            <h3 class="text-gray-500">Tổng nhân viên</h3>
+            <h3 class="text-gray-500">Số lượng phòng ban</h3>
             <p class="text-lg font-semibold">
-                {{ $working }}
+                {{ $department }}
             </p>
         </div>
     </div>
+    <br>
+    <!-- Thống kê số lượng nhân viên theo phòng ban -->
+     <h1 class="text-2xl font-bold mb-6">
+            Số lượng nhân viên theo phòng ban
+        </h1>
+        <div class="bg-white p-6 rounded shadow w">
+            <canvas id="departmentChart" height="120"></canvas>
+        </div>
+        <script>
+            const ctxDept = document.getElementById('departmentChart').getContext('2d');
+            const departmentChart = new Chart(ctxDept, {
+                type: 'bar', // cột dọc
+                data: {
+                    labels: {!! json_encode($deptLabels) !!},
+                    datasets: [{
+                    label: 'Số lượng nhân viên',
+                    data: {!! json_encode($deptData) !!},
+                    borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true
+                        },
+                        title: {
+                            display: true
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Phòng ban'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Số lượng nhân viên'
+                            },
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+    <br>
+        <h1 class="text-2xl font-bold mb-6">
+            Tỉ lệ nghỉ phép
+        </h1>
+        <div class="bg-white p-6 rounded shadow w">
+            <canvas id="leaveChart" style="max-height: 500px;"></canvas>
+        </div>
+        <script>
+            const ctxLeave = document.getElementById('leaveChart').getContext('2d');
+            const leaveChart = new Chart(ctxLeave, {
+                type: 'pie',
+                data: {
+                    labels: {!! json_encode($leaveLabels) !!},
+                    datasets: [{
+                        data: {!! json_encode($leaveData) !!},
+                        borderWidth: 1,
+                        backgroundColor: [
+                            '#ffc107', // chờ duyệt
+                            '#28a745', // đã duyệt
+                            '#dc3545'  // từ chối
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Thống kê tỉ lệ nghỉ phép'
+                        },
+                        // ===== HIỂN THỊ % =====
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let data = context.chart.data.datasets[0].data;
+                                let total = data.reduce((a, b) => a + b, 0);
+                                let value = context.raw;
+                                if(total === 0) return '0%';
+                                let percentage = (value / total * 100).toFixed(1);
+                                return context.label + ': ' + percentage + '%';
+                            }
+                        }
+                    },
+                    datalabels: {
+                        color: '#fff',
+                        font: {
+                            weight: 'bold',
+                            size: 14
+                        },
+                        formatter: function(value, context) {
+                            let data = context.chart.data.datasets[0].data;
+                            let total = data.reduce((a, b) => a + b, 0);
+                            if(total === 0) return '0%';
+                            let percentage = (value / total * 100).toFixed(1);
+                            return percentage + '%';
+                        }
+                    }
+                    }
+                },
+                plugins: [ChartDataLabels] // kích hoạt plugin
+            });
+        </script>
 </body>
 </html>
 

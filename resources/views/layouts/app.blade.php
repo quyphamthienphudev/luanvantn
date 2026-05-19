@@ -48,7 +48,7 @@
 
             @if(auth()->user()->role->name === 'user')
             <a href="/departments" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Xem danh sách phòng ban
+                Quản lý phòng ban
             </a>
             @endif
 
@@ -60,7 +60,7 @@
             
             @if(auth()->user()->role->name === 'user')
             <a href="/positions" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Xem danh sách chức vụ
+                Quản lý chức vụ
             </a>
             @endif
             
