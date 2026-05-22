@@ -8,13 +8,6 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PayrollController;
-use App\Http\Controllers\Week3Controller;
-
-//Kiểm tra kết quả tuần 3
-Route::get('/users', [Week3Controller::class,'view']);
-Route::post('/users/add', [Week3Controller::class,'store']);
-Route::post('/users/update/{id}', [Week3Controller::class,'update']);
-Route::get('/users/delete/{id}', [Week3Controller::class,'delete']);
 
 //-----------------------------------------------------------------------------------
 Route::get('/', function () {
@@ -71,9 +64,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard',[DashboardController::class,'dashboard']);
     Route::get('/dashboard',[DashboardController::class,'userdashboard']);
 });
-
-//Route::get('/dashboard',[DashboardController::class,'userdashboard'])->middleware('auth');
-
 
 // Chức năng quản lý đơn xin nghỉ phép
 
@@ -168,14 +158,3 @@ Route::get('/positions', [PositionController::class,'userIndex']);
 
 Route::get('/positions', [PositionController::class,'search']);
 Route::get('/positions/export', [PositionController::class,'export']);
-
-// --- CHỨC NĂNG QUẢN LÝ CHẤM CÔNG ---
-Route::middleware('auth')->group(function () {
-    Route::get('/attendances', [AttendanceController::class, 'index']);
-    Route::get('/admin/attendances', [AttendanceController::class, 'adminIndex']);
-    Route::get('/admin/attendances/edit/{id}', [AttendanceController::class, 'adminEdit']);
-    Route::post('/admin/attendances/update/{id}', [AttendanceController::class, 'adminUpdate']);
-    Route::get('/admin/attendances/delete/{id}', [AttendanceController::class, 'adminDelete']);
-    Route::get('/attendances/edit/{id}', [AttendanceController::class, 'edit']);
-    Route::post('/attendances/update/{id}', [AttendanceController::class, 'update']);
-});
