@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-class UserController extends Controller
+class ManageUserControllerAdmin extends Controller
 {
     // ===== CẬP NHẬT THÔNG TIN =====
 
     public function editProfile()
     {
-        return view('user.profile');
+        return view('admin.profile');
     }
 
     public function updateProfile(Request $request)
@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function showChangePassword()
     {
-        return view('user.change-password');
+        return view('admin.change-password');
     }
 
     public function changePassword(Request $request)
