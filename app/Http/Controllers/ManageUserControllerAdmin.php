@@ -138,6 +138,7 @@ class ManageUserControllerAdmin extends Controller
         ->update([
             'name'=>$request->name,
             'email'=>$request->email,
+            'status'=>$request->status,
             'role_id'=>$request->role
         ]);
 
@@ -151,33 +152,6 @@ class ManageUserControllerAdmin extends Controller
 
         return redirect('/admin/accounts')
             ->with('success','Xóa tài khoản thành công');
-    }
-    
-    public function resetPassword(Request $request, $id)
-    {
-        // validation
-        $request->validate([
-            'new_password' => 'required|min:8'
-        ],[
-            'new_password.required' => 'Mật khẩu mới không được để trống',
-            'new_password.min' => 'Mật khẩu mới phải có ít nhất 8 ký tự'
-        ]);
-
-        // tìm user
-        $user = User::findorFail($id);
-
-        // chỉ reset cho role user
-        if($user->role_id != '2'){
-            return redirect()->back()->with('error','Chỉ có thể reset mật khẩu cho tài khoản user');
-        }
-
-        else {
-        // cập nhật mật khẩu
-        $user->password = Hash::make($request->new_password);
-        $user->save();
-        }
-
-        return redirect()->back()->with('success','Reset mật khẩu thành công');
     }
 
     public function search(Request $request)

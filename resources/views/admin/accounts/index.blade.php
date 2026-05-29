@@ -37,6 +37,7 @@
                     <th class="p-3">Họ tên</th>
                     <th class="p-3">Email</th>
                     <th class="p-3">Quyền</th>
+                    <th class="p-3">Trạng thái</th>
                     <th class="p-3">Hành động</th>
                 </tr>
             </thead>
@@ -48,12 +49,19 @@
                     <td class="p-3">{{ $user->email }}</td>
                     <td class="p-3">
                     @if($user->role_id == '1')
-                        <span class="bg-red-200 text-red-700 px-2 py-1 rounded text-sm">
-                            Admin
+                        Admin
+                    @elseif($user->role_id == '2')
+                        User
+                    @endif
+                    </td>
+                    <td class="p-3">
+                    @if($user->status == 'active')
+                        <span class="bg-green-200 text-green-700 px-2 py-1 rounded text-sm">
+                            Đang hoạt động
                         </span>
-                    @else
-                        <span class="bg-blue-200 text-blue-700 px-2 py-1 rounded text-sm">
-                            User
+                    @elseif($user->status == 'suspend')
+                        <span class="bg-red-200 text-red-700 px-2 py-1 rounded text-sm">
+                            Tạm dừng
                         </span>
                     @endif
                     </td>

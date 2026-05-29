@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\User;
+
 class AuthController extends Controller
 {
     public function showLogin()
@@ -25,13 +27,22 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
+        $user = User::where('email', $request->email)->first();
 
-            if (Auth::user()->role->name === 'admin') {
-                return redirect('/admin/home');
+        if ($user)
+        {
+            if ($user->status === 'suspend') {
+                return back()->with('error', 'Tài khoản này đang bị tạm dừng');
             }
 
+            if (Auth::attempt($credentials)) {
+
+                if (Auth::user()->role->name === 'admin') {
+                    return redirect('/admin/home');
+                }
+
             return redirect('/home');
+            }
         }
 
         return back()->with('error', 'Email hoặc mật khẩu không đúng');

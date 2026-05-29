@@ -90,12 +90,6 @@
                 Báo cáo thống kê
             </a>
             @endif
-
-            @if(auth()->user()->role->name === 'user')
-            <a href="/dashboard" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Báo cáo thống kê
-            </a>
-            @endif
             
             @if(auth()->user()->role->name === 'admin')
                 <a href="/admin/accounts" class="block px-4 py-2 rounded hover:bg-blue-700">

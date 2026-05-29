@@ -4,7 +4,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ManageUserControllerAdmin;
 use App\Http\Controllers\ManageUserControllerUser;
 use App\Http\Controllers\DashboardControllerAdmin;
-use App\Http\Controllers\DashboardControllerUser;
 use App\Http\Controllers\LeaveControllerAdmin;
 use App\Http\Controllers\LeaveControllerUser;
 use App\Http\Controllers\ManageEmployeeControllerAdmin;
@@ -64,13 +63,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/accounts/delete/{id}', [ManageUserControllerAdmin::class,'delete']);
     Route::get('/admin/accounts', [ManageUserControllerAdmin::class,'search']);
     Route::get('/admin/accounts/export', [ManageUserControllerAdmin::class,'export']);
-    Route::post('/admin/accounts/{id}/reset-password', [ManageUserControllerAdmin::class, 'resetPassword'])->name('admin.accounts.resetPassword');
 });
 
 // Chức năng báo cáo thống kê
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard',[DashboardControllerAdmin::class,'adminDashboard']);
-    Route::get('/dashboard',[DashboardControllerUser::class,'userDashboard']);
 });
 
 // Chức năng quản lý đơn xin nghỉ phép
