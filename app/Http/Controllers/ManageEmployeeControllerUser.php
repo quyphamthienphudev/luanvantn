@@ -15,7 +15,7 @@ class ManageEmployeeControllerUser extends Controller
     {
         $search = $request->search;
 
-        $employees = Employee::with('department')
+        $employees = Employee::with('department','user')
             ->when($search, function($q) use ($search){
                 $q->where('full_name','like','%'.$search.'%')
                   ->orWhere('employee_code',$search)
@@ -61,6 +61,7 @@ class ManageEmployeeControllerUser extends Controller
         ]);
 
         $data = $request->all();
+        $data['users_id'] = auth()->user()->id;
 
         // tự động set ngày vào làm
         $data['hire_date'] = date('Y-m-d');

@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Department;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Auth;
+
 class DepartmentControllerAdmin extends Controller
 {
     public function index()
     {
-        $departments = Department::all();
+        $departments = Department::with('user')->get();
         return view('admin.departments.index', compact('departments'));
     }
 
@@ -28,7 +30,11 @@ class DepartmentControllerAdmin extends Controller
             'name.required' => 'Tên phòng ban không được để trống',
             'description.required' => 'Thông tin phòng ban không được để trống'
         ]);
-        Department::create($request->all());
+        Department::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'users_id' => Auth::id()
+        ]);
         return redirect('/admin/departments')->with('success','Thêm phòng ban thành công');
     }
 
@@ -66,18 +72,17 @@ class DepartmentControllerAdmin extends Controller
 
     public function search(Request $request)
     {
-    $search = $request->search;
+        $search = $request->search;
 
-    $departments = DB::table('departments')
-        ->when($search, function ($query) use ($search) {
+        $departments = Department::with('user')
+            ->when($search, function ($query) use ($search) {
 
-            // tìm theo name hoặc description
             $query->where('name', 'like', '%' . $search . '%')
                   ->orWhere('description', 'like', '%' . $search . '%');
         })
         ->get();
 
-    return view('admin.departments.index', compact('departments', 'search'));
+        return view('admin.departments.index', compact('departments', 'search'));
     }
 
     public function export()

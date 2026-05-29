@@ -17,13 +17,14 @@ class Employee extends Model
         'email',
         'address',
         'hire_date',
-        'status'
+        'status',
+        'users_id'
     ];
 
     public $timestamps = false;
 
     public function user() {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     public function department()
