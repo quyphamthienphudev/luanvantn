@@ -4,16 +4,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ManageUserControllerAdmin;
 use App\Http\Controllers\ManageUserControllerUser;
 use App\Http\Controllers\DashboardControllerAdmin;
-use App\Http\Controllers\LeaveControllerAdmin;
-use App\Http\Controllers\LeaveControllerUser;
 use App\Http\Controllers\ManageEmployeeControllerAdmin;
 use App\Http\Controllers\ManageEmployeeControllerUser;
 use App\Http\Controllers\DepartmentControllerAdmin;
 use App\Http\Controllers\DepartmentControllerUser;
 use App\Http\Controllers\PositionControllerAdmin;
 use App\Http\Controllers\PositionControllerUser;
-use App\Http\Controllers\PayrollControllerAdmin;
-use App\Http\Controllers\PayrollControllerUser;
 
 //-----------------------------------------------------------------------------------
 Route::get('/', function () {
@@ -68,39 +64,6 @@ Route::middleware('auth')->group(function () {
 // Chức năng báo cáo thống kê
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard',[DashboardControllerAdmin::class,'adminDashboard']);
-});
-
-// Chức năng quản lý đơn xin nghỉ phép
-Route::middleware('auth')->group(function () {
-    Route::get('/admin/leave', [LeaveControllerAdmin::class, 'index']);
-    Route::post('/admin/leave/approve/{id}', [LeaveControllerAdmin::class, 'approve']);
-    Route::post('/admin/leave/reject/{id}', [LeaveControllerAdmin::class, 'reject']);
-    Route::get('/admin/leave/edit/{id}', [LeaveControllerAdmin::class, 'edit']);
-    Route::post('/admin/leave/update/{id}', [LeaveControllerAdmin::class, 'update']);
-    Route::delete('/admin/leave/delete/{id}', [LeaveControllerAdmin::class, 'destroy']);
-
-    Route::get('/leave', [LeaveControllerUser::class, 'index']);
-    Route::post('/leave/store', [LeaveControllerUser::class, 'store']);
-    Route::get('/leave/edit/{id}', [LeaveControllerUser::class, 'edit']);
-    Route::post('/leave/update/{id}', [LeaveControllerUser::class, 'update']);
-});
-
-// ====== CHỨC NĂNG QUẢN LÝ LƯƠNG ======
-Route::middleware('auth')->group(function () {
-    Route::get('/admin/payrolls/export', [PayrollControllerAdmin::class, 'export']);
-    Route::get('/admin/payrolls', [PayrollControllerAdmin::class, 'index']);
-    Route::post('/admin/payrolls', [PayrollControllerAdmin::class, 'store']);
-    Route::get('/admin/payrolls/{id}', [PayrollControllerAdmin::class, 'show']);
-    Route::get('/admin/payrolls/edit/{id}', [PayrollControllerAdmin::class, 'edit']);
-    Route::post('/admin/payrolls/update/{id}', [PayrollControllerAdmin::class, 'update']);
-    Route::post('/admin/payrolls/delete/{id}', [PayrollControllerAdmin::class, 'destroy']);
-
-    Route::get('/payrolls', [PayrollControllerUser::class, 'index']);
-    Route::get('/payrolls/create', [PayrollControllerUser::class, 'create']);
-    Route::post('/payrolls', [PayrollControllerUser::class, 'store']);
-    Route::get('/payrolls/{id}', [PayrollControllerUser::class, 'show']);
-    Route::get('/payrolls/edit/{id}', [PayrollControllerUser::class, 'edit']);
-    Route::post('/payrolls/update/{id}', [PayrollControllerUser::class, 'update']);
 });
 
 // Chức năng quản lý nhân viên
