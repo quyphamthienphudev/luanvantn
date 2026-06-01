@@ -9,11 +9,35 @@ class DashboardControllerAdmin extends Controller
 {
     public function adminDashboard(Request $request)
     {
-        // employees
-        $working = DB::table('employees')->where('status','working')->count();
+        // employees tạo bởi admin
+        $e_admin = DB::table('employees')
+        ->join('users','employees.users_id','=','users.id')
+        ->join('roles','users.role_id','=','roles.id')
+        ->where('roles.id','1')->count();
+
+        // employees tạo bởi user
+        $e_user = DB::table('employees')
+        ->join('users','employees.users_id','=','users.id')
+        ->join('roles','users.role_id','=','roles.id')
+        ->where('roles.id','2')->count();
+
+        //employees
+        $employees = DB::table('employees')->count();
 
         //department
         $departments = DB::table('departments')->count();
+
+        //department tạo bởi admin
+        $d_admin = DB::table('departments')
+        ->join('users','departments.users_id','=','users.id')
+        ->join('roles','users.role_id','=','roles.id')
+        ->where('roles.id','1')->count();
+
+        //department tạo bởi user
+        $d_user = DB::table('departments')
+        ->join('users','departments.users_id','=','users.id')
+        ->join('roles','users.role_id','=','roles.id')
+        ->where('roles.id','2')->count();
 
         // ===== THỐNG KÊ NHÂN VIÊN THEO PHÒNG BAN =====
         $employeesByDepartment = DB::table('employees')
@@ -30,7 +54,9 @@ class DashboardControllerAdmin extends Controller
         $deptLabels = $employeesByDepartment->pluck('department_name');
         $deptData = $employeesByDepartment->pluck('total_employees');
 
-        return view('admin.dashboard',['working'=>$working,
+        return view('admin.dashboard',['e_admin'=>$e_admin,
+            'e_user'=>$e_user, 'employees'=>$employees,
+            'd_admin'=>$d_admin, 'd_user'=>$d_user,
             'deptLabels'=>$deptLabels,'deptData'=>$deptData,
             'departments'=>$departments
         ]);
