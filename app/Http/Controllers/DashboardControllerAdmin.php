@@ -15,27 +15,6 @@ class DashboardControllerAdmin extends Controller
         //department
         $departments = DB::table('departments')->count();
 
-        // ===== THỐNG KÊ LƯƠNG =====
-        $year = $request->year;
-
-        $totalYearSalary = 0;
-
-        // Tổng lương theo năm
-        if($request->has('filter_year')){
-            if(!$year){
-                return back()->with('error_year','Vui lòng nhập năm để thống kê');
-            }
-            else if(!is_numeric($year))
-            {
-                return back()->with('error_year','Vui lòng nhập năm thống kê là số');
-            }
-            else {
-                $totalYearSalary = DB::table('payrolls')
-                    ->whereRaw("year = ?", [$year])
-                    ->sum('total_salary');
-            }
-        }
-
         // ===== THỐNG KÊ NHÂN VIÊN THEO PHÒNG BAN =====
         $employeesByDepartment = DB::table('employees')
             ->join('departments','employees.department_id','=','departments.id')
@@ -51,27 +30,8 @@ class DashboardControllerAdmin extends Controller
         $deptLabels = $employeesByDepartment->pluck('department_name');
         $deptData = $employeesByDepartment->pluck('total_employees');
 
-        // ===== THỐNG KÊ TỶ LỆ NGHỈ PHÉP (leave_requests) =====
-        $pendingCount = DB::table('leave_requests')
-            ->where('status','pending')
-            ->count();
-
-        $approvedCount = DB::table('leave_requests')
-            ->where('status','approved')
-            ->count();
-
-        $rejectedCount = DB::table('leave_requests')
-            ->where('status','rejected')
-            ->count();
-
-        // Dữ liệu cho biểu đồ
-        $leaveLabels = ['Chờ duyệt', 'Đã duyệt', 'Từ chối'];
-        $leaveData = [$pendingCount, $approvedCount, $rejectedCount];
-
         return view('admin.dashboard',['working'=>$working,
-            'totalYearSalary'=>$totalYearSalary,
-            'year'=>$year,'deptLabels'=>$deptLabels,'deptData'=>$deptData,
-            'leaveLabels'=>$leaveLabels,'leaveData'=>$leaveData,
+            'deptLabels'=>$deptLabels,'deptData'=>$deptData,
             'departments'=>$departments
         ]);
     }

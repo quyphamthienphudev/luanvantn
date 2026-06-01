@@ -63,27 +63,6 @@
                 Quản lý chức vụ
             </a>
             @endif
-            
-            @if(auth()->user()->role->name === 'admin')
-            <a href="/admin/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý nghỉ phép
-            </a>
-            @endif
-            @if(auth()->user()->role->name === 'user')
-            <a href="/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý nghỉ phép
-            </a>
-            @endif
-
-            @if(auth()->user()->role->name === 'admin')
-                <a href="/admin/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700">
-                    Quản lý lương
-                </a>
-            @else
-                <a href="/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700">
-                    Quản lý lương
-                </a>
-            @endif
 
             @if(auth()->user()->role->name === 'admin')
             <a href="/admin/dashboard" class="block px-4 py-2 rounded hover:bg-blue-700">
