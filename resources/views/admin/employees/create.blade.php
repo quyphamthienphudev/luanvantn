@@ -77,6 +77,18 @@
             <label>Địa chỉ</label>
             <input name="address" class="w-full border p-2 rounded">
         </div>
+        <div class="mb-4">
+            <label>Tên đường</label>
+            <input name="street" class="w-full border p-2 rounded">
+        </div>
+        <div class="mb-4">
+            <label>Phường</label>
+            <input name="ward" class="w-full border p-2 rounded">
+        </div>
+        <div class="mb-4">
+            <label>Tỉnh / Thành phố</label>
+            <input name="province" class="w-full border p-2 rounded">
+        </div>
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lưu</button>
     </form>
 </body>

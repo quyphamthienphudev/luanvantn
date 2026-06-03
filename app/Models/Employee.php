@@ -16,6 +16,9 @@ class Employee extends Model
         'phone',
         'email',
         'address',
+        'street',
+        'ward',
+        'province',
         'hire_date',
         'status',
         'users_id'

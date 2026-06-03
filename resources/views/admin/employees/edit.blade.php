@@ -85,6 +85,18 @@
             <input name="address" value="{{ $employee->address }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
+            <label>Tên đường</label>
+            <input name="street" value="{{ $employee->street }}" class="w-full border p-2 rounded">
+        </div>
+        <div class="mb-4">
+            <label>Phường</label>
+            <input name="ward" value="{{ $employee->ward }}" class="w-full border p-2 rounded">
+        </div>
+        <div class="mb-4">
+            <label>Tỉnh / Thành phố</label>
+            <input name="province" value="{{ $employee->province }}" class="w-full border p-2 rounded">
+        </div>
+        <div class="mb-4">
             <label>Ngày vào làm</label>
             <input type="date" name="hire_date" value="{{ $employee->hire_date }}" class="w-full border p-2 rounded">
         </div>

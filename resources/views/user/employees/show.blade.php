@@ -28,7 +28,7 @@
         </p>
         <p>Ngày sinh: {{ $employee->date_of_birth ? date('d/m/Y', strtotime($employee->date_of_birth)) : '' }}</p>
         <p>SĐT: {{ $employee->phone }}</p>
-        <p>Địa chỉ: {{ $employee->address }}</p>
+        <p>Địa chỉ: {{ $employee->address }} , {{ $employee->street }} , {{ $employee->ward }} , {{ $employee->province }}</p>
         <p>Ngày vào làm: 
             {{ $employee->hire_date ? date('d/m/Y', strtotime($employee->hire_date)) : '' }}
         </p>
