@@ -65,6 +65,18 @@
             @endif
 
             @if(auth()->user()->role->name === 'admin')
+            <a href="/admin/candidates" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý hồ sơ ứng viên
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'user')
+            <a href="/candidates" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý hồ sơ ứng viên
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'admin')
             <a href="/admin/dashboard" class="block px-4 py-2 rounded hover:bg-blue-700">
                 Báo cáo thống kê
             </a>

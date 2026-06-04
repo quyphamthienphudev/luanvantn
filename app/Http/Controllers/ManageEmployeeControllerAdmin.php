@@ -40,7 +40,7 @@ class ManageEmployeeControllerAdmin extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'employee_code' => 'required',
+        'employee_code' => 'required|unique:employees,employee_code',
         'full_name' => 'required',
 
         'email' => 'required|email',
@@ -48,6 +48,7 @@ class ManageEmployeeControllerAdmin extends Controller
         'phone' => 'required|numeric'
         ],[
             'employee_code.required' => 'Vui lòng nhập mã nhân viên',
+            'employee_code.unique' => 'Mã nhân viên đã tồn tại, vui lòng kiểm tra lại',
             'full_name.required' => 'Vui lòng nhập họ tên nhân viên',
 
             'email.required' => 'Vui lòng nhập email',

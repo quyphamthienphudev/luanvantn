@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ManageUserControllerAdmin;
 use App\Http\Controllers\ManageUserControllerUser;
 use App\Http\Controllers\DashboardControllerAdmin;
+use App\Http\Controllers\ManageCandidateControllerAdmin;
+use App\Http\Controllers\ManageCandidateControllerUser;
 use App\Http\Controllers\ManageEmployeeControllerAdmin;
 use App\Http\Controllers\ManageEmployeeControllerUser;
 use App\Http\Controllers\DepartmentControllerAdmin;
@@ -114,4 +116,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/positions', [PositionControllerUser::class,'index']);
     Route::get('/positions', [PositionControllerUser::class,'search']);
     Route::get('/positions/export', [PositionControllerUser::class,'export']);
+});
+
+// Chức năng quản lý hồ sơ ứng viên
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/candidates',[ManageCandidateControllerAdmin::class,'index']);
+    Route::get('/admin/candidates/create',[ManageCandidateControllerAdmin::class,'create']);
+    Route::post('/admin/candidates/store',[ManageCandidateControllerAdmin::class,'store']);
+    Route::get('/admin/candidates/edit/{id}',[ManageCandidateControllerAdmin::class,'edit']);
+    Route::post('/admin/candidates/update/{id}',[ManageCandidateControllerAdmin::class,'update']);
+    Route::get('/admin/candidates/delete/{id}',[ManageCandidateControllerAdmin::class,'delete']);
+    // Route::get('/admin/candidates/show/{id}',[ManageCandidateControllerAdmin::class,'show']);
+
+    Route::get('/candidates',[ManageCandidateControllerUser::class,'index']);
+    Route::get('/candidates/create',[ManageCandidateControllerUser::class,'create']);
+    Route::post('/candidates/store',[ManageCandidateControllerUser::class,'store']);
+    Route::get('/candidates/edit/{id}',[ManageCandidateControllerUser::class,'edit']);
+    Route::post('/candidates/update/{id}',[ManageCandidateControllerUser::class,'update']);
+    // Route::get('/candidates/show/{id}',[ManageCandidateControllerUser::class,'show']);
 });
