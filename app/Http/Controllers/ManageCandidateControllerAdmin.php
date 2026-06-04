@@ -151,5 +151,7 @@ class ManageCandidateControllerAdmin extends Controller
     {
         // $employee = Employee::with('department','position')->findOrFail($id);
         // return view('admin.employees.show', compact('employee'));
+        $candidate = DB::table('candidates')->where('id',$id)->get();
+        return view('admin.candidates.show',compact('candidate'));
     }
 }

@@ -14,31 +14,22 @@
 <body>
     <a href="/candidates">← Quay lại</a>
     <div class="bg-white p-6">
-        <!-- <p>Mã: {{ $employee->employee_code }}</p>
-        <p>Tên: {{ $employee->full_name }}</p>
-        <p>Phòng ban: {{ $employee->department->name }}</p>
-        <p>Email: {{ $employee->email }}</p>
-        <p>Chức vụ: {{ $employee->position->name }}</p>
+        <p>Mã hồ sơ: {{ $candidate->candidate_id }}</p>
+        <p>Họ và tên: {{ $candidate->full_name }}</p>
+        <p>Tên: {{ $candidate->first_name }}</p>
+        <p>Họ: {{ $candidate->last_name }}</p>
         <p>Giới tính:
-            @if($employee->gender == 'male')
+        @if($candidate->gender == 'male')
             Nam
-            @else
-            Nữ
-            @endif
-        </p>
-        <p>Ngày sinh: {{ $employee->date_of_birth ? date('d/m/Y', strtotime($employee->date_of_birth)) : '' }}</p>
-        <p>SĐT: {{ $employee->phone }}</p>
-        <p>Địa chỉ: {{ $employee->address }} , {{ $employee->street }} , {{ $employee->ward }} , {{ $employee->province }}</p>
-        <p>Ngày vào làm: 
-            {{ $employee->hire_date ? date('d/m/Y', strtotime($employee->hire_date)) : '' }}
-        </p>
-        <p>Trạng thái: 
-        @if($employee->status == 'working')
-            Đang làm việc
         @else
-            Đã nghỉ việc
+            Nữ
         @endif
-        </p> -->
+        </p>
+        <p>Ngày sinh: {{ $candidate->date_of_birth ? date('d/m/Y', strtotime($candidate->date_of_birth)) : '' }}</p>
+        <p>SĐT: {{ $candidate->phone }}</p>
+        <p>Học vấn: {{ $candidate->education }}</p>
+        <p>Email: {{ $candidate->email }}</p>
+        <p>Địa chỉ: {{ $candidate->address }} , {{ $candidate->street }} , {{ $candidate->ward }} , {{ $candidate->province }}</p>
     </div>
 </body>
 </html>

@@ -126,12 +126,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/candidates/edit/{id}',[ManageCandidateControllerAdmin::class,'edit']);
     Route::post('/admin/candidates/update/{id}',[ManageCandidateControllerAdmin::class,'update']);
     Route::get('/admin/candidates/delete/{id}',[ManageCandidateControllerAdmin::class,'delete']);
-    // Route::get('/admin/candidates/show/{id}',[ManageCandidateControllerAdmin::class,'show']);
+    Route::get('/admin/candidates/show/{id}',[ManageCandidateControllerAdmin::class,'show']);
 
     Route::get('/candidates',[ManageCandidateControllerUser::class,'index']);
     Route::get('/candidates/create',[ManageCandidateControllerUser::class,'create']);
     Route::post('/candidates/store',[ManageCandidateControllerUser::class,'store']);
     Route::get('/candidates/edit/{id}',[ManageCandidateControllerUser::class,'edit']);
     Route::post('/candidates/update/{id}',[ManageCandidateControllerUser::class,'update']);
-    // Route::get('/candidates/show/{id}',[ManageCandidateControllerUser::class,'show']);
+    Route::get('/candidates/show/{id}',[ManageCandidateControllerUser::class,'show']);
 });

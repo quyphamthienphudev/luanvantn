@@ -31,9 +31,8 @@
         <table class="w-full text-left">
             <thead class="bg-gray-200">
                 <tr>
-                    <th class="p-3">Mã nhân viên</th>
-                    <th class="p-3">Tên nhân viên</th>
-                    <th class="p-3">Phòng ban</th>
+                    <th class="p-3">Mã hồ sơ</th>
+                    <th class="p-3">Họ và tên</th>
                     <th class="p-3">Hành động</th>
                 </tr>
             </thead>
@@ -41,9 +40,8 @@
         <tbody>
             @foreach($candidates as $c)
                 <tr class="border-b">
+                    <td class="p-3">{{ $c->candidate_id }}</td>
                     <td class="p-3">{{ $c->full_name }}</td>
-                    <td class="p-3">{{ $c->first_name }}</td>
-                    <td class="p-3">{{ $c->last_name }}</td>
                     <td class="p-3 space-x-2">
                         <a href="/admin/candidates/show/{{ $c->id }}" class="bg-blue-500 text-white px-3 py-1 rounded">Xem</a>
                         <a href="/admin/candidates/edit/{{ $c->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
