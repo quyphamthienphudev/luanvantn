@@ -18,13 +18,34 @@
         @error('full_name')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
-        @error('email')
+        @error('first_name')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('last_name')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         @error('date_of_birth')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         @error('phone')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('education')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('email')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('address')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('street')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('ward')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('province')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         <div class="mb-4">

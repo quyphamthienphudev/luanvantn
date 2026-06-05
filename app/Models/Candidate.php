@@ -7,6 +7,7 @@ class Candidate extends Model
 {
     
     protected $fillable = [
+        'candidate_id',
         'full_name',
         'first_name',
         'last_name',

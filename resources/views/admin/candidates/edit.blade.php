@@ -15,22 +15,37 @@
     <a href="/admin/candidates">← Quay lại</a>
     <form method="POST" action="/admin/candidates/update/{{ $candidates->id }}" class="bg-white p-6 w-1/2">
         @csrf
-        @error('employee_code')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
         @error('full_name')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
-        @error('hire_date')
+        @error('first_name')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
-        @error('email')
+        @error('last_name')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         @error('date_of_birth')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         @error('phone')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('education')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('email')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('address')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('street')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('ward')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('province')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         <div class="mb-4">

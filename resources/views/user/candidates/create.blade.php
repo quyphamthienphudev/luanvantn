@@ -15,16 +15,40 @@
     <a href="/candidates">← Quay lại</a>
     <form method="POST" action="/candidates/store" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
+        @error('candidate_id')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
         @error('full_name')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
-        @error('email')
+        @error('first_name')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('last_name')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         @error('date_of_birth')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         @error('phone')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('education')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('email')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('address')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('street')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('ward')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
+        @error('province')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         <div class="mb-4">

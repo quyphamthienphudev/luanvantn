@@ -16,8 +16,8 @@
         Thêm hồ sơ ứng viên
     </a>
 
-    <form method="GET" class="mt-4">
-        Tìm kiếm: <input type="text" name="search" value="" class="border p-2">
+    <form method="GET" action="/admin/candidates" class="mt-4">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
 
