@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class DepartmentControllerUser extends Controller
 {
+    //INDEX
     public function index()
     {
         $departments = Department::all();
         return view('user.department', compact('departments'));
     }
 
+    //SEARCH
     public function search(Request $request)
     {
     $search = $request->search;
@@ -30,6 +32,7 @@ class DepartmentControllerUser extends Controller
     return view('user.department', compact('departments', 'search'));
     }
 
+    //EXPORT FILE
     public function export()
     {   
         $departments = DB::table('departments')

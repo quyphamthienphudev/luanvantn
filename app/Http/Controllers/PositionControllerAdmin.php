@@ -9,18 +9,20 @@ use App\Models\Position;
 class PositionControllerAdmin extends Controller
 {
 
+    //INDEX
     public function index()
     {
         $positions = DB::table('positions')->get();
-
         return view('admin.positions.index',compact('positions'));
     }
 
+    //SHOW CREATE
     public function create()
     {
         return view('admin.positions.create');
     }
 
+    //STORE
     public function store(Request $request)
     {
         $request->validate([
@@ -42,6 +44,7 @@ class PositionControllerAdmin extends Controller
             ->with('success','Thêm chức vụ thành công');
     }
 
+    //SHOW EDIT
     public function edit($id)
     {
         $position = DB::table('positions')->where('id',$id)->first();
@@ -49,6 +52,7 @@ class PositionControllerAdmin extends Controller
         return view('admin.positions.edit',compact('position'));
     }
 
+    //UPDATE
     public function update(Request $request,$id)
     {
         $request->validate([
@@ -72,6 +76,7 @@ class PositionControllerAdmin extends Controller
             ->with('success','Cập nhật chức vụ thành công');
     }
 
+    //DELETE
     public function delete($id)
     {
         $hasEmployee = DB::table('employees')
@@ -88,6 +93,7 @@ class PositionControllerAdmin extends Controller
             ->with('success','Xóa chức vụ thành công');
     }
 
+    //SEARCH
     public function search(Request $request)
     {
     $search = $request->search;
@@ -104,6 +110,7 @@ class PositionControllerAdmin extends Controller
     return view('admin.positions.index', compact('positions', 'search'));
     }
 
+    //EXPORT FILE
     public function export()
     {   
         $positions = DB::table('positions')

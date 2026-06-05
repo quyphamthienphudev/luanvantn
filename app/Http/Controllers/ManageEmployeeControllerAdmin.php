@@ -11,6 +11,8 @@ use App\Models\Position;
 
 class ManageEmployeeControllerAdmin extends Controller
 {
+
+    //INDEX + SEARCH
     public function index(Request $request)
     {
         $search = $request->search;
@@ -29,7 +31,7 @@ class ManageEmployeeControllerAdmin extends Controller
         return view('admin.employees.index', compact('employees','search'));
     }
 
-    // CREATE
+    // SHOW CREATE
     public function create()
     {
         $departments = Department::all();
@@ -37,6 +39,7 @@ class ManageEmployeeControllerAdmin extends Controller
         return view('admin.employees.create', compact('departments','positions'));
     }
 
+    //STORE
     public function store(Request $request)
     {
         $request->validate([
@@ -83,6 +86,7 @@ class ManageEmployeeControllerAdmin extends Controller
         return view('admin.employees.edit', compact('employee','departments','positions'));
     }
 
+    //UPDATE
     public function update(Request $request,$id)
     {
         $request->validate([
@@ -119,7 +123,7 @@ class ManageEmployeeControllerAdmin extends Controller
         return back()->with('success','Xóa nhân viên thành công');
     }
 
-    // SHOW
+    // SHOW DETAIL
     public function show($id)
     {
         $employee = Employee::with('department','position')->findOrFail($id);

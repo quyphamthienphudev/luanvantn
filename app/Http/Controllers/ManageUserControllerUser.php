@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 class ManageUserControllerUser extends Controller
 {
-    // ===== CẬP NHẬT THÔNG TIN =====
-
+    //SHOW UPDATE PROFILE
     public function editProfile()
     {
         return view('user.profile');
     }
 
+    //UPDATE PROFILE
     public function updateProfile(Request $request)
     {
         $user = auth()->user();
@@ -36,13 +36,13 @@ class ManageUserControllerUser extends Controller
 
     }
 
-    // ===== ĐỔI MẬT KHẨU =====
-
+    //SHOW CHANGE PASSWORD
     public function showChangePassword()
     {
         return view('user.change-password');
     }
 
+    //CHANGE PASSWORD
     public function changePassword(Request $request)
     {
          $request->validate([

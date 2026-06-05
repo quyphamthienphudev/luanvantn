@@ -10,17 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class DepartmentControllerAdmin extends Controller
 {
+    //INDEX
     public function index()
     {
         $departments = Department::with('user')->get();
         return view('admin.departments.index', compact('departments'));
     }
 
+    //SHOW CREATE
     public function create()
     {
         return view('admin.departments.create');
     }
 
+    //STORE
     public function store(Request $request)
     {
         $request->validate([
@@ -38,12 +41,14 @@ class DepartmentControllerAdmin extends Controller
         return redirect('/admin/departments')->with('success','Thêm phòng ban thành công');
     }
 
+    //SHOW EDIT
     public function edit($id)
     {
         $department = Department::findOrFail($id);
         return view('admin.departments.edit', compact('department'));
     }
 
+    //UPDATE
     public function update(Request $request,$id)
     {
         $request->validate([
@@ -57,6 +62,7 @@ class DepartmentControllerAdmin extends Controller
         return redirect('/admin/departments')->with('success','Cập nhật phòng ban thành công');
     }
 
+    //DELETE
     public function delete($id)
     {
         $hasEmployee = DB::table('employees')
@@ -70,6 +76,7 @@ class DepartmentControllerAdmin extends Controller
         return back()->with('success','Xóa phòng ban thành công');
     }
 
+    //SEARCH
     public function search(Request $request)
     {
         $search = $request->search;
@@ -85,6 +92,7 @@ class DepartmentControllerAdmin extends Controller
         return view('admin.departments.index', compact('departments', 'search'));
     }
 
+    //EXPORT FILE
     public function export()
     {   
         $departments = DB::table('departments')

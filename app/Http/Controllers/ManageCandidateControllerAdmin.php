@@ -6,22 +6,23 @@ use Illuminate\Http\Request;
 use App\Models\Candidate;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Position;
 
 class ManageCandidateControllerAdmin extends Controller
 {
+    //INDEX
     public function index()
     {
         $candidates = DB::table('candidates')->get();
         return view('admin.candidates.index',compact('candidates'));
     }
 
-    // CREATE
+    // SHOW CREATE
     public function create()
     {
         return view('admin.candidates.create');
     }
 
+    //STORE
     public function store(Request $request)
     {
         $request->validate([
@@ -57,6 +58,7 @@ class ManageCandidateControllerAdmin extends Controller
         return view('admin.candidates.edit',compact('candidates'));
     }
 
+    //UPDATE
     public function update(Request $request,$id)
     {
         $request->validate([
@@ -105,15 +107,14 @@ class ManageCandidateControllerAdmin extends Controller
         return redirect('/admin/candidates')->with('success','Xóa hồ sơ thành công');
     }
 
-    // SHOW
+    // SHOW DETAIL
     public function show($id)
     {
-        // $employee = Employee::with('department','position')->findOrFail($id);
-        // return view('admin.employees.show', compact('employee'));
-        $candidate = DB::table('candidates')->where('id',$id)->get();
+        $candidate = Candidate::findOrFail($id);
         return view('admin.candidates.show',compact('candidate'));
     }
 
+    //SEARCH
     public function search(Request $request)
     {
     $search = $request->search;

@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 class ManageUserControllerAdmin extends Controller
 {
-    // ===== CẬP NHẬT THÔNG TIN =====
-
+    //SHOW UPDATE PROFILE
     public function editProfile()
     {
         return view('admin.profile');
     }
 
+    //UPDATE PROFILE
     public function updateProfile(Request $request)
     {
         $user = auth()->user();
@@ -36,13 +36,13 @@ class ManageUserControllerAdmin extends Controller
 
     }
 
-    // ===== ĐỔI MẬT KHẨU =====
-
+    // SHOW CHANGE PASSWORD
     public function showChangePassword()
     {
         return view('admin.change-password');
     }
 
+    //CHANGE PASSWORD
     public function changePassword(Request $request)
     {
          $request->validate([
@@ -73,6 +73,7 @@ class ManageUserControllerAdmin extends Controller
     return back()->with('success', 'Đổi mật khẩu thành công');
     }
 
+    //INDEX
     public function index()
     {
         $users = DB::table('users')->get();
@@ -80,11 +81,13 @@ class ManageUserControllerAdmin extends Controller
         return view('admin.accounts.index',compact('users'));
     }
 
+    //SHOW CREATE
     public function create()
     {
         return view('admin.accounts.create');
     }
 
+    //STORE
     public function store(Request $request)
     {
         $request->validate([
@@ -112,6 +115,7 @@ class ManageUserControllerAdmin extends Controller
             ->with('success','Thêm tài khoản thành công');
     }
 
+    //SHOW EDIT
     public function edit($id)
     {
         $user = DB::table('users')->where('id',$id)->first();
@@ -119,6 +123,7 @@ class ManageUserControllerAdmin extends Controller
         return view('admin.accounts.edit',compact('user'));
     }
 
+    //UPDATE
     public function update(Request $request,$id)
     {
         $request->validate([
@@ -146,6 +151,7 @@ class ManageUserControllerAdmin extends Controller
             ->with('success','Cập nhật tài khoản thành công');
     }
 
+    //DELETE
     public function delete($id)
     {
         DB::table('users')->where('id',$id)->delete();
@@ -154,6 +160,7 @@ class ManageUserControllerAdmin extends Controller
             ->with('success','Xóa tài khoản thành công');
     }
 
+    //SEARCH
     public function search(Request $request)
     {
     $search = $request->search;
@@ -179,6 +186,7 @@ class ManageUserControllerAdmin extends Controller
     return view('admin.accounts.index', compact('users', 'search'));
     }
 
+    //EXPORT FILE
     public function export()
     {   
         $users = DB::table('users')

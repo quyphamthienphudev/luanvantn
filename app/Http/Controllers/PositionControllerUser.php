@@ -8,12 +8,14 @@ use App\Models\Position;
 
 class PositionControllerUser extends Controller
 {   
+    //INDEX
     public function index()
     {
         $positions = Position::all();
         return view('user.position', compact('positions'));
     }
 
+    //SEARCH
     public function search(Request $request)
     {
     $search = $request->search;
@@ -30,6 +32,7 @@ class PositionControllerUser extends Controller
     return view('user.position', compact('positions', 'search'));
     }
 
+    //EXPORT FILE
     public function export()
     {   
         $positions = DB::table('positions')
