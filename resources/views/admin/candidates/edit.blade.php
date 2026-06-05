@@ -34,12 +34,20 @@
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         <div class="mb-4">
-            <label>Họ tên ứng viên</label>
-            <input name="full_name" value="{{ $candidates->full_name }}" class="w-full border p-2 rounded">
+            <label>Mã hồ sơ</label>
+            <input type="text" name="candidate_id" value="{{ $candidates->candidate_id }}" class="w-full border p-2 rounded bg-gray-100" readonly>
         </div>
         <div class="mb-4">
-            <label>Email</label>
-            <input name="email" value="{{ $candidates->email }}" class="w-full border p-2 rounded">
+            <label>Họ tên ứng viên</label>
+            <input type="text" name="full_name" value="{{ $candidates->full_name }}" class="w-full border p-2 rounded">
+        </div>
+        <div class="mb-4">
+            <label>Tên</label>
+            <input type="text" name="first_name" value="{{ $candidates->first_name }}" class="w-full border p-2 rounded">
+        </div>
+        <div class="mb-4">
+            <label>Họ</label>
+            <input type="text" name="last_name" value="{{ $candidates->last_name }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Giới tính</label>
@@ -54,23 +62,31 @@
         </div>
         <div class="mb-4">
             <label>Số điện thoại</label>
-            <input name="phone" value="{{ $candidates->phone }}" class="w-full border p-2 rounded">
+            <input type="text" name="phone" value="{{ $candidates->phone }}" class="w-full border p-2 rounded">
+        </div>
+        <div class="mb-4">
+            <label>Học vấn</label>
+            <input type="text" name="education" value="{{ $candidates->education }}" class="w-full border p-2 rounded">
+        </div>
+        <div class="mb-4">
+            <label>Email</label>
+            <input type="text" name="email" value="{{ $candidates->email }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Địa chỉ</label>
-            <input name="address" value="{{ $candidates->address }}" class="w-full border p-2 rounded">
+            <input type="text" name="address" value="{{ $candidates->address }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Tên đường</label>
-            <input name="street" value="{{ $candidates->street }}" class="w-full border p-2 rounded">
+            <input type="text" name="street" value="{{ $candidates->street }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Phường</label>
-            <input name="ward" value="{{ $candidates->ward }}" class="w-full border p-2 rounded">
+            <input type="text" name="ward" value="{{ $candidates->ward }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Tỉnh / Thành phố</label>
-            <input name="province" value="{{ $candidates->province }}" class="w-full border p-2 rounded">
+            <input type="text" name="province" value="{{ $candidates->province }}" class="w-full border p-2 rounded">
         </div>
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cập nhật</button>
     </form>

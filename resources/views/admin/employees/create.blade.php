@@ -32,11 +32,11 @@
         @enderror
         <div class="mb-4">
             <label>Mã nhân viên</label>
-            <input name="employee_code" class="w-full border p-2 rounded">
+            <input type="text" name="employee_code" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Họ tên nhân viên</label>
-            <input name="full_name" class="w-full border p-2 rounded">
+            <input type="text" name="full_name" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Phòng ban</label>
@@ -48,7 +48,7 @@
         </div>
         <div class="mb-4">
             <label>Email</label>
-            <input name="email" class="w-full border p-2 rounded">
+            <input type="text" name="email" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Chức vụ</label>
@@ -71,23 +71,23 @@
         </div>
         <div class="mb-4">
             <label>Số điện thoại</label>
-            <input name="phone" class="w-full border p-2 rounded">
+            <input type="text" name="phone" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Địa chỉ</label>
-            <input name="address" class="w-full border p-2 rounded">
+            <input type="text" name="address" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Tên đường</label>
-            <input name="street" class="w-full border p-2 rounded">
+            <input type="text" name="street" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Phường</label>
-            <input name="ward" class="w-full border p-2 rounded">
+            <input type="text" name="ward" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Tỉnh / Thành phố</label>
-            <input name="province" class="w-full border p-2 rounded">
+            <input type="text" name="province" class="w-full border p-2 rounded">
         </div>
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lưu</button>
     </form>

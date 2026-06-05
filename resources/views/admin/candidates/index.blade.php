@@ -13,7 +13,7 @@
 </head>
 <body>
     <a href="/admin/candidates/create" class="bg-blue-600 text-white px-4 py-2 rounded">
-        Thêm nhân viên
+        Thêm hồ sơ ứng viên
     </a>
 
     <form method="GET" class="mt-4">

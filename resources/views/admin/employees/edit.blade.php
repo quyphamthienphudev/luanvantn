@@ -35,11 +35,11 @@
         @enderror
         <div class="mb-4">
             <label>Mã nhân viên</label>
-            <input name="employee_code" value="{{ $employee->employee_code }}" class="w-full border p-2 rounded bg-gray-100" readonly>
+            <input type="text" name="employee_code" value="{{ $employee->employee_code }}" class="w-full border p-2 rounded bg-gray-100" readonly>
         </div>
         <div class="mb-4">
             <label>Họ tên nhân viên</label>
-            <input name="full_name" value="{{ $employee->full_name }}" class="w-full border p-2 rounded">
+            <input type="text" name="full_name" value="{{ $employee->full_name }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Phòng ban</label>
@@ -53,7 +53,7 @@
         </div>
         <div class="mb-4">
             <label>Email</label>
-            <input name="email" value="{{ $employee->email }}" class="w-full border p-2 rounded">
+            <input type="text" name="email" value="{{ $employee->email }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Chức vụ</label>
@@ -78,23 +78,23 @@
         </div>
         <div class="mb-4">
             <label>Số điện thoại</label>
-            <input name="phone" value="{{ $employee->phone }}" class="w-full border p-2 rounded">
+            <input type="text" name="phone" value="{{ $employee->phone }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Địa chỉ</label>
-            <input name="address" value="{{ $employee->address }}" class="w-full border p-2 rounded">
+            <input type="text" name="address" value="{{ $employee->address }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Tên đường</label>
-            <input name="street" value="{{ $employee->street }}" class="w-full border p-2 rounded">
+            <input type="text" name="street" value="{{ $employee->street }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Phường</label>
-            <input name="ward" value="{{ $employee->ward }}" class="w-full border p-2 rounded">
+            <input type="text" name="ward" value="{{ $employee->ward }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Tỉnh / Thành phố</label>
-            <input name="province" value="{{ $employee->province }}" class="w-full border p-2 rounded">
+            <input type="text" name="province" value="{{ $employee->province }}" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Ngày vào làm</label>

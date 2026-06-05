@@ -26,11 +26,11 @@
         @enderror
         <div class="mb-4">
             <label>Tên phòng ban</label>
-            <input name="name" class="w-full border p-2 rounded">
+            <input type="text" name="name" class="w-full border p-2 rounded">
         </div>
         <div class="mb-4">
             <label>Mô tả thông tin</label>
-            <input name="description" class="w-full border p-2 rounded">
+            <input type="text" name="description" class="w-full border p-2 rounded">
         </div>
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lưu</button>
     </form>
