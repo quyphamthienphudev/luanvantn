@@ -53,19 +53,19 @@
         @enderror
         <div class="mb-4">
             <label>Mã hồ sơ</label>
-            <input type="text" name="candidate_id" class="w-full border p-2 rounded">
+            <input type="text" name="candidate_id" class="w-full border p-2 rounded" placeholder="Mã hồ sơ">
         </div>
         <div class="mb-4">
             <label>Họ tên nhân viên</label>
-            <input type="text" name="full_name" class="w-full border p-2 rounded">
+            <input type="text" name="full_name" class="w-full border p-2 rounded" placeholder="Họ tên nhân viên">
         </div>
         <div class="mb-4">
             <label>Tên</label>
-            <input type="text" name="first_name" class="w-full border p-2 rounded">
+            <input type="text" name="first_name" class="w-full border p-2 rounded" placeholder="Tên">
         </div>
         <div class="mb-4">
             <label>Họ</label>
-            <input type="text" name="last_name" class="w-full border p-2 rounded">
+            <input type="text" name="last_name" class="w-full border p-2 rounded" placeholder="Họ">
         </div>
         <div class="mb-4">
             <label>Giới tính</label>
@@ -80,31 +80,31 @@
         </div>
         <div class="mb-4">
             <label>Số điện thoại</label>
-            <input type="text" name="phone" class="w-full border p-2 rounded">
+            <input type="text" name="phone" class="w-full border p-2 rounded" placeholder="Số điện thoại">
         </div>
         <div class="mb-4">
             <label>Học vấn</label>
-            <input type="text" name="education" class="w-full border p-2 rounded">
+            <input type="text" name="education" class="w-full border p-2 rounded" placeholder="Học vấn">
         </div>
         <div class="mb-4">
             <label>Email</label>
-            <input type="text" name="email" class="w-full border p-2 rounded">
+            <input type="text" name="email" class="w-full border p-2 rounded" placeholder="Email">
         </div>
         <div class="mb-4">
             <label>Địa chỉ</label>
-            <input type="text" name="address" class="w-full border p-2 rounded">
+            <input type="text" name="address" class="w-full border p-2 rounded" placeholder="Địa chỉ">
         </div>
         <div class="mb-4">
             <label>Tên đường</label>
-            <input type="text" name="street" class="w-full border p-2 rounded">
+            <input type="text" name="street" class="w-full border p-2 rounded" placeholder="Tên đường">
         </div>
         <div class="mb-4">
             <label>Phường</label>
-            <input type="text" name="ward" class="w-full border p-2 rounded">
+            <input type="text" name="ward" class="w-full border p-2 rounded" placeholder="Phường">
         </div>
         <div class="mb-4">
             <label>Tỉnh / Thành phố</label>
-            <input type="text" name="province" class="w-full border p-2 rounded">
+            <input type="text" name="province" class="w-full border p-2 rounded" placeholder="Tỉnh / Thành phố">
         </div>
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lưu</button>
     </form>

@@ -17,7 +17,7 @@
         Xuất file Excel
     </a>
     <form method="GET" action="/positions" class="mt-4">
-        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" placeholder="Tìm theo tên chức vụ hoặc lương cơ bản" style="width:350px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
     <div class="bg-white shadow rounded mt-6">

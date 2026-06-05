@@ -26,11 +26,11 @@
         @enderror
         <div class="mb-4">
             <label>Tên phòng ban</label>
-            <input type="text" name="name" value="{{ $department->name }}" class="border p-2 w-full mb-2">
+            <input type="text" name="name" value="{{ $department->name }}" class="border p-2 w-full mb-2" placeholder="Tên phòng ban">
         </div>
         <div class="mb-4">
             <label>Mô tả thông tin</label>
-            <input type="text" name="description" value="{{ $department->description }}" class="border p-2 w-full mb-2">
+            <input type="text" name="description" value="{{ $department->description }}" class="border p-2 w-full mb-2" placeholder="Mô tả thông tin">
         </div>
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cập nhật</button>
     </form>

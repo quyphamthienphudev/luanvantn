@@ -37,12 +37,12 @@
         <div class="mb-4">
             <label class="block mb-2">Mật khẩu hiện tại</label>
             <input type="password" name="current_password"
-                   class="w-full px-4 py-2 border rounded">
+                   class="w-full px-4 py-2 border rounded" placeholder="Mật khẩu hiện tại">
         </div>
         <div class="mb-4">
             <label class="block mb-2">Mật khẩu mới</label>
             <input type="password" name="new_password"
-                   class="w-full px-4 py-2 border rounded">
+                   class="w-full px-4 py-2 border rounded" placeholder="Mật khẩu mới">
         </div>
         <button class="bg-blue-600 text-white px-4 py-2 rounded">
             Đổi mật khẩu

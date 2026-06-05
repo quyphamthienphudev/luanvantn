@@ -15,7 +15,7 @@
     <a href="/admin/departments/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Thêm phòng ban</a>
     <a href="/admin/departments/export" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">Xuất file Excel</a>
     <form method="GET" action="/admin/departments" class="mt-4">
-        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" placeholder="Tìm theo tên phòng ban hoặc mô tả" style="width:300px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
     @if(session('success'))

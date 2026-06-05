@@ -27,12 +27,12 @@
         <div class="mb-4">
             <label>Tên chức vụ</label>
             <input type="text" name="name"
-            class="w-full border p-2 rounded">
+            class="w-full border p-2 rounded" placeholder="Tên chức vụ">
         </div>
         <div class="mb-4">
             <label>Lương cơ bản</label>
             <input type="text" name="base_salary"
-            class="w-full border p-2 rounded">
+            class="w-full border p-2 rounded" placeholder="Lương cơ bản">
         </div>
         <button
         class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">

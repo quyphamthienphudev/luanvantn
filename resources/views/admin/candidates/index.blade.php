@@ -17,7 +17,7 @@
     </a>
 
     <form method="GET" action="/admin/candidates" class="mt-4">
-        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" placeholder="Tìm theo mã hồ sơ hoặc họ tên" style="width:300px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
 
@@ -32,7 +32,7 @@
             <thead class="bg-gray-200">
                 <tr>
                     <th class="p-3">Mã hồ sơ</th>
-                    <th class="p-3">Họ và tên</th>
+                    <th class="p-3">Họ tên</th>
                     <th class="p-3">Hành động</th>
                 </tr>
             </thead>

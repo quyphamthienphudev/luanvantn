@@ -29,13 +29,13 @@
             <label>Họ tên</label>
             <input type="text" name="name"
             value="{{ $user->name }}"
-            class="w-full border p-2 rounded">
+            class="w-full border p-2 rounded" placeholder="Họ tên">
         </div>
         <div class="mb-4">
             <label>Email</label>
             <input type="text" name="email"
             value="{{ $user->email }}"
-            class="w-full border p-2 rounded">
+            class="w-full border p-2 rounded" placeholder="Email">
         </div>
         <div class="mb-4">
             <label>Quyền</label>

@@ -14,8 +14,8 @@
 <body>
     <a href="/employees">← Quay lại</a>
     <div class="bg-white p-6">
-        <p>Mã: {{ $employee->employee_code }}</p>
-        <p>Tên: {{ $employee->full_name }}</p>
+        <p>Mã nhân viên: {{ $employee->employee_code }}</p>
+        <p>Họ tên nhân viên: {{ $employee->full_name }}</p>
         <p>Phòng ban: {{ $employee->department->name }}</p>
         <p>Email: {{ $employee->email }}</p>
         <p>Chức vụ: {{ $employee->position->name }}</p>
