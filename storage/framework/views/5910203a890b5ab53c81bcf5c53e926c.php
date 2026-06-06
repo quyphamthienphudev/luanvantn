@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Hệ thống quản lý nhân sự - Đăng nhập</title>
+    <title>Hệ thống quản lý nhân sự</title>
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,7 +23,7 @@
         </div>
     <?php endif; ?>
 
-    <form method="POST" action="/login">
+    <form method="POST" action="<?php echo e(route('login.process')); ?>">
         <?php echo csrf_field(); ?>
 
         <div class="mb-4">
