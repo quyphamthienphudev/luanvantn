@@ -7,16 +7,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống quản lý nhân sự - Thêm công việc</title>
+    <title>Hệ thống quản lý nhân sự - Cập nhật thông tin công việc</title>
 </head>
 <body>
-    <a href="/admin/positions" class="btn btn-secondary">
+    <a href="/positions" class="btn btn-secondary">
         ← Quay lại
     </a>
     <h1 class="text-2xl font-bold mb-6">
-        Thêm công việc
+        Cập nhật thông tin công việc
     </h1>
-    <form action="/admin/positions/store" method="POST" class="bg-white p-6 rounded shadow w-1/2">
+    <form action="/positions/update/{{ $position->id }}" method="POST"
+    class="bg-white p-6 rounded shadow w-1/2">
         @csrf
         @error('name')
         <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -30,21 +31,24 @@
         <div class="mb-4">
             <label>Tên công việc</label>
             <input type="text" name="name"
+            value="{{ $position->name }}"
             class="w-full border p-2 rounded" placeholder="Tên công việc">
         </div>
         <div class="mb-4">
             <label>Lương cơ bản</label>
             <input type="text" name="base_salary"
+            value="{{ $position->base_salary }}"
             class="w-full border p-2 rounded" placeholder="Lương cơ bản">
         </div>
         <div class="mb-4">
             <label>Lương cao nhất</label>
             <input type="text" name="max_salary"
+            value="{{ $position->max_salary }}"
             class="w-full border p-2 rounded" placeholder="Lương cao nhất">
         </div>
         <button
-        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-            Lưu
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Cập nhật
         </button>
     </form>
 </body>

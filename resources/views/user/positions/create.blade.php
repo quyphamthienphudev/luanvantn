@@ -10,13 +10,13 @@
     <title>Hệ thống quản lý nhân sự - Thêm công việc</title>
 </head>
 <body>
-    <a href="/admin/positions" class="btn btn-secondary">
+    <a href="/positions" class="btn btn-secondary">
         ← Quay lại
     </a>
     <h1 class="text-2xl font-bold mb-6">
         Thêm công việc
     </h1>
-    <form action="/admin/positions/store" method="POST" class="bg-white p-6 rounded shadow w-1/2">
+    <form action="/positions/store" method="POST" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
         @error('name')
         <p class="text-red-500 text-sm">{{ $message }}</p>

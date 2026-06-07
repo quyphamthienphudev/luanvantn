@@ -8,7 +8,7 @@ class Position extends Model
 {
     protected $table = 'positions';
 
-    protected $fillable = ['name', 'base_salary'];
+    protected $fillable = ['name', 'base_salary','max_salary'];
 
     public $timestamps = false;
     

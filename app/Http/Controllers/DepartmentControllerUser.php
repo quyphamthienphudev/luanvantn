@@ -11,8 +11,53 @@ class DepartmentControllerUser extends Controller
     //INDEX
     public function index()
     {
-        $departments = Department::all();
-        return view('user.department', compact('departments'));
+        $departments = Department::with('user')->get();
+        return view('user.departments.index', compact('departments'));
+    }
+
+    //SHOW CREATE
+    public function create()
+    {
+        return view('user.departments.create');
+    }
+
+    //STORE
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required'
+        ],[
+            'name.required' => 'Tên phòng ban không được để trống',
+            'description.required' => 'Thông tin phòng ban không được để trống'
+        ]);
+        Department::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'users_id' => Auth::id()
+        ]);
+        return redirect('/departments')->with('success','Thêm phòng ban thành công');
+    }
+
+    //SHOW EDIT
+    public function edit($id)
+    {
+        $department = Department::findOrFail($id);
+        return view('user.departments.edit', compact('department'));
+    }
+
+    //UPDATE
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required'
+        ],[
+            'name.required' => 'Tên phòng ban không được để trống',
+            'description.required' => 'Thông tin phòng ban không được để trống'
+        ]);
+        Department::findOrFail($id)->update($request->all());
+        return redirect('/departments')->with('success','Cập nhật phòng ban thành công');
     }
 
     //SEARCH
@@ -29,7 +74,7 @@ class DepartmentControllerUser extends Controller
         })
         ->get();
 
-    return view('user.department', compact('departments', 'search'));
+    return view('user.departments.index', compact('departments', 'search'));
     }
 
     //EXPORT FILE

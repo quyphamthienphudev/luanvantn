@@ -54,13 +54,13 @@
 
             @if(auth()->user()->role->name === 'admin')
             <a href="/admin/positions" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý chức vụ
+                Quản lý công việc
             </a>
             @endif
             
             @if(auth()->user()->role->name === 'user')
             <a href="/positions" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý chức vụ
+                Quản lý công việc
             </a>
             @endif
 

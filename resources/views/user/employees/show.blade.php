@@ -18,7 +18,7 @@
         <p>Họ tên nhân viên: {{ $employee->full_name }}</p>
         <p>Phòng ban: {{ $employee->department->name }}</p>
         <p>Email: {{ $employee->email }}</p>
-        <p>Chức vụ: {{ $employee->position->name }}</p>
+        <p>Công việc: {{ $employee->position->name }}</p>
         <p>Giới tính:
             @if($employee->gender == 'male')
             Nam

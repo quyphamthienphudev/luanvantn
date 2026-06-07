@@ -97,12 +97,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/departments',[DepartmentControllerAdmin::class,'search']);
     Route::get('/admin/departments/export',[DepartmentControllerAdmin::class,'export']);
 
-    Route::get('/departments/export',[DepartmentControllerUser::class,'export']);
     Route::get('/departments',[DepartmentControllerUser::class,'index']);
+    Route::get('/departments/create',[DepartmentControllerUser::class,'create']);
+    Route::post('/departments/store',[DepartmentControllerUser::class,'store']);
+    Route::get('/departments/edit/{id}',[DepartmentControllerUser::class,'edit']);
+    Route::post('/departments/update/{id}',[DepartmentControllerUser::class,'update']);
     Route::get('/departments',[DepartmentControllerUser::class,'search']);
+    Route::get('/departments/export',[DepartmentControllerUser::class,'export']);
 });
 
-// Chức năng quản lý chức vụ
+// Chức năng quản lý công việc
 Route::middleware('auth')->group(function () {
     Route::get('/admin/positions', [PositionControllerAdmin::class,'index']);
     Route::get('/admin/positions/create', [PositionControllerAdmin::class,'create']);
@@ -114,6 +118,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/positions/export', [PositionControllerAdmin::class,'export']);
 
     Route::get('/positions', [PositionControllerUser::class,'index']);
+    Route::get('/positions/create', [PositionControllerUser::class,'create']);
+    Route::post('/positions/store', [PositionControllerUser::class,'store']);
+    Route::get('/positions/edit/{id}', [PositionControllerUser::class,'edit']);
+    Route::post('/positions/update/{id}', [PositionControllerUser::class,'update']);
     Route::get('/positions', [PositionControllerUser::class,'search']);
     Route::get('/positions/export', [PositionControllerUser::class,'export']);
 });

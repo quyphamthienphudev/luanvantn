@@ -56,7 +56,7 @@
             <input type="text" name="email" value="{{ $employee->email }}" class="w-full border p-2 rounded" placeholder="Email">
         </div>
         <div class="mb-4">
-            <label>Chức vụ</label>
+            <label>Công việc</label>
             <select name="position_id" class="w-full border p-2 rounded">
                 @foreach($positions as $p)
                 <option value="{{ $p->id }}" {{ $employee->position_id==$p->id?'selected':'' }}>

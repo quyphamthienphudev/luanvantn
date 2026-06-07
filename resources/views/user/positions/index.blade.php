@@ -12,15 +12,15 @@
     <title>Hệ thống quản lý nhân sự - Quản lý công việc</title>
 </head>
 <body>
-    <a href="/admin/positions/create"
+    <a href="/positions/create"
     class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         Thêm công việc
     </a>
-    <a href="/admin/positions/export"
+    <a href="/positions/export"
     class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">
         Xuất file Excel
     </a>
-    <form method="GET" action="/admin/positions" class="mt-4">
+    <form method="GET" action="/positions" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" placeholder="Tìm theo tên công việc hoặc lương cơ bản" style="width:350px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
@@ -51,14 +51,9 @@
                 <td class="p-3">{{ $position->base_salary }}</td>
                 <td class="p-3">{{ $position->max_salary }}</td>
                 <td class="p-3 space-x-2">
-                    <a href="/admin/positions/edit/{{ $position->id }}"
+                    <a href="/positions/edit/{{ $position->id }}"
                     class="bg-yellow-500 text-white px-3 py-1 rounded">
                         Sửa
-                    </a>
-                    <a href="/admin/positions/delete/{{ $position->id }}"
-                    class="bg-red-600 text-white px-3 py-1 rounded"
-                    onclick="return confirm('Bạn có muốn xoá công việc này ?')">
-                        Xóa
                     </a>
                 </td>
             </tr>

@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Department;
 use Illuminate\Support\Facades\DB;
 
-use Illuminate\Support\Facades\Auth;
-
 class DepartmentControllerAdmin extends Controller
 {
     //INDEX
