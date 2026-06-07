@@ -25,7 +25,7 @@ class ManageCandidateControllerUser extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'candidate_id' => 'required',
+        'candidate_id' => 'required|unique:candidates,candidate_id',
         'full_name' => 'required',
         'first_name' => 'required',
         'last_name' => 'required',
@@ -34,6 +34,7 @@ class ManageCandidateControllerUser extends Controller
         'phone' => 'required|numeric'
         ],[
             'candidate_id.required' => 'Vui lòng nhập mã hồ sơ',
+            'candidate_id.unique' => 'Mã hồ sơ đã tồn tại, vui lòng kiểm tra lại',
             'full_name.required' => 'Vui lòng nhập họ tên ứng viên',
             'first_name.required' => 'Vui lòng nhập tên',
             'last_name.required' => 'Vui lòng nhập họ',
