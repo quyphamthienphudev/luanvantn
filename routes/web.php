@@ -13,11 +13,26 @@ use App\Http\Controllers\DepartmentControllerUser;
 use App\Http\Controllers\PositionControllerAdmin;
 use App\Http\Controllers\PositionControllerUser;
 
+use App\Http\Controllers\PositionController;
+use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\PayrollControllerAdmin;
+use App\Http\Controllers\PayrollControllerUser;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AttendanceControllerHCNS;
+use App\Http\Controllers\AttendanceControllerNV;
+use App\Http\Controllers\LeaveControllerHCNS;
+use App\Http\Controllers\ManageEmployeeControllerQLCL;
+
 //-----------------------------------------------------------------------------------
 Route::get('/', function () {
     if (auth()->check()) {
 
         if (auth()->user()->role->name === 'admin') {
+            return redirect('/admin/home');
+        }
+
+        if (auth()->user()->role->name === 'hcns') {
             return redirect('/admin/home');
         }
 
@@ -144,4 +159,109 @@ Route::middleware('auth')->group(function () {
     Route::post('/candidates/update/{id}',[ManageCandidateControllerUser::class,'update']);
     Route::get('/candidates/show/{id}',[ManageCandidateControllerUser::class,'show']);
     Route::get('/candidates',[ManageCandidateControllerUser::class,'search']);
+});
+
+// ====== CHỨC NĂNG QUẢN LÝ LƯƠNG ======
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('payrolls/export', [PayrollControllerAdmin::class, 'export']);
+    Route::get('payrolls/calculate/{month?}/{year?}', [PayrollControllerAdmin::class, 'calculate']);
+    Route::get('payrolls', [PayrollControllerAdmin::class, 'index']);
+    Route::get('payrolls/create', [PayrollControllerAdmin::class, 'create']);
+    Route::post('payrolls', [PayrollControllerAdmin::class, 'store']);
+    Route::get('payrolls/{id}', [PayrollControllerAdmin::class, 'show']);
+    Route::get('payrolls/edit/{id}', [PayrollControllerAdmin::class, 'edit']);
+    Route::post('payrolls/update/{id}', [PayrollControllerAdmin::class, 'update']);
+    Route::post('payrolls/delete/{id}', [PayrollControllerAdmin::class, 'destroy']);
+});
+
+Route::prefix('/')->name('user.')->group(function () {
+    Route::get('payrolls', [PayrollControllerUser::class, 'show']);
+});
+
+// Chức năng quản lý đơn xin nghỉ phép
+
+Route::middleware(['auth'])->prefix('leave')->name('leave.')->group(function () {
+    
+    Route::get('/', [LeaveController::class, 'index'])->name('index');
+    
+    Route::post('/store', [LeaveController::class, 'store']);
+
+    Route::get('/edit/{id}', [LeaveController::class, 'edit']);
+    Route::post('/update/{id}', [LeaveController::class, 'update']);
+    
+});
+
+Route::middleware(['auth'])->prefix('admin/leave')->name('admin.leave.')->group(function () {
+  
+    Route::get('/', [LeaveController::class, 'adminIndex'])->name('adminIndex');
+    
+    Route::post('/approve/{id}', [LeaveController::class, 'approve']);
+    Route::post('/reject/{id}', [LeaveController::class, 'reject']);
+    Route::get('/edit/{id}', [LeaveController::class, 'adminEdit']);
+    Route::post('/update/{id}', [LeaveController::class, 'adminUpdate']);
+    Route::delete('/delete/{id}', [LeaveController::class, 'destroy']);
+    
+});
+
+Route::middleware(['auth'])->prefix('hcns/leave')->name('hcns.leave.')->group(function () {
+  
+    Route::get('/', [LeaveControllerHCNS::class, 'adminIndex'])->name('adminIndex');
+    
+    Route::post('/approve/{id}', [LeaveControllerHCNS::class, 'approve']);
+    Route::post('/reject/{id}', [LeaveControllerHCNS::class, 'reject']);
+    Route::get('/edit/{id}', [LeaveControllerHCNS::class, 'adminEdit']);
+    Route::post('/update/{id}', [LeaveControllerHCNS::class, 'adminUpdate']);
+    Route::delete('/delete/{id}', [LeaveControllerHCNS::class, 'destroy']);
+    
+});
+
+// Chức năng quản lý quyền truy cập
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/roles', [RoleController::class,'index']);
+    Route::get('/admin/roles/create', [RoleController::class,'create']);
+    Route::post('/admin/roles/store', [RoleController::class,'store']);
+    Route::get('/admin/roles/edit/{id}', [RoleController::class,'edit']);
+    Route::post('/admin/roles/update/{id}', [RoleController::class,'update']);
+    Route::get('/admin/roles/delete/{id}', [RoleController::class,'delete']);
+    Route::get('/admin/roles', [RoleController::class,'search']);
+});
+
+// --- CHỨC NĂNG QUẢN LÝ CHẤM CÔNG ---
+Route::middleware('auth')->group(function () {
+    Route::get('/attendances', [AttendanceController::class, 'index']);
+    Route::get('/admin/attendances', [AttendanceController::class, 'adminIndex']);
+    Route::get('/admin/attendances/edit/{id}', [AttendanceController::class, 'adminEdit']);
+    Route::post('/admin/attendances/update/{id}', [AttendanceController::class, 'adminUpdate']);
+    Route::get('/admin/attendances/delete/{id}', [AttendanceController::class, 'adminDelete']);
+    Route::get('/attendances/edit/{id}', [AttendanceController::class, 'edit']);
+    Route::post('/attendances/update/{id}', [AttendanceController::class, 'update']);
+
+    Route::get('/admin/attendances/confirm/{id}', [AttendanceController::class,'confirm']);
+});
+
+// --- CHỨC NĂNG QUẢN LÝ CHẤM CÔNG CHO PHÒNG HÀNH CHÍNH NHÂN SỰ---
+Route::middleware('auth')->group(function () {
+    Route::get('/hcns/attendances', [AttendanceControllerHCNS::class, 'adminIndex']);
+    Route::get('/hcns/attendances/edit/{id}', [AttendanceControllerHCNS::class, 'adminEdit']);
+    Route::post('/hcns/attendances/update/{id}', [AttendanceControllerHCNS::class, 'adminUpdate']);
+    Route::get('/hcns/attendances/delete/{id}', [AttendanceControllerHCNS::class, 'adminDelete']);
+});
+
+// --- CHỨC NĂNG CHẤM CÔNG ---
+Route::middleware('auth')->group(function () {
+    Route::get('/attendances', [AttendanceControllerNV::class, 'index']);
+    Route::post('/attendances/checkin', [AttendanceControllerNV::class, 'checkIn']);
+    Route::post('/attendances/checkout', [AttendanceControllerNV::class, 'checkOut']);
+});
+
+// Chức năng quản lý nhân viên của từng phòng ban
+Route::middleware('auth')->group(function () {
+    Route::get('/qlcl/employees',[ManageEmployeeControllerQLCL::class,'index']);
+    Route::get('/qlcl/employees/create',[ManageEmployeeControllerQLCL::class,'create']);
+    Route::post('/qlcl/employees/store',[ManageEmployeeControllerQLCL::class,'store']);
+    Route::get('/qlcl/employees/edit/{id}',[ManageEmployeeControllerQLCL::class,'edit']);
+    Route::post('/qlcl/employees/update/{id}',[ManageEmployeeControllerQLCL::class,'update']);
+    Route::get('/qlcl/employees/delete/{id}',[ManageEmployeeControllerQLCL::class,'delete']);
+    Route::get('/qlcl/employees/show/{id}',[ManageEmployeeControllerQLCL::class,'show']);
 });

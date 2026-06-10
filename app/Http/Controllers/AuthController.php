@@ -18,6 +18,18 @@ class AuthController extends Controller
                 return redirect('/admin/home');
             }
 
+            if (auth()->user()->role->name === 'hcns') {
+                return redirect('/admin/home');
+            }
+
+            if (auth()->user()->role->name === 'qlcl') {
+                return redirect('/admin/home');
+            }
+            
+            if (auth()->user()->role->name === 'httt') {
+                return redirect('/admin/home');
+            }
+
             return redirect('/home');
         }
 
@@ -39,9 +51,21 @@ class AuthController extends Controller
 
             if (Auth::attempt($credentials)) {
 
-                if (Auth::user()->role->name === 'admin') {
-                    return redirect('/admin/home');
-                }
+                if (auth()->user()->role->name === 'admin') {
+                return redirect('/admin/home');
+            }
+
+            if (auth()->user()->role->name === 'hcns') {
+                return redirect('/admin/home');
+            }
+
+            if (auth()->user()->role->name === 'qlcl') {
+                return redirect('/admin/home');
+            }
+            
+            if (auth()->user()->role->name === 'httt') {
+                return redirect('/admin/home');
+            }
 
             return redirect('/home');
             }

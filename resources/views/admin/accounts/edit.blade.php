@@ -40,12 +40,21 @@
         <div class="mb-4">
             <label>Quyền</label>
             <select name="role" class="w-full border p-2 rounded">
-                <option value="2"
-                @if($user->role_id=='2') selected @endif
-                >User</option>
                 <option value="1"
                 @if($user->role_id=='1') selected @endif
                 >Admin</option>
+                <option value="2"
+                @if($user->role_id=='2') selected @endif
+                >Hanh chinh nhan su</option>
+                <option value="3"
+                @if($user->role_id=='3') selected @endif
+                >Quan ly chat luong</option>
+                <option value="4"
+                @if($user->role_id=='4') selected @endif
+                >He thong thong tin</option>
+                <option value="5"
+                @if($user->role_id=='5') selected @endif
+                >Nhan vien</option>
             </select>
         </div>
         <div class="mb-4">

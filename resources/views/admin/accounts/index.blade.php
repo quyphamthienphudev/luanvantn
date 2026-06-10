@@ -50,8 +50,18 @@
                     <td class="p-3">
                     @if($user->role_id == '1')
                         Admin
-                    @elseif($user->role_id == '2')
+                    @endif
+                    @if($user->role_id == '2')
                         User
+                    @endif
+                    @if($user->role_id == '3')
+                        Phong quan ly chat luong
+                    @endif
+                    @if($user->role_id == '4')
+                        Phong he thong thong tin
+                    @endif
+                    @if($user->role_id == '5')
+                        Nhan vien
                     @endif
                     </td>
                     <td class="p-3">

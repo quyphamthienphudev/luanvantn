@@ -45,8 +45,11 @@
         <div class="mb-4">
             <label>Quyền</label>
             <select name="role" class="w-full border p-2 rounded">
-                <option value="2">User</option>
                 <option value="1">Admin</option>
+                <option value="2">Hanh chinh nhan su</option>
+                <option value="3">Quan ly chat luong</option>
+                <option value="4">He thong thong tin</option>
+                <option value="5">Nhan vien</option>
             </select>
         </div>
         <button
