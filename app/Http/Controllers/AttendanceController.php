@@ -3,62 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Attendance;
 use App\Models\Employee;
 use Carbon\Carbon;
 
-use Illuminate\Support\Facades\DB;
-
 class AttendanceController extends Controller
 {
 
-    public function adminIndex()
-    {
-        $attendances = Attendance::with('user')->orderBy('work_date', 'desc')->get();
-        return view('admin.attendances.index', compact('attendances'));
-    }
-
-    public function adminEdit($id)
-    {
-        $attendance = Attendance::findOrFail($id);
-        $employees = Employee::all();
-        return view('admin.attendances.edit', compact('attendance', 'employees'));
-    }
-
-    public function adminUpdate(Request $request, $id)
-    {
-        $request->validate([
-            'work_date' => 'required|date',
-            'status' => 'required'
-        ],[
-            'work_date.required' => 'Vui lòng chọn ngày chấm công',
-            'status.required' => 'Vui lòng chọn trạng thái'
-        ]);
-
-        Attendance::findOrFail($id)->update($request->all());
-        return redirect('/admin/attendances')->with('success','Cập nhật chấm công thành công');
-    }
-
-    public function adminDelete($id)
-    {
-        if(auth()->user()->role->name !== 'admin'){
-            return back();
-        }
-        Attendance::findOrFail($id)->delete();
-        return back()->with('success','Xóa dữ liệu chấm công thành công');
-    }
-
     public function index()
     {
-        $attendances = Attendance::with('employee')->orderBy('work_date', 'desc')->get();
-        return view('user.attendances.index', compact('attendances'));
+        $attendances = Attendance::with('user')->orderBy('work_date', 'desc')->get();
+        return view('qlcl.attendances.index', compact('attendances'));
     }
 
     public function edit($id)
     {
         $attendance = Attendance::findOrFail($id);
         $employees = Employee::all();
-        return view('user.attendances.edit', compact('attendance', 'employees'));
+        return view('qlcl.attendances.edit', compact('attendance', 'employees'));
     }
 
     public function update(Request $request, $id)
@@ -70,18 +33,19 @@ class AttendanceController extends Controller
             'work_date.required' => 'Vui lòng chọn ngày chấm công',
             'status.required' => 'Vui lòng chọn trạng thái'
         ]);
-
         Attendance::findOrFail($id)->update($request->all());
-        return redirect('/attendances')->with('success','Cập nhật chấm công thành công');
+        return redirect('/qlcl/attendances')->with('success','Cập nhật chấm công thành công');
+    }
+
+    public function delete($id)
+    {
+        Attendance::findOrFail($id)->delete();
+        return back()->with('success','Xóa dữ liệu chấm công thành công');
     }
 
     public function confirm($id)
     {
-        DB::table('attendances')
-        ->where('id',$id)
-        ->update([
-            'confirm' => 'yes'
-        ]);
-        return redirect('/admin/attendances')->with('success','Xác nhận chấm công thành công');
+        DB::table('attendances')->where('id',$id)->update(['confirm' => 'yes']);
+        return redirect('/qlcl/attendances')->with('success','Xác nhận chấm công thành công');
     }
 }

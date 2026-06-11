@@ -47,18 +47,14 @@ class LeaveControllerHCNS extends Controller
     public function approve(Request $request, $id)
     {
         $leave = LeaveRequest::findOrFail($id);
-        $leave->update([
-            'status' => 'approved'
-        ]);
+        $leave->update(['status' => 'approved']);
         return back()->with('success', 'Đã duyệt đơn nghỉ phép thành công');
     }
 
     public function reject(Request $request, $id)
     {
         $leave = LeaveRequest::findOrFail($id);
-        $leave->update([
-            'status' => 'rejected'
-        ]);
+        $leave->update(['status' => 'rejected']);
         return back()->with('success', 'Đã từ chối đơn nghỉ phép');
     }
 } 

@@ -28,7 +28,7 @@ class ManageEmployeeControllerAdmin extends Controller
             })
             ->get();
 
-        return view('admin.employees.index', compact('employees','search'));
+        return view('hcns.employees.index', compact('employees','search'));
     }
 
     // SHOW CREATE
@@ -36,7 +36,7 @@ class ManageEmployeeControllerAdmin extends Controller
     {
         $departments = Department::all();
         $positions = Position::all();
-        return view('admin.employees.create', compact('departments','positions'));
+        return view('hcns.employees.create', compact('departments','positions'));
     }
 
     //STORE
@@ -45,7 +45,6 @@ class ManageEmployeeControllerAdmin extends Controller
         $request->validate([
         'employee_code' => 'required|unique:employees,employee_code',
         'full_name' => 'required',
-
         'email' => 'required|email',
         'date_of_birth' => 'required|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
         'phone' => 'required|numeric'
@@ -53,28 +52,21 @@ class ManageEmployeeControllerAdmin extends Controller
             'employee_code.required' => 'Vui lòng nhập mã nhân viên',
             'employee_code.unique' => 'Mã nhân viên đã tồn tại, vui lòng kiểm tra lại',
             'full_name.required' => 'Vui lòng nhập họ tên nhân viên',
-
             'email.required' => 'Vui lòng nhập email',
             'email.email' => 'Email không đúng định dạng',
-
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh',
             'date_of_birth.before_or_equal' => 'Nhân viên phải từ 18 tuổi trở lên',
-
             'phone.required' => 'Vui lòng nhập số điện thoại',
             'phone.numeric' => 'Số điện thoại chỉ được nhập số'
         ]);
-
         $data = $request->all();
         $data['users_id'] = auth()->user()->id;
-
         // tự động set ngày vào làm
         $data['hire_date'] = date('Y-m-d');
-
         // trạng thái mặc định
         $data['status'] = 'working';
-
         Employee::create($data);
-        return redirect('/admin/employees')->with('success','Thêm nhân viên thành công');
+        return redirect('/hcns/employees')->with('success','Thêm nhân viên thành công');
     }
 
     // EDIT
@@ -83,7 +75,7 @@ class ManageEmployeeControllerAdmin extends Controller
         $employee = Employee::findOrFail($id);
         $departments = Department::all();
         $positions = Position::all();
-        return view('admin.employees.edit', compact('employee','departments','positions'));
+        return view('hcns.employees.edit', compact('employee','departments','positions'));
     }
 
     //UPDATE
@@ -109,16 +101,12 @@ class ManageEmployeeControllerAdmin extends Controller
             'phone.numeric' => 'Số điện thoại chỉ được nhập số'
         ]);
         Employee::findOrFail($id)->update($request->all());
-        return redirect('/admin/employees')->with('success','Cập nhật thông tin thành công');
+        return redirect('/hcns/employees')->with('success','Cập nhật thông tin thành công');
     }
 
     // DELETE
     public function delete($id)
     {
-        if(auth()->user()->role->name !== 'admin'){
-            return back()->with('error','Không có quyền');
-        }
-
         Employee::findOrFail($id)->delete();
         return back()->with('success','Xóa nhân viên thành công');
     }
@@ -127,6 +115,6 @@ class ManageEmployeeControllerAdmin extends Controller
     public function show($id)
     {
         $employee = Employee::with('department','position')->findOrFail($id);
-        return view('admin.employees.show', compact('employee'));
+        return view('hcns.employees.show', compact('employee'));
     }
 }

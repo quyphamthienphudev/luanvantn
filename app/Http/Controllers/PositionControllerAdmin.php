@@ -13,13 +13,13 @@ class PositionControllerAdmin extends Controller
     public function index()
     {
         $positions = DB::table('positions')->get();
-        return view('admin.positions.index',compact('positions'));
+        return view('hcns.positions.index',compact('positions'));
     }
 
     //SHOW CREATE
     public function create()
     {
-        return view('admin.positions.create');
+        return view('hcns.positions.create');
     }
 
     //STORE
@@ -45,16 +45,14 @@ class PositionControllerAdmin extends Controller
             'max_salary'=>$request->max_salary
         ]);
 
-        return redirect('/admin/positions')
-            ->with('success','Thêm công việc thành công');
+        return redirect('/hcns/positions')->with('success','Thêm công việc thành công');
     }
 
     //SHOW EDIT
     public function edit($id)
     {
         $position = DB::table('positions')->where('id',$id)->first();
-
-        return view('admin.positions.edit',compact('position'));
+        return view('hcns.positions.edit',compact('position'));
     }
 
     //UPDATE
@@ -82,8 +80,7 @@ class PositionControllerAdmin extends Controller
             'max_salary'=>$request->max_salary
         ]);
 
-        return redirect('/admin/positions')
-            ->with('success','Cập nhật công việc thành công');
+        return redirect('/hcns/positions')->with('success','Cập nhật công việc thành công');
     }
 
     //DELETE
@@ -93,45 +90,40 @@ class PositionControllerAdmin extends Controller
             ->where('position_id', $id)
             ->exists();
 
-        if($hasEmployee){
+        if($hasEmployee)
+        {
             return back()->with('error','Công việc này đang có nhân viên, không thể xóa');
         }
 
         DB::table('positions')->where('id',$id)->delete();
 
-        return redirect('/admin/positions')
-            ->with('success','Xóa công việc thành công');
+        return redirect('/hcns/positions')->with('success','Xóa công việc thành công');
     }
 
     //SEARCH
     public function search(Request $request)
     {
-    $search = $request->search;
+        $search = $request->search;
 
-    $positions = DB::table('positions')
-        ->when($search, function ($query) use ($search) {
+        $positions = DB::table('positions')
+            ->when($search, function ($query) use ($search) {
 
             // tìm theo name hoặc base_salary
             $query->where('name', 'like', '%' . $search . '%')
                   ->orWhere('base_salary', 'like', '%' . $search . '%');
-        })
+            })
         ->get();
 
-    return view('admin.positions.index', compact('positions', 'search'));
+        return view('hcns.positions.index', compact('positions', 'search'));
     }
 
     //EXPORT FILE
     public function export()
     {   
-        $positions = DB::table('positions')
-            ->select(
-                'name',
-                'base_salary',
-                'max_salary'
-            )
-            ->get();
+        $positions = DB::table('positions')->select('name', 'base_salary', 'max_salary')->get();
         
-        if ($positions->isEmpty()) {
+        if ($positions->isEmpty()) 
+        {
             return redirect()->back()->with('error', 'Không có dữ liệu.');
         }
         
@@ -145,7 +137,8 @@ class PositionControllerAdmin extends Controller
         fputcsv($output, ['STT', 'Công việc', 'Lương cơ bản', 'Lương cao nhất']);
         
         $stt = 1;
-        foreach ($positions as $position) {
+        foreach ($positions as $position) 
+        {
             fputcsv($output, [
                 $stt,
                 $position->name ?? '',

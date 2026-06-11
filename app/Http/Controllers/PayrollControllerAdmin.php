@@ -32,7 +32,7 @@ class PayrollControllerAdmin extends Controller
             ->select('employees.*', 'positions.name as position_name', 'positions.base_salary')
             ->get();
         
-        return view('admin.payrolls.index', compact('payrolls', 'employees', 'month', 'year'));
+        return view('hcns.payrolls.index', compact('payrolls', 'employees', 'month', 'year'));
     }
 
     public function create()
@@ -42,7 +42,7 @@ class PayrollControllerAdmin extends Controller
             ->select('employees.*', 'positions.name as position_name', 'positions.base_salary')
             ->get();
             
-        return view('admin.payrolls.create', compact('employees'));
+        return view('hcns.payrolls.create', compact('employees'));
     }
 
     public function store(Request $request)
@@ -61,7 +61,8 @@ class PayrollControllerAdmin extends Controller
             ->where('year', $request->year)
             ->exists();
             
-        if ($exists) {
+        if ($exists) 
+        {
             return redirect()->back()->with('error', 'Bảng lương đã tồn tại.')->withInput();
         }
 
@@ -84,9 +85,7 @@ class PayrollControllerAdmin extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
-        $routeName = auth()->user()->role->name === 'admin' ? 'admin.payrolls.index' : 'user.payrolls.index';
-        return redirect()->route($routeName, ['month' => $request->month, 'year' => $request->year])
+        return redirect()->route('hcns.payrolls.index', ['month' => $request->month, 'year' => $request->year])
             ->with('success', 'Tạo bảng lương thành công.');
     }
 
@@ -106,7 +105,7 @@ class PayrollControllerAdmin extends Controller
             )
             ->first();
             
-        return view('admin.payrolls.show', compact('payroll'));
+        return view('hcns.payrolls.show', compact('payroll'));
     }
 
     public function edit($id)
@@ -117,7 +116,7 @@ class PayrollControllerAdmin extends Controller
             ->select('employees.*', 'positions.name as position_name', 'positions.base_salary')
             ->get();
             
-        return view('admin.payrolls.edit', compact('payroll', 'employees'));
+        return view('hcns.payrolls.edit', compact('payroll', 'employees'));
     }
 
     public function update(Request $request, $id)
@@ -137,7 +136,8 @@ class PayrollControllerAdmin extends Controller
             ->where('id', '!=', $id)
             ->exists();
             
-        if ($exists) {
+        if ($exists) 
+        {
             return redirect()->back()->with('error', 'Bảng lương đã tồn tại.')->withInput();
         }
 
@@ -160,7 +160,7 @@ class PayrollControllerAdmin extends Controller
             'updated_at' => now()
         ]);
 
-        return redirect()->route('admin.payrolls.index', ['month' => $request->month, 'year' => $request->year])
+        return redirect()->route('hcns.payrolls.index', ['month' => $request->month, 'year' => $request->year])
             ->with('success', 'Cập nhật bảng lương thành công.');
     }
 
@@ -169,7 +169,7 @@ class PayrollControllerAdmin extends Controller
         $payroll = DB::table('payrolls')->where('id', $id)->first();
         DB::table('payrolls')->where('id', $id)->delete();
 
-        return redirect()->route('admin.payrolls.index', ['month' => $payroll->month, 'year' => $payroll->year])
+        return redirect()->route('hcns.payrolls.index', ['month' => $payroll->month, 'year' => $payroll->year])
             ->with('success', 'Xóa bảng lương thành công.');
     }
 
@@ -193,7 +193,8 @@ class PayrollControllerAdmin extends Controller
             )
             ->get();
         
-        if ($payrolls->isEmpty()) {
+        if ($payrolls->isEmpty()) 
+        {
             return redirect()->back()->with('error', 'Không có dữ liệu.');
         }
         
@@ -207,7 +208,8 @@ class PayrollControllerAdmin extends Controller
         fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Chức vụ', 'Lương cơ bản', 'Thưởng', 'Khấu trừ', 'Tổng lương']);
         
         $stt = 1;
-        foreach ($payrolls as $payroll) {
+        foreach ($payrolls as $payroll) 
+        {
             fputcsv($output, [
                 $stt,
                 $payroll->employee_code ?? '',

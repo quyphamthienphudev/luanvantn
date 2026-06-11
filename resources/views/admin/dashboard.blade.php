@@ -20,40 +20,16 @@
             <!-- EMPLOYEES -->
         <div class="grid grid-cols-4 gap-6">
             <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Số lượng nhân viên tạo bởi Admin</h3>
-                <p class="text-3xl font-bold text-blue-600">{{ $e_admin }}</p>
+                <h3 class="text-gray-500">Số lượng nhân viên đang làm việc</h3>
+                <p class="text-3xl font-bold text-blue-600">{{ $e_working }}</p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Số lượng nhân viên tạo bởi User</h3>
-                <p class="text-3xl font-bold text-blue-600">{{ $e_user }}</p>
+                <h3 class="text-gray-500">Số lượng nhân viên đã nghỉ việc</h3>
+                <p class="text-3xl font-bold text-blue-600">{{ $e_resign }}</p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow">
                 <h3 class="text-gray-500">Số lượng nhân viên tất cả</h3>
                 <p class="text-3xl font-bold text-blue-600">{{ $employees }}</p>
-            </div>
-            <!-- CONTENT -->
-            <div class="flex-1 p-8">
-                @yield('content')
-            </div>
-        </div>
-        <br>
-        <div class="row g-4">
-            <h1 class="text-2xl font-bold mb-6">
-                Số lượng phòng ban
-            </h1>
-            <!-- departments -->
-        <div class="grid grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Số lượng phòng ban tạo bởi Admin</h3>
-                <p class="text-3xl font-bold text-blue-600">{{ $d_admin }}</p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Số lượng phòng ban tạo bởi User</h3>
-                <p class="text-3xl font-bold text-blue-600">{{ $d_user }}</p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Số lượng phòng ban tất cả</h3>
-                <p class="text-3xl font-bold text-blue-600">{{ $departments }}</p>
             </div>
             <!-- CONTENT -->
             <div class="flex-1 p-8">

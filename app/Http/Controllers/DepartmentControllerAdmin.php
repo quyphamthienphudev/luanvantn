@@ -12,13 +12,13 @@ class DepartmentControllerAdmin extends Controller
     public function index()
     {
         $departments = Department::with('user')->get();
-        return view('admin.departments.index', compact('departments'));
+        return view('hcns.departments.index', compact('departments'));
     }
 
     //SHOW CREATE
     public function create()
     {
-        return view('admin.departments.create');
+        return view('hcns.departments.create');
     }
 
     //STORE
@@ -36,14 +36,14 @@ class DepartmentControllerAdmin extends Controller
             'description' => $request->description,
             'users_id' => Auth::id()
         ]);
-        return redirect('/admin/departments')->with('success','Thêm phòng ban thành công');
+        return redirect('/hcns/departments')->with('success','Thêm phòng ban thành công');
     }
 
     //SHOW EDIT
     public function edit($id)
     {
         $department = Department::findOrFail($id);
-        return view('admin.departments.edit', compact('department'));
+        return view('hcns.departments.edit', compact('department'));
     }
 
     //UPDATE
@@ -57,7 +57,7 @@ class DepartmentControllerAdmin extends Controller
             'description.required' => 'Thông tin phòng ban không được để trống'
         ]);
         Department::findOrFail($id)->update($request->all());
-        return redirect('/admin/departments')->with('success','Cập nhật phòng ban thành công');
+        return redirect('/hcns/departments')->with('success','Cập nhật phòng ban thành công');
     }
 
     //DELETE
@@ -87,7 +87,7 @@ class DepartmentControllerAdmin extends Controller
         })
         ->get();
 
-        return view('admin.departments.index', compact('departments', 'search'));
+        return view('hcns.departments.index', compact('departments', 'search'));
     }
 
     //EXPORT FILE
@@ -100,7 +100,8 @@ class DepartmentControllerAdmin extends Controller
             )
             ->get();
         
-        if ($departments->isEmpty()) {
+        if ($departments->isEmpty()) 
+        {
             return redirect()->back()->with('error', 'Không có dữ liệu.');
         }
         
@@ -114,7 +115,8 @@ class DepartmentControllerAdmin extends Controller
         fputcsv($output, ['STT', 'Tên phòng ban', 'Mô tả thông tin']);
         
         $stt = 1;
-        foreach ($departments as $department) {
+        foreach ($departments as $department) 
+        {
             fputcsv($output, [
                 $stt,
                 $department->name ?? '',

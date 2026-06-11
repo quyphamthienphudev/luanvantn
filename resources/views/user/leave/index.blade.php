@@ -22,6 +22,8 @@
 @section('title', 'Quản lý nghỉ phép')
 
 @section('content')
+
+<title>Hệ thống quản lý nhân sự - Đăng kí nghỉ phép</title>
 @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
         {{ session('success') }}

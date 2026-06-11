@@ -46,7 +46,6 @@ class ManageEmployeeControllerQLCL extends Controller
         $request->validate([
         'employee_code' => 'required|unique:employees,employee_code',
         'full_name' => 'required',
-
         'email' => 'required|email',
         'date_of_birth' => 'required|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
         'phone' => 'required|numeric'
@@ -54,26 +53,19 @@ class ManageEmployeeControllerQLCL extends Controller
             'employee_code.required' => 'Vui lòng nhập mã nhân viên',
             'employee_code.unique' => 'Mã nhân viên đã tồn tại, vui lòng kiểm tra lại',
             'full_name.required' => 'Vui lòng nhập họ tên nhân viên',
-
             'email.required' => 'Vui lòng nhập email',
             'email.email' => 'Email không đúng định dạng',
-
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh',
             'date_of_birth.before_or_equal' => 'Nhân viên phải từ 18 tuổi trở lên',
-
             'phone.required' => 'Vui lòng nhập số điện thoại',
             'phone.numeric' => 'Số điện thoại chỉ được nhập số'
         ]);
-
         $data = $request->all();
         $data['users_id'] = auth()->user()->id;
-
         // tự động set ngày vào làm
         $data['hire_date'] = date('Y-m-d');
-
         // trạng thái mặc định
         $data['status'] = 'working';
-
         Employee::create($data);
         return redirect('/qlcl/employees')->with('success','Thêm nhân viên thành công');
     }

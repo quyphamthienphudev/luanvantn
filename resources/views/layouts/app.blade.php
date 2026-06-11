@@ -28,75 +28,39 @@
                 Trang chủ
             </a>
 
-            @if(auth()->user()->role->name === 'hcns')
-            <a href="/admin/employees" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý nhân viên
-            </a>
-            @endif
-
-            @if(auth()->user()->role->name === 'hcns')
-            <a href="/admin/departments" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý phòng ban
-            </a>
-            @endif
-
-            @if(auth()->user()->role->name === 'hcns')
-            <a href="/admin/positions" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý công việc
-            </a>
-            @endif
-
-            @if(auth()->user()->role->name === 'hcns')
-            <a href="/admin/candidates" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý hồ sơ ứng viên
-            </a>
-            @endif
-
-            @if(auth()->user()->role->name === 'hcns')
-            <a href="/admin/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý lương
-            </a>
-            @endif
-
-            @if(auth()->user()->role->name === 'qlcl')
-            <a href="/qlcl/employees" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý nhân viên
-            </a>
-            @endif
-
-            @if(auth()->user()->role->name === 'qlcl')
-            <a href="/admin/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý nghỉ phép
-            </a>
-            @endif
-
             @if(auth()->user()->role->name === 'admin')
             <a href="/admin/dashboard" class="block px-4 py-2 rounded hover:bg-blue-700">
                 Báo cáo thống kê
             </a>
             @endif
-            
-            @if(auth()->user()->role->name === 'httt')
-                <a href="/admin/accounts" class="block px-4 py-2 rounded hover:bg-blue-700">
-                    Quản lý tài khoản
-                </a>
-            @endif
 
-            @if(auth()->user()->role->name === 'httt')
-                <a href="/admin/roles" class="block px-4 py-2 rounded hover:bg-blue-700">
-                    Quản lý quyền truy cập
-                </a>
-            @endif
-
-            @if(auth()->user()->role->name === 'user')
-            <a href="/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Xem lương
+            @if(auth()->user()->role->name === 'hcns')
+            <a href="/hcns/employees" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý nhân viên
             </a>
             @endif
 
-            @if(auth()->user()->role->name === 'qlcl')
-            <a href="/admin/attendances" class="block px-4 py-2 rounded hover:bg-blue-700">
-                Quản lý chấm công
+            @if(auth()->user()->role->name === 'hcns')
+            <a href="/hcns/departments" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý phòng ban
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'hcns')
+            <a href="/hcns/positions" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý công việc
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'hcns')
+            <a href="/hcns/candidates" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý hồ sơ ứng viên
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'hcns')
+            <a href="/hcns/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý lương
             </a>
             @endif
 
@@ -109,6 +73,42 @@
             @if(auth()->user()->role->name === 'hcns')
             <a href="/hcns/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
                 Quản lý nghỉ phép
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'qlcl')
+            <a href="/qlcl/employees" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý nhân viên
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'qlcl')
+            <a href="/qlcl/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý nghỉ phép
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'qlcl')
+            <a href="/qlcl/attendances" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý chấm công
+            </a>
+            @endif
+            
+            @if(auth()->user()->role->name === 'httt')
+                <a href="/httt/accounts" class="block px-4 py-2 rounded hover:bg-blue-700">
+                    Quản lý tài khoản
+                </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'httt')
+                <a href="/httt/roles" class="block px-4 py-2 rounded hover:bg-blue-700">
+                    Quản lý quyền truy cập
+                </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'user')
+            <a href="/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Xem lương
             </a>
             @endif
 

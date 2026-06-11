@@ -12,7 +12,8 @@ class Position extends Model
 
     public $timestamps = false;
     
-    public function employees() { 
+    public function employees() 
+    { 
         return $this->hasMany(Employee::class, 'position_id'); 
     }
     

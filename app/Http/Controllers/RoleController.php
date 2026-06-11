@@ -6,20 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+
 class RoleController extends Controller
 {
     //INDEX
     public function index()
     {
         $roles = DB::table('roles')->get();
-
-        return view('admin.roles.index',compact('roles'));
+        return view('httt.roles.index',compact('roles'));
     }
 
     //SHOW CREATE
     public function create()
     {
-        return view('admin.roles.create');
+        return view('httt.roles.create');
     }
 
     //STORE
@@ -39,19 +39,16 @@ class RoleController extends Controller
             'id'=>$request->id,
             'name'=>$request->name,
             'description'=>$request->description
-            
         ]);
 
-        return redirect('/admin/roles')
-            ->with('success','Thêm quyền truy cập thành công');
+        return redirect('/httt/roles')->with('success','Thêm quyền truy cập thành công');
     }
 
     //SHOW EDIT
     public function edit($id)
     {
         $roles = DB::table('roles')->where('id',$id)->first();
-
-        return view('admin.roles.edit',compact('roles'));
+        return view('httt.roles.edit',compact('roles'));
     }
 
     //UPDATE
@@ -65,46 +62,41 @@ class RoleController extends Controller
 
         DB::table('roles')
         ->where('id',$id)
-        ->update([
-            'description'=>$request->description
-        ]);
+        ->update(['description'=>$request->description]);
 
-        return redirect('/admin/roles')
-            ->with('success','Cập nhật quyền truy cập thành công');
+        return redirect('/httt/roles')->with('success','Cập nhật quyền truy cập thành công');
     }
 
     //DELETE
     public function delete($id)
     {
-        $hasUser = DB::table('users')
-            ->where('role_id', $id)
-            ->exists();
+        $hasUser = DB::table('users')->where('role_id', $id)->exists();
 
-        if($hasUser){
+        if($hasUser)
+        {
             return back()->with('error','Quyền này đang có người dùng, không thể xóa');
         }
 
         DB::table('roles')->where('id',$id)->delete();
 
-        return redirect('/admin/roles')
-            ->with('success','Xóa quyền truy cập thành công');
+        return redirect('/httt/roles')->with('success','Xóa quyền truy cập thành công');
     }
 
     //SEARCH
     public function search(Request $request)
     {
-    $search = $request->search;
+        $search = $request->search;
 
-    $roles = DB::table('roles')
-        ->when($search, function ($query) use ($search) {
+        $roles = DB::table('roles')
+            ->when($search, function ($query) use ($search) {
 
             // tìm theo id, name hoặc description
             $query->where('id', 'like', '%' . $search . '%')
                   ->orWhere('name', 'like', '%' . $search . '%')
                   ->orWhere('description', 'like', '%' . $search . '%');
-        })
+            })
         ->get();
 
-    return view('admin.roles.index', compact('roles', 'search'));
+        return view('httt.roles.index', compact('roles', 'search'));
     }
 }

@@ -8,37 +8,16 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardControllerAdmin extends Controller
 {
-    public function adminDashboard(Request $request)
+    public function dashboard(Request $request)
     {
-        // employees tạo bởi admin
-        $e_admin = DB::table('employees')
-        ->join('users','employees.users_id','=','users.id')
-        ->join('roles','users.role_id','=','roles.id')
-        ->where('roles.id','1')->count();
+        //employees đang làm việc
+        $e_working = DB::table('employees')->where('status','working')->count();
 
-        // employees tạo bởi user
-        $e_user = DB::table('employees')
-        ->join('users','employees.users_id','=','users.id')
-        ->join('roles','users.role_id','=','roles.id')
-        ->where('roles.id','2')->count();
+        //employees đang làm việc
+        $e_resign = DB::table('employees')->where('status','resigned')->count();
 
         //employees
         $employees = DB::table('employees')->count();
-
-        //department
-        $departments = DB::table('departments')->count();
-
-        //department tạo bởi admin
-        $d_admin = DB::table('departments')
-        ->join('users','departments.users_id','=','users.id')
-        ->join('roles','users.role_id','=','roles.id')
-        ->where('roles.id','1')->count();
-
-        //department tạo bởi user
-        $d_user = DB::table('departments')
-        ->join('users','departments.users_id','=','users.id')
-        ->join('roles','users.role_id','=','roles.id')
-        ->where('roles.id','2')->count();
 
         // ===== THỐNG KÊ NHÂN VIÊN THEO PHÒNG BAN =====
         $employeesByDepartment = DB::table('employees')
@@ -63,43 +42,45 @@ class DashboardControllerAdmin extends Controller
         $totalMonthSalary = 0;
 
         // Tổng lương theo năm
-        if($request->has('filter_year')){
-            if(!$year){
+        if($request->has('filter_year'))
+        {
+            if(!$year)
+            {
                 return back()->with('error_year','Vui lòng nhập năm để thống kê');
             }
             else if(!is_numeric($year))
             {
                 return back()->with('error_year','Vui lòng nhập năm thống kê là số');
             }
-            else {
-                $totalYearSalary = DB::table('payrolls')
-                    ->whereRaw("year = ?", [$year])
-                    ->sum('total_salary');
+            else 
+            {
+                $totalYearSalary = DB::table('payrolls')->whereRaw("year = ?", [$year])->sum('total_salary');
             }
         }
 
         // Tổng lương theo tháng + năm
-        if($request->has('filter_month')){
-            if(!$month || !$year){
+        if($request->has('filter_month'))
+        {
+            if(!$month || !$year)
+            {
                 return back()->with('error_month','Vui lòng điền đầy đủ tháng và năm để thống kê');
             }
             else if(!is_numeric($year))
             {
                 return back()->with('error_year','Vui lòng nhập năm thống kê là số');
             }
-            else {
-                $totalMonthSalary = DB::table('payrolls')
-                    ->whereRaw("year = ?", [$year])
-                    ->whereRaw("month = ?", [$month])
-                    ->sum('total_salary');
+            else 
+            {
+                $totalMonthSalary = DB::table('payrolls')->whereRaw("year = ?", [$year])->whereRaw("month = ?", [$month])->sum('total_salary');
             }
         }
 
-        return view('admin.dashboard',['e_admin'=>$e_admin,
-            'e_user'=>$e_user, 'employees'=>$employees,
-            'd_admin'=>$d_admin, 'd_user'=>$d_user,
+        return view('admin.dashboard',[
+            'e_working'=>$e_working,
+            'e_resign'=>$e_resign,
+            'employees'=>$employees,
             'deptLabels'=>$deptLabels,'deptData'=>$deptData,
-            'departments'=>$departments, 'totalYearSalary'=>$totalYearSalary,
+            'totalYearSalary'=>$totalYearSalary,
             'totalMonthSalary'=>$totalMonthSalary,'year'=>$year,'month'=>$month
         ]);
     }

@@ -13,13 +13,13 @@ class ManageCandidateControllerAdmin extends Controller
     public function index()
     {
         $candidates = DB::table('candidates')->get();
-        return view('admin.candidates.index',compact('candidates'));
+        return view('hcns.candidates.index',compact('candidates'));
     }
 
     // SHOW CREATE
     public function create()
     {
-        return view('admin.candidates.create');
+        return view('hcns.candidates.create');
     }
 
     //STORE
@@ -49,14 +49,14 @@ class ManageCandidateControllerAdmin extends Controller
         $data = $request->all();
         $data['users_id'] = auth()->user()->id;
         Candidate::create($data);
-        return redirect('/admin/candidates')->with('success','Thêm hồ sơ thành công');
+        return redirect('/hcns/candidates')->with('success','Thêm hồ sơ thành công');
     }
 
     // EDIT
     public function edit($id)
     {
         $candidates = DB::table('candidates')->where('id',$id)->first();
-        return view('admin.candidates.edit',compact('candidates'));
+        return view('hcns.candidates.edit',compact('candidates'));
     }
 
     //UPDATE
@@ -97,22 +97,23 @@ class ManageCandidateControllerAdmin extends Controller
             'ward'=>$request->ward,
             'province'=>$request->province
         ]);
+        
         Candidate::findOrFail($id)->update($request->all());
-        return redirect('/admin/candidates')->with('success','Cập nhật hồ sơ thành công');
+        return redirect('/hcns/candidates')->with('success','Cập nhật hồ sơ thành công');
     }
 
     // DELETE
     public function delete($id)
     {
         DB::table('candidates')->where('id',$id)->delete();
-        return redirect('/admin/candidates')->with('success','Xóa hồ sơ thành công');
+        return redirect('/hcns/candidates')->with('success','Xóa hồ sơ thành công');
     }
 
     // SHOW DETAIL
     public function show($id)
     {
         $candidate = Candidate::findOrFail($id);
-        return view('admin.candidates.show',compact('candidate'));
+        return view('hcns.candidates.show',compact('candidate'));
     }
 
     //SEARCH
@@ -127,6 +128,6 @@ class ManageCandidateControllerAdmin extends Controller
         })
         ->get();
 
-    return view('admin.candidates.index', compact('candidates', 'search'));
+    return view('hcns.candidates.index', compact('candidates', 'search'));
     }
 }

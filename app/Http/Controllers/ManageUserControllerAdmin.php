@@ -6,85 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+
 class ManageUserControllerAdmin extends Controller
 {
-    //SHOW UPDATE PROFILE
-    public function editProfile()
-    {
-        return view('admin.profile');
-    }
-
-    //UPDATE PROFILE
-    public function updateProfile(Request $request)
-    {
-        $user = auth()->user();
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $user->id
-        ],[
-            'name.required' => 'Họ tên không được để trống',
-            'email.required' => 'Email không được để trống',
-            'email.email' => 'Email không đúng định dạng',
-            'email.unique' => 'Email này đã được sử dụng'
-        ]);
-
-         $user->name = $request->name;
-         $user->email = $request->email;
-         $user->save();
-
-        return back()->with('success', 'Cập nhật thành công');
-
-    }
-
-    // SHOW CHANGE PASSWORD
-    public function showChangePassword()
-    {
-        return view('admin.change-password');
-    }
-
-    //CHANGE PASSWORD
-    public function changePassword(Request $request)
-    {
-         $request->validate([
-        'current_password' => 'required',
-        'new_password' => 'required|min:8'
-    ], [
-        'current_password.required' => 'Vui lòng nhập mật khẩu hiện tại',
-        'current_password.min' => 'Mật khẩu hiện tại không đúng',
-        'new_password.required' => 'Mật khẩu mới không được để trống',
-        'new_password.min' => 'Mật khẩu mới phải có ít nhất 8 ký tự'
-    ]);
-
-    $user = auth()->user();
-
-    // Kiểm tra mật khẩu hiện tại
-    if (!Hash::check($request->current_password, $user->password)) {
-        return back()->with('error', 'Mật khẩu hiện tại không đúng');
-    }
-
-    // Không cho trùng mật khẩu cũ
-    if (Hash::check($request->new_password, $user->password)) {
-        return back()->with('error', 'Mật khẩu mới không được trùng mật khẩu cũ');
-    }
-
-    $user->password = Hash::make($request->new_password);
-    $user->save();
-
-    return back()->with('success', 'Đổi mật khẩu thành công');
-    }
-
     //INDEX
     public function index()
     {
         $users = DB::table('users')->get();
-
-        return view('admin.accounts.index',compact('users'));
+        return view('httt.accounts.index',compact('users'));
     }
 
     //SHOW CREATE
     public function create()
     {
-        return view('admin.accounts.create');
+        return view('httt.accounts.create');
     }
 
     //STORE
@@ -108,19 +43,16 @@ class ManageUserControllerAdmin extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>bcrypt($request->password)
-            
         ]);
 
-        return redirect('/admin/accounts')
-            ->with('success','Thêm tài khoản thành công');
+        return redirect('/httt/accounts')->with('success','Thêm tài khoản thành công');
     }
 
     //SHOW EDIT
     public function edit($id)
     {
         $user = DB::table('users')->where('id',$id)->first();
-
-        return view('admin.accounts.edit',compact('user'));
+        return view('httt.accounts.edit',compact('user'));
     }
 
     //UPDATE
@@ -128,7 +60,7 @@ class ManageUserControllerAdmin extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'email'=>"required|email|unique:users,email,$id"
+            'email'=>"required|email|unique:users,email"
         ],[
             'name.required' => 'Họ tên không được để trống',
             'email.required' => 'Email không được để trống',
@@ -147,57 +79,51 @@ class ManageUserControllerAdmin extends Controller
             'role_id'=>$request->role
         ]);
 
-        return redirect('/admin/accounts')
-            ->with('success','Cập nhật tài khoản thành công');
+        return redirect('/httt/accounts')->with('success','Cập nhật tài khoản thành công');
     }
 
     //DELETE
     public function delete($id)
     {
         DB::table('users')->where('id',$id)->delete();
-
-        return redirect('/admin/accounts')
-            ->with('success','Xóa tài khoản thành công');
+        return redirect('/httt/accounts')->with('success','Xóa tài khoản thành công');
     }
 
     //SEARCH
     public function search(Request $request)
     {
-    $search = $request->search;
+        $search = $request->search;
 
-    $users = DB::table('users')
-        ->when($search, function ($query) use ($search) {
+        $users = DB::table('users')
+            ->when($search, function ($query) use ($search) {
 
             // tìm theo name hoặc email
             $query->where('name', 'like', '%' . $search . '%')
                   ->orWhere('email', 'like', '%' . $search . '%');
 
             // tìm theo quyền
-            if (strtolower($search) == 'admin') {
+            if (strtolower($search) == 'admin') 
+            {
                 $query->orWhere('role_id', 1);
             }
 
-            if (strtolower($search) == 'user') {
+            if (strtolower($search) == 'user') 
+            {
                 $query->orWhere('role_id', 2);
             }
         })
         ->get();
 
-    return view('admin.accounts.index', compact('users', 'search'));
+        return view('httt.accounts.index', compact('users', 'search'));
     }
 
     //EXPORT FILE
     public function export()
     {   
-        $users = DB::table('users')
-            ->select(
-                'id',
-                'name',
-                'email'
-            )
-            ->get();
+        $users = DB::table('users')->select('id', 'name', 'email')->get();
         
-        if ($users->isEmpty()) {
+        if ($users->isEmpty()) 
+        {
             return redirect()->back()->with('error', 'Không có dữ liệu.');
         }
         
@@ -210,7 +136,8 @@ class ManageUserControllerAdmin extends Controller
         
         fputcsv($output, ['STT', 'Họ tên nhân viên', 'Email']);
         
-        foreach ($users as $user) {
+        foreach ($users as $user) 
+        {
             fputcsv($output, [
                 $user->id ?? '',
                 $user->name ?? '',

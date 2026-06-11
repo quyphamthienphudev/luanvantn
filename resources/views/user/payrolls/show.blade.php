@@ -3,6 +3,7 @@
 @section('title', 'Chi tiết bảng lương')
 
 @section('content')
+<title>Hệ thống quản lý nhân sự - Chi tiết bảng lương</title>
 <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
     @if(!$payroll)
         @if(auth()->user()->role->name=='user')
