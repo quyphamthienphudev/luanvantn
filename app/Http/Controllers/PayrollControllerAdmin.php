@@ -85,8 +85,7 @@ class PayrollControllerAdmin extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        return redirect()->route('hcns.payrolls.index', ['month' => $request->month, 'year' => $request->year])
-            ->with('success', 'Tạo bảng lương thành công.');
+        return redirect('/hcns/payrolls')->with('success', 'Tạo bảng lương thành công.');
     }
 
     public function show($id)
@@ -160,8 +159,7 @@ class PayrollControllerAdmin extends Controller
             'updated_at' => now()
         ]);
 
-        return redirect()->route('hcns.payrolls.index', ['month' => $request->month, 'year' => $request->year])
-            ->with('success', 'Cập nhật bảng lương thành công.');
+        return redirect('/hcns/payrolls')->with('success', 'Cập nhật bảng lương thành công.');
     }
 
     public function destroy($id)
@@ -169,8 +167,7 @@ class PayrollControllerAdmin extends Controller
         $payroll = DB::table('payrolls')->where('id', $id)->first();
         DB::table('payrolls')->where('id', $id)->delete();
 
-        return redirect()->route('hcns.payrolls.index', ['month' => $payroll->month, 'year' => $payroll->year])
-            ->with('success', 'Xóa bảng lương thành công.');
+        return redirect('/hcns/payrolls')->with('success', 'Xóa bảng lương thành công.');
     }
 
     public function export(Request $request)

@@ -53,25 +53,11 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/admin/home', function () {
-        return view('home');
-    });
-
-    Route::get('/hcns/home', function () {
-        return view('home');
-    });
-
-    Route::get('/qlcl/home', function () {
-        return view('home');
-    });
-
-    Route::get('/httt/home', function () {
-        return view('home');
-    });
-
-    Route::get('/home', function () {
-        return view('home');
-    });
+    Route::get('/admin/home', [ManageUserControllerUser::class, 'homePage']);
+    Route::get('/hcns/home', [ManageUserControllerUser::class, 'homePage']);
+    Route::get('/qlcl/home', [ManageUserControllerUser::class, 'homePage']);
+    Route::get('/httt/home', [ManageUserControllerUser::class, 'homePage']);
+    Route::get('/home', [ManageUserControllerUser::class, 'homePage']);
 
     Route::get('/profile', [ManageUserControllerUser::class, 'editProfile']);
     Route::post('/profile', [ManageUserControllerUser::class, 'updateProfile']);
@@ -142,48 +128,48 @@ Route::middleware('auth')->group(function () {
 });
 
 // Chức năng quản lý lương phòng hành chính nhân sự
-Route::prefix('hcns')->name('hcns.')->group(function () {
-    Route::get('payrolls/export', [PayrollControllerAdmin::class, 'export']);
-    Route::get('payrolls', [PayrollControllerAdmin::class, 'index']);
-    Route::get('payrolls/create', [PayrollControllerAdmin::class, 'create']);
-    Route::post('payrolls', [PayrollControllerAdmin::class, 'store']);
-    Route::get('payrolls/{id}', [PayrollControllerAdmin::class, 'show']);
-    Route::get('payrolls/edit/{id}', [PayrollControllerAdmin::class, 'edit']);
-    Route::post('payrolls/update/{id}', [PayrollControllerAdmin::class, 'update']);
-    Route::post('payrolls/delete/{id}', [PayrollControllerAdmin::class, 'destroy']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/hcns/payrolls/export', [PayrollControllerAdmin::class, 'export']);
+    Route::get('/hcns/payrolls', [PayrollControllerAdmin::class, 'index']);
+    Route::get('/hcns/payrolls/create', [PayrollControllerAdmin::class, 'create']);
+    Route::post('/hcns/payrolls', [PayrollControllerAdmin::class, 'store']);
+    Route::get('/hcns/payrolls/{id}', [PayrollControllerAdmin::class, 'show']);
+    Route::get('/hcns/payrolls/edit/{id}', [PayrollControllerAdmin::class, 'edit']);
+    Route::post('/hcns/payrolls/update/{id}', [PayrollControllerAdmin::class, 'update']);
+    Route::post('/hcns/payrolls/delete/{id}', [PayrollControllerAdmin::class, 'destroy']);
 });
 
 // Chức năng xem bảng lương của nhân viên
-Route::prefix('/')->name('user.')->group(function () {
-    Route::get('payrolls', [PayrollControllerUser::class, 'show']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/payrolls', [PayrollControllerUser::class, 'show']);
 });
 
 // Chức năng quản lý đơn xin nghỉ phép của nhân viên
-Route::middleware(['auth'])->prefix('leave')->name('leave.')->group(function () {
-    Route::get('/', [LeaveController::class, 'index'])->name('index');
-    Route::post('/store', [LeaveController::class, 'store']);
-    Route::get('/edit/{id}', [LeaveController::class, 'edit']);
-    Route::post('/update/{id}', [LeaveController::class, 'update']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/leave', [LeaveController::class, 'index'])->name('index');
+    Route::post('/leave/store', [LeaveController::class, 'store']);
+    Route::get('/leave/edit/{id}', [LeaveController::class, 'edit']);
+    Route::post('/leave/update/{id}', [LeaveController::class, 'update']);
 });
 
 // Chức năng quản lý đơn xin nghỉ phép của từng phòng ban
-Route::middleware(['auth'])->prefix('qlcl/leave')->name('qlcl.leave.')->group(function () {
-    Route::get('/', [LeaveControllerQLCL::class, 'index'])->name('index');
-    Route::post('/approve/{id}', [LeaveControllerQLCL::class, 'approve']);
-    Route::post('/reject/{id}', [LeaveControllerQLCL::class, 'reject']);
-    Route::get('/edit/{id}', [LeaveControllerQLCL::class, 'edit']);
-    Route::post('/update/{id}', [LeaveControllerQLCL::class, 'update']);
-    Route::delete('/delete/{id}', [LeaveControllerQLCL::class, 'destroy']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/qlcl/leave', [LeaveControllerQLCL::class, 'index']);
+    Route::post('/qlcl/leave/approve/{id}', [LeaveControllerQLCL::class, 'approve']);
+    Route::post('/qlcl/leave/reject/{id}', [LeaveControllerQLCL::class, 'reject']);
+    Route::get('/qlcl/leave/edit/{id}', [LeaveControllerQLCL::class, 'edit']);
+    Route::post('/qlcl/leave/update/{id}', [LeaveControllerQLCL::class, 'update']);
+    Route::delete('/qlcl/leave/delete/{id}', [LeaveControllerQLCL::class, 'destroy']);
 });
 
 // Chức năng quản lý đơn xin nghỉ phép phòng hành chính nhân sự
-Route::middleware(['auth'])->prefix('hcns/leave')->name('hcns.leave.')->group(function () {
-    Route::get('/', [LeaveControllerHCNS::class, 'adminIndex'])->name('adminIndex');
-    Route::post('/approve/{id}', [LeaveControllerHCNS::class, 'approve']);
-    Route::post('/reject/{id}', [LeaveControllerHCNS::class, 'reject']);
-    Route::get('/edit/{id}', [LeaveControllerHCNS::class, 'adminEdit']);
-    Route::post('/update/{id}', [LeaveControllerHCNS::class, 'adminUpdate']);
-    Route::delete('/delete/{id}', [LeaveControllerHCNS::class, 'destroy']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/hcns/leave', [LeaveControllerHCNS::class, 'index']);
+    Route::post('/hcns/leave/approve/{id}', [LeaveControllerHCNS::class, 'approve']);
+    Route::post('/hcns/leave/reject/{id}', [LeaveControllerHCNS::class, 'reject']);
+    Route::get('/hcns/leave/edit/{id}', [LeaveControllerHCNS::class, 'edit']);
+    Route::post('/hcns/leave/update/{id}', [LeaveControllerHCNS::class, 'update']);
+    Route::delete('/hcns/leave/delete/{id}', [LeaveControllerHCNS::class, 'destroy']);
 });
 
 // Chức năng quản lý quyền truy cập

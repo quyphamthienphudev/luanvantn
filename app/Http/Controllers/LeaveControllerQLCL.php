@@ -34,7 +34,7 @@ class LeaveControllerQLCL extends Controller
             'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
         ]);
         $leave->update($validated);
-        return redirect()->route('qlcl.leave.index')->with('success', 'Cập nhật đơn nghỉ phép thành công');
+        return redirect('/qlcl/leave')->with('success', 'Cập nhật đơn nghỉ phép thành công');
     }
 
     public function destroy($id) 

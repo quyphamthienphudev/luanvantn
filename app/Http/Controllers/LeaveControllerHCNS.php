@@ -7,19 +7,19 @@ use Illuminate\Support\Facades\Auth;
 
 class LeaveControllerHCNS extends Controller
 {
-    public function adminIndex() 
+    public function index() 
     {
         $allLeaves = LeaveRequest::with('user')->where('status','approved')->get(); 
         return view('hcns.leave.index', compact('allLeaves'));
     }
 
-    public function adminEdit($id) 
+    public function edit($id) 
     {
         $leave = LeaveRequest::findOrFail($id);
         return view('hcns.leave.edit', compact('leave'));
     }
 
-    public function adminUpdate(Request $request, $id) 
+    public function update(Request $request, $id) 
     {
         $leave = LeaveRequest::findOrFail($id);
         $validated = $request->validate([
@@ -34,7 +34,7 @@ class LeaveControllerHCNS extends Controller
             'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
         ]);
         $leave->update($validated);
-        return redirect()->route('hcns.leave.adminIndex')->with('success', 'Cập nhật đơn nghỉ phép thành công');
+        return redirect('/hcns/leave')->with('success', 'Cập nhật đơn nghỉ phép thành công');
     }
 
     public function destroy($id) 

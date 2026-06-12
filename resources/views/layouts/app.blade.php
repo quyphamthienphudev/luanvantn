@@ -24,9 +24,35 @@
 
         <nav class="flex-1 p-4 space-y-2">
 
-            <a href="/" class="block px-4 py-2 rounded hover:bg-blue-700">
+            @if(auth()->user()->role->name === 'admin')
+            <a href="/admin/home" class="block px-4 py-2 rounded hover:bg-blue-700">
                 Trang chủ
             </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'hcns')
+            <a href="/hcns/home" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Trang chủ
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'qlcl')
+            <a href="/qlcl/home" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Trang chủ
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'httt')
+            <a href="/httt/home" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Trang chủ
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'user')
+            <a href="/home" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Trang chủ
+            </a>
+            @endif
 
             @if(auth()->user()->role->name === 'admin')
             <a href="/admin/dashboard" class="block px-4 py-2 rounded hover:bg-blue-700">
