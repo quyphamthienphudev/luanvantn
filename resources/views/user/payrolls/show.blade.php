@@ -3,16 +3,26 @@
 @section('title', 'Chi tiết bảng lương')
 
 @section('content')
-<title>Hệ thống quản lý nhân sự - Chi tiết bảng lương</title>
-<div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
-    @if(!$payroll)
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý nhân sự - Chi tiết bảng lương</title>
+</head>
+
+<body>
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
+        @if(!$payroll)
         @if(auth()->user()->role->name=='user')
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             Không tìm thấy bảng lương!
         </div>
         <a href="/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded">Quay lại</a>
         @endif
-    @else
+        @else
         <h2 class="text-xl font-bold mb-4">Chi tiết bảng lương</h2>
         @if(auth()->user()->role->name=='user')
         <table class="w-full">
@@ -47,17 +57,21 @@
             <tr class="border-b">
                 <th class="text-left py-2">Tháng</th>
                 <td class="py-2">{{ $payroll->month }}</td>
-             </tr>
+            </tr>
             <tr class="border-b">
                 <th class="text-left py-2">Năm</th>
                 <td class="py-2">{{ $payroll->year }}</td>
-             </tr>
-             <tr class="border-b">
+            </tr>
+            <tr class="border-b">
                 <th class="text-left py-2">Tổng lương</th>
                 <td class="py-2 font-bold text-red-700">{{ number_format($payroll->total_salary ?? 0) }} VNĐ</td>
             </tr>
         </table>
         @endif
-    @endif
-</div>
+        @endif
+    </div>
+</body>
+
+</html>
+
 @endsection

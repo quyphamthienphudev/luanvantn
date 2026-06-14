@@ -1,19 +1,73 @@
-<!-- Giữ nguyên phần link CSS và Style của bạn -->
+<title>Hệ thống quản lý nhân sự - Đăng kí nghỉ phép</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 <style>
-    body { background-color: #f8f9fa; }
-    .card { border: none; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-    .card-header { background: linear-gradient(45deg, #007bff, #0056b3); color: white; border-radius: 15px 15px 0 0 !important; font-weight: bold; }
-    .btn-primary { border-radius: 8px; padding: 10px 25px; transition: all 0.3s; font-weight: 600; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,123,255,0.3); }
-    .table { background: white; border-radius: 10px; overflow: hidden; }
-    .badge { padding: 8px 12px; border-radius: 20px; }
-    .form-select, .form-control { border-radius: 8px; padding: 10px; }  
-    .is-invalid { animation: shake 0.2s ease-in-out 0s 2; }
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-header {
+        background: linear-gradient(45deg, #007bff, #0056b3);
+        color: white;
+        border-radius: 15px 15px 0 0 !important;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        border-radius: 8px;
+        padding: 10px 25px;
+        transition: all 0.3s;
+        font-weight: 600;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    }
+
+    .table {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .badge {
+        padding: 8px 12px;
+        border-radius: 20px;
+    }
+
+    .form-select,
+    .form-control {
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .is-invalid {
+        animation: shake 0.2s ease-in-out 0s 2;
+    }
+
     @keyframes shake {
-        0% { margin-left: 0rem; } 25% { margin-left: 0.5rem; } 75% { margin-left: -0.5rem; } 100% { margin-left: 0rem; }
+        0% {
+            margin-left: 0rem;
+        }
+
+        25% {
+            margin-left: 0.5rem;
+        }
+
+        75% {
+            margin-left: -0.5rem;
+        }
+
+        100% {
+            margin-left: 0rem;
+        }
     }
 </style>
 
@@ -23,11 +77,10 @@
 
 @section('content')
 
-<title>Hệ thống quản lý nhân sự - Đăng kí nghỉ phép</title>
 @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
-        {{ session('success') }}
-    </div>
+<div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
+    {{ session('success') }}
+</div>
 @endif
 <div class="rounded mt-6">
     <div class="row">
@@ -43,28 +96,31 @@
                         <!-- NGÀY BẮT ĐẦU & KẾT THÚC -->
                         <div class="row">
                             <div class="col-6 mb-3">
-                                <label class="form-label fw-bold small text-uppercase text-secondary">Từ ngày <span class="text-danger">*</span></label>
-                                <input type="date" name="start_date" id="start_date" 
-                                       class="form-control @error('start_date') is-invalid @enderror" 
-                                       value="{{ old('start_date') }}" 
-                                       min="{{ date('Y-m-d') }}"> 
-                                @error('start_date') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
+                                <label class="form-label fw-bold small text-uppercase text-secondary">Từ ngày <span
+                                        class="text-danger">*</span></label>
+                                <input type="date" name="start_date" id="start_date"
+                                    class="form-control @error('start_date') is-invalid @enderror"
+                                    value="{{ old('start_date') }}" min="{{ date('Y-m-d') }}">
+                                @error('start_date') <div class="invalid-feedback fw-bold">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-6 mb-3">
-                                <label class="form-label fw-bold small text-uppercase text-secondary">Đến ngày <span class="text-danger">*</span></label>
-                                <input type="date" name="end_date" id="end_date" 
-                                       class="form-control @error('end_date') is-invalid @enderror" 
-                                       value="{{ old('end_date') }}"
-                                       min="{{ date('Y-m-d') }}">
-                                @error('end_date') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
+                                <label class="form-label fw-bold small text-uppercase text-secondary">Đến ngày <span
+                                        class="text-danger">*</span></label>
+                                <input type="date" name="end_date" id="end_date"
+                                    class="form-control @error('end_date') is-invalid @enderror"
+                                    value="{{ old('end_date') }}" min="{{ date('Y-m-d') }}">
+                                @error('end_date') <div class="invalid-feedback fw-bold">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
                         <!-- LÝ DO -->
                         <div class="mb-3">
-                            <label class="form-label fw-bold small text-uppercase text-secondary">Lý do xin nghỉ phép<span class="text-danger"> *</span></label>
-                            <textarea name="reason" class="form-control @error('reason') is-invalid @enderror" 
-                                      rows="4" >{{ old('reason') }}</textarea>
+                            <label class="form-label fw-bold small text-uppercase text-secondary">Lý do xin nghỉ
+                                phép<span class="text-danger"> *</span></label>
+                            <textarea name="reason" class="form-control @error('reason') is-invalid @enderror"
+                                rows="4">{{ old('reason') }}</textarea>
                             @error('reason') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
                         </div>
 
@@ -107,20 +163,25 @@
                                     </td>
                                     <td>
                                         @if($leave->status == 'pending')
-                                            <span class="badge bg-warning text-dark status-badge"><i class="fas fa-spinner fa-spin me-1"></i> Chờ duyệt</span>
+                                        <span class="badge bg-warning text-dark status-badge"><i
+                                                class="fas fa-spinner fa-spin me-1"></i> Chờ duyệt</span>
                                         @elseif($leave->status == 'approved')
-                                            <span class="badge bg-success shadow-sm"><i class="fas fa-check-circle me-1"></i> Đồng ý</span>
+                                        <span class="badge bg-success shadow-sm"><i
+                                                class="fas fa-check-circle me-1"></i> Đồng ý</span>
                                         @else
-                                            <span class="badge bg-danger shadow-sm"><i class="fas fa-times-circle me-1"></i> Từ chối</span>
+                                        <span class="badge bg-danger shadow-sm"><i class="fas fa-times-circle me-1"></i>
+                                            Từ chối</span>
                                         @endif
                                     </td>
                                     <td class="text-center pe-4">
                                         @if($leave->status == 'pending')
-                                            <a href="/leave/edit/{{ $leave->id }}" class="btn btn-sm btn-outline-primary shadow-sm px-3">
-                                                <i class="fas fa-edit me-1"></i> Sửa
-                                            </a>
+                                        <a href="/leave/edit/{{ $leave->id }}"
+                                            class="btn btn-sm btn-outline-primary shadow-sm px-3">
+                                            <i class="fas fa-edit me-1"></i> Sửa
+                                        </a>
                                         @else
-                                            <span class="text-muted small fw-italic"><i class="fas fa-lock"></i> Đã hoàn tất</span>
+                                        <span class="text-muted small fw-italic"><i class="fas fa-lock"></i> Đã hoàn
+                                            tất</span>
                                         @endif
                                     </td>
                                 </tr>
@@ -148,7 +209,7 @@
 <script>
     const startDateInput = document.getElementById('start_date');
     const endDateInput = document.getElementById('end_date');
-    startDateInput.addEventListener('change', function() {
+    startDateInput.addEventListener('change', function () {
         if (this.value) {
             endDateInput.min = this.value;
             if (endDateInput.value && endDateInput.value < this.value) {

@@ -3,8 +3,16 @@
 @section('title', 'Sửa thông tin chấm công')
 
 @section('content')
-<title>Hệ thống quản lý nhân sự - Sửa thông tin chấm công</title>
-<a href="/hcns/attendances" class="btn btn-secondary">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý nhân sự - Sửa thông tin chấm công</title>
+</head>
+<body>
+    <a href="/hcns/attendances" class="btn btn-secondary">
     ← Quay lại
 </a>
 <div class="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-lg shadow">
@@ -48,4 +56,7 @@
         </div>
     </form>
 </div>
+</body>
+</html>
+
 @endsection
