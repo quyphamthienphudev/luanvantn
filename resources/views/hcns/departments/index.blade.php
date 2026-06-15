@@ -34,7 +34,6 @@
                 <tr>
                     <th class="p-3">Tên phòng ban</th>
                     <th class="p-3">Mô tả thông tin</th>
-                    <th class="p-3">Tạo bởi</th>
                     <th class="p-3">Hành động</th>
                 </tr>
             </thead>
@@ -43,7 +42,6 @@
                 <tr class="border-b">
                     <td class="p-3">{{ $d->name }}</td>
                     <td class="p-3">{{ $d->description }}</td>
-                    <td class="p-3">{{ $d->user->name }}</td>
                     <td class="p-3 space-x-2">
                         <a href="/hcns/departments/edit/{{ $d->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
                         <a href="/hcns/departments/delete/{{ $d->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
