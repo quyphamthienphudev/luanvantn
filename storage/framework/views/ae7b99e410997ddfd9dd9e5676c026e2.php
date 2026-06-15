@@ -49,8 +49,18 @@
                     <td class="p-3">
                     <?php if($user->role_id == '1'): ?>
                         Admin
-                    <?php elseif($user->role_id == '2'): ?>
+                    <?php endif; ?>
+                    <?php if($user->role_id == '2'): ?>
                         User
+                    <?php endif; ?>
+                    <?php if($user->role_id == '3'): ?>
+                        Phong quan ly chat luong
+                    <?php endif; ?>
+                    <?php if($user->role_id == '4'): ?>
+                        Phong he thong thong tin
+                    <?php endif; ?>
+                    <?php if($user->role_id == '5'): ?>
+                        Nhan vien
                     <?php endif; ?>
                     </td>
                     <td class="p-3">

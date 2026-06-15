@@ -16,7 +16,7 @@
         <p>Họ tên nhân viên: <?php echo e($employee->full_name); ?></p>
         <p>Phòng ban: <?php echo e($employee->department->name); ?></p>
         <p>Email: <?php echo e($employee->email); ?></p>
-        <p>Chức vụ: <?php echo e($employee->position->name); ?></p>
+        <p>Công việc: <?php echo e($employee->position->name); ?></p>
         <p>Giới tính:
         <?php if($employee->gender == 'male'): ?>
             Nam

@@ -19,6 +19,8 @@ use App\Http\Controllers\PayrollControllerUser;
 use App\Http\Controllers\PositionControllerAdmin;
 use App\Http\Controllers\RoleController;
 
+use App\Http\Controllers\EmployeeCertificateController;
+
 //-----------------------------------------------------------------------------------
 Route::get('/', function () {
     if (auth()->check()) {
@@ -89,6 +91,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/hcns/employees/update/{id}',[ManageEmployeeControllerAdmin::class,'update']);
     Route::get('/hcns/employees/delete/{id}',[ManageEmployeeControllerAdmin::class,'delete']);
     Route::get('/hcns/employees/show/{id}',[ManageEmployeeControllerAdmin::class,'show']);
+    // Quản lý chứng chỉ
+    Route::post('/hcns/employees/{id}/certificate/store', [EmployeeCertificateController::class,'store']);
+    Route::get('/hcns/employees/certificate/view/{id}', [EmployeeCertificateController::class,'view']);
 });
 
 // Chức năng quản lý phòng ban

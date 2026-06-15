@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Quản lý chức vụ'); ?>
+<?php $__env->startSection('title', 'Quản lý công việc'); ?>
 
 <?php $__env->startSection('content'); ?>
 
@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống quản lý nhân sự - Quản lý chức vụ</title>
+    <title>Hệ thống quản lý nhân sự - Quản lý công việc</title>
 </head>
 <body>
     <a href="/positions/export"
@@ -22,8 +22,9 @@
         <table class="w-full text-left">
             <thead class="bg-gray-200">
                 <tr>
-                    <th class="p-3">Tên chức vụ</th>
+                    <th class="p-3">Tên công việc</th>
                     <th class="p-3">Lương cơ bản</th>
+                    <th class="p-3">Lương cao nhất</th>
                 </tr>
             </thead>
         <tbody>
@@ -31,6 +32,7 @@
             <tr class="border-b">
                 <td class="p-3"><?php echo e($position->name); ?></td>
                 <td class="p-3"><?php echo e($position->base_salary); ?></td>
+                <td class="p-3"><?php echo e($position->max_salary); ?></td>
             </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>

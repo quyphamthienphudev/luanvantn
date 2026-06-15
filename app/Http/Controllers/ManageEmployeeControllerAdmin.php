@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Department;
 use Illuminate\Support\Facades\DB;
-
 use App\Models\Position;
 
 class ManageEmployeeControllerAdmin extends Controller
@@ -114,7 +113,7 @@ class ManageEmployeeControllerAdmin extends Controller
     // SHOW DETAIL
     public function show($id)
     {
-        $employee = Employee::with('department','position')->findOrFail($id);
+        $employee = Employee::with('department', 'position', 'certificates')->findOrFail($id);
         return view('hcns.employees.show', compact('employee'));
     }
 }

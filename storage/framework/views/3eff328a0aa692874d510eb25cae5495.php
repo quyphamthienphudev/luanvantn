@@ -18,40 +18,16 @@
             <!-- EMPLOYEES -->
         <div class="grid grid-cols-4 gap-6">
             <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Số lượng nhân viên tạo bởi Admin</h3>
-                <p class="text-3xl font-bold text-blue-600"><?php echo e($e_admin); ?></p>
+                <h3 class="text-gray-500">Số lượng nhân viên đang làm việc</h3>
+                <p class="text-3xl font-bold text-blue-600"><?php echo e($e_working); ?></p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Số lượng nhân viên tạo bởi User</h3>
-                <p class="text-3xl font-bold text-blue-600"><?php echo e($e_user); ?></p>
+                <h3 class="text-gray-500">Số lượng nhân viên đã nghỉ việc</h3>
+                <p class="text-3xl font-bold text-blue-600"><?php echo e($e_resign); ?></p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow">
                 <h3 class="text-gray-500">Số lượng nhân viên tất cả</h3>
                 <p class="text-3xl font-bold text-blue-600"><?php echo e($employees); ?></p>
-            </div>
-            <!-- CONTENT -->
-            <div class="flex-1 p-8">
-                <?php echo $__env->yieldContent('content'); ?>
-            </div>
-        </div>
-        <br>
-        <div class="row g-4">
-            <h1 class="text-2xl font-bold mb-6">
-                Số lượng phòng ban
-            </h1>
-            <!-- departments -->
-        <div class="grid grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Số lượng phòng ban tạo bởi Admin</h3>
-                <p class="text-3xl font-bold text-blue-600"><?php echo e($d_admin); ?></p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Số lượng phòng ban tạo bởi User</h3>
-                <p class="text-3xl font-bold text-blue-600"><?php echo e($d_user); ?></p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Số lượng phòng ban tất cả</h3>
-                <p class="text-3xl font-bold text-blue-600"><?php echo e($departments); ?></p>
             </div>
             <!-- CONTENT -->
             <div class="flex-1 p-8">
@@ -109,6 +85,65 @@
             });
         </script>
         </div>
+        <br>
+        <h1 class="text-2xl font-bold mb-6">
+Tổng chi phí lương
+</h1>   
+<form method="GET" action="<?php echo e(url('/admin/dashboard')); ?>" class="bg-white p-6 rounded shadow w-1/2">
+
+    <?php echo csrf_field(); ?>
+    <?php if(session('error_year')): ?>
+        <p class="text-red-500 text-sm"><?php echo e(session('error_year')); ?></p>
+    <?php endif; ?>
+    <?php if(session('error_month')): ?>
+        <p class="text-red-500 text-sm"><?php echo e(session('error_month')); ?></p>
+    <?php endif; ?>
+
+    <!-- Chọn năm -->
+    <div class="mb-4">
+        <label>Năm</label>
+        <input type="text" name="year" value="<?php echo e($year); ?>" class="w-full border p-2 rounded">
+    </div>
+
+    <!-- Chọn tháng -->
+    <div class="mb-4">
+        <label>Tháng</label>
+        <select name="month" class="w-full border p-2 rounded">
+            <option value="">-- Chọn tháng --</option>
+                <?php for($i=1;$i<=12;$i++): ?>
+                    <option value="<?php echo e($i); ?>" <?php echo e($month==$i?'selected':''); ?>>
+                        Tháng <?php echo e($i); ?>
+
+                    </option>
+                <?php endfor; ?>
+            </select>
+    </div>
+
+    <!-- Button -->
+    <button type="submit" name="filter_year" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        Thống kê theo năm
+    </button>
+
+    <button type="submit" name="filter_month" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        Thống kê theo tháng / năm
+    </button>
+
+</form>
+<br>
+<div class="grid grid-cols-4 gap-6">
+    <?php if(!is_null($totalYearSalary)): ?>
+    <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-gray-500">Tổng lương năm <?php echo e($year); ?></h3>
+        <p class="text-3xl font-bold text-green-600"><?php echo e($totalYearSalary); ?> VNĐ</p>
+    </div>
+    <?php endif; ?>
+    <?php if(!is_null($totalMonthSalary)): ?>
+    <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-gray-500">Tổng lương tháng <?php echo e($month); ?> / năm <?php echo e($year); ?></h3>
+        <p class="text-3xl font-bold text-purple-600"><?php echo e($totalMonthSalary); ?> VNĐ</p>
+    </div>
+    <?php endif; ?>
+</div>
     </div>
 </body>
 </html>

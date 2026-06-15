@@ -41,4 +41,9 @@ class Employee extends Model
     {
         return $this->belongsTo(Position::class);
     }
+
+    public function certificates()
+    {
+        return $this->hasMany(EmployeeCertificate::class);
+    }
 }

@@ -33,7 +33,6 @@
                     <th class="p-3">Mã nhân viên</th>
                     <th class="p-3">Họ tên nhân viên</th>
                     <th class="p-3">Phòng ban</th>
-                    <th class="p-3">Tạo bởi</th>
                     <th class="p-3">Hành động</th>
                 </tr>
             </thead>
@@ -44,7 +43,6 @@
                     <td class="p-3"><?php echo e($e->employee_code); ?></td>
                     <td class="p-3"><?php echo e($e->full_name); ?></td>
                     <td class="p-3"><?php echo e($e->department->name); ?></td>
-                    <td class="p-3"><?php echo e($e->user->name); ?></td>
                     <td class="p-3 space-x-2">
                         <a href="/admin/employees/show/<?php echo e($e->id); ?>" class="bg-blue-500 text-white px-3 py-1 rounded">Xem</a>
                         <a href="/admin/employees/edit/<?php echo e($e->id); ?>" class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>

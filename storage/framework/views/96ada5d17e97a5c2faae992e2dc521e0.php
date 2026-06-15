@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Quản lý chức vụ'); ?>
+<?php $__env->startSection('title', 'Quản lý công việc'); ?>
 
 <?php $__env->startSection('content'); ?>
 
@@ -7,19 +7,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống quản lý nhân sự - Quản lý chức vụ</title>
+    <title>Hệ thống quản lý nhân sự - Quản lý công việc</title>
 </head>
 <body>
     <a href="/admin/positions/create"
     class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        Thêm chức vụ
+        Thêm công việc
     </a>
     <a href="/admin/positions/export"
     class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">
         Xuất file Excel
     </a>
     <form method="GET" action="/admin/positions" class="mt-4">
-        Tìm kiếm: <input type="text" name="search" value="<?php echo e($search); ?>" class="border p-2" placeholder="Tìm theo tên chức vụ hoặc lương cơ bản" style="width:350px;">
+        Tìm kiếm: <input type="text" name="search" value="<?php echo e($search); ?>" class="border p-2" placeholder="Tìm theo tên công việc hoặc lương cơ bản" style="width:350px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
     <?php if(session('success')): ?>
@@ -38,8 +38,9 @@
         <table class="w-full text-left">
             <thead class="bg-gray-200">
                 <tr>
-                    <th class="p-3">Tên chức vụ</th>
+                    <th class="p-3">Tên công việc</th>
                     <th class="p-3">Lương cơ bản</th>
+                    <th class="p-3">Lương cao nhất</th>
                     <th class="p-3">Hành động</th>
                 </tr>
             </thead>
@@ -48,6 +49,7 @@
             <tr class="border-b">
                 <td class="p-3"><?php echo e($position->name); ?></td>
                 <td class="p-3"><?php echo e($position->base_salary); ?></td>
+                <td class="p-3"><?php echo e($position->max_salary); ?></td>
                 <td class="p-3 space-x-2">
                     <a href="/admin/positions/edit/<?php echo e($position->id); ?>"
                     class="bg-yellow-500 text-white px-3 py-1 rounded">
@@ -55,7 +57,7 @@
                     </a>
                     <a href="/admin/positions/delete/<?php echo e($position->id); ?>"
                     class="bg-red-600 text-white px-3 py-1 rounded"
-                    onclick="return confirm('Bạn có muốn xoá chức vụ này ?')">
+                    onclick="return confirm('Bạn có muốn xoá công việc này ?')">
                         Xóa
                     </a>
                 </td>

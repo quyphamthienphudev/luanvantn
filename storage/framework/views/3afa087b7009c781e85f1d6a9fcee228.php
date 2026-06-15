@@ -97,7 +97,7 @@ unset($__errorArgs, $__bag); ?>
             <input type="text" name="email" value="<?php echo e($employee->email); ?>" class="w-full border p-2 rounded" placeholder="Email">
         </div>
         <div class="mb-4">
-            <label>Chức vụ</label>
+            <label>Công việc</label>
             <select name="position_id" class="w-full border p-2 rounded">
                 <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <option value="<?php echo e($p->id); ?>" <?php echo e($employee->position_id==$p->id?'selected':''); ?>>

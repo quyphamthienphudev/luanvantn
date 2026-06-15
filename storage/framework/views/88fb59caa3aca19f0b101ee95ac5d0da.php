@@ -129,15 +129,15 @@ unset($__errorArgs, $__bag); ?>
         </div>
         <div class="mb-4">
             <label>Họ tên ứng viên</label>
-            <input type="text" name="full_name" value="<?php echo e($candidates->full_name); ?>" class="w-full border p-2 rounded">
+            <input type="text" name="full_name" value="<?php echo e($candidates->full_name); ?>" class="w-full border p-2 rounded" placeholder="Họ tên ứng viên">
         </div>
         <div class="mb-4">
             <label>Tên</label>
-            <input type="text" name="first_name" value="<?php echo e($candidates->first_name); ?>" class="w-full border p-2 rounded">
+            <input type="text" name="first_name" value="<?php echo e($candidates->first_name); ?>" class="w-full border p-2 rounded" placeholder="Tên">
         </div>
         <div class="mb-4">
             <label>Họ</label>
-            <input type="text" name="last_name" value="<?php echo e($candidates->last_name); ?>" class="w-full border p-2 rounded">
+            <input type="text" name="last_name" value="<?php echo e($candidates->last_name); ?>" class="w-full border p-2 rounded" placeholder="Họ">
         </div>
         <div class="mb-4">
             <label>Giới tính</label>
@@ -152,31 +152,31 @@ unset($__errorArgs, $__bag); ?>
         </div>
         <div class="mb-4">
             <label>Số điện thoại</label>
-            <input type="text" name="phone" value="<?php echo e($candidates->phone); ?>" class="w-full border p-2 rounded">
+            <input type="text" name="phone" value="<?php echo e($candidates->phone); ?>" class="w-full border p-2 rounded" placeholder="Số điện thoại">
         </div>
         <div class="mb-4">
             <label>Học vấn</label>
-            <input type="text" name="education" value="<?php echo e($candidates->education); ?>" class="w-full border p-2 rounded">
+            <input type="text" name="education" value="<?php echo e($candidates->education); ?>" class="w-full border p-2 rounded" placeholder="Học vấn">
         </div>
         <div class="mb-4">
             <label>Email</label>
-            <input type="text" name="email" value="<?php echo e($candidates->email); ?>" class="w-full border p-2 rounded">
+            <input type="text" name="email" value="<?php echo e($candidates->email); ?>" class="w-full border p-2 rounded" placeholder="Email">
         </div>
         <div class="mb-4">
             <label>Địa chỉ</label>
-            <input type="text" name="address" value="<?php echo e($candidates->address); ?>" class="w-full border p-2 rounded">
+            <input type="text" name="address" value="<?php echo e($candidates->address); ?>" class="w-full border p-2 rounded" placeholder="Địa chỉ">
         </div>
         <div class="mb-4">
             <label>Tên đường</label>
-            <input type="text" name="street" value="<?php echo e($candidates->street); ?>" class="w-full border p-2 rounded">
+            <input type="text" name="street" value="<?php echo e($candidates->street); ?>" class="w-full border p-2 rounded" placeholder="Tên đường">
         </div>
         <div class="mb-4">
             <label>Phường</label>
-            <input type="text" name="ward" value="<?php echo e($candidates->ward); ?>" class="w-full border p-2 rounded">
+            <input type="text" name="ward" value="<?php echo e($candidates->ward); ?>" class="w-full border p-2 rounded" placeholder="Phường">
         </div>
         <div class="mb-4">
             <label>Tỉnh / Thành phố</label>
-            <input type="text" name="province" value="<?php echo e($candidates->province); ?>" class="w-full border p-2 rounded">
+            <input type="text" name="province" value="<?php echo e($candidates->province); ?>" class="w-full border p-2 rounded" placeholder="Tỉnh / Thành phố">
         </div>
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cập nhật</button>
     </form>
