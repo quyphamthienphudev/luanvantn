@@ -46,10 +46,8 @@
         <h3 class="font-bold text-lg">
             Chứng chỉ
         </h3>
-
         <form method="POST" action="/hcns/employees/{{ $employee->id }}/certificate/store"
             enctype="multipart/form-data">
-
             @csrf
             @error('certificate_name')
             <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -96,8 +94,12 @@
             @foreach($employee->certificates as $c)
             <tr>
                 <td>{{ $c->certificate_name }}</td>
-                <td>{{ $c->issue_date }}</td>
-                <td>{{ $c->expiry_date }}</td>
+                <td>
+                    {{ $c->issue_date ? date('d/m/Y', strtotime($c->issue_date)) : '' }}
+                </td>
+                <td>
+                    {{ $c->expiry_date ? date('d/m/Y', strtotime($c->expiry_date)) : '' }}
+                </td>
                 <td>
                     <a href="/hcns/employees/certificate/view/{{ $c->id }}" target="_blank" style="color:blue; font-weight:bold;">Xem
                         file</a>

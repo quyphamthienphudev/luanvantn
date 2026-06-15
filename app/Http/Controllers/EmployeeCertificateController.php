@@ -21,7 +21,7 @@ class EmployeeCertificateController extends Controller
             'issue_date.required' => 'Vui lòng chọn ngày cấp',
             'expiry_date.required' => 'Vui lòng chọn ngày hết hạn',
             'certificate_file.required' => 'Vui lòng tải file chứng chỉ lên',
-            'certificate_file.mimes' => 'Định dạng file không phù hợp, vui lòng kiểm tra lại. Chỉ cho phép file pdf, jpg, jpeg, png',
+            'certificate_file.mimes' => 'Định dạng file không phù hợp, chỉ cho phép file pdf, jpg, jpeg, png',
             'certificate_file.max' => 'Vui lòng tải lên file dưới 5 MB'
         ]);
 

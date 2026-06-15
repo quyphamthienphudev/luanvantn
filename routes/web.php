@@ -18,8 +18,8 @@ use App\Http\Controllers\PayrollControllerAdmin;
 use App\Http\Controllers\PayrollControllerUser;
 use App\Http\Controllers\PositionControllerAdmin;
 use App\Http\Controllers\RoleController;
-
 use App\Http\Controllers\EmployeeCertificateController;
+use App\Http\Controllers\ContractController;
 
 //-----------------------------------------------------------------------------------
 Route::get('/', function () {
@@ -222,3 +222,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/qlcl/employees/delete/{id}',[ManageEmployeeControllerQLCL::class,'delete']);
     Route::get('/qlcl/employees/show/{id}',[ManageEmployeeControllerQLCL::class,'show']);
 });
+
+// Chức năng quản lý hợp đồng lao động
+Route::get('/hcns/contracts', [ContractController::class,'index']);
+Route::get('/hcns/contracts/create', [ContractController::class,'create']);
+Route::post('/hcns/contracts/store',[ContractController::class,'store']);
+Route::get('/hcns/contracts/extend/{id}', [ContractController::class,'extend']);
+Route::get('/hcns/contracts/terminate/{id}', [ContractController::class,'terminate']);
+Route::get('/hcns/contracts/view/{id}', [ContractController::class,'viewFile']);

@@ -46,4 +46,10 @@ class Employee extends Model
     {
         return $this->hasMany(EmployeeCertificate::class);
     }
+
+    //them sau
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
 }

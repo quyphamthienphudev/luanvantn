@@ -44,10 +44,8 @@
         <h3 class="font-bold text-lg">
             Chứng chỉ
         </h3>
-
         <form method="POST" action="/hcns/employees/<?php echo e($employee->id); ?>/certificate/store"
             enctype="multipart/form-data">
-
             <?php echo csrf_field(); ?>
             <?php $__errorArgs = ['certificate_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -122,8 +120,14 @@ unset($__errorArgs, $__bag); ?>
             <?php $__currentLoopData = $employee->certificates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
                 <td><?php echo e($c->certificate_name); ?></td>
-                <td><?php echo e($c->issue_date); ?></td>
-                <td><?php echo e($c->expiry_date); ?></td>
+                <td>
+                    <?php echo e($c->issue_date ? date('d/m/Y', strtotime($c->issue_date)) : ''); ?>
+
+                </td>
+                <td>
+                    <?php echo e($c->expiry_date ? date('d/m/Y', strtotime($c->expiry_date)) : ''); ?>
+
+                </td>
                 <td>
                     <a href="/hcns/employees/certificate/view/<?php echo e($c->id); ?>" target="_blank" style="color:blue; font-weight:bold;">Xem
                         file</a>

@@ -66,6 +66,12 @@
             </a>
             <?php endif; ?>
 
+             <?php if(auth()->user()->role->name === 'hcns'): ?>
+            <a href="/hcns/contracts" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý hợp đồng lao động
+            </a>
+            <?php endif; ?>
+
             <?php if(auth()->user()->role->name === 'hcns'): ?>
             <a href="/hcns/departments" class="block px-4 py-2 rounded hover:bg-blue-700">
                 Quản lý phòng ban
