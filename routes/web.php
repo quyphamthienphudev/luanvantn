@@ -20,6 +20,8 @@ use App\Http\Controllers\PositionControllerAdmin;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EmployeeCertificateController;
 use App\Http\Controllers\ContractController;
+use App\Http\Controllers\ManageEmployeeRewardController;
+use App\Http\Controllers\ManageEmployeeDisciplinesController;
 
 //-----------------------------------------------------------------------------------
 Route::get('/', function () {
@@ -224,9 +226,31 @@ Route::middleware('auth')->group(function () {
 });
 
 // Chức năng quản lý hợp đồng lao động
-Route::get('/hcns/contracts', [ContractController::class,'index']);
-Route::get('/hcns/contracts/create', [ContractController::class,'create']);
-Route::post('/hcns/contracts/store',[ContractController::class,'store']);
-Route::get('/hcns/contracts/extend/{id}', [ContractController::class,'extend']);
-Route::get('/hcns/contracts/terminate/{id}', [ContractController::class,'terminate']);
-Route::get('/hcns/contracts/view/{id}', [ContractController::class,'viewFile']);
+Route::middleware('auth')->group(function () {
+    Route::get('/hcns/contracts', [ContractController::class,'index']);
+    Route::get('/hcns/contracts/create', [ContractController::class,'create']);
+    Route::post('/hcns/contracts/store',[ContractController::class,'store']);
+    Route::get('/hcns/contracts/extend/{id}', [ContractController::class,'extend']);
+    Route::get('/hcns/contracts/terminate/{id}', [ContractController::class,'terminate']);
+    Route::get('/hcns/contracts/view/{id}', [ContractController::class,'viewFile']);
+});
+
+// Chức năng quản lý khen thưởng
+Route::middleware('auth')->group(function () {
+    Route::get('/hcns/rewards',[ManageEmployeeRewardController::class,'index']);
+    Route::get('/hcns/rewards/create',[ManageEmployeeRewardController::class,'create']);
+    Route::post('/hcns/rewards/store',[ManageEmployeeRewardController::class,'store']);
+    Route::get('/hcns/rewards/edit/{id}',[ManageEmployeeRewardController::class,'edit']);
+    Route::post('/hcns/rewards/update/{id}',[ManageEmployeeRewardController::class,'update']);
+    Route::get('/hcns/rewards/delete/{id}',[ManageEmployeeRewardController::class,'delete']);
+});
+
+// Chức năng quản lý kỷ luật
+Route::middleware('auth')->group(function () {
+    Route::get('/hcns/disciplines',[ManageEmployeeDisciplinesController::class,'index']);
+    Route::get('/hcns/disciplines/create',[ManageEmployeeDisciplinesController::class,'create']);
+    Route::post('/hcns/disciplines/store',[ManageEmployeeDisciplinesController::class,'store']);
+    Route::get('/hcns/disciplines/edit/{id}',[ManageEmployeeDisciplinesController::class,'edit']);
+    Route::post('/hcns/disciplines/update/{id}',[ManageEmployeeDisciplinesController::class,'update']);
+    Route::get('/hcns/disciplines/delete/{id}',[ManageEmployeeDisciplinesController::class,'delete']);
+});

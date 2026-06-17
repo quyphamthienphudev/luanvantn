@@ -103,6 +103,18 @@
             @endif
 
             @if(auth()->user()->role->name === 'hcns')
+            <a href="/hcns/rewards" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý khen thưởng
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'hcns')
+            <a href="/hcns/disciplines" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý kỷ luật
+            </a>
+            @endif
+
+            @if(auth()->user()->role->name === 'hcns')
             <a href="/hcns/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
                 Quản lý nghỉ phép
             </a>
