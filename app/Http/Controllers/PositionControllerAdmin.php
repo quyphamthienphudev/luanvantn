@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Position;
+use Illuminate\Support\Facades\Auth;
 
 class PositionControllerAdmin extends Controller
 {
@@ -42,7 +43,8 @@ class PositionControllerAdmin extends Controller
         DB::table('positions')->insert([
             'name'=>$request->name,
             'base_salary'=>$request->base_salary,
-            'max_salary'=>$request->max_salary
+            'max_salary'=>$request->max_salary,
+            'users_id' => Auth::id()
         ]);
 
         return redirect('/hcns/positions')->with('success','Thêm công việc thành công');

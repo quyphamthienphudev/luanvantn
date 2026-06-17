@@ -26,8 +26,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Nhân viên</label>
-                <select name="employee_id" class="w-full border rounded px-3 py-2" required>
-                    <option value="">-- Chọn nhân viên --</option>
+                <select name="employee_id" class="w-full border rounded px-3 py-2">
                     @foreach($employees as $employee)
                     <option value="{{ $employee->id }}">{{ $employee->employee_code }} - {{ $employee->full_name }} ({{
                         $employee->position_name ?? 'N/A' }})</option>
@@ -38,28 +37,17 @@
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Tháng</label>
-                    <select name="month" class="w-full border rounded px-3 py-2" required>
-                        @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}">Tháng {{ $i }}</option>
+                    <select name="month" class="w-full border rounded px-3 py-2">
+                        @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng {{ $i }}</option>
                             @endfor
                     </select>
                 </div>
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Năm</label>
-                    <select name="year" class="w-full border rounded px-3 py-2" required>
-                        @for($i = 2020; $i <= date('Y')+1; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                    <select name="year" class="w-full border rounded px-3 py-2">
+                        @for($i = 2020; $i <= 2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>Năm {{ $i }}</option>
                             @endfor
                     </select>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-4 mb-4">
-                <div>
-                    <label class="block text-gray-700 font-bold mb-2">Thưởng (VNĐ)</label>
-                    <input type="number" name="bonus" class="w-full border rounded px-3 py-2" value="0" min="0">
-                </div>
-                <div>
-                    <label class="block text-gray-700 font-bold mb-2">Khấu trừ (VNĐ)</label>
-                    <input type="number" name="deduction" class="w-full border rounded px-3 py-2" value="0" min="0">
                 </div>
             </div>
 

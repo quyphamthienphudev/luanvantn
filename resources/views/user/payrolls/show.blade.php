@@ -16,15 +16,11 @@
 <body>
     <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
         @if(!$payroll)
-        @if(auth()->user()->role->name=='user')
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             Không tìm thấy bảng lương!
         </div>
-        <a href="/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded">Quay lại</a>
-        @endif
         @else
         <h2 class="text-xl font-bold mb-4">Chi tiết bảng lương</h2>
-        @if(auth()->user()->role->name=='user')
         <table class="w-full">
             <tr class="border-b">
                 <th class="text-left py-2 w-1/3">Mã nhân viên</th>
@@ -67,7 +63,6 @@
                 <td class="py-2 font-bold text-red-700">{{ number_format($payroll->total_salary ?? 0) }} VNĐ</td>
             </tr>
         </table>
-        @endif
         @endif
     </div>
 </body>

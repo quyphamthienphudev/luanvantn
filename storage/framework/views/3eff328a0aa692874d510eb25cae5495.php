@@ -102,21 +102,27 @@ Tổng chi phí lương
     <!-- Chọn năm -->
     <div class="mb-4">
         <label>Năm</label>
-        <input type="text" name="year" value="<?php echo e($year); ?>" class="w-full border p-2 rounded">
+        <select name="year" class="w-full border p-2 rounded">
+                <?php for($i=2020;$i<=2099;$i++): ?>
+                    <option value="<?php echo e($i); ?>" <?php echo e($year == $i ? 'selected':''); ?>>
+                        Năm <?php echo e($i); ?>
+
+                    </option>
+                <?php endfor; ?>
+        </select>
     </div>
 
     <!-- Chọn tháng -->
     <div class="mb-4">
         <label>Tháng</label>
         <select name="month" class="w-full border p-2 rounded">
-            <option value="">-- Chọn tháng --</option>
                 <?php for($i=1;$i<=12;$i++): ?>
-                    <option value="<?php echo e($i); ?>" <?php echo e($month==$i?'selected':''); ?>>
+                    <option value="<?php echo e($i); ?>" <?php echo e($month == $i ? 'selected':''); ?>>
                         Tháng <?php echo e($i); ?>
 
                     </option>
                 <?php endfor; ?>
-            </select>
+        </select>
     </div>
 
     <!-- Button -->

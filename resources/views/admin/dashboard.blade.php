@@ -104,20 +104,25 @@ Tổng chi phí lương
     <!-- Chọn năm -->
     <div class="mb-4">
         <label>Năm</label>
-        <input type="text" name="year" value="{{ $year }}" class="w-full border p-2 rounded">
+        <select name="year" class="w-full border p-2 rounded">
+                @for($i=2020;$i<=2099;$i++)
+                    <option value="{{ $i }}" {{ $year == $i ? 'selected':'' }}>
+                        Năm {{ $i }}
+                    </option>
+                @endfor
+        </select>
     </div>
 
     <!-- Chọn tháng -->
     <div class="mb-4">
         <label>Tháng</label>
         <select name="month" class="w-full border p-2 rounded">
-            <option value="">-- Chọn tháng --</option>
                 @for($i=1;$i<=12;$i++)
-                    <option value="{{ $i }}" {{ $month==$i?'selected':'' }}>
+                    <option value="{{ $i }}" {{ $month == $i ? 'selected':'' }}>
                         Tháng {{ $i }}
                     </option>
                 @endfor
-            </select>
+        </select>
     </div>
 
     <!-- Button -->

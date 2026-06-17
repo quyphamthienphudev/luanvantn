@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PayrollControllerAdmin extends Controller
 {
@@ -35,14 +36,15 @@ class PayrollControllerAdmin extends Controller
         return view('hcns.payrolls.index', compact('payrolls', 'employees', 'month', 'year'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $employees = DB::table('employees')
             ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
             ->select('employees.*', 'positions.name as position_name', 'positions.base_salary')
             ->get();
-            
-        return view('hcns.payrolls.create', compact('employees'));
+        $month = $request->get('month', date('m'));
+        $year = $request->get('year', date('Y'));
+        return view('hcns.payrolls.create', compact('employees','month','year'));
     }
 
     public function store(Request $request)
@@ -50,7 +52,7 @@ class PayrollControllerAdmin extends Controller
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
             'month' => 'required|integer|min:1|max:12',
-            'year' => 'required|integer|min:2020|max:2030',
+            'year' => 'required|integer|min:2020|max:2099',
             'bonus' => 'nullable|integer|min:0',
             'deduction' => 'nullable|integer|min:0'
         ]);
@@ -70,8 +72,21 @@ class PayrollControllerAdmin extends Controller
         $position = DB::table('positions')->where('id', $employee->position_id)->first();
         
         $base_salary = $position->base_salary ?? 0;
-        $bonus = $request->bonus ?? 0;
-        $deduction = $request->deduction ?? 0;
+
+        $bonus = DB::table('reward_discipline')
+                ->where('employee_id', $request->employee_id)
+                ->where('type', 'reward')
+                ->whereMonth('decision_date', $request->month)
+                ->whereYear('decision_date', $request->year)
+                ->sum('amount');
+
+        $deduction = DB::table('reward_discipline')
+                    ->where('employee_id', $request->employee_id)
+                    ->where('type', 'discipline')
+                    ->whereMonth('decision_date', $request->month)
+                    ->whereYear('decision_date', $request->year)
+                    ->sum('amount');
+                    
         $total_salary = $base_salary + $bonus - $deduction;
         
         DB::table('payrolls')->insert([
@@ -82,8 +97,7 @@ class PayrollControllerAdmin extends Controller
             'bonus' => $bonus,
             'deduction' => $deduction,
             'total_salary' => $total_salary,
-            'created_at' => now(),
-            'updated_at' => now()
+            'users_id' => Auth::id()
         ]);
         return redirect('/hcns/payrolls')->with('success', 'Tạo bảng lương thành công.');
     }
@@ -123,9 +137,7 @@ class PayrollControllerAdmin extends Controller
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
             'month' => 'required|integer|min:1|max:12',
-            'year' => 'required|integer|min:2020|max:2030',
-            'bonus' => 'nullable|integer|min:0',
-            'deduction' => 'nullable|integer|min:0'
+            'year' => 'required|integer|min:2020|max:2099'
         ]);
 
         $exists = DB::table('payrolls')
@@ -144,8 +156,19 @@ class PayrollControllerAdmin extends Controller
         $position = DB::table('positions')->where('id', $employee->position_id)->first();
         
         $base_salary = $position->base_salary ?? 0;
-        $bonus = $request->bonus ?? 0;
-        $deduction = $request->deduction ?? 0;
+        $bonus = DB::table('reward_discipline')
+                ->where('employee_id', $request->employee_id)
+                ->where('type', 'reward')
+                ->whereMonth('decision_date', $request->month)
+                ->whereYear('decision_date', $request->year)
+                ->sum('amount');
+        $deduction = DB::table('reward_discipline')
+                    ->where('employee_id', $request->employee_id)
+                    ->where('type', 'discipline')
+                    ->whereMonth('decision_date', $request->month)
+                    ->whereYear('decision_date', $request->year)
+                    ->sum('amount');
+
         $total_salary = $base_salary + $bonus - $deduction;
         
         DB::table('payrolls')->where('id', $id)->update([
@@ -155,8 +178,7 @@ class PayrollControllerAdmin extends Controller
             'base_salary' => $base_salary,
             'bonus' => $bonus,
             'deduction' => $deduction,
-            'total_salary' => $total_salary,
-            'updated_at' => now()
+            'total_salary' => $total_salary
         ]);
 
         return redirect('/hcns/payrolls')->with('success', 'Cập nhật bảng lương thành công.');
@@ -166,8 +188,7 @@ class PayrollControllerAdmin extends Controller
     {
         $payroll = DB::table('payrolls')->where('id', $id)->first();
         DB::table('payrolls')->where('id', $id)->delete();
-
-        return redirect('/hcns/payrolls')->with('success', 'Xóa bảng lương thành công.');
+        return back()->with('success', 'Xóa bảng lương thành công.');
     }
 
     public function export(Request $request)

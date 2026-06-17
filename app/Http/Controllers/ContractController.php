@@ -29,12 +29,10 @@ class ContractController extends Controller
             'employee_id'=>'required',
             'contract_type'=>'required',
             'start_date'=>'required',
-            'end_date'=>'after_or_equal:start_date',
             'salary' => 'required|numeric|min:0',
             'contract_file' => 'required|mimes:pdf,doc,docx|max:5120'
         ],[
             'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
-            'end_date.after_or_equal' => 'Ngày kết thúc không hợp lệ',
             'salary.required' => 'Vui lòng nhập mức lương',
             'salary.numeric' => 'Mức lương chỉ được nhập số',
             'salary.min' => 'Mức lương không hợp lệ',
@@ -77,6 +75,8 @@ class ContractController extends Controller
             'start_date'=>now(),
             'end_date'=>now()->addYear(),
             'salary'=>$old->salary,
+            'description'=>$old->description,
+            'contract_file'=>$old->contract_file,
             'status'=>'active',
             'users_id'=>auth()->id()
         ]);

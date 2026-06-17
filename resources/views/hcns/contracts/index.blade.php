@@ -30,7 +30,7 @@
                     <th class="p-3">Ngày bắt đầu</th>
                     <th class="p-3">Ngày kết thúc</th>
                     <th class="p-3">Trạng thái</th>
-                    <th class="p-3">Gia hạn</th>
+                    <th class="p-3">Hành động</th>
                     <th class="p-3">Xem hợp đồng</th>
                 </tr>
             </thead>
@@ -54,7 +54,7 @@
                         {{ $c->start_date ? date('d/m/Y', strtotime($c->start_date)) : '' }}
                     </td>
                     <td class="p-3">
-                        {{ $c->end_date ? date('d/m/Y', strtotime($c->end_date)) : '' }}
+                        {{ $c->end_date ? date('d/m/Y', strtotime($c->end_date)) : 'Không có' }}
                     </td>
                     <td class="p-3">
                         @if($c->status == 'active')
@@ -68,8 +68,17 @@
                         @endif
                     </td>
                     <td class="p-3">
+                        @if($c->contract_type == 'probation')
                         <a href="/hcns/contracts/extend/{{ $c->id }}" class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
                         <a href="/hcns/contracts/terminate/{{ $c->id }}" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        @endif
+                        @if($c->contract_type == 'fixed_term')
+                        <a href="/hcns/contracts/extend/{{ $c->id }}" class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
+                        <a href="/hcns/contracts/terminate/{{ $c->id }}" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        @endif
+                        @if($c->contract_type == 'indefinite')
+                        <a href="/hcns/contracts/terminate/{{ $c->id }}" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        @endif
                     </td>
                     <td class="p-3 ">
                         @if($c->contract_file)

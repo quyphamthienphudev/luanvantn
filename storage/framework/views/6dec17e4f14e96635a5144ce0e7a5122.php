@@ -31,7 +31,7 @@
                     <th class="p-3">Ngày bắt đầu</th>
                     <th class="p-3">Ngày kết thúc</th>
                     <th class="p-3">Trạng thái</th>
-                    <th class="p-3">Gia hạn</th>
+                    <th class="p-3">Hành động</th>
                     <th class="p-3">Xem hợp đồng</th>
                 </tr>
             </thead>
@@ -56,7 +56,7 @@
 
                     </td>
                     <td class="p-3">
-                        <?php echo e($c->end_date ? date('d/m/Y', strtotime($c->end_date)) : ''); ?>
+                        <?php echo e($c->end_date ? date('d/m/Y', strtotime($c->end_date)) : 'Không có'); ?>
 
                     </td>
                     <td class="p-3">
@@ -71,8 +71,17 @@
                         <?php endif; ?>
                     </td>
                     <td class="p-3">
+                        <?php if($c->contract_type == 'probation'): ?>
                         <a href="/hcns/contracts/extend/<?php echo e($c->id); ?>" class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
                         <a href="/hcns/contracts/terminate/<?php echo e($c->id); ?>" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        <?php endif; ?>
+                        <?php if($c->contract_type == 'fixed_term'): ?>
+                        <a href="/hcns/contracts/extend/<?php echo e($c->id); ?>" class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
+                        <a href="/hcns/contracts/terminate/<?php echo e($c->id); ?>" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        <?php endif; ?>
+                        <?php if($c->contract_type == 'indefinite'): ?>
+                        <a href="/hcns/contracts/terminate/<?php echo e($c->id); ?>" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        <?php endif; ?>
                     </td>
                     <td class="p-3 ">
                         <?php if($c->contract_file): ?>

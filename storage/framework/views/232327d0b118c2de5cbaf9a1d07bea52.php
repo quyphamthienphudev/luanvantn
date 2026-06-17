@@ -129,8 +129,13 @@ unset($__errorArgs, $__bag); ?>
 
                 </td>
                 <td>
+                    <?php if($c->certificate_file == ''): ?>
+                    <a href="" style="color:blue; font-weight:bold;">Xem
+                        file</a>
+                    <?php else: ?>
                     <a href="/hcns/employees/certificate/view/<?php echo e($c->id); ?>" target="_blank" style="color:blue; font-weight:bold;">Xem
                         file</a>
+                    <?php endif; ?>
                 </td>
             </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -103,6 +103,18 @@
             <?php endif; ?>
 
             <?php if(auth()->user()->role->name === 'hcns'): ?>
+            <a href="/hcns/rewards" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý khen thưởng
+            </a>
+            <?php endif; ?>
+
+            <?php if(auth()->user()->role->name === 'hcns'): ?>
+            <a href="/hcns/disciplines" class="block px-4 py-2 rounded hover:bg-blue-700">
+                Quản lý kỷ luật
+            </a>
+            <?php endif; ?>
+
+            <?php if(auth()->user()->role->name === 'hcns'): ?>
             <a href="/hcns/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
                 Quản lý nghỉ phép
             </a>
