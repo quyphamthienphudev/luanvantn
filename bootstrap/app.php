@@ -12,6 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         //
+        $middleware->alias([
+        'company.network'
+            => \App\Http\Middleware\CompanyNetwork::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

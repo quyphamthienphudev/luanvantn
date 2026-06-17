@@ -207,13 +207,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/hcns/attendances/delete/{id}', [AttendanceControllerHCNS::class, 'delete']);
 });
 
-// Chức năng chấm công cho nhân viên
-Route::middleware('auth')->group(function () {
-    Route::get('/attendances', [AttendanceControllerNV::class, 'index']);
-    Route::post('/attendances/checkin', [AttendanceControllerNV::class, 'checkIn']);
-    Route::post('/attendances/checkout', [AttendanceControllerNV::class, 'checkOut']);
-});
-
 // Chức năng quản lý nhân viên của từng phòng ban
 Route::middleware('auth')->group(function () {
     Route::get('/qlcl/employees',[ManageEmployeeControllerQLCL::class,'index']);
@@ -253,4 +246,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/hcns/disciplines/edit/{id}',[ManageEmployeeDisciplinesController::class,'edit']);
     Route::post('/hcns/disciplines/update/{id}',[ManageEmployeeDisciplinesController::class,'update']);
     Route::get('/hcns/disciplines/delete/{id}',[ManageEmployeeDisciplinesController::class,'delete']);
+});
+
+// Chức năng chấm công cho nhân viên
+Route::middleware('auth','company.network')->group(function () {
+    Route::get('/attendances', [AttendanceControllerNV::class, 'index']);
+    Route::post('/attendances/checkin', [AttendanceControllerNV::class, 'checkIn']);
+    Route::post('/attendances/checkout', [AttendanceControllerNV::class, 'checkOut']);
 });
