@@ -46,7 +46,15 @@
                     <td class="p-3 font-medium">{{ $atd->check_out ?? 'Chưa có dữ liệu' }}</td>
                     <td class="p-3">
                         <span class="px-2 py-1 rounded text-xs {{ $atd->status == 'present' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                            {{ $atd->status }}
+                            @if($atd->status == 'present')
+                                Đúng giờ
+                            @endif
+                            @if($atd->status == 'late')
+                                Đi trễ
+                            @endif
+                            @if($atd->status == 'absent')
+                                Vắng mặt
+                            @endif
                         </span>
                     </td>
                     <td class="p-3">{{ $atd->confirm=='yes' ? 'Đã xác nhận' : 'Chưa xác nhận'  }}</td>

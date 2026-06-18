@@ -22,11 +22,6 @@
         @csrf
         <div class="grid grid-cols-2 gap-6">
             <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2">Mã nhân viên</label>
-                <input type="text" name="work_date" value="{{ $attendance->employee?->employee_code }}" class="w-full border rounded p-2 outline-none bg-gray-100" readonly>
-            </div>
-            
-            <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Ngày làm việc</label>
                 <input type="date" name="work_date" value="{{ $attendance->work_date }}" class="w-full border rounded p-2 outline-none bg-gray-100" readonly>
             </div>
