@@ -116,4 +116,73 @@ class ManageEmployeeControllerAdmin extends Controller
         $employee = Employee::with('department', 'position', 'certificates')->findOrFail($id);
         return view('hcns.employees.show', compact('employee'));
     }
+
+    //EXPORT FILE
+    public function export()
+    {   
+        $employees = DB::table('employees')
+            ->leftJoin('departments', 'employees.department_id', '=', 'departments.id')
+            ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
+            ->where('status','working')
+            ->select(
+                'employee_code',
+                'full_name',
+                'departments.name as department_name',
+                'positions.name as position_name',
+                'gender',
+                'date_of_birth',
+                'phone',
+                'email',
+                'address',
+                'street',
+                'ward',
+                'province'
+            )
+            ->get();
+        
+        if ($employees->isEmpty()) 
+        {
+            return redirect()->back()->with('error', 'Không có dữ liệu.');
+        }
+        
+        $filename = 'ds_nhan_vien' . '.csv';
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        
+        $output = fopen('php://output', 'w');
+        fwrite($output, "\xEF\xBB\xBF");
+        
+        fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên nhân viên', 'Phòng ban', 'Công việc', 'Giới tính', 'Ngày sinh', 'Số điện thoại', 'Email', 'Địa chỉ']);
+        
+        $stt = 1;
+        foreach ($employees as $employee) 
+        {
+            //hiển thị giới tính Nam hoặc Nữ khi xuất file
+            $gender = '';
+
+            if ($employee->gender == 'male') {
+                $gender = 'Nam';
+            } elseif ($employee->gender == 'female') {
+                $gender = 'Nữ';
+            }
+
+            fputcsv($output, [
+                $stt,
+                $employee->employee_code ?? '',
+                $employee->full_name ?? '',
+                $employee->department_name ?? '',
+                $employee->position_name ?? '',
+                $gender,
+                $employee->date_of_birth ? date('d/m/Y', strtotime($employee->date_of_birth)) : '',
+                //hiển thị đầy đủ số điện thoại có số 0 ở đầu
+                "\t" . ($employee->phone ?? ''),
+                $employee->email ?? '',
+                ($employee->address ?? '') . ", " . ($employee->street ?? '') . ", " . ($employee->ward ?? '') . ", " . ($employee->province ?? '')
+            ]);
+            $stt++;
+        }
+        
+        fclose($output);
+        exit;
+    }
 }

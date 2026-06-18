@@ -15,6 +15,10 @@
     <a href="/hcns/employees/create" class="bg-blue-600 text-white px-4 py-2 rounded">
         Thêm nhân viên
     </a>
+    <a href="/hcns/employees/export"
+    class="bg-yellow-600 text-white px-4 py-2 rounded">
+        Xuất Excel
+    </a>
 
     <form method="GET" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" placeholder="Tìm theo mã nhân viên, tên nhân viên hoặc phòng ban" style="width:450px;">

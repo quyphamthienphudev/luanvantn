@@ -12,8 +12,8 @@
     <title>Hệ thống quản lý nhân sự - Quản lý phòng ban</title>
 </head>
 <body>
-    <a href="/hcns/departments/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Thêm phòng ban</a>
-    <a href="/hcns/departments/export" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">Xuất file Excel</a>
+    <a href="/hcns/departments/create" class="bg-blue-600 text-white px-4 py-2 rounded">Thêm phòng ban</a>
+    <a href="/hcns/departments/export" class="bg-yellow-600 text-white px-4 py-2 rounded">Xuất Excel</a>
     <form method="GET" action="/hcns/departments" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" placeholder="Tìm theo tên phòng ban hoặc mô tả" style="width:300px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>

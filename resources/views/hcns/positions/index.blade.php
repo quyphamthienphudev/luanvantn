@@ -13,12 +13,12 @@
 </head>
 <body>
     <a href="/hcns/positions/create"
-    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    class="bg-blue-600 text-white px-4 py-2 rounded">
         Thêm công việc
     </a>
     <a href="/hcns/positions/export"
-    class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">
-        Xuất file Excel
+    class="bg-yellow-600 text-white px-4 py-2 rounded">
+        Xuất Excel
     </a>
     <form method="GET" action="/hcns/positions" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" placeholder="Tìm theo tên công việc hoặc lương cơ bản" style="width:350px;">

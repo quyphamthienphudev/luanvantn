@@ -93,6 +93,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/hcns/employees/update/{id}',[ManageEmployeeControllerAdmin::class,'update']);
     Route::get('/hcns/employees/delete/{id}',[ManageEmployeeControllerAdmin::class,'delete']);
     Route::get('/hcns/employees/show/{id}',[ManageEmployeeControllerAdmin::class,'show']);
+    Route::get('/hcns/employees/export',[ManageEmployeeControllerAdmin::class,'export']);
     // Quản lý chứng chỉ
     Route::post('/hcns/employees/{id}/certificate/store', [EmployeeCertificateController::class,'store']);
     Route::get('/hcns/employees/certificate/view/{id}', [EmployeeCertificateController::class,'view']);
@@ -210,11 +211,7 @@ Route::middleware('auth')->group(function () {
 // Chức năng quản lý nhân viên của từng phòng ban
 Route::middleware('auth')->group(function () {
     Route::get('/qlcl/employees',[ManageEmployeeControllerQLCL::class,'index']);
-    Route::get('/qlcl/employees/create',[ManageEmployeeControllerQLCL::class,'create']);
-    Route::post('/qlcl/employees/store',[ManageEmployeeControllerQLCL::class,'store']);
-    Route::get('/qlcl/employees/edit/{id}',[ManageEmployeeControllerQLCL::class,'edit']);
-    Route::post('/qlcl/employees/update/{id}',[ManageEmployeeControllerQLCL::class,'update']);
-    Route::get('/qlcl/employees/delete/{id}',[ManageEmployeeControllerQLCL::class,'delete']);
+    Route::get('/qlcl/employees',[ManageEmployeeControllerQLCL::class,'search']);
     Route::get('/qlcl/employees/show/{id}',[ManageEmployeeControllerQLCL::class,'show']);
 });
 
