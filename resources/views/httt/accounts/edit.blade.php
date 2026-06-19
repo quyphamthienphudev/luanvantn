@@ -45,16 +45,16 @@
                 >Admin</option>
                 <option value="2"
                 @if($user->role_id=='2') selected @endif
-                >Hanh chinh nhan su</option>
+                >Phòng hành chính nhân sự</option>
                 <option value="3"
                 @if($user->role_id=='3') selected @endif
-                >Quan ly chat luong</option>
+                >Phòng quản lý chất lượng</option>
                 <option value="4"
                 @if($user->role_id=='4') selected @endif
-                >He thong thong tin</option>
+                >Phòng hệ thống thông tin</option>
                 <option value="5"
                 @if($user->role_id=='5') selected @endif
-                >Nhan vien</option>
+                >Nhân viên</option>
             </select>
         </div>
         <div class="mb-4">

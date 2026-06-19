@@ -46,10 +46,10 @@
             <label>Quyền</label>
             <select name="role" class="w-full border p-2 rounded">
                 <option value="1">Admin</option>
-                <option value="2">Hanh chinh nhan su</option>
-                <option value="3">Quan ly chat luong</option>
-                <option value="4">He thong thong tin</option>
-                <option value="5">Nhan vien</option>
+                <option value="2">Phòng hành chính nhân sự</option>
+                <option value="3">Phòng quản lý chất lượng</option>
+                <option value="4">Phòng hệ thống thông tin</option>
+                <option value="5">Nhân viên</option>
             </select>
         </div>
         <button

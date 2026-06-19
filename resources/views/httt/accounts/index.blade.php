@@ -52,16 +52,16 @@
                         Admin
                     @endif
                     @if($user->role_id == '2')
-                        User
+                        Phòng hành chính nhân sự
                     @endif
                     @if($user->role_id == '3')
-                        Phong quan ly chat luong
+                        Phòng quản lý chất lượng
                     @endif
                     @if($user->role_id == '4')
-                        Phong he thong thong tin
+                        Phòng hệ thống thông tin
                     @endif
                     @if($user->role_id == '5')
-                        Nhan vien
+                        Nhân viên
                     @endif
                     </td>
                     <td class="p-3">
