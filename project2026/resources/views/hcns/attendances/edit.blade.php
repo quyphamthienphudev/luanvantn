@@ -30,7 +30,7 @@
                 <label class="block text-gray-700 font-bold mb-2">Trạng thái</label>
                 <select name="status" class="w-full border rounded p-2 outline-none">
                     <option value="present">Đúng giờ</option>
-                    <option value="late">Đi muộn</option>
+                    <option value="late">Đi trễ</option>
                     <option value="absent">Vắng mặt</option>
                 </select>
             </div>

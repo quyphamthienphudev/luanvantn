@@ -79,14 +79,15 @@
                 <td class="text-center">
                     <div class="d-flex justify-content-center align-items-center gap-2 action-group ">
                         @if($leave->status == 'pending')
-                        <form action="/qlcl/leave/approve/{{ $leave->id }}" method="POST" class="m-0 p-0">
+                        <form action="/qlcl/leave/approve/{{ $leave->id }}" method="POST" class="m-0 p-0"
+                            onsubmit="return confirm('Bạn có muốn duyệt đơn xin nghỉ phép này ?')">
                             @csrf
                             <button class="btn btn-success btn-sm btn-action" title="Duyệt"><i
                                     class="fas fa-check"></i></button>
                         </form>
 
                         <form action="/qlcl/leave/reject/{{ $leave->id }}" method="POST" class="m-0 p-0"
-                            onsubmit="return confirm('Từ chối đơn nghỉ phép này ?')">
+                            onsubmit="return confirm('Bạn có muốn từ chối đơn xin nghỉ phép này ?')">
                             @csrf
                             <button class="btn btn-outline-danger btn-sm btn-action" title="Từ chối"><i
                                     class="fas fa-ban"></i></button>

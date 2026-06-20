@@ -50,13 +50,13 @@
                             <span
                                 class="px-2 py-1 rounded text-xs {{ $atd->status == 'present' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                                 @if($atd->status == 'present')
-                                    Đúng giờ
+                                Đúng giờ
                                 @endif
                                 @if($atd->status == 'late')
-                                    Đi trễ
+                                Đi trễ
                                 @endif
                                 @if($atd->status == 'absent')
-                                    Vắng mặt
+                                Vắng mặt
                                 @endif
                             </span>
                         </td>
@@ -68,8 +68,8 @@
                                 <a href="/qlcl/attendances/delete/{{ $atd->id }}" class="text-red-500 hover:underline"
                                     onclick="return confirm('Bạn có muốn xóa bảng chấm công này?')">Xóa</a>
                                 @if($atd->confirm=='no')
-                                <a href="/qlcl/attendances/confirm/{{ $atd->id }}"
-                                    class="text-blue-600 hover:underline">Xác nhận</a>
+                                <a href="/qlcl/attendances/confirm/{{ $atd->id }}" class="text-blue-600 hover:underline"
+                                    onclick="return confirm('Bạn có muốn xác nhận bảng chấm công này?')">Xác nhận</a>
                                 @endif
                             </div>
                         </td>
