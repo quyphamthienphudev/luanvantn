@@ -79,51 +79,53 @@
 <form action="/hcns/leave/update/{{ $leave->id }}" method="POST" class="bg-white p-6 rounded shadow w-1/2">
 
     @csrf
-    <!-- <div class="row">
-    <div class="col-md-6 mb-4">
-        <label class="form-label fw-bold small text-uppercase">
-            Mã nhân viên
-        </label>
-        <input type="text" name="employee_code" class="form-control shadow-sm" 
-            value="{{ $leave->user->id ?? $leave->employee->employee_code }}" readonly>
-    </div>              
-</div> -->
+    @error('start_date')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+    @enderror
+    @error('end_date')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+    @enderror
+    @error('reason')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+    @enderror
+    
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <label class="form-label fw-bold small">
+            Nhân viên
+            </label>
+            <input type="text" name="employee_code" class="form-control shadow-sm bg-gray-100" 
+                value="{{ $leave->user->name }}" readonly>
+        </div>              
+    </div>
 
     <div class="row">
         <div class="col-md-6 mb-4">
-            <label class="form-label fw-bold small text-uppercase">
+            <label class="form-label fw-bold small">
                 Ngày bắt đầu
             </label>
-            <input type="date" name="start_date" class="form-control shadow-sm" value="{{ $leave->start_date }}"
-                required>
+            <input type="date" name="start_date" class="form-control shadow-sm" value="{{ $leave->start_date }}">
         </div>
 
         <div class="col-md-6 mb-4">
-            <label class="form-label fw-bold small text-uppercase">
+            <label class="form-label fw-bold small">
                 Ngày kết thúc
             </label>
-            <input type="date" name="end_date" class="form-control shadow-sm" value="{{ $leave->end_date }}" required>
+            <input type="date" name="end_date" class="form-control shadow-sm" value="{{ $leave->end_date }}">
         </div>
     </div>
 
     <div class="mb-4">
-        <label class="form-label fw-bold small text-uppercase">
+        <label class="form-label fw-bold small">
             Lý do xin nghỉ phép
         </label>
-        <textarea name="reason" class="form-control shadow-sm" rows="4" required>{{ $leave->reason }}</textarea>
+        <textarea name="reason" class="form-control shadow-sm" rows="4">{{ $leave->reason }}</textarea>
     </div>
 
     <div class="d-flex flex-column flex-sm-row gap-3">
         <button type="submit" class="btn btn-save flex-grow-1">
             Lưu thay đổi
         </button>
-    </div>
-
-    <div class="text-left mt-4">
-        <p class="text-muted small">
-            <i class="fas fa-info-circle me-1"></i>
-            Lưu ý: Chỉ có thể sửa đơn xin nghỉ phép đang ở trạng thái <b>Chờ duyệt</b>.
-        </p>
     </div>
 
 </form>

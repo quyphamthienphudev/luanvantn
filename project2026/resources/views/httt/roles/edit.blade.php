@@ -4,11 +4,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Cập nhật quyền truy cập</title>
 </head>
+
 <body>
     <a href="/httt/roles" class="btn btn-secondary">
         ← Quay lại
@@ -16,36 +18,32 @@
     <h1 class="text-2xl font-bold mb-6">
         Cập nhật quyền truy cập
     </h1>
-    <form action="/httt/roles/update/{{ $roles->id }}" method="POST"
-    class="bg-white p-6 rounded shadow w-1/2">
+    <form action="/httt/roles/update/{{ $roles->id }}" method="POST" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
         @error('description')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         <div class="mb-4">
             <label>ID</label>
-            <input type="text" name="id"
-            value="{{ $roles->id }}"
-            class="w-full border p-2 rounded bg-gray-100" placeholder="ID" readonly>
+            <input type="text" name="id" value="{{ $roles->id }}" class="w-full border p-2 rounded bg-gray-100"
+                readonly>
         </div>
         <div class="mb-4">
             <label>Name</label>
-            <input type="text" name="name"
-            value="{{ $roles->name }}"
-            class="w-full border p-2 rounded bg-gray-100" placeholder="Name" readonly>
+            <input type="text" name="name" value="{{ $roles->name }}" class="w-full border p-2 rounded bg-gray-100"
+                readonly>
         </div>
         <div class="mb-4">
             <label>Mô tả</label>
-            <input type="text" name="description"
-            value="{{ $roles->description }}"
-            class="w-full border p-2 rounded" placeholder="Name">
+            <input type="text" name="description" value="{{ $roles->description }}" class="w-full border p-2 rounded"
+                placeholder="Name">
         </div>
-        <button
-            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                Cập nhật
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Cập nhật
         </button>
     </form>
 </body>
+
 </html>
 
 @endsection

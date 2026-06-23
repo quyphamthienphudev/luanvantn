@@ -6,33 +6,34 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Quản lý công việc</title>
 </head>
+
 <body>
-    <a href="/hcns/positions/create"
-    class="bg-blue-600 text-white px-4 py-2 rounded">
+    <a href="/hcns/positions/create" class="bg-blue-600 text-white px-4 py-2 rounded">
         Thêm công việc
     </a>
-    <a href="/hcns/positions/export"
-    class="bg-yellow-600 text-white px-4 py-2 rounded">
+    <a href="/hcns/positions/export" class="bg-yellow-600 text-white px-4 py-2 rounded">
         Xuất Excel
     </a>
     <form method="GET" action="/hcns/positions" class="mt-4">
-        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" placeholder="Tìm theo tên công việc hoặc lương cơ bản" style="width:350px;">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
+            placeholder="Tìm theo tên công việc hoặc lương cơ bản" style="width:350px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
     @if(session('success'))
-        <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
-            {{ session('success') }}
-        </div>
+    <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
+        {{ session('success') }}
+    </div>
     @endif
     @if(session('error'))
-        <div class="bg-red-200 text-red-800 p-3 rounded mt-4">
-            {{ session('error') }}
-        </div>
+    <div class="bg-red-200 text-red-800 p-3 rounded mt-4">
+        {{ session('error') }}
+    </div>
     @endif
     <div class="bg-white shadow rounded mt-6">
         <table class="w-full text-left">
@@ -44,29 +45,30 @@
                     <th class="p-3">Hành động</th>
                 </tr>
             </thead>
-        <tbody>
-        @foreach($positions as $position)
-            <tr class="border-b">
-                <td class="p-3">{{ $position->name }}</td>
-                <td class="p-3">{{ $position->base_salary }}</td>
-                <td class="p-3">{{ $position->max_salary }}</td>
-                <td class="p-3 space-x-2">
-                    <a href="/hcns/positions/edit/{{ $position->id }}"
-                    class="bg-yellow-500 text-white px-3 py-1 rounded">
-                        Sửa
-                    </a>
-                    <a href="/hcns/positions/delete/{{ $position->id }}"
-                    class="bg-red-600 text-white px-3 py-1 rounded"
-                    onclick="return confirm('Bạn có muốn xoá công việc này ?')">
-                        Xóa
-                    </a>
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
+            <tbody>
+                @foreach($positions as $p)
+                <tr class="border-b">
+                    <td class="p-3">{{ $p->name }}</td>
+                    <td class="p-3">{{ $p->base_salary }}</td>
+                    <td class="p-3">{{ $p->max_salary }}</td>
+                    <td class="p-3 space-x-2">
+                        <a href="/hcns/positions/edit/{{ $p->id }}"
+                            class="bg-yellow-500 text-white px-3 py-1 rounded">
+                            Sửa
+                        </a>
+                        <a href="/hcns/positions/delete/{{ $p->id }}"
+                            class="bg-red-600 text-white px-3 py-1 rounded"
+                            onclick="return confirm('Bạn có muốn xoá công việc này ?')">
+                            Xóa
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 </body>
+
 </html>
 
 @endsection

@@ -4,11 +4,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Thêm tài khoản</title>
 </head>
+
 <body>
     <a href="/httt/accounts" class="btn btn-secondary">
         ← Quay lại
@@ -29,18 +31,15 @@
         @enderror
         <div class="mb-4">
             <label>Họ tên</label>
-            <input type="text" name="name"
-            class="w-full border p-2 rounded" placeholder="Họ tên">
+            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Họ tên">
         </div>
         <div class="mb-4">
             <label>Email</label>
-            <input type="text" name="email"
-            class="w-full border p-2 rounded" placeholder="Email">
+            <input type="text" name="email" class="w-full border p-2 rounded" placeholder="Email">
         </div>
         <div class="mb-4">
             <label>Mật khẩu</label>
-            <input type="password" name="password"
-            class="w-full border p-2 rounded" placeholder="Mật khẩu">
+            <input type="password" name="password" class="w-full border p-2 rounded" placeholder="Mật khẩu">
         </div>
         <div class="mb-4">
             <label>Quyền</label>
@@ -52,12 +51,12 @@
                 <option value="5">Nhân viên</option>
             </select>
         </div>
-        <button
-        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
             Lưu
         </button>
     </form>
 </body>
+
 </html>
 
 @endsection

@@ -4,11 +4,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Thêm quyền truy cập</title>
 </head>
+
 <body>
     <a href="/httt/roles" class="btn btn-secondary">
         ← Quay lại
@@ -29,25 +31,22 @@
         @enderror
         <div class="mb-4">
             <label>ID</label>
-            <input type="text" name="id"
-            class="w-full border p-2 rounded" placeholder="ID">
+            <input type="text" name="id" class="w-full border p-2 rounded" placeholder="ID">
         </div>
         <div class="mb-4">
             <label>Name</label>
-            <input type="text" name="name"
-            class="w-full border p-2 rounded" placeholder="Name">
+            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Name">
         </div>
         <div class="mb-4">
             <label>Mô tả</label>
-            <input type="text" name="description"
-            class="w-full border p-2 rounded" placeholder="Mô tả">
+            <input type="text" name="description" class="w-full border p-2 rounded" placeholder="Mô tả">
         </div>
-        <button
-        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
             Lưu
         </button>
     </form>
 </body>
+
 </html>
 
 @endsection

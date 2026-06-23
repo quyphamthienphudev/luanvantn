@@ -6,19 +6,21 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Quản lý hợp đồng lao động</title>
 </head>
+
 <body>
     <a href="/hcns/contracts/create" class="bg-blue-600 text-white px-4 py-2 rounded">
         Thêm hợp đồng lao động
     </a>
     @if(session('success'))
-        <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
-            {{ session('success') }}
-        </div>
+    <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
+        {{ session('success') }}
+    </div>
     @endif
     <div class="bg-white shadow rounded mt-6">
         <table class="w-full text-left">
@@ -35,19 +37,19 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($contracts as $c)
+                @foreach($contracts as $c)
                 <tr class="border-b">
                     <td class="p-3">{{ $c->contract_code }}</td>
                     <td class="p-3">{{ $c->employee->full_name }}</td>
                     <td class="p-3">
                         @if($c->contract_type == 'probation')
-                            Hợp đồng thử việc
+                        Hợp đồng thử việc
                         @endif
                         @if($c->contract_type == 'fixed_term')
-                            Hợp đồng xác định thời hạn 
+                        Hợp đồng xác định thời hạn
                         @endif
                         @if($c->contract_type == 'indefinite')
-                            Hợp đồng không xác định thời hạn
+                        Hợp đồng không xác định thời hạn
                         @endif
                     </td>
                     <td class="p-3">
@@ -58,41 +60,48 @@
                     </td>
                     <td class="p-3">
                         @if($c->status == 'active')
-                            Còn hạn
+                        Còn hạn
                         @endif
                         @if($c->status == 'expired')
-                            Đã hết hạn
+                        Đã hết hạn
                         @endif
                         @if($c->status == 'terminated')
-                            Đã thanh lý
+                        Đã thanh lý
                         @endif
                     </td>
                     <td class="p-3">
                         @if($c->contract_type == 'probation')
-                        <a href="/hcns/contracts/extend/{{ $c->id }}" class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
-                        <a href="/hcns/contracts/terminate/{{ $c->id }}" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        <a href="/hcns/contracts/extend/{{ $c->id }}"
+                            class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
+                        <a href="/hcns/contracts/terminate/{{ $c->id }}"
+                            class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
                         @endif
                         @if($c->contract_type == 'fixed_term')
-                        <a href="/hcns/contracts/extend/{{ $c->id }}" class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
-                        <a href="/hcns/contracts/terminate/{{ $c->id }}" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        <a href="/hcns/contracts/extend/{{ $c->id }}"
+                            class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
+                        <a href="/hcns/contracts/terminate/{{ $c->id }}"
+                            class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
                         @endif
                         @if($c->contract_type == 'indefinite')
-                        <a href="/hcns/contracts/terminate/{{ $c->id }}" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        <a href="/hcns/contracts/terminate/{{ $c->id }}"
+                            class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
                         @endif
                     </td>
                     <td class="p-3 ">
                         @if($c->contract_file)
-                        <a href="/hcns/contracts/view/{{ $c->id }}" target="_blank" class="bg-green-600 text-white px-3 py-1 rounded">Xem</a>
+                        <a href="/hcns/contracts/view/{{ $c->id }}" target="_blank"
+                            class="bg-green-600 text-white px-3 py-1 rounded">Xem</a>
                         @else
                         <a href="" class="bg-green-600 text-white px-3 py-1 rounded">Xem</a>
                         @endif
                     </td>
                 </tr>
-            @endforeach
-        </tbody>
+                @endforeach
+            </tbody>
         </table>
     </div>
 </body>
+
 </html>
 
 @endsection

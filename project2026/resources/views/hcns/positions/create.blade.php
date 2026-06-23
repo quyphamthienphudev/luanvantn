@@ -4,11 +4,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Thêm công việc</title>
 </head>
+
 <body>
     <a href="/hcns/positions" class="btn btn-secondary">
         ← Quay lại
@@ -29,25 +31,22 @@
         @enderror
         <div class="mb-4">
             <label>Tên công việc</label>
-            <input type="text" name="name"
-            class="w-full border p-2 rounded" placeholder="Tên công việc">
+            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên công việc">
         </div>
         <div class="mb-4">
             <label>Lương cơ bản</label>
-            <input type="text" name="base_salary"
-            class="w-full border p-2 rounded" placeholder="Lương cơ bản">
+            <input type="text" name="base_salary" class="w-full border p-2 rounded" placeholder="Lương cơ bản">
         </div>
         <div class="mb-4">
             <label>Lương cao nhất</label>
-            <input type="text" name="max_salary"
-            class="w-full border p-2 rounded" placeholder="Lương cao nhất">
+            <input type="text" name="max_salary" class="w-full border p-2 rounded" placeholder="Lương cao nhất">
         </div>
-        <button
-        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
             Lưu
         </button>
     </form>
 </body>
+
 </html>
 
 @endsection

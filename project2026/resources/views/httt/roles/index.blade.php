@@ -6,29 +6,31 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Thêm quyền truy cập</title>
 </head>
+
 <body>
-    <a href="/httt/roles/create"
-    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    <a href="/httt/roles/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         Thêm quyền truy cập
     </a>
     <form method="GET" action="/httt/roles" class="mt-4">
-        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" placeholder="Tìm theo id, name hoặc mô tả" style="width:400px;">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
+            placeholder="Tìm theo id, name hoặc mô tả" style="width:400px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
     @if(session('success'))
-        <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
+    <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
         {{ session('success') }}
-        </div>
+    </div>
     @endif
     @if(session('error'))
-        <div class="bg-red-200 text-red-800 p-3 rounded mt-4">
+    <div class="bg-red-200 text-red-800 p-3 rounded mt-4">
         {{ session('error') }}
-        </div>
+    </div>
     @endif
     <div class="bg-white shadow rounded mt-6">
         <table class="w-full text-left">
@@ -41,28 +43,27 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($roles as $role)
+                @foreach($roles as $r)
                 <tr class="border-b">
-                    <td class="p-3">{{ $role->id }}</td>
-                    <td class="p-3">{{ $role->name }}</td>
-                    <td class="p-3">{{ $role->description }}</td>
+                    <td class="p-3">{{ $r->id }}</td>
+                    <td class="p-3">{{ $r->name }}</td>
+                    <td class="p-3">{{ $r->description }}</td>
                     <td class="p-3 space-x-2">
-                        <a href="/httt/roles/edit/{{ $role->id }}"
-                        class="bg-yellow-500 text-white px-3 py-1 rounded">
+                        <a href="/httt/roles/edit/{{ $r->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded">
                             Sửa
                         </a>
-                        <a href="/httt/roles/delete/{{ $role->id }}"
-                        class="bg-red-600 text-white px-3 py-1 rounded"
-                        onclick="return confirm('Bạn có muốn xoá quyền truy cập này ?')">
+                        <a href="/httt/roles/delete/{{ $r->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
+                            onclick="return confirm('Bạn có muốn xoá quyền truy cập này ?')">
                             Xóa
                         </a>
                     </td>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>
 </body>
+
 </html>
 
 @endsection

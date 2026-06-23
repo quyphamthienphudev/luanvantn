@@ -35,8 +35,8 @@ class DashboardControllerAdmin extends Controller
         $deptData = $employeesByDepartment->pluck('total_employees');
 
         // ===== THỐNG KÊ LƯƠNG =====
-        $year = $request->year;
-        $month = $request->month;
+        $month = $request->get('month', date('m'));
+        $year = $request->get('year', date('Y'));
 
         $totalYearSalary = 0;
         $totalMonthSalary = 0;

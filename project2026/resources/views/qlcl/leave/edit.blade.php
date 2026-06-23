@@ -77,19 +77,19 @@
 <form action="/qlcl/leave/update/{{ $leave->id }}" method="POST" class="bg-white p-6 rounded shadow w-1/2">
 
     @csrf
-    <!-- <div class="row">
-    <div class="col-md-6 mb-4">
-        <label class="form-label fw-bold small text-uppercase">
-            Mã nhân viên
-        </label>
-        <input type="text" name="employee_code" class="form-control shadow-sm" 
-            value="{{ $leave->user->id ?? $leave->employee->employee_code }}" readonly>
-    </div>              
-</div> -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <label class="form-label fw-bold small">
+                Nhân viên
+            </label>
+            <input type="text" name="employee_code" class="form-control shadow-sm bg-gray-100" 
+                value="{{ $leave->user->name }}" readonly>
+        </div>              
+    </div>
 
     <div class="row">
         <div class="col-md-6 mb-4">
-            <label class="form-label fw-bold small text-uppercase">
+            <label class="form-label fw-bold small">
                 Ngày bắt đầu
             </label>
             <input type="date" name="start_date" class="form-control shadow-sm" value="{{ $leave->start_date }}"
@@ -97,7 +97,7 @@
         </div>
 
         <div class="col-md-6 mb-4">
-            <label class="form-label fw-bold small text-uppercase">
+            <label class="form-label fw-bold small">
                 Ngày kết thúc
             </label>
             <input type="date" name="end_date" class="form-control shadow-sm" value="{{ $leave->end_date }}" required>
@@ -105,7 +105,7 @@
     </div>
 
     <div class="mb-4">
-        <label class="form-label fw-bold small text-uppercase">
+        <label class="form-label fw-bold small">
             Lý do xin nghỉ phép
         </label>
         <textarea name="reason" class="form-control shadow-sm" rows="4" required>{{ $leave->reason }}</textarea>

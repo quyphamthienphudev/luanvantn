@@ -23,30 +23,40 @@
         @endif
         <form action="/hcns/payrolls" method="POST">
             @csrf
-
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Nhân viên</label>
-                <select name="employee_id" class="w-full border rounded px-3 py-2">
-                    @foreach($employees as $employee)
-                    <option value="{{ $employee->id }}">{{ $employee->employee_code }} - {{ $employee->full_name }} ({{
-                        $employee->position_name ?? 'N/A' }})</option>
+                <select name="employee_id" id="employee_id" class="w-full border rounded px-3 py-2">
+                    @foreach($employees as $e)
+                    <option value="{{ $e->id }}">{{ $e->full_name }}</option>
                     @endforeach
                 </select>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Mã nhân viên</label>
+                <input type="text" id="employee_code" class="w-full border p-2 rounded bg-gray-100" readonly>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Công việc</label>
+                <input type="text" id="position_name" class="w-full border p-2 rounded bg-gray-100" readonly>
             </div>
 
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Tháng</label>
                     <select name="month" class="w-full border rounded px-3 py-2">
-                        @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng {{ $i }}</option>
-                            @endfor
+                        @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ $month==$i ? 'selected' : '' }}>Tháng
+                            {{ $i }}</option>
+                        @endfor
                     </select>
                 </div>
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Năm</label>
                     <select name="year" class="w-full border rounded px-3 py-2">
-                        @for($i = 2020; $i <= 2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>Năm {{ $i }}</option>
-                            @endfor
+                        @for($i = 2001; $i <= 2099; $i++) <option value="{{ $i }}" {{ $year==$i ? 'selected' : '' }}>Năm
+                            {{ $i }}</option>
+                        @endfor
                     </select>
                 </div>
             </div>
@@ -57,6 +67,31 @@
             </div>
         </form>
     </div>
+    <!-- javascript cập nhật mã nhân viên khi thay đổi chọn nhân viên -->
+    <script>
+        const employees = @json($employees);
+
+        const employeeSelect = document.getElementById('employee_id');
+        const employeeCodeInput = document.getElementById('employee_code');
+        const positionNameInput = document.getElementById('position_name');
+
+        function updateEmployeeCode() {
+            let employeeId = employeeSelect.value;
+
+            let employee = employees.find(
+                item => item.id == employeeId
+            );
+
+            if (employee) {
+                employeeCodeInput.value = employee.employee_code;
+                positionNameInput.value = employee.position_name;
+            }
+        }
+
+        employeeSelect.addEventListener('change', updateEmployeeCode);
+
+        updateEmployeeCode();
+    </script>
 </body>
 
 </html>

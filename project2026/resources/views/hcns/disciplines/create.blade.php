@@ -6,15 +6,17 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Thêm kỷ luật</title>
 </head>
+
 <body>
     <a href="/hcns/disciplines">← Quay lại</a>
     <form method="POST" action="/hcns/disciplines/store" class="bg-white p-6 rounded shadow w-1/2">
-    @csrf
+        @csrf
         @error('title')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
@@ -27,9 +29,9 @@
         <div class="mb-4">
             <label>Chọn nhân viên</label>
             <select name="employee_id" class="w-full border p-2 rounded">
-            @foreach($employees as $e)
-                <option value="{{ $e->id }}">{{ $e->full_name }}</option>
-            @endforeach
+                @foreach($employees as $e)
+                <option value="{{ $e->id }}">{{ $e->full_name }} - {{ $e->employee_code }}</option>
+                @endforeach
             </select>
         </div>
         <div class="mb-4">
@@ -47,6 +49,7 @@
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lưu</button>
     </form>
 </body>
+
 </html>
 
 @endsection

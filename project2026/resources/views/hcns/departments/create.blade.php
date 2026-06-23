@@ -4,11 +4,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Thêm phòng ban</title>
 </head>
+
 <body>
     <a href="/hcns/departments" class="btn btn-secondary">
         ← Quay lại
@@ -35,6 +37,7 @@
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lưu</button>
     </form>
 </body>
+
 </html>
 
 @endsection

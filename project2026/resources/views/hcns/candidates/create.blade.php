@@ -6,15 +6,17 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Thêm hồ sơ ứng viên</title>
 </head>
+
 <body>
     <a href="/hcns/candidates">← Quay lại</a>
     <form method="POST" action="/hcns/candidates/store" class="bg-white p-6 rounded shadow w-1/2">
-    @csrf
+        @csrf
         @error('candidate_id')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
@@ -109,6 +111,7 @@
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lưu</button>
     </form>
 </body>
+
 </html>
 
 @endsection

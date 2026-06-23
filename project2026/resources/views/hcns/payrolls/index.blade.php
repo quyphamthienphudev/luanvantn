@@ -30,12 +30,12 @@
         <div class="mb-6 flex justify-between items-center">
             <form method="GET" action="/hcns/payrolls" class="flex gap-2">
                 <select name="month" class="border rounded px-3 py-2">
-                    @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng 
+                    @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng
                         {{ $i }}</option>
                     @endfor
                 </select>
                 <select name="year" class="border rounded px-3 py-2">
-                    @for($i = 2020; $i <= 2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>
+                    @for($i = 2001; $i <= 2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>
                         Năm {{ $i }}</option>
                     @endfor
                 </select>
@@ -64,22 +64,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($payrolls as $index => $payroll)
+                    @forelse($payrolls as $index => $p)
                     <tr>
                         <td class="border px-4 py-2 text-center">{{ $index + 1 }}</td>
-                        <td class="border px-4 py-2">{{ $payroll->employee_code ?? 'N/A' }}</td>
-                        <td class="border px-4 py-2">{{ $payroll->full_name ?? 'N/A' }}</td>
-                        <td class="border px-4 py-2">{{ $payroll->department_name ?? 'N/A' }}</td>
-                        <td class="border px-4 py-2">{{ $payroll->position_name ?? 'N/A' }}</td>
-                        <td class="border px-4 py-2 text-right">{{ number_format($payroll->base_salary ?? 0) }} VNĐ</td>
-                        <td class="border px-4 py-2 text-right">{{ number_format($payroll->bonus ?? 0) }} VNĐ</td>
-                        <td class="border px-4 py-2 text-right">{{ number_format($payroll->deduction ?? 0) }} VNĐ</td>
-                        <td class="border px-4 py-2 text-right font-bold">{{ number_format($payroll->total_salary ?? 0)
+                        <td class="border px-4 py-2">{{ $p->employee_code ?? 'N/A' }}</td>
+                        <td class="border px-4 py-2">{{ $p->full_name ?? 'N/A' }}</td>
+                        <td class="border px-4 py-2">{{ $p->department_name ?? 'N/A' }}</td>
+                        <td class="border px-4 py-2">{{ $p->position_name ?? 'N/A' }}</td>
+                        <td class="border px-4 py-2 text-right">{{ number_format($p->base_salary ?? 0) }} VNĐ</td>
+                        <td class="border px-4 py-2 text-right">{{ number_format($p->bonus ?? 0) }} VNĐ</td>
+                        <td class="border px-4 py-2 text-right">{{ number_format($p->deduction ?? 0) }} VNĐ</td>
+                        <td class="border px-4 py-2 text-right font-bold">{{ number_format($p->total_salary ?? 0)
                             }} VNĐ</td>
                         <td class="border px-4 py-2 text-center">
-                            <a href="/hcns/payrolls/{{ $payroll->id }}" class="text-blue-500">Xem</a>
-                            <a href="/hcns/payrolls/edit/{{ $payroll->id }}" class="text-yellow-500 ml-2">Sửa</a>
-                            <form action="/hcns/payrolls/delete/{{ $payroll->id }}" method="POST" class="inline ml-2">
+                            <a href="/hcns/payrolls/{{ $p->id }}" class="text-blue-500">Xem</a>
+                            <a href="/hcns/payrolls/edit/{{ $p->id }}" class="text-yellow-500 ml-2">Sửa</a>
+                            <form action="/hcns/payrolls/delete/{{ $p->id }}" method="POST" class="inline ml-2">
                                 @csrf
                                 <button type="submit" class="text-red-500"
                                     onclick="return confirm('Bạn có muốn xóa bảng lương này ?')">Xóa</button>

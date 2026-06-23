@@ -6,11 +6,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Quản lý nhân viên</title>
 </head>
+
 <body>
     <form method="GET" action="/qlcl/employees" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" style="width:400px;">
@@ -18,9 +20,9 @@
     </form>
 
     @if(session('success'))
-        <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
-            {{ session('success') }}
-        </div>
+    <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
+        {{ session('success') }}
+    </div>
     @endif
 
     <div class="bg-white shadow rounded mt-6">
@@ -34,22 +36,24 @@
                 </tr>
             </thead>
 
-        <tbody>
-            @foreach($employees as $e)
+            <tbody>
+                @foreach($employees as $e)
                 <tr class="border-b">
                     <td class="p-3">{{ $e->employee_code }}</td>
                     <td class="p-3">{{ $e->full_name }}</td>
                     <td class="p-3">{{ $e->department->name }}</td>
                     <td class="p-3 space-x-2">
-                        <a href="/qlcl/employees/show/{{ $e->id }}" class="bg-blue-500 text-white px-3 py-1 rounded">Xem chi tiết</a>
+                        <a href="/qlcl/employees/show/{{ $e->id }}" class="bg-blue-500 text-white px-3 py-1 rounded">Xem
+                            chi tiết</a>
                     </td>
                 </tr>
-            @endforeach
-        </tbody>
+                @endforeach
+            </tbody>
         </table>
     </div>
 
 </body>
+
 </html>
 
 @endsection

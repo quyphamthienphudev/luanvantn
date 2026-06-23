@@ -151,21 +151,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($leaves as $leave)
+                                @forelse($leaves as $l)
                                 <tr>
                                     <td class="ps-4">
-                                        <div class="fw-bold">{{ $leave->start_date }}</div>
-                                        <div class="text-muted small">đến {{ $leave->end_date }}</div>
+                                        <div class="fw-bold">{{ $l->start_date }}</div>
+                                        <div class="text-muted small">đến {{ $l->end_date }}</div>
                                     </td>
                                     <td>
                                         <div class="fw-bold text-primary">{{ Auth::user()->name }}</div>
-                                        <small class="text-muted">Lý do: {{ $leave->reason }}</small>
+                                        <small class="text-muted">Lý do: {{ $l->reason }}</small>
                                     </td>
                                     <td>
-                                        @if($leave->status == 'pending')
+                                        @if($l->status == 'pending')
                                         <span class="badge bg-warning text-dark status-badge"><i
                                                 class="fas fa-spinner fa-spin me-1"></i> Chờ duyệt</span>
-                                        @elseif($leave->status == 'approved')
+                                        @elseif($l->status == 'approved')
                                         <span class="badge bg-success shadow-sm"><i
                                                 class="fas fa-check-circle me-1"></i> Đồng ý</span>
                                         @else
@@ -174,8 +174,8 @@
                                         @endif
                                     </td>
                                     <td class="text-center pe-4">
-                                        @if($leave->status == 'pending')
-                                        <a href="/leave/edit/{{ $leave->id }}"
+                                        @if($l->status == 'pending')
+                                        <a href="/leave/edit/{{ $l->id }}"
                                             class="btn btn-sm btn-outline-primary shadow-sm px-3">
                                             <i class="fas fa-edit me-1"></i> Sửa
                                         </a>

@@ -105,7 +105,8 @@
                     <a href="" style="color:blue; font-weight:bold;">Xem
                         file</a>
                     @else
-                    <a href="/hcns/employees/certificate/view/{{ $c->id }}" target="_blank" style="color:blue; font-weight:bold;">Xem
+                    <a href="/hcns/employees/certificate/view/{{ $c->id }}" target="_blank"
+                        style="color:blue; font-weight:bold;">Xem
                         file</a>
                     @endif
                 </td>

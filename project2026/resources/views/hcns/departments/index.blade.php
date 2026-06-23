@@ -6,16 +6,19 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Quản lý phòng ban</title>
 </head>
+
 <body>
     <a href="/hcns/departments/create" class="bg-blue-600 text-white px-4 py-2 rounded">Thêm phòng ban</a>
     <a href="/hcns/departments/export" class="bg-yellow-600 text-white px-4 py-2 rounded">Xuất Excel</a>
     <form method="GET" action="/hcns/departments" class="mt-4">
-        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" placeholder="Tìm theo tên phòng ban hoặc mô tả" style="width:300px;">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
+            placeholder="Tìm theo tên phòng ban hoặc mô tả" style="width:300px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
     @if(session('success'))
@@ -38,21 +41,23 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($departments as $d)
+                @foreach($departments as $d)
                 <tr class="border-b">
                     <td class="p-3">{{ $d->name }}</td>
                     <td class="p-3">{{ $d->description }}</td>
                     <td class="p-3 space-x-2">
-                        <a href="/hcns/departments/edit/{{ $d->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
+                        <a href="/hcns/departments/edit/{{ $d->id }}"
+                            class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
                         <a href="/hcns/departments/delete/{{ $d->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
-                        onclick="return confirm('Bạn có muốn xoá phòng ban này ?')">Xóa</a>
+                            onclick="return confirm('Bạn có muốn xoá phòng ban này ?')">Xóa</a>
                     </td>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>
 </body>
+
 </html>
 
 @endsection
