@@ -13,7 +13,7 @@ class ManageEmployeeRewardController extends Controller
     //INDEX
     public function index()
     {
-        $rewards = RewardDiscipline::with('employee')->where('type','reward')->get();
+        $rewards = RewardDiscipline::with('employee')->where('type','reward')->orderBy('decision_date','desc')->get();
         return view('hcns.rewards.index', compact('rewards'));
     }
 

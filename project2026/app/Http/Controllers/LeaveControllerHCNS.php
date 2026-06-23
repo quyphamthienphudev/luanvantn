@@ -9,7 +9,7 @@ class LeaveControllerHCNS extends Controller
 {
     public function index() 
     {
-        $allLeaves = LeaveRequest::with('user')->where('status','approved')->get(); 
+        $allLeaves = LeaveRequest::with('user')->where('status','approved')->orderBy('start_date','desc')->get(); 
         return view('hcns.leave.index', compact('allLeaves'));
     }
 

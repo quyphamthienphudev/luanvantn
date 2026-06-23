@@ -9,7 +9,7 @@ class LeaveControllerQLCL extends Controller
 {
     public function index() 
     {
-        $allLeaves = LeaveRequest::with('user')->get(); 
+        $allLeaves = LeaveRequest::with('user')->orderBy('start_date','desc')->get(); 
         return view('qlcl.leave.index', compact('allLeaves'));
     }
 

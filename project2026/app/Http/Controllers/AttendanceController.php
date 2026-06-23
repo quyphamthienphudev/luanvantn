@@ -27,13 +27,33 @@ class AttendanceController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'work_date' => 'required|date',
-            'status' => 'required'
+            'work_date' => 'required|date'
         ],[
-            'work_date.required' => 'Vui lòng chọn ngày chấm công',
-            'status.required' => 'Vui lòng chọn trạng thái'
+            'work_date.required' => 'Vui lòng chọn ngày chấm công'
         ]);
-        Attendance::findOrFail($id)->update($request->all());
+
+        $attendance = Attendance::findOrFail($id);
+        
+        // Xác định trạng thái theo giờ vào
+        $status = 'absent';
+
+        if(!empty($request->check_in))
+        {
+            if($request->check_in > '08:00')
+            {
+                $status = 'late';
+            }
+            else
+            {
+                $status = 'present';
+            }
+        }
+
+        $attendance->update([
+            'check_in'  => $request->check_in,
+            'check_out' => $request->check_out,
+            'status'    => $status
+        ]);
         return redirect('/qlcl/attendances')->with('success','Cập nhật chấm công thành công');
     }
 

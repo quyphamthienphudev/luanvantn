@@ -36,15 +36,6 @@
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-gray-700 font-bold mb-2">Trạng thái</label>
-                    <select name="status" class="w-full border rounded p-2 outline-none">
-                        <option value="present" {{ $attendance->status == 'present' ? 'selected' : '' }}>Đúng giờ</option>
-                        <option value="late" {{ $attendance->status == 'late' ? 'selected' : '' }}>Đi trễ</option>
-                        <option value="absent" {{ $attendance->status == 'absent' ? 'selected' : '' }}>Vắng mặt</option>
-                    </select>
-                </div>
-
-                <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2">Giờ vào</label>
                     <input type="time" name="check_in" value="{{ $attendance->check_in }}"
                         class="w-full border rounded p-2 outline-none">
