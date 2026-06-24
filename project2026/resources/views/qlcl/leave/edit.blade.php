@@ -125,13 +125,6 @@
         </button>
     </div>
 
-    <div class="text-left mt-4">
-        <p class="text-muted small">
-            <i class="fas fa-info-circle me-1"></i>
-            Lưu ý: Chỉ có thể sửa đơn xin nghỉ phép đang ở trạng thái <b>Chờ duyệt</b>.
-        </p>
-    </div>
-
 </form>
 
 @endsection

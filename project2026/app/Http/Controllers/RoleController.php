@@ -36,9 +36,9 @@ class RoleController extends Controller
         ]);
 
         DB::table('roles')->insert([
-            'id'=>$request->id,
-            'name'=>$request->name,
-            'description'=>$request->description
+            'id'=> $request->id,
+            'name'=> $request->name,
+            'description'=> $request->description
         ]);
 
         return redirect('/httt/roles')->with('success','Thêm quyền truy cập thành công');
@@ -62,7 +62,7 @@ class RoleController extends Controller
 
         DB::table('roles')
         ->where('id',$id)
-        ->update(['description'=>$request->description]);
+        ->update(['description' => $request->description]);
 
         return redirect('/httt/roles')->with('success','Cập nhật quyền truy cập thành công');
     }

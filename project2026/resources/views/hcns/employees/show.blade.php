@@ -78,7 +78,7 @@
 
             <div class="mb-3">
                 <label>File chứng chỉ</label>
-                <input type="file" name="certificate_file" class="border p-2 w-full">
+                <input type="file" name="certificate_file" class="border p-2 w-full" accept=".pdf, .jpg, .jpeg, .png">
             </div>
             <button class="bg-green-600 text-white px-4 py-2 rounded">Tải lên</button>
         </form>

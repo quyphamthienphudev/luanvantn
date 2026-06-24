@@ -105,15 +105,13 @@
                         <!-- NGÀY BẮT ĐẦU & KẾT THÚC -->
                         <div class="row">
                             <div class="col-6 mb-3">
-                                <label class="form-label fw-bold small text-secondary">Từ ngày <span
-                                        class="text-danger">*</span></label>
+                                <label class="form-label fw-bold small text-secondary">Từ ngày</label>
                                 <input type="date" name="start_date" id="start_date"
                                     class="form-control"
                                     value="{{ old('start_date') }}" min="{{ date('Y-m-d') }}">
                             </div>
                             <div class="col-6 mb-3">
-                                <label class="form-label fw-bold small text-secondary">Đến ngày <span
-                                        class="text-danger">*</span></label>
+                                <label class="form-label fw-bold small text-secondary">Đến ngày</label>
                                 <input type="date" name="end_date" id="end_date"
                                     class="form-control"
                                     value="{{ old('end_date') }}" min="{{ date('Y-m-d') }}">
@@ -123,7 +121,7 @@
                         <!-- LÝ DO -->
                         <div class="mb-3">
                             <label class="form-label fw-bold small text-secondary">Lý do xin nghỉ
-                                phép<span class="text-danger"> *</span></label>
+                                phép</label>
                             <textarea name="reason" class="form-control"
                                 rows="4">{{ old('reason') }}</textarea>
                         </div>
