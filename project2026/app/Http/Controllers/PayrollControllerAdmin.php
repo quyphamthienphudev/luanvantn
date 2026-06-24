@@ -87,7 +87,7 @@ class PayrollControllerAdmin extends Controller
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
                     
-        $total_salary = $base_salary + $bonus - $deduction;
+        $total_salary = $base_salary + $bonus - $deduction - 0.1 * ($base_salary + $bonus - $deduction);
         
         DB::table('payrolls')->insert([
             'employee_id' => $request->employee_id,
@@ -169,7 +169,7 @@ class PayrollControllerAdmin extends Controller
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
 
-        $total_salary = $base_salary + $bonus - $deduction;
+        $total_salary = $base_salary + $bonus - $deduction - 0.1 * ($base_salary + $bonus - $deduction);
         
         DB::table('payrolls')->where('id', $id)->update([
             'employee_id' => $request->employee_id,

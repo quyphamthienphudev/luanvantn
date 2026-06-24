@@ -36,16 +36,6 @@
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         <div class="mb-4">
-            <label>Mã nhân viên</label>
-            <input type="text" name="employee_code" value="{{ $employee->employee_code }}"
-                class="w-full border p-2 rounded bg-gray-100" readonly>
-        </div>
-        <div class="mb-4">
-            <label>Họ tên nhân viên</label>
-            <input type="text" name="full_name" value="{{ $employee->full_name }}" class="w-full border p-2 rounded"
-                placeholder="Họ tên nhân viên">
-        </div>
-        <div class="mb-4">
             <label>Phòng ban</label>
             <select name="department_id" class="w-full border p-2 rounded">
                 @foreach($departments as $d)
@@ -54,6 +44,16 @@
                 </option>
                 @endforeach
             </select>
+        </div>
+        <div class="mb-4">
+            <label>Mã nhân viên</label>
+            <input type="text" name="employee_code" value="{{ $employee->employee_code }}"
+                class="w-full border p-2 rounded bg-gray-100" readonly>
+        </div>
+        <div class="mb-4">
+            <label>Họ tên nhân viên</label>
+            <input type="text" name="full_name" value="{{ $employee->full_name }}" class="w-full border p-2 rounded"
+                placeholder="Họ tên nhân viên">
         </div>
         <div class="mb-4">
             <label>Email</label>

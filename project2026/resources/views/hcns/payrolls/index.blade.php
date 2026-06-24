@@ -59,7 +59,8 @@
                         <th class="border px-4 py-2">Lương cơ bản</th>
                         <th class="border px-4 py-2">Thưởng</th>
                         <th class="border px-4 py-2">Khấu trừ</th>
-                        <th class="border px-4 py-2">Tổng lương</th>
+                        <th class="border px-4 py-2">Thuế thu nhập cá nhân</th>
+                        <th class="border px-4 py-2">Lương thực lãnh</th>
                         <th class="border px-4 py-2">Thao tác</th>
                     </tr>
                 </thead>
@@ -74,8 +75,8 @@
                         <td class="border px-4 py-2 text-right">{{ number_format($p->base_salary ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right">{{ number_format($p->bonus ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right">{{ number_format($p->deduction ?? 0) }} VNĐ</td>
-                        <td class="border px-4 py-2 text-right font-bold">{{ number_format($p->total_salary ?? 0)
-                            }} VNĐ</td>
+                        <td class="border px-4 py-2 text-right">{{ number_format(($p->base_salary + $p->bonus - $p->deduction) * 0.1 ?? 0) }} VNĐ</td>
+                        <td class="border px-4 py-2 text-right font-bold">{{ number_format($p->total_salary ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-center">
                             <a href="/hcns/payrolls/{{ $p->id }}" class="text-blue-500">Xem</a>
                             <a href="/hcns/payrolls/edit/{{ $p->id }}" class="text-yellow-500 ml-2">Sửa</a>
