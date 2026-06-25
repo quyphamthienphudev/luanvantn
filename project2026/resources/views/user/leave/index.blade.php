@@ -77,9 +77,15 @@
 
 @section('content')
 
+<p>Số đơn nghỉ phép còn lại: <b style="color: red; ">{{ $resumeLeave }}</b> đơn</p>
 @if(session('success'))
 <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
     {{ session('success') }}
+</div>
+@endif
+@if(session('error'))
+<div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm" role="alert">
+    {{ session('error') }}
 </div>
 @endif
 <div class="rounded mt-6">

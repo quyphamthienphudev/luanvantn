@@ -12,8 +12,9 @@ class LeaveController extends Controller
         $leaves = LeaveRequest::where('users_id', Auth::id())
                 ->orderBy('id', 'desc')
                 ->get();
-
-        return view('user.leave.index', compact('leaves'));
+        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->count();
+        $resumeLeave = 15 - $countLeave;
+        return view('user.leave.index', compact('leaves','resumeLeave'));
     }
 
     public function store(Request $request)
@@ -29,6 +30,13 @@ class LeaveController extends Controller
         'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu.',
         'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
         ]);
+
+        //Đếm số lượng đơn nghỉ phép đã duyệt
+        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->count();
+        if ($countLeave >= 15) 
+        {
+            return redirect()->back()->with('error', 'Bạn đã sử dụng hết 15 đơn nghỉ phép, không thể gửi thêm đơn nghỉ phép mới');
+        }
 
         LeaveRequest::create([
             'users_id'   => Auth::id(),

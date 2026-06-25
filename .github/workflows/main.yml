@@ -1,4 +1,4 @@
-name: Deploy to Byethost
+name: Deploy to hosting
 on:
   push:
     branches: [ "main" ]
@@ -8,7 +8,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Upload to Byethost with FTP
+    - name: Upload to hosting with FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP }} 
