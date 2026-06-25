@@ -85,6 +85,9 @@
     @error('reason')
         <p class="text-red-500 text-sm">{{ $message }}</p>
     @enderror
+    @if(session('error'))
+    <div style="color: red; ">{{ session('error') }}</div>
+    @endif
     <div class="row">
         <div class="col-md-6 mb-4">
             <label class="form-label fw-bold small">

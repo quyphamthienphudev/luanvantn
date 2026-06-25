@@ -65,7 +65,7 @@ class PayrollControllerAdmin extends Controller
             
         if ($exists) 
         {
-            return redirect()->back()->with('error', 'Bảng lương đã tồn tại.')->withInput();
+            return redirect()->back()->with('error', 'Bảng lương đã tồn tại')->withInput();
         }
 
         $employee = DB::table('employees')->where('id', $request->employee_id)->first();
@@ -99,7 +99,7 @@ class PayrollControllerAdmin extends Controller
             'total_salary' => $total_salary,
             'users_id' => Auth::id()
         ]);
-        return redirect('/hcns/payrolls')->with('success', 'Tạo bảng lương thành công.');
+        return redirect('/hcns/payrolls')->with('success', 'Tạo bảng lương thành công');
     }
 
     public function show($id)
@@ -149,7 +149,7 @@ class PayrollControllerAdmin extends Controller
             
         if ($exists) 
         {
-            return redirect()->back()->with('error', 'Bảng lương đã tồn tại.')->withInput();
+            return redirect()->back()->with('error', 'Bảng lương đã tồn tại')->withInput();
         }
 
         $employee = DB::table('employees')->where('id', $request->employee_id)->first();
@@ -181,14 +181,14 @@ class PayrollControllerAdmin extends Controller
             'total_salary' => $total_salary
         ]);
 
-        return redirect('/hcns/payrolls')->with('success', 'Cập nhật bảng lương thành công.');
+        return redirect('/hcns/payrolls')->with('success', 'Cập nhật bảng lương thành công');
     }
 
     public function destroy($id)
     {
         $payroll = DB::table('payrolls')->where('id', $id)->first();
         DB::table('payrolls')->where('id', $id)->delete();
-        return back()->with('success', 'Xóa bảng lương thành công.');
+        return back()->with('success', 'Xóa bảng lương thành công');
     }
 
     public function export(Request $request)
@@ -213,7 +213,7 @@ class PayrollControllerAdmin extends Controller
         
         if ($payrolls->isEmpty()) 
         {
-            return redirect()->back()->with('error', 'Không có dữ liệu.');
+            return redirect()->back()->with('error', 'Không có dữ liệu');
         }
         
         $filename = 'bang_luong_' . $month . '_' . $year . '.csv';

@@ -20,7 +20,7 @@ class ManageEmployeeControllerAdmin extends Controller
             ->when($search, function($q) use ($search){
                 $q->where('full_name','like','%'.$search.'%')
                   ->orWhere('employee_code',$search)
-                  // tìm theo tên phòng ban
+                  // Tìm theo tên phòng ban
                   ->orWhereHas('department', function($query) use ($search){
                         $query->where('name','like','%'.$search.'%');
                     });
@@ -142,7 +142,7 @@ class ManageEmployeeControllerAdmin extends Controller
         
         if ($employees->isEmpty()) 
         {
-            return redirect()->back()->with('error', 'Không có dữ liệu.');
+            return redirect()->back()->with('error', 'Không có dữ liệu');
         }
         
         $filename = 'ds_nhan_vien' . '.csv';
@@ -157,7 +157,7 @@ class ManageEmployeeControllerAdmin extends Controller
         $stt = 1;
         foreach ($employees as $employee) 
         {
-            //hiển thị giới tính Nam hoặc Nữ khi xuất file
+            // Hiển thị giới tính Nam hoặc Nữ khi xuất file
             $gender = '';
 
             if ($employee->gender == 'male') {
@@ -174,7 +174,7 @@ class ManageEmployeeControllerAdmin extends Controller
                 $employee->position_name ?? '',
                 $gender,
                 $employee->date_of_birth ? date('d/m/Y', strtotime($employee->date_of_birth)) : '',
-                //hiển thị đầy đủ số điện thoại có số 0 ở đầu
+                // Hiển thị đầy đủ số điện thoại có số 0 ở đầu
                 "\t" . ($employee->phone ?? ''),
                 $employee->email ?? '',
                 ($employee->address ?? '') . ", " . ($employee->street ?? '') . ", " . ($employee->ward ?? '') . ", " . ($employee->province ?? '')

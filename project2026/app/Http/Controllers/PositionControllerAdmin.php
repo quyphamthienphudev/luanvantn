@@ -126,7 +126,7 @@ class PositionControllerAdmin extends Controller
         
         if ($positions->isEmpty()) 
         {
-            return redirect()->back()->with('error', 'Không có dữ liệu.');
+            return redirect()->back()->with('error', 'Không có dữ liệu');
         }
         
         $filename = 'ds_cong_viec' . '.csv';

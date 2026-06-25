@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class LeaveControllerQLCL extends Controller
 {
@@ -22,18 +23,25 @@ class LeaveControllerQLCL extends Controller
     public function update(Request $request, $id) 
     {
         $leave = LeaveRequest::findOrFail($id);
-        $validated = $request->validate([
-            'start_date' => 'required|date',
+        $validate = $request->validate([
+            'start_date' => 'required|date|after_or_equal:today',
             'end_date'   => 'required|date|after_or_equal:start_date',
             'reason'     => 'required|string'
         ], [
-            'start_date.required' => 'Vui lòng chọn ngày bắt đầu.',
-            'start_date.after_or_equal' => 'Ngày bắt đầu không được chọn ngày trong quá khứ.',
-            'end_date.required' => 'Vui lòng chọn ngày kết thúc.',
-            'end_date.after_or_equal' => 'Ngày kết thúc phải ngay ngày hiện tại hoặc sau ngày bắt đầu.',
-            'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
+            'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
+            'start_date.after_or_equal' => 'Ngày bắt đầu không được nhỏ hơn ngày hiện tại',
+            'end_date.required' => 'Vui lòng chọn ngày kết thúc',
+            'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu',
+            'reason.required' => 'Vui lòng nhập lý do nghỉ phép'
         ]);
-        $leave->update($validated);
+
+        // Tính số ngày nghỉ (bao gồm cả ngày bắt đầu và ngày kết thúc)
+        $startDate = Carbon::parse($validate['start_date']);
+        $endDate   = Carbon::parse($validate['end_date']);
+
+        $validate['number_days'] = $startDate->diffInDays($endDate) + 1;
+        $leave->update($validate);
+
         return redirect('/qlcl/leave')->with('success', 'Cập nhật đơn nghỉ phép thành công');
     }
 

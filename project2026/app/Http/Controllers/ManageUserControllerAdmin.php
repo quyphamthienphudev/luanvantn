@@ -124,7 +124,7 @@ class ManageUserControllerAdmin extends Controller
         
         if ($users->isEmpty()) 
         {
-            return redirect()->back()->with('error', 'Không có dữ liệu.');
+            return redirect()->back()->with('error', 'Không có dữ liệu');
         }
         
         $filename = 'ds_tai_khoan' . '.csv';

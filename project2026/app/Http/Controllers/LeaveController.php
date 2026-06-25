@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class LeaveController extends Controller
 {
@@ -12,41 +13,53 @@ class LeaveController extends Controller
         $leaves = LeaveRequest::where('users_id', Auth::id())
                 ->orderBy('id', 'desc')
                 ->get();
-        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->count();
+        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
         $resumeLeave = 15 - $countLeave;
         return view('user.leave.index', compact('leaves','resumeLeave'));
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validate = $request->validate([
         'start_date' => 'required|date|after_or_equal:today',
         'end_date'   => 'required|date|after_or_equal:start_date',
         'reason'     => 'required|string'
         ],[
-        'start_date.required' => 'Vui lòng chọn ngày bắt đầu.',
-        'start_date.after_or_equal' => 'Ngày bắt đầu không được nhỏ hơn ngày hiện tại.',
-        'end_date.required' => 'Vui lòng chọn ngày kết thúc.',
-        'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu.',
-        'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
+        'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
+        'start_date.after_or_equal' => 'Ngày bắt đầu không được nhỏ hơn ngày hiện tại',
+        'end_date.required' => 'Vui lòng chọn ngày kết thúc',
+        'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu',
+        'reason.required' => 'Vui lòng nhập lý do nghỉ phép'
         ]);
 
-        //Đếm số lượng đơn nghỉ phép đã duyệt
-        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->count();
+        // Đếm số lượng ngày nghỉ phép
+        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
         if ($countLeave >= 15) 
         {
-            return redirect()->back()->with('error', 'Bạn đã sử dụng hết 15 đơn nghỉ phép, không thể gửi thêm đơn nghỉ phép mới');
+            return redirect()->back()->with('error', 'Bạn đã sử dụng hết 15 ngày nghỉ phép, không thể gửi thêm đơn nghỉ phép mới');
+        }
+
+        // Tính số ngày nghỉ (bao gồm cả ngày bắt đầu và ngày kết thúc)
+        $startDate = Carbon::parse($validate['start_date']);
+        $endDate   = Carbon::parse($validate['end_date']);
+        $numberDays = $startDate->diffInDays($endDate) + 1;
+
+        // Kiểm tra số ngày nghỉ phép
+        if($numberDays > $countLeave)
+        {
+            return back()->with('error', 'Số ngày nghỉ phép còn lại không đủ, vui lòng kiểm tra lại');
         }
 
         LeaveRequest::create([
             'users_id'   => Auth::id(),
-            'start_date' => $validated['start_date'],
-            'end_date'   => $validated['end_date'],
-            'reason'     => $validated['reason'],
+            'start_date' => $validate['start_date'],
+            'end_date'   => $validate['end_date'],
+            'number_days' => $numberDays,
+            'reason'     => $validate['reason'],
             'status'     => 'pending'
         ]);
 
-        return redirect('/leave')->with('success', 'Gửi đơn xin nghỉ phép thành công.');
+        return redirect('/leave')->with('success', 'Gửi đơn xin nghỉ phép thành công');
     }
 
     public function edit($id) {
@@ -64,18 +77,32 @@ class LeaveController extends Controller
                 ->where('status', 'pending')
                 ->firstOrFail();
 
-        $validated = $request->validate([
+        $validate = $request->validate([
             'start_date' => 'required|date|after_or_equal:today',
             'end_date'   => 'required|date|after_or_equal:start_date',
             'reason'     => 'required|string'
         ],[
-            'start_date.required' => 'Vui lòng chọn ngày bắt đầu.',
-            'end_date.required' => 'Vui lòng chọn ngày kết thúc.',
-            'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
+            'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
+            'start_date.after_or_equal' => 'Ngày bắt đầu không được nhỏ hơn ngày hiện tại',
+            'end_date.required' => 'Vui lòng chọn ngày kết thúc',
+            'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu',
+            'reason.required' => 'Vui lòng nhập lý do nghỉ phép'
         ]);
 
-        $leave->update($validated);
+        // Tính số ngày nghỉ (bao gồm cả ngày bắt đầu và ngày kết thúc)
+        $startDate = Carbon::parse($validate['start_date']);
+        $endDate   = Carbon::parse($validate['end_date']);
+        $numberDays = $startDate->diffInDays($endDate) + 1;
+        // Kiểm tra số ngày nghỉ phép
+        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
+        if($numberDays > $countLeave)
+        {
+            return back()->with('error', 'Số ngày nghỉ phép còn lại không đủ, vui lòng kiểm tra lại');
+        }
 
-        return redirect('/leave')->with('success', 'Cập nhật đơn nghỉ phép thành công.');
+        $validate['number_days'] = $startDate->diffInDays($endDate) + 1;
+        $leave->update($validate);
+
+        return redirect('/leave')->with('success', 'Cập nhật đơn nghỉ phép thành công');
     }
 } 

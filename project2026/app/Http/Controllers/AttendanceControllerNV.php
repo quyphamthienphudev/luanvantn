@@ -26,7 +26,7 @@ class AttendanceControllerNV extends Controller
         $attendance = Attendance::where('users_id', Auth::id())->where('work_date', $today)->first();
         if ($attendance && $attendance->check_in) 
         {
-            return back()->with('success', 'Bạn đã chấm công vào làm.');
+            return back()->with('success', 'Bạn đã chấm công vào làm');
         }
         $currentTime = Carbon::now();
         $status = $currentTime->format('H:i:s') > '08:00:00' ? 'late' : 'present';
@@ -48,7 +48,7 @@ class AttendanceControllerNV extends Controller
                 'confirm'  => 'no'
             ]);
         }
-        return back()->with('success', 'Chấm công vào làm thành công.');
+        return back()->with('success', 'Chấm công vào làm thành công');
     }
 
     //CHECK OUT
@@ -58,13 +58,13 @@ class AttendanceControllerNV extends Controller
         $attendance = Attendance::where('users_id', Auth::id())->where('work_date', $today)->first();
         if (!$attendance) 
         {
-            return back()->with('success', 'Bạn chưa chấm công vào làm.');
+            return back()->with('success', 'Bạn chưa chấm công vào làm');
         }
         if ($attendance->check_out) 
         {
-            return back()->with('success', 'Bạn đã chấm công tan ca.');
+            return back()->with('success', 'Bạn đã chấm công tan ca');
         }
         $attendance->update(['check_out' => Carbon::now()->format('H:i:s')]);
-        return back()->with('success', 'Chấm công tan ca thành công.');
+        return back()->with('success', 'Chấm công tan ca thành công');
     }
 }

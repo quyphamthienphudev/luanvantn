@@ -77,7 +77,7 @@
 
 @section('content')
 
-<p>Số đơn nghỉ phép còn lại: <b style="color: red; ">{{ $resumeLeave }}</b> đơn</p>
+<p>Số ngày nghỉ phép còn lại: <b style="color: red; ">{{ $resumeLeave }}</b> ngày</p>
 @if(session('success'))
 <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
     {{ session('success') }}
@@ -111,16 +111,16 @@
                         <!-- NGÀY BẮT ĐẦU & KẾT THÚC -->
                         <div class="row">
                             <div class="col-6 mb-3">
-                                <label class="form-label fw-bold small text-secondary">Từ ngày</label>
+                                <label class="form-label fw-bold small text-secondary">Ngày bắt đầu</label>
                                 <input type="date" name="start_date" id="start_date"
                                     class="form-control"
-                                    value="{{ old('start_date') }}" min="{{ date('Y-m-d') }}">
+                                    value="{{ old('start_date') }}">
                             </div>
                             <div class="col-6 mb-3">
-                                <label class="form-label fw-bold small text-secondary">Đến ngày</label>
+                                <label class="form-label fw-bold small text-secondary">Ngày kết thúc</label>
                                 <input type="date" name="end_date" id="end_date"
                                     class="form-control"
-                                    value="{{ old('end_date') }}" min="{{ date('Y-m-d') }}">
+                                    value="{{ old('end_date') }}">
                             </div>
                         </div>
 

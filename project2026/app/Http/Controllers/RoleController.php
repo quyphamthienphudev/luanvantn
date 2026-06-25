@@ -90,7 +90,7 @@ class RoleController extends Controller
         $roles = DB::table('roles')
             ->when($search, function ($query) use ($search) {
 
-            // tìm theo id, name hoặc description
+            // Tìm theo id, name hoặc description
             $query->where('id', 'like', '%' . $search . '%')
                   ->orWhere('name', 'like', '%' . $search . '%')
                   ->orWhere('description', 'like', '%' . $search . '%');

@@ -22,18 +22,18 @@ class LeaveControllerHCNS extends Controller
     public function update(Request $request, $id) 
     {
         $leave = LeaveRequest::findOrFail($id);
-        $validated = $request->validate([
+        $validate = $request->validate([
             'start_date' => 'required|date',
             'end_date'   => 'required|date|after_or_equal:start_date',
             'reason'     => 'required|string'
         ], [
-            'start_date.required' => 'Vui lòng chọn ngày bắt đầu.',
-            'start_date.after_or_equal' => 'Ngày bắt đầu không được chọn ngày trong quá khứ.',
-            'end_date.required' => 'Vui lòng chọn ngày kết thúc.',
-            'end_date.after_or_equal' => 'Ngày kết thúc phải ngay ngày hiện tại hoặc sau ngày bắt đầu.',
-            'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
+            'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
+            'start_date.after_or_equal' => 'Ngày bắt đầu không được chọn ngày trong quá khứ',
+            'end_date.required' => 'Vui lòng chọn ngày kết thúc',
+            'end_date.after_or_equal' => 'Ngày kết thúc phải ngay ngày hiện tại hoặc sau ngày bắt đầu',
+            'reason.required' => 'Vui lòng nhập lý do nghỉ phép'
         ]);
-        $leave->update($validated);
+        $leave->update($validate);
         return redirect('/hcns/leave')->with('success', 'Cập nhật đơn nghỉ phép thành công');
     }
 
