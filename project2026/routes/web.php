@@ -25,27 +25,26 @@ use App\Http\Controllers\ManageEmployeeDisciplinesController;
 
 //-----------------------------------------------------------------------------------
 Route::get('/', function () {
-    if (auth()->check()) {
-
-        if (auth()->user()->role->name === 'admin') {
+    if (auth()->check()) 
+    {
+        if (auth()->user()->role->name === 'admin') 
+        {
             return redirect('/admin/home');
         }
-
-        if (auth()->user()->role->name === 'hcns') {
+        if (auth()->user()->role->name === 'hcns') 
+        {
             return redirect('/hcns/home');
         }
-
-        if (auth()->user()->role->name === 'qlcl') {
+        if (auth()->user()->role->name === 'qlcl') 
+        {
             return redirect('/qlcl/home');
         }
-
-        if (auth()->user()->role->name === 'httt') {
+        if (auth()->user()->role->name === 'httt') 
+        {
             return redirect('/httt/home');
         }
-
         return redirect('/home');
     }
-
     return redirect('/login');
 });
 
@@ -250,4 +249,30 @@ Route::middleware('auth','company.network')->group(function () {
     Route::get('/attendances', [AttendanceControllerNV::class, 'index']);
     Route::post('/attendances/checkin', [AttendanceControllerNV::class, 'checkIn']);
     Route::post('/attendances/checkout', [AttendanceControllerNV::class, 'checkOut']);
+});
+
+// Kiểm tra route hợp lệ
+Route::fallback(function () {
+    if (!auth()->check()) 
+    {
+        return redirect('/login');
+    }
+    $role = auth()->user()->role->name ?? '';
+    if ($role == 'admin') 
+    {
+        return back();
+    }
+    if ($role == 'hcns') 
+    {
+        return back();
+    }
+    if ($role == 'qlcl') 
+    {
+        return back();
+    }
+    if ($role == 'httt') 
+    {
+        return back();
+    }
+    return back();
 });
