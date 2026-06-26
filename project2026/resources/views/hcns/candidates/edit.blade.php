@@ -73,8 +73,8 @@
         <div class="mb-4">
             <label>Giới tính</label>
             <select name="gender" class="w-full border p-2 rounded">
-                <option value="male" {{ $candidates->gender=='male' ? 'selected':'' }}>Nam</option>
-                <option value="female" {{ $candidates->gender=='female' ? 'selected':'' }}>Nữ</option>
+                <option value="male" {{ $candidates->gender=='male' ? 'selected' : '' }}>Nam</option>
+                <option value="female" {{ $candidates->gender=='female' ? 'selected' : '' }}>Nữ</option>
             </select>
         </div>
         <div class="mb-4">

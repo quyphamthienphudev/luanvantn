@@ -64,7 +64,7 @@
             <label>Công việc</label>
             <select name="position_id" class="w-full border p-2 rounded">
                 @foreach($positions as $p)
-                <option value="{{ $p->id }}" {{ $employee->position_id==$p->id ? 'selected' : '' }}>
+                <option value="{{ $p->id }}" {{ $employee->position_id == $p->id ? 'selected' : '' }}>
                     {{ $p->name }}
                 </option>
                 @endforeach
@@ -73,8 +73,8 @@
         <div class="mb-4">
             <label>Giới tính</label>
             <select name="gender" class="w-full border p-2 rounded">
-                <option value="male" {{ $employee->gender=='male' ? 'selected' : '' }}>Nam</option>
-                <option value="female" {{ $employee->gender=='female' ? 'selected' : '' }}>Nữ</option>
+                <option value="male" {{ $employee->gender == 'male' ? 'selected' : '' }}>Nam</option>
+                <option value="female" {{ $employee->gender == 'female' ? 'selected' : '' }}>Nữ</option>
             </select>
         </div>
         <div class="mb-4">
@@ -114,8 +114,8 @@
         <div class="mb-4">
             <label>Trạng thái</label>
             <select name="status" class="w-full border p-2 rounded">
-                <option value="working" {{ $employee->status=='working' ? 'selected' : '' }}>Đang làm</option>
-                <option value="resigned" {{ $employee->status=='resigned' ? 'selected' : '' }}>Đã nghỉ</option>
+                <option value="working" {{ $employee->status == 'working' ? 'selected' : '' }}>Đang làm</option>
+                <option value="resigned" {{ $employee->status == 'resigned' ? 'selected' : '' }}>Đã nghỉ</option>
             </select>
         </div>
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cập nhật</button>

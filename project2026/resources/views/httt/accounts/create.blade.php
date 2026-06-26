@@ -44,11 +44,9 @@
         <div class="mb-4">
             <label>Quyền</label>
             <select name="role" class="w-full border p-2 rounded">
-                <option value="1">Admin</option>
-                <option value="2">Phòng hành chính nhân sự</option>
-                <option value="3">Phòng quản lý chất lượng</option>
-                <option value="4">Phòng hệ thống thông tin</option>
-                <option value="5">Nhân viên</option>
+                @foreach($roles as $r)
+                <option value="{{ $r->id }}">{{ $r->description }}</option>
+                @endforeach
             </select>
         </div>
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">

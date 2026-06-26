@@ -50,7 +50,7 @@
                     <td class="p-3">{{ $u->email }}</td>
                     <td class="p-3">
                         @if($u->role_id == '1')
-                        Admin
+                        Ban giám đốc
                         @endif
                         @if($u->role_id == '2')
                         Phòng hành chính nhân sự

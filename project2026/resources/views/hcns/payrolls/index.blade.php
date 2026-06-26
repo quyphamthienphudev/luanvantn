@@ -30,13 +30,11 @@
         <div class="mb-6 flex justify-between items-center">
             <form method="GET" action="/hcns/payrolls" class="flex gap-2">
                 <select name="month" class="border rounded px-3 py-2">
-                    @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng
-                        {{ $i }}</option>
+                    @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng {{ $i }}</option>
                     @endfor
                 </select>
                 <select name="year" class="border rounded px-3 py-2">
-                    @for($i = 2001; $i <= 2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>
-                        Năm {{ $i }}</option>
+                    @for($i = 2001; $i <= 2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>Năm {{ $i }}</option>
                     @endfor
                 </select>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Xem bảng lương</button>

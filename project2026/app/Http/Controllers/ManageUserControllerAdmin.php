@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Role;
 
 class ManageUserControllerAdmin extends Controller
 {
@@ -19,7 +20,8 @@ class ManageUserControllerAdmin extends Controller
     //SHOW CREATE
     public function create()
     {
-        return view('httt.accounts.create');
+        $roles = DB::table('roles')->get();
+        return view('httt.accounts.create',compact('roles'));
     }
 
     //STORE
@@ -52,7 +54,8 @@ class ManageUserControllerAdmin extends Controller
     public function edit($id)
     {
         $user = DB::table('users')->where('id',$id)->first();
-        return view('httt.accounts.edit',compact('user'));
+        $roles = Role::all();
+        return view('httt.accounts.edit',compact('user','roles'));
     }
 
     //UPDATE
@@ -60,12 +63,13 @@ class ManageUserControllerAdmin extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'email'=>"required|email|unique:users,email"
+            // 'email'=>"required|email|unique:users,email"
+            'email'=>"required|email"
         ],[
             'name.required' => 'Họ tên không được để trống',
             'email.required' => 'Email không được để trống',
             'email.email' => 'Email không đúng định dạng',
-            'email.unique' => 'Email này đã được sử dụng',
+            // 'email.unique' => 'Email này đã được sử dụng',
             'password.required' => 'Mật khẩu không được để trống',
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự'
         ]);

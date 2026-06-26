@@ -107,7 +107,7 @@
             <div class="mb-4">
                 <label>Tháng</label>
                 <select name="month" class="w-full border p-2 rounded">
-                    @for($i=1;$i<=12;$i++) <option value="{{ $i }}" {{ $month==$i ? 'selected' :'' }}>
+                    @for($i=1;$i<=12;$i++) <option value="{{ $i }}" {{ $month== $i ? 'selected' :'' }}>
                         Tháng {{ $i }}
                         </option>
                     @endfor
