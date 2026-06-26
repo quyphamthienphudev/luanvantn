@@ -46,7 +46,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($positions as $p)
+                @forelse($positions as $p)
                 <tr class="border-b">
                     <td class="p-3">{{ $p->name }}</td>
                     <td class="p-3">{{ $p->base_salary }}</td>
@@ -63,7 +63,11 @@
                         </a>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="border-b">
+                    <td colspan="4" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

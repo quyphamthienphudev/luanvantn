@@ -41,7 +41,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($departments as $d)
+                @forelse($departments as $d)
                 <tr class="border-b">
                     <td class="p-3">{{ $d->name }}</td>
                     <td class="p-3">{{ $d->description }}</td>
@@ -52,7 +52,11 @@
                             onclick="return confirm('Bạn có muốn xoá phòng ban này ?')">Xóa</a>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="border-b">
+                    <td colspan="3" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

@@ -17,7 +17,7 @@
     <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
         @if(!$payroll)
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            Không tìm thấy bảng lương !
+            Không tìm thấy bảng lương
         </div>
         @else
         <h2 class="text-xl font-bold mb-4">Chi tiết bảng lương</h2>

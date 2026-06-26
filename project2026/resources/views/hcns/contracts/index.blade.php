@@ -37,7 +37,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($contracts as $c)
+                @forelse($contracts as $c)
                 <tr class="border-b">
                     <td class="p-3">{{ $c->contract_code }}</td>
                     <td class="p-3">{{ $c->employee->full_name }}</td>
@@ -87,7 +87,7 @@
                             class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
                         @endif
                     </td>
-                    <td class="p-3 ">
+                    <td class="p-3">
                         @if($c->contract_file)
                         <a href="/hcns/contracts/view/{{ $c->id }}" target="_blank"
                             class="bg-green-600 text-white px-3 py-1 rounded">Xem</a>
@@ -96,7 +96,11 @@
                         @endif
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="border-b">
+                    <td colspan="8" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

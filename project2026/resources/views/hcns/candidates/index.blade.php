@@ -41,7 +41,7 @@
             </thead>
 
             <tbody>
-                @foreach($candidates as $c)
+                @forelse($candidates as $c)
                 <tr class="border-b">
                     <td class="p-3">{{ $c->candidate_id }}</td>
                     <td class="p-3">{{ $c->full_name }}</td>
@@ -54,7 +54,11 @@
                             onclick="return confirm('Bạn có muốn xoá hồ sơ ứng viên này ?')">Xóa</a>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="border-b">
+                    <td colspan="4" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

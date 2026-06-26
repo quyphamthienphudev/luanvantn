@@ -37,7 +37,7 @@
             </thead>
 
             <tbody>
-                @foreach($rewards as $r)
+                @forelse($rewards as $r)
                 <tr class="border-b">
                     <td class="p-3">{{ $r->employee->full_name }}</td>
                     <td class="p-3">{{ $r->title }}</td>
@@ -50,7 +50,11 @@
                             onclick="return confirm('Bạn có muốn xoá khen thưởng này ?')">Xóa</a>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="border-b">
+                    <td colspan="5" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

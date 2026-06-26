@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($attendances as $atd)
+                    @forelse($attendances as $atd)
                     <tr class="hover:bg-gray-50 border-b">
                         <td class="p-3">
                             <p class="font-bold text-gray-800">{{ $atd->user?->name ?? 'N/A' }}</p>
@@ -70,7 +70,11 @@
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    @empty
+                    <tr class="hover:bg-gray-50 border-b">
+                        <td colspan="7" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

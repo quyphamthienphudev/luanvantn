@@ -52,7 +52,7 @@
         </thead>
 
         <tbody>
-            @foreach($allLeaves as $leave)
+            @forelse($allLeaves as $leave)
             <tr class="border-b">
                 <td class="ps-3">
                     <div class="fw-bold">{{ $leave->user->name ?? $leave->employee->full_name ?? 'N/A' }}</div>
@@ -94,7 +94,11 @@
                     </div>
                 </td>
             </tr>
-            @endforeach
+            @empty
+            <tr class="border-b">
+                <td colspan="5" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+            </tr>
+            @endforelse
         </tbody>
 
     </table>

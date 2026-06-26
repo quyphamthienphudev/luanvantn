@@ -196,8 +196,8 @@
                                 @empty
                                 <tr>
                                     <td colspan="4" class="text-center py-5 text-muted">
-                                        <i class="fas fa-folder-open fa-3x mb-3 d-block opacity-25"></i>
-                                        Bạn chưa tạo đơn xin nghỉ phép nào.
+                                        <i class="fas fa-3x mb-3 d-block opacity-25"></i>
+                                        Bạn chưa tạo đơn xin nghỉ phép nào
                                     </td>
                                 </tr>
                                 @endforelse

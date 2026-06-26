@@ -87,7 +87,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="10" class="text-center">Chưa có dữ liệu</td>
+                        <td colspan="11" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
                     </tr>
                     @endforelse
                 </tbody>
