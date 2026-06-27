@@ -39,7 +39,7 @@ class EmployeeCertificateController extends Controller
             'expiry_date' => $request->expiry_date
         ]);
 
-        return back()->with('success', 'Tải chứng chỉ thành công');
+        return back()->with('success', 'Thêm chứng chỉ thành công');
     }
 
     public function view($id)

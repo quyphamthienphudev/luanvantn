@@ -26,11 +26,12 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
+            'id' => 'required|unique:roles,id',
             'name' => 'required',
             'description' => 'required'
         ],[
             'id.required' => 'ID không được để trống',
+            'id.unique' => 'ID đã tồn tại',
             'name.required' => 'Tên quyền truy cập không được để trống',
             'description.required' => 'Thông tin quyền truy cập không được để trống'
         ]);

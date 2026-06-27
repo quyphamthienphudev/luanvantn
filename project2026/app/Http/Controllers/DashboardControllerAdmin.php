@@ -48,10 +48,6 @@ class DashboardControllerAdmin extends Controller
             {
                 return back()->with('error_year','Vui lòng nhập năm để thống kê');
             }
-            else if(!is_numeric($year))
-            {
-                return back()->with('error_year','Vui lòng nhập năm thống kê là số');
-            }
             else 
             {
                 $totalYearSalary = DB::table('payrolls')->whereRaw("year = ?", [$year])->sum('total_salary');
@@ -64,10 +60,6 @@ class DashboardControllerAdmin extends Controller
             if(!$month || !$year)
             {
                 return back()->with('error_month','Vui lòng điền đầy đủ tháng và năm để thống kê');
-            }
-            else if(!is_numeric($year))
-            {
-                return back()->with('error_year','Vui lòng nhập năm thống kê là số');
             }
             else 
             {

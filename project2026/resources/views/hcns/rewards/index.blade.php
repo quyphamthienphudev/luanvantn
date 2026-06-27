@@ -41,7 +41,7 @@
                 <tr class="border-b">
                     <td class="p-3">{{ $r->employee->full_name }}</td>
                     <td class="p-3">{{ $r->title }}</td>
-                    <td class="p-3">{{ $r->amount }}</td>
+                    <td class="p-3">{{ number_format($r->amount) }} VNĐ</td>
                     <td class="p-3">{{ $r->decision_date ? date('d/m/Y', strtotime($r->decision_date)) : '' }}</td>
                     <td class="p-3 space-x-2">
                         <a href="/hcns/rewards/edit/{{ $r->id }}"

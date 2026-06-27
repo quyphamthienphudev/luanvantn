@@ -142,13 +142,13 @@
             @if(!is_null($totalYearSalary))
             <div class="bg-white p-6 rounded-xl shadow">
                 <h3 class="text-gray-500">Tổng lương năm {{ $year }}</h3>
-                <p class="text-3xl font-bold text-green-600">{{ $totalYearSalary }} VNĐ</p>
+                <p class="text-3xl font-bold text-green-600">{{ number_format($totalYearSalary) }} VNĐ</p>
             </div>
             @endif
             @if(!is_null($totalMonthSalary))
             <div class="bg-white p-6 rounded-xl shadow">
                 <h3 class="text-gray-500">Tổng lương tháng {{ $month }} / năm {{ $year }}</h3>
-                <p class="text-3xl font-bold text-purple-600">{{ $totalMonthSalary }} VNĐ</p>
+                <p class="text-3xl font-bold text-purple-600">{{ number_format($totalMonthSalary) }} VNĐ</p>
             </div>
             @endif
         </div>

@@ -52,7 +52,7 @@ class PayrollControllerAdmin extends Controller
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
             'month' => 'required|integer|min:1|max:12',
-            'year' => 'required|integer|min:2020|max:2099',
+            'year' => 'required|integer|min:2001|max:2099',
             'bonus' => 'nullable|integer|min:0',
             'deduction' => 'nullable|integer|min:0'
         ]);
@@ -137,7 +137,7 @@ class PayrollControllerAdmin extends Controller
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
             'month' => 'required|integer|min:1|max:12',
-            'year' => 'required|integer|min:2020|max:2099'
+            'year' => 'required|integer|min:2001|max:2099'
         ]);
 
         $exists = DB::table('payrolls')

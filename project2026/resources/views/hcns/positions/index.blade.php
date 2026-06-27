@@ -49,8 +49,8 @@
                 @forelse($positions as $p)
                 <tr class="border-b">
                     <td class="p-3">{{ $p->name }}</td>
-                    <td class="p-3">{{ $p->base_salary }}</td>
-                    <td class="p-3">{{ $p->max_salary }}</td>
+                    <td class="p-3">{{ number_format($p->base_salary) }} VNĐ</td>
+                    <td class="p-3">{{ number_format($p->max_salary) }} VNĐ</td>
                     <td class="p-3 space-x-2">
                         <a href="/hcns/positions/edit/{{ $p->id }}"
                             class="bg-yellow-500 text-white px-3 py-1 rounded">

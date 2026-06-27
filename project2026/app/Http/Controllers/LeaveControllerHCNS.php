@@ -28,9 +28,8 @@ class LeaveControllerHCNS extends Controller
             'reason'     => 'required|string'
         ], [
             'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
-            'start_date.after_or_equal' => 'Ngày bắt đầu không được chọn ngày trong quá khứ',
             'end_date.required' => 'Vui lòng chọn ngày kết thúc',
-            'end_date.after_or_equal' => 'Ngày kết thúc phải ngay ngày hiện tại hoặc sau ngày bắt đầu',
+            'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu',
             'reason.required' => 'Vui lòng nhập lý do nghỉ phép'
         ]);
         $leave->update($validate);

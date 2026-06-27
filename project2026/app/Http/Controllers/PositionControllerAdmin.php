@@ -29,7 +29,7 @@ class PositionControllerAdmin extends Controller
         $request->validate([
             'name' => 'required',
             'base_salary' => 'required|numeric|min:0',
-            'max_salary' => 'required|numeric|min:0'
+            'max_salary' => 'required|numeric|min:0|gte:base_salary'
         ],[
             'name.required' => 'Tên công việc không được để trống',
             'base_salary.required' => 'Lương cơ bản không được để trống',
@@ -37,7 +37,8 @@ class PositionControllerAdmin extends Controller
             'base_salary.min' => 'Lương cơ bản không hợp lệ',
             'max_salary.required' => 'Lương cao nhất không được để trống',
             'max_salary.numeric' => 'Lương cao nhất chỉ được nhập số',
-            'max_salary.min' => 'Lương cao nhất không hợp lệ'
+            'max_salary.min' => 'Lương cao nhất không hợp lệ',
+            'max_salary.gte' => 'Lương cao nhất không được ít hơn lương cơ bản'
         ]);
 
         DB::table('positions')->insert([
@@ -63,7 +64,7 @@ class PositionControllerAdmin extends Controller
         $request->validate([
             'name' => 'required',
             'base_salary' => 'required|numeric|min:0',
-            'max_salary' => 'required|numeric|min:0'
+            'max_salary' => 'required|numeric|min:0|gte:base_salary'
         ],[
             'name.required' => 'Tên công việc không được để trống',
             'base_salary.required' => 'Lương cơ bản không được để trống',
@@ -71,7 +72,8 @@ class PositionControllerAdmin extends Controller
             'base_salary.min' => 'Lương cơ bản không hợp lệ',
             'max_salary.required' => 'Lương cao nhất không được để trống',
             'max_salary.numeric' => 'Lương cao nhất chỉ được nhập số',
-            'max_salary.min' => 'Lương cao nhất không hợp lệ'
+            'max_salary.min' => 'Lương cao nhất không hợp lệ',
+            'max_salary.gte' => 'Lương cao nhất không được ít hơn lương cơ bản'
         ]);
 
         DB::table('positions')
