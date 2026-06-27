@@ -19,7 +19,7 @@
     </a>
     <form method="GET" action="/httt/roles" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
-            placeholder="Tìm theo id, name hoặc mô tả" style="width:400px;">
+            placeholder="Tìm theo tên quyền truy cập hoặc mô tả" style="width:400px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
     @if(session('success'))
@@ -36,8 +36,7 @@
         <table class="w-full text-left">
             <thead class="bg-gray-200">
                 <tr>
-                    <th class="p-3">ID</th>
-                    <th class="p-3">Name</th>
+                    <th class="p-3">Tên quyền truy cập</th>
                     <th class="p-3">Mô tả</th>
                     <th class="p-3">Hành động</th>
                 </tr>
@@ -45,7 +44,6 @@
             <tbody>
                 @foreach($roles as $r)
                 <tr class="border-b">
-                    <td class="p-3">{{ $r->id }}</td>
                     <td class="p-3">{{ $r->name }}</td>
                     <td class="p-3">{{ $r->description }}</td>
                     <td class="p-3 space-x-2">

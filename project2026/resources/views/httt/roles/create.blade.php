@@ -20,9 +20,6 @@
     </h1>
     <form action="/httt/roles/store" method="POST" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
-        @error('id')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
         @error('name')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
@@ -30,12 +27,8 @@
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         <div class="mb-4">
-            <label>ID</label>
-            <input type="text" name="id" class="w-full border p-2 rounded" placeholder="ID">
-        </div>
-        <div class="mb-4">
-            <label>Name</label>
-            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Name">
+            <label>Tên quyền truy cập</label>
+            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên quyền truy cập">
         </div>
         <div class="mb-4">
             <label>Mô tả</label>

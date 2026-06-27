@@ -26,7 +26,7 @@ class ManageCandidateControllerAdmin extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'candidate_id' => 'required|unique:candidates,candidate_id',
+        'candidate_id' => 'required|unique:candidates,candidate_id|regex:/^[A-Za-z0-9_-]+$/',
         'full_name' => 'required',
         'first_name' => 'required',
         'last_name' => 'required',
@@ -36,6 +36,7 @@ class ManageCandidateControllerAdmin extends Controller
         ],[
             'candidate_id.required' => 'Vui lòng nhập mã hồ sơ',
             'candidate_id.unique' => 'Mã hồ sơ đã tồn tại, vui lòng kiểm tra lại',
+            'candidate_id.regex' => 'Mã hồ sơ không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt',
             'full_name.required' => 'Vui lòng nhập họ tên ứng viên',
             'first_name.required' => 'Vui lòng nhập tên',
             'last_name.required' => 'Vui lòng nhập họ',

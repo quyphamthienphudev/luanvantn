@@ -26,18 +26,15 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required|unique:roles,id',
-            'name' => 'required',
+            'name' => 'required|regex:/^[A-Za-z0-9_-]+$/',
             'description' => 'required'
         ],[
-            'id.required' => 'ID không được để trống',
-            'id.unique' => 'ID đã tồn tại',
             'name.required' => 'Tên quyền truy cập không được để trống',
-            'description.required' => 'Thông tin quyền truy cập không được để trống'
+            'name.regex' => 'Tên quyền truy cập không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt',
+            'description.required' => 'Mô tả không được để trống'
         ]);
 
         DB::table('roles')->insert([
-            'id'=> $request->id,
             'name'=> $request->name,
             'description'=> $request->description
         ]);
@@ -58,7 +55,7 @@ class RoleController extends Controller
         $request->validate([
             'description' => 'required'
         ],[
-            'description.required' => 'Thông tin quyền truy cập không được để trống'
+            'description.required' => 'Mô tả không được để trống'
         ]);
 
         DB::table('roles')
@@ -92,8 +89,7 @@ class RoleController extends Controller
             ->when($search, function ($query) use ($search) {
 
             // Tìm theo id, name hoặc description
-            $query->where('id', 'like', '%' . $search . '%')
-                  ->orWhere('name', 'like', '%' . $search . '%')
+            $query->where('name', 'like', '%' . $search . '%')
                   ->orWhere('description', 'like', '%' . $search . '%');
             })
         ->get();

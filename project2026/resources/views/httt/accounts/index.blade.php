@@ -34,7 +34,6 @@
         <table class="w-full text-left">
             <thead class="bg-gray-200">
                 <tr>
-                    <th class="p-3">STT</th>
                     <th class="p-3">Họ tên</th>
                     <th class="p-3">Email</th>
                     <th class="p-3">Quyền</th>
@@ -45,7 +44,6 @@
             <tbody>
                 @foreach($users as $u)
                 <tr class="border-b">
-                    <td class="p-3">{{ $u->id }}</td>
                     <td class="p-3">{{ $u->name }}</td>
                     <td class="p-3">{{ $u->email }}</td>
                     <td class="p-3">

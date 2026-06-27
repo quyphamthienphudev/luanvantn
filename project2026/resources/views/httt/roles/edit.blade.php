@@ -24,19 +24,14 @@
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
         <div class="mb-4">
-            <label>ID</label>
-            <input type="text" name="id" value="{{ $roles->id }}" class="w-full border p-2 rounded bg-gray-100"
-                readonly>
-        </div>
-        <div class="mb-4">
-            <label>Name</label>
+            <label>Tên quyền truy cập</label>
             <input type="text" name="name" value="{{ $roles->name }}" class="w-full border p-2 rounded bg-gray-100"
                 readonly>
         </div>
         <div class="mb-4">
             <label>Mô tả</label>
             <input type="text" name="description" value="{{ $roles->description }}" class="w-full border p-2 rounded"
-                placeholder="Name">
+                placeholder="Mô tả">
         </div>
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
             Cập nhật
