@@ -28,7 +28,7 @@
         @enderror
         <div class="mb-4">
             <label>Tên phòng ban</label>
-            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên phòng ban">
+            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên phòng ban" maxlength="100">
         </div>
         <div class="mb-4">
             <label>Mô tả thông tin</label>

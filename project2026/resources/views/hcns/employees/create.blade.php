@@ -42,7 +42,7 @@
         </div>
         <div class="mb-4">
             <label>Mã nhân viên</label>
-            <input type="text" name="employee_code" class="w-full border p-2 rounded" placeholder="Mã nhân viên">
+            <input type="text" name="employee_code" class="w-full border p-2 rounded" placeholder="Mã nhân viên" maxlength="50">
         </div>
         <div class="mb-4">
             <label>Họ tên nhân viên</label>

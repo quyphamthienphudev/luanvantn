@@ -30,7 +30,7 @@
         <div class="mb-4">
             <label>Tên phòng ban</label>
             <input type="text" name="name" value="{{ $department->name }}" class="border p-2 w-full mb-2"
-                placeholder="Tên phòng ban">
+                placeholder="Tên phòng ban" maxlength="100">
         </div>
         <div class="mb-4">
             <label>Mô tả thông tin</label>

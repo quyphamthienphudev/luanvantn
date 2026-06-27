@@ -28,7 +28,7 @@
         @enderror
         <div class="mb-4">
             <label>Tên quyền truy cập</label>
-            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên quyền truy cập">
+            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên quyền truy cập" maxlength="50">
         </div>
         <div class="mb-4">
             <label>Mô tả</label>

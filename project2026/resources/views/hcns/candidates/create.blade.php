@@ -55,7 +55,7 @@
         @enderror
         <div class="mb-4">
             <label>Mã hồ sơ</label>
-            <input type="text" name="candidate_id" class="w-full border p-2 rounded" placeholder="Mã hồ sơ">
+            <input type="text" name="candidate_id" class="w-full border p-2 rounded" placeholder="Mã hồ sơ" maxlength="20">
         </div>
         <div class="mb-4">
             <label>Họ tên nhân viên</label>

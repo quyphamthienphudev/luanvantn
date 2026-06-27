@@ -34,7 +34,7 @@
         <div class="mb-4">
             <label>Email</label>
             <input type="text" name="email" value="{{ $user->email }}" class="w-full border p-2 rounded"
-                placeholder="Email">
+                placeholder="Email" maxlength="150">
         </div>
         <div class="mb-4">
             <label>Quyền</label>

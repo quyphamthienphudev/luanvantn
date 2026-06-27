@@ -31,7 +31,7 @@
         @enderror
         <div class="mb-4">
             <label>Tên công việc</label>
-            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên công việc">
+            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên công việc" maxlength="100">
         </div>
         <div class="mb-4">
             <label>Lương cơ bản</label>
