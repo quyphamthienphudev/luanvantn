@@ -13,7 +13,7 @@ class DashboardControllerAdmin extends Controller
         //employees đang làm việc
         $e_working = DB::table('employees')->where('status','working')->count();
 
-        //employees đang làm việc
+        //employees đã nghỉ việc
         $e_resign = DB::table('employees')->where('status','resigned')->count();
 
         //employees
