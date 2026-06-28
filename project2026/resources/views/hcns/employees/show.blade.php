@@ -91,7 +91,7 @@
                 <td style="font-weight:bold;">Ngày hết hạn</td>
                 <td style="font-weight:bold;">File</td>
             </tr>
-            @foreach($employee->certificates as $c)
+            @forelse($employee->certificates as $c)
             <tr>
                 <td>{{ $c->certificate_name }}</td>
                 <td>
@@ -111,7 +111,11 @@
                     @endif
                 </td>
             </tr>
-            @endforeach
+            @empty
+            <tr class="border-b">
+                <td colspan="4" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
+            </tr>
+            @endforelse
         </table>
     </div>
 </body>

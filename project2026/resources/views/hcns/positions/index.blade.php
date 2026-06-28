@@ -65,7 +65,7 @@
                 </tr>
                 @empty
                 <tr class="border-b">
-                    <td colspan="4" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+                    <td colspan="4" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
                 </tr>
                 @endforelse
             </tbody>

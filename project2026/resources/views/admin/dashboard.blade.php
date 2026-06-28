@@ -91,7 +91,7 @@
         </div>
         <br>
         <h1 class="text-2xl font-bold mb-6">
-            Tổng chi phí lương
+            Tổng chi phí lương theo tháng và năm
         </h1>
         <form method="GET" action="{{ url('/admin/dashboard') }}" class="bg-white p-6 rounded shadow w-1/2">
 
@@ -126,14 +126,47 @@
             </div>
 
             <!-- Button -->
-            <button type="submit" name="filter_year"
-                class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-                Thống kê theo năm
-            </button>
-
             <button type="submit" name="filter_month"
                 class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-                Thống kê theo tháng / năm
+                Thống kê
+            </button>
+
+        </form>
+        <br>
+        <div class="grid grid-cols-4 gap-6">
+            @if(!is_null($totalMonthSalary))
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h3 class="text-gray-500">Tổng lương tháng {{ $month }} / năm {{ $year }}</h3>
+                <p class="text-3xl font-bold text-purple-600">{{ number_format($totalMonthSalary) }} VNĐ</p>
+            </div>
+            @endif
+        </div>
+        <br>
+        <h1 class="text-2xl font-bold mb-6">
+            Tổng chi phí lương theo năm
+        </h1>
+        <form method="GET" action="{{ url('/admin/dashboard') }}" class="bg-white p-6 rounded shadow w-1/2">
+
+            @csrf
+            @if(session('error_year'))
+            <p class="text-red-500 text-sm">{{ session('error_year') }}</p>
+            @endif
+            
+            <!-- Chọn năm -->
+            <div class="mb-4">
+                <label>Năm</label>
+                <select name="year" class="w-full border p-2 rounded">
+                    @for($i=2001; $i<=2099; $i++) <option value="{{ $i }}" {{ $year== $i ? 'selected' :'' }}>
+                        Năm {{ $i }}
+                        </option>
+                    @endfor
+                </select>
+            </div>
+
+            <!-- Button -->
+            <button type="submit" name="filter_year"
+                class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                Thống kê
             </button>
 
         </form>
@@ -143,12 +176,6 @@
             <div class="bg-white p-6 rounded-xl shadow">
                 <h3 class="text-gray-500">Tổng lương năm {{ $year }}</h3>
                 <p class="text-3xl font-bold text-green-600">{{ number_format($totalYearSalary) }} VNĐ</p>
-            </div>
-            @endif
-            @if(!is_null($totalMonthSalary))
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-gray-500">Tổng lương tháng {{ $month }} / năm {{ $year }}</h3>
-                <p class="text-3xl font-bold text-purple-600">{{ number_format($totalMonthSalary) }} VNĐ</p>
             </div>
             @endif
         </div>

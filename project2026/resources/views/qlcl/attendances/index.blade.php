@@ -76,7 +76,7 @@
                     </tr>
                     @empty
                     <tr class="hover:bg-gray-50 border-b">
-                        <td colspan="7" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+                        <td colspan="7" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
                     </tr>
                     @endforelse
                 </tbody>
