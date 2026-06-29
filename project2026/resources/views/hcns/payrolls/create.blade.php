@@ -21,6 +21,9 @@
             {{ session('error') }}
         </div>
         @endif
+        @error('allowance')
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{{ $message }}</div>
+        @enderror
         <form action="/hcns/payrolls" method="POST">
             @csrf
             <div class="mb-4">

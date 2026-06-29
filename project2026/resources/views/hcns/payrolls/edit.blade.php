@@ -16,16 +16,16 @@
 <body>
     <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
         <h2 class="text-xl font-bold mb-4">Sửa bảng lương</h2>
-
         @if(session('error'))
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             {{ session('error') }}
         </div>
         @endif
-
+        @error('allowance')
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{{ $message }}</div>
+        @enderror
         <form action="/hcns/payrolls/update/{{ $payroll->id }}" method="POST">
             @csrf
-
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Nhân viên</label>
                 <select name="employee_id" id="employee_id" class="w-full border rounded px-3 py-2">

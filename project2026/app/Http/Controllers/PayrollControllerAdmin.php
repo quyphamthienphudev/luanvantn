@@ -56,6 +56,9 @@ class PayrollControllerAdmin extends Controller
             'allowance' => 'required|numeric',
             'bonus' => 'nullable|integer|min:0',
             'deduction' => 'nullable|integer|min:0'
+        ],[
+            'allowance.required' => 'Phụ cấp không được để trống',
+            'allowance.numeric' => 'Phụ cấp chỉ được nhập số'
         ]);
         $exists = DB::table('payrolls')
             ->where('employee_id', $request->employee_id)
@@ -133,6 +136,9 @@ class PayrollControllerAdmin extends Controller
             'month' => 'required|integer|min:1|max:12',
             'year' => 'required|integer|min:2001|max:2099',
             'allowance' => 'required|numeric'
+        ],[
+            'allowance.required' => 'Phụ cấp không được để trống',
+            'allowance.numeric' => 'Phụ cấp chỉ được nhập số'
         ]);
         $exists = DB::table('payrolls')
             ->where('employee_id', $request->employee_id)
