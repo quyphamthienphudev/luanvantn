@@ -92,7 +92,7 @@
                         <a href="/hcns/contracts/view/{{ $c->id }}" target="_blank"
                             class="bg-green-600 text-white px-3 py-1 rounded">Xem</a>
                         @else
-                        <a href="" class="bg-green-600 text-white px-3 py-1 rounded">Xem</a>
+                        <a href="" class="bg-green-600 text-white px-3 py-1 rounded" onclick="return alert('File không tồn tại')">Xem</a>
                         @endif
                     </td>
                 </tr>

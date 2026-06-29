@@ -102,7 +102,7 @@
                 </td>
                 <td>
                     @if($c->certificate_file == '')
-                    <a href="" style="color:blue; font-weight:bold;">Xem
+                    <a href="" style="color:blue; font-weight:bold;" onclick="return alert('File không tồn tại')">Xem
                         file</a>
                     @else
                     <a href="/hcns/employees/certificate/view/{{ $c->id }}" target="_blank"
