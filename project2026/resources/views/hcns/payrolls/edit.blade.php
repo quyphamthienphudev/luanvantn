@@ -65,8 +65,13 @@
             </div>
 
             <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Phụ cấp (VNĐ)</label>
+                <input type="text" name="allowance" value="{{ $request->allowance }}" class="w-full border p-2 rounded">
+            </div>
+
+            <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Thuế thu nhập cá nhân (VNĐ)</label>
-                <input type="text" value="{{ number_format(($payroll->base_salary + $payroll->bonus - $payroll->deduction) * 0.1) }}" class="w-full border p-2 rounded bg-gray-100" readonly>
+                <input type="text" value="{{ number_format(($payroll->base_salary + $request->allowance + $payroll->bonus - $payroll->deduction) * 0.1) }}" class="w-full border p-2 rounded bg-gray-100" readonly>
             </div>
 
             <div class="grid grid-cols-2 gap-4 mb-4">

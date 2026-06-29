@@ -44,6 +44,10 @@
                 <td class="py-2">{{ number_format($payroll->base_salary ?? 0) }} VNĐ</td>
             </tr>
             <tr class="border-b">
+                <th class="text-left py-2">Phụ cấp</th>
+                <td class="py-2">{{ number_format($payroll->allowance ?? 0) }} VNĐ</td>
+            </tr>
+            <tr class="border-b">
                 <th class="text-left py-2">Thưởng</th>
                 <td class="py-2">{{ number_format($payroll->bonus ?? 0) }} VNĐ</td>
             </tr>
@@ -53,7 +57,7 @@
             </tr>
             <tr class="border-b">
                 <th class="text-left py-2">Thuế thu nhập cá nhân</th>
-                <td class="py-2">{{ number_format(($payroll->base_salary + $payroll->bonus - $payroll->deduction) * 0.1 ?? 0) }} VNĐ</td>
+                <td class="py-2">{{ number_format(($payroll->base_salary + $payroll->allowance + $payroll->bonus - $payroll->deduction) * 0.1 ?? 0) }} VNĐ</td>
             </tr>
             <tr class="border-b">
                 <th class="text-left py-2">Tháng</th>

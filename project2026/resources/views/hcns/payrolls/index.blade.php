@@ -55,6 +55,7 @@
                         <th class="border px-4 py-2">Phòng ban</th>
                         <th class="border px-4 py-2">Chức vụ</th>
                         <th class="border px-4 py-2">Lương cơ bản</th>
+                        <th class="border px-4 py-2">Phụ cấp</th>
                         <th class="border px-4 py-2">Thưởng</th>
                         <th class="border px-4 py-2">Khấu trừ</th>
                         <th class="border px-4 py-2">Thuế thu nhập cá nhân</th>
@@ -71,9 +72,10 @@
                         <td class="border px-4 py-2">{{ $p->department_name ?? 'N/A' }}</td>
                         <td class="border px-4 py-2">{{ $p->position_name ?? 'N/A' }}</td>
                         <td class="border px-4 py-2 text-right">{{ number_format($p->base_salary ?? 0) }} VNĐ</td>
+                        <td class="border px-4 py-2 text-right">{{ number_format($p->allowance ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right">{{ number_format($p->bonus ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right">{{ number_format($p->deduction ?? 0) }} VNĐ</td>
-                        <td class="border px-4 py-2 text-right">{{ number_format(($p->base_salary + $p->bonus - $p->deduction) * 0.1 ?? 0) }} VNĐ</td>
+                        <td class="border px-4 py-2 text-right">{{ number_format(($p->base_salary + $p->allowance + $p->bonus - $p->deduction) * 0.1 ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right font-bold">{{ number_format($p->total_salary ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-center">
                             <a href="/hcns/payrolls/{{ $p->id }}" class="text-blue-500">Xem</a>

@@ -42,6 +42,11 @@
                 <input type="text" id="position_name" class="w-full border p-2 rounded bg-gray-100" readonly>
             </div>
 
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Phụ cấp</label>
+                <input type="text" name="allowance" class="w-full border p-2 rounded">
+            </div>
+
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Tháng</label>

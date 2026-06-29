@@ -16,6 +16,7 @@ class Payroll extends Model
         'month',
         'year',
         'base_salary',
+        'allowance',
         'bonus',
         'deduction',
         'total_salary'
