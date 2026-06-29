@@ -45,7 +45,7 @@ class LeaveControllerQLCL extends Controller
         return redirect('/qlcl/leave')->with('success', 'Cập nhật đơn nghỉ phép thành công');
     }
 
-    public function destroy($id) 
+    public function delete($id) 
     {
         $leave = LeaveRequest::findOrFail($id);
         $leave->delete();

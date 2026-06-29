@@ -173,7 +173,7 @@ class PayrollControllerAdmin extends Controller
         return redirect('/hcns/payrolls')->with('success', 'Cập nhật bảng lương thành công');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $payroll = DB::table('payrolls')->where('id', $id)->first();
         DB::table('payrolls')->where('id', $id)->delete();

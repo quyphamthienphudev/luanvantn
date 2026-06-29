@@ -143,7 +143,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/hcns/payrolls/{id}', [PayrollControllerAdmin::class, 'show']);
     Route::get('/hcns/payrolls/edit/{id}', [PayrollControllerAdmin::class, 'edit']);
     Route::post('/hcns/payrolls/update/{id}', [PayrollControllerAdmin::class, 'update']);
-    Route::post('/hcns/payrolls/delete/{id}', [PayrollControllerAdmin::class, 'destroy']);
+    Route::post('/hcns/payrolls/delete/{id}', [PayrollControllerAdmin::class, 'delete']);
 });
 
 // Chức năng xem bảng lương của nhân viên
@@ -166,7 +166,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/qlcl/leave/reject/{id}', [LeaveControllerQLCL::class, 'reject']);
     Route::get('/qlcl/leave/edit/{id}', [LeaveControllerQLCL::class, 'edit']);
     Route::post('/qlcl/leave/update/{id}', [LeaveControllerQLCL::class, 'update']);
-    Route::delete('/qlcl/leave/delete/{id}', [LeaveControllerQLCL::class, 'destroy']);
+    Route::delete('/qlcl/leave/delete/{id}', [LeaveControllerQLCL::class, 'delete']);
 });
 
 // Chức năng quản lý đơn xin nghỉ phép phòng hành chính nhân sự
@@ -176,7 +176,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/hcns/leave/reject/{id}', [LeaveControllerHCNS::class, 'reject']);
     Route::get('/hcns/leave/edit/{id}', [LeaveControllerHCNS::class, 'edit']);
     Route::post('/hcns/leave/update/{id}', [LeaveControllerHCNS::class, 'update']);
-    Route::delete('/hcns/leave/delete/{id}', [LeaveControllerHCNS::class, 'destroy']);
+    Route::delete('/hcns/leave/delete/{id}', [LeaveControllerHCNS::class, 'delete']);
 });
 
 // Chức năng quản lý quyền truy cập
