@@ -30,12 +30,13 @@ class ManageEmployeeRewardController extends Controller
     {
         $request->validate([
         'title' => 'required',
-        'amount' => 'required|numeric',
+        'amount' => 'required|numeric|min:0',
         'decision_date' => 'required'
         ],[
             'title.required' => 'Vui lòng nhập nội dung khen thưởng',
             'amount.required' => 'Vui lòng nhập số tiền',
-            'amount.numeric' => 'Số tiền nhập không hợp lệ',
+            'amount.numeric' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại',
+            'amount.min' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại',
             'decision_date.required' => 'Vui lòng chọn ngày ra quyết định'
         ]);
         $data = $request->all();
@@ -56,12 +57,13 @@ class ManageEmployeeRewardController extends Controller
     {
         $request->validate([
         'title' => 'required',
-        'amount' => 'required|numeric',
+        'amount' => 'required|numeric|min:0',
         'decision_date' => 'required'
         ],[
             'title.required' => 'Vui lòng nhập nội dung khen thưởng',
             'amount.required' => 'Vui lòng nhập số tiền',
-            'amount.numeric' => 'Số tiền nhập không hợp lệ',
+            'amount.numeric' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại',
+            'amount.min' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại',
             'decision_date.required' => 'Vui lòng chọn ngày ra quyết định'
         ]);
         RewardDiscipline::findOrFail($id)->update($request->all());

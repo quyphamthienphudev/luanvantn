@@ -16,9 +16,7 @@ class User extends Authenticatable
         'role_id'
     ];
 
-    protected $hidden = [
-        'password'
-    ];
+    protected $hidden = ['password'];
 
     public $timestamps = false;
 

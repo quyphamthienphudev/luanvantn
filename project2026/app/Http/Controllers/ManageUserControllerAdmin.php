@@ -28,7 +28,7 @@ class ManageUserControllerAdmin extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8'
         ],[
@@ -63,8 +63,8 @@ class ManageUserControllerAdmin extends Controller
     {
         $request->validate([
             'name'=>'required',
-            // 'email'=>"required|email|unique:users,email"
-            'email'=>"required|email"
+            // 'email'=>'required|email|unique:users,email'
+            'email' => 'required|email'
         ],[
             'name.required' => 'Họ tên không được để trống',
             'email.required' => 'Email không được để trống',

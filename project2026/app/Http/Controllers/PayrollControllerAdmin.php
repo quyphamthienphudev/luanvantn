@@ -53,9 +53,7 @@ class PayrollControllerAdmin extends Controller
             'employee_id' => 'required|exists:employees,id',
             'month' => 'required|integer|min:1|max:12',
             'year' => 'required|integer|min:2001|max:2099',
-            'allowance' => 'required|numeric',
-            'bonus' => 'nullable|integer|min:0',
-            'deduction' => 'nullable|integer|min:0'
+            'allowance' => 'required|numeric'
         ],[
             'allowance.required' => 'Phụ cấp không được để trống',
             'allowance.numeric' => 'Phụ cấp chỉ được nhập số'
@@ -67,7 +65,7 @@ class PayrollControllerAdmin extends Controller
             ->exists();
         if ($exists) 
         {
-            return redirect()->back()->with('error', 'Bảng lương đã tồn tại')->withInput();
+            return redirect()->back()->with('error', 'Bảng lương đã tồn tại');
         }
         $employee = DB::table('employees')->where('id', $request->employee_id)->first();
         $position = DB::table('positions')->where('id', $employee->position_id)->first();
@@ -84,6 +82,10 @@ class PayrollControllerAdmin extends Controller
                     ->whereMonth('decision_date', $request->month)
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
+        if($request->allowance > $base_salary)
+        {
+            return redirect()->back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
+        }
         $total_salary = $base_salary + $request->allowance + $bonus - $deduction - 0.1 * ($base_salary + $request->allowance + $bonus - $deduction);
         DB::table('payrolls')->insert([
             'employee_id' => $request->employee_id,
@@ -148,7 +150,7 @@ class PayrollControllerAdmin extends Controller
             ->exists();
         if ($exists) 
         {
-            return redirect()->back()->with('error', 'Bảng lương đã tồn tại')->withInput();
+            return redirect()->back()->with('error', 'Bảng lương đã tồn tại');
         }
         $employee = DB::table('employees')->where('id', $request->employee_id)->first();
         $position = DB::table('positions')->where('id', $employee->position_id)->first();
@@ -165,6 +167,10 @@ class PayrollControllerAdmin extends Controller
                     ->whereMonth('decision_date', $request->month)
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
+        if($request->allowance > $base_salary)
+        {
+            return redirect()->back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
+        }
         $total_salary = $base_salary + $request->allowance + $bonus - $deduction - 0.1 * ($base_salary + $request->allowance + $bonus - $deduction);
         DB::table('payrolls')->where('id', $id)->update([
             'employee_id' => $request->employee_id,
@@ -218,7 +224,7 @@ class PayrollControllerAdmin extends Controller
         $output = fopen('php://output', 'w');
         fwrite($output, "\xEF\xBB\xBF");
         
-        fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Chức vụ', 'Lương cơ bản', 'Thưởng', 'Khấu trừ', 'Tổng lương']);
+        fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Chức vụ', 'Lương cơ bản', 'Phụ cấp', 'Thưởng', 'Khấu trừ', 'Lương thực lãnh']);
         
         $stt = 1;
         foreach ($payrolls as $payroll) 
@@ -230,6 +236,7 @@ class PayrollControllerAdmin extends Controller
                 $payroll->department_name ?? '',
                 $payroll->position_name ?? '',
                 $payroll->base_salary ?? 0,
+                $payroll->allowance ?? 0,
                 $payroll->bonus ?? 0,
                 $payroll->deduction ?? 0,
                 $payroll->total_salary ?? 0
