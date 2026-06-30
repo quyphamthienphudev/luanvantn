@@ -18,7 +18,7 @@
         @endif
 
         <div class="flex justify-between items-center mb-6">
-            <h2 class="text-xl md:text-2xl font-bold text-gray-800 text-center">Chấm công vào làm</h2>
+            <h2 class="text-2xl font-bold text-gray-800">Chấm công vào làm</h2>
         </div>
 
         @if(!$attendance || !$attendance->check_in)
@@ -30,7 +30,7 @@
             </button>
         </form>
         @else
-        <span class="bg-green-600 text-white px-4 py-2 rounded">
+        <span class="block w-full text-center bg-green-600 text-white py-4 rounded-lg text-lg font-semibold">
             Đã xác nhận
         </span>
         @endif
