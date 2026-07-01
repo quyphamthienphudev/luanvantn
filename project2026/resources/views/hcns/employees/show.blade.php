@@ -65,17 +65,14 @@
                 <label>Tên chứng chỉ</label>
                 <input type="text" name="certificate_name" class="border p-2 w-full">
             </div>
-
             <div class="mb-3">
                 <label>Ngày cấp</label>
                 <input type="date" name="issue_date" class="border p-2 w-full">
             </div>
-
             <div class="mb-3">
                 <label>Ngày hết hạn</label>
                 <input type="date" name="expiry_date" class="border p-2 w-full">
             </div>
-
             <div class="mb-3">
                 <label>File chứng chỉ</label>
                 <input type="file" name="certificate_file" class="border p-2 w-full" accept=".pdf, .jpg, .jpeg, .png">
@@ -119,7 +116,6 @@
         </table>
     </div>
 </body>
-
 </html>
 
 @endsection

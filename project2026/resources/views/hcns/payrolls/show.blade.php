@@ -78,7 +78,6 @@
         @endif
     </div>
 </body>
-
 </html>
 
 @endsection

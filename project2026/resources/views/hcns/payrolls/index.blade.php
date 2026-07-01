@@ -20,13 +20,11 @@
             {{ session('success') }}
         </div>
         @endif
-
         @if(session('error'))
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             {{ session('error') }}
         </div>
         @endif
-
         <div class="mb-6 flex justify-between items-center">
             <form method="GET" action="/hcns/payrolls" class="flex gap-2">
                 <select name="month" class="border rounded px-3 py-2">
@@ -44,7 +42,6 @@
                 <a href="/hcns/payrolls/export" class="bg-yellow-500 text-white px-4 py-2 rounded">Xuất Excel</a>
             </div>
         </div>
-
         <div class="overflow-x-auto">
             <table class="min-w-full bg-white border">
                 <thead>
@@ -97,7 +94,6 @@
         </div>
     </div>
 </body>
-
 </html>
 
 @endsection

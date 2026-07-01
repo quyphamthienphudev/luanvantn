@@ -65,7 +65,7 @@ class PayrollControllerAdmin extends Controller
             ->exists();
         if ($exists) 
         {
-            return redirect()->back()->with('error', 'Bảng lương đã tồn tại');
+            return back()->with('error', 'Bảng lương đã tồn tại');
         }
         $employee = DB::table('employees')->where('id', $request->employee_id)->first();
         $position = DB::table('positions')->where('id', $employee->position_id)->first();
@@ -84,7 +84,7 @@ class PayrollControllerAdmin extends Controller
                     ->sum('amount');
         if($request->allowance > $base_salary)
         {
-            return redirect()->back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
+            return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
         }
         $total_salary = $base_salary + $request->allowance + $bonus - $deduction - 0.1 * ($base_salary + $request->allowance + $bonus - $deduction);
         DB::table('payrolls')->insert([
@@ -150,7 +150,7 @@ class PayrollControllerAdmin extends Controller
             ->exists();
         if ($exists) 
         {
-            return redirect()->back()->with('error', 'Bảng lương đã tồn tại');
+            return back()->with('error', 'Bảng lương đã tồn tại');
         }
         $employee = DB::table('employees')->where('id', $request->employee_id)->first();
         $position = DB::table('positions')->where('id', $employee->position_id)->first();
@@ -169,7 +169,7 @@ class PayrollControllerAdmin extends Controller
                     ->sum('amount');
         if($request->allowance > $base_salary)
         {
-            return redirect()->back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
+            return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
         }
         $total_salary = $base_salary + $request->allowance + $bonus - $deduction - 0.1 * ($base_salary + $request->allowance + $bonus - $deduction);
         DB::table('payrolls')->where('id', $id)->update([
@@ -214,7 +214,7 @@ class PayrollControllerAdmin extends Controller
         
         if ($payrolls->isEmpty()) 
         {
-            return redirect()->back()->with('error', 'Không có dữ liệu');
+            return back()->with('error', 'Không có dữ liệu');
         }
         
         $filename = 'bang_luong_' . $month . '_' . $year . '.csv';

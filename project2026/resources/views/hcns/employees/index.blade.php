@@ -20,19 +20,21 @@
     <a href="/hcns/employees/export" class="bg-yellow-600 text-white px-4 py-2 rounded">
         Xuất Excel
     </a>
-
     <form method="GET" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo mã nhân viên, tên nhân viên hoặc phòng ban" style="width:450px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
-
     @if(session('success'))
     <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
         {{ session('success') }}
     </div>
     @endif
-
+    @if(session('error'))
+    <div class="bg-red-200 text-red-800 p-3 rounded mt-4">
+        {{ session('error') }}
+    </div>
+    @endif
     <div class="bg-white shadow rounded mt-6">
         <table class="w-full text-left">
             <thead class="bg-gray-200">
@@ -43,7 +45,6 @@
                     <th class="p-3">Hành động</th>
                 </tr>
             </thead>
-
             <tbody>
                 @forelse($employees as $e)
                 <tr class="border-b">
@@ -67,9 +68,7 @@
             </tbody>
         </table>
     </div>
-
 </body>
-
 </html>
 
 @endsection

@@ -26,6 +26,11 @@
         @error('email')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
+        @if(session('error'))
+        <p class="text-red-500 text-sm">
+            {{ session('error') }}
+        </p>
+        @endif
         <div class="mb-4">
             <label>Họ tên</label>
             <input type="text" name="name" value="{{ $user->name }}" class="w-full border p-2 rounded"

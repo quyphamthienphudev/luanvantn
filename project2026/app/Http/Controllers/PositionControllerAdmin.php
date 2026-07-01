@@ -112,7 +112,7 @@ class PositionControllerAdmin extends Controller
         $positions = DB::table('positions')
             ->when($search, function ($query) use ($search) {
 
-            // tìm theo name hoặc base_salary
+            // Tìm theo name hoặc base_salary
             $query->where('name', 'like', '%' . $search . '%')
                   ->orWhere('base_salary', 'like', '%' . $search . '%');
             })
@@ -128,7 +128,7 @@ class PositionControllerAdmin extends Controller
         
         if ($positions->isEmpty()) 
         {
-            return redirect()->back()->with('error', 'Không có dữ liệu');
+            return back()->with('error', 'Không có dữ liệu');
         }
         
         $filename = 'ds_cong_viec' . '.csv';

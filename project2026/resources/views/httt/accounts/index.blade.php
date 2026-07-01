@@ -30,6 +30,11 @@
         {{ session('success') }}
     </div>
     @endif
+    @if(session('error'))
+    <div class="bg-red-200 text-red-800 p-3 rounded mt-4">
+        {{ session('error') }}
+    </div>
+    @endif
     <div class="bg-white shadow rounded mt-6">
         <table class="w-full text-left">
             <thead class="bg-gray-200">

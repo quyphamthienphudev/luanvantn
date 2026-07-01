@@ -36,7 +36,7 @@ class LeaveController extends Controller
         $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
         if ($countLeave >= 15) 
         {
-            return redirect()->back()->with('error', 'Bạn đã sử dụng hết 15 ngày nghỉ phép, không thể gửi thêm đơn nghỉ phép mới');
+            return back()->with('error', 'Bạn đã sử dụng hết 15 ngày nghỉ phép, không thể gửi thêm đơn nghỉ phép mới');
         }
 
         // Tính số ngày nghỉ (bao gồm cả ngày bắt đầu và ngày kết thúc)

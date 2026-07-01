@@ -54,7 +54,7 @@ class DashboardControllerAdmin extends Controller
             }
         }
 
-        // Tổng lương theo tháng + năm
+        // Tổng lương theo tháng và năm
         if($request->has('filter_month'))
         {
             if(!$month || !$year)

@@ -61,9 +61,9 @@ class ManageEmployeeControllerAdmin extends Controller
         ]);
         $data = $request->all();
         $data['users_id'] = auth()->user()->id;
-        // tự động set ngày vào làm
+        // Tự động set ngày vào làm
         $data['hire_date'] = date('Y-m-d');
-        // trạng thái mặc định
+        // Trạng thái mặc định
         $data['status'] = 'working';
         Employee::create($data);
         return redirect('/hcns/employees')->with('success','Thêm nhân viên thành công');
@@ -107,6 +107,23 @@ class ManageEmployeeControllerAdmin extends Controller
     // DELETE
     public function delete($id)
     {
+        // Kiểm tra ràng buộc dữ liệu
+        $payroll = DB::table('payrolls')->where('employee_id', $id)->exists();
+        if ($payroll) 
+        {
+            return back()->with('error', 'Nhân viên đã có bảng lương, không thể xoá nhân viên này');
+        }
+        $contract = DB::table('contracts')->where('employee_id', $id)->exists();
+        if ($contract) 
+        {
+            return back()->with('error', 'Nhân viên đã có hợp đồng lao động, không thể xoá nhân viên này');
+        }
+        $reward_discipline = DB::table('reward_discipline')->where('employee_id', $id)->exists();
+        if ($reward_discipline) 
+        {
+            return back()->with('error', 'Nhân viên đã có khen thưởng hoặc kỷ luật, không thể xoá nhân viên này');
+        }
+        
         Employee::findOrFail($id)->delete();
         return back()->with('success','Xóa nhân viên thành công');
     }
@@ -143,7 +160,7 @@ class ManageEmployeeControllerAdmin extends Controller
         
         if ($employees->isEmpty()) 
         {
-            return redirect()->back()->with('error', 'Không có dữ liệu');
+            return back()->with('error', 'Không có dữ liệu');
         }
         
         $filename = 'ds_nhan_vien' . '.csv';

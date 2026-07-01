@@ -27,7 +27,7 @@
     </div>
     @endif
     @if(session('error'))
-    <div class="bg-red-200 text-black-800 p-3 rounded mt-4">
+    <div class="bg-red-200 text-red-800 p-3 rounded mt-4">
         {{ session('error') }}
     </div>
     @endif

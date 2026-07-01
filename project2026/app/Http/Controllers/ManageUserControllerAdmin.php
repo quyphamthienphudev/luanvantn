@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class ManageUserControllerAdmin extends Controller
 {
@@ -74,6 +75,13 @@ class ManageUserControllerAdmin extends Controller
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự'
         ]);
 
+        // Kiểm tra ràng buộc dữ liệu
+        $current_user = DB::table('users')->where('id', Auth::id())->exists();
+        if ($current_user) 
+        {
+            return back()->with('error', 'Không thể cập nhật thông tin tại đây, vui lòng truy cập vào mục Cập nhật thông tin');
+        }
+        
         DB::table('users')
         ->where('id',$id)
         ->update([
@@ -89,6 +97,53 @@ class ManageUserControllerAdmin extends Controller
     //DELETE
     public function delete($id)
     {
+        // Kiểm tra ràng buộc dữ liệu
+        $attendance = DB::table('attendances')->where('users_id', $id)->exists();
+        if ($attendance) 
+        {
+            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
+        }
+        $candidate = DB::table('candidates')->where('users_id', $id)->exists();
+        if ($candidate) 
+        {
+            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
+        }
+        $contract = DB::table('contracts')->where('users_id', $id)->exists();
+        if ($contract) 
+        {
+            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
+        }
+        $department = DB::table('departments')->where('users_id', $id)->exists();
+        if ($department) 
+        {
+            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
+        }
+        $employee = DB::table('employees')->where('users_id', $id)->exists();
+        if ($employee) 
+        {
+            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
+        }
+        $leave = DB::table('leave_requests')->where('users_id', $id)->exists();
+        if ($leave) 
+        {
+            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
+        }
+        $payroll = DB::table('payrolls')->where('users_id', $id)->exists();
+        if ($payroll) 
+        {
+            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
+        }
+        $position = DB::table('positions')->where('users_id', $id)->exists();
+        if ($position) 
+        {
+            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
+        }
+        $current_user = DB::table('users')->where('id', Auth::id())->exists();
+        if ($current_user) 
+        {
+            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
+        }
+
         DB::table('users')->where('id',$id)->delete();
         return redirect('/httt/accounts')->with('success','Xóa tài khoản thành công');
     }
@@ -101,11 +156,11 @@ class ManageUserControllerAdmin extends Controller
         $users = DB::table('users')
             ->when($search, function ($query) use ($search) {
 
-            // tìm theo name hoặc email
+            // Tìm theo name hoặc email
             $query->where('name', 'like', '%' . $search . '%')
                   ->orWhere('email', 'like', '%' . $search . '%');
 
-            // tìm theo quyền
+            // Tìm theo quyền
             if (strtolower($search) == 'admin') 
             {
                 $query->orWhere('role_id', 1);
@@ -128,7 +183,7 @@ class ManageUserControllerAdmin extends Controller
         
         if ($users->isEmpty()) 
         {
-            return redirect()->back()->with('error', 'Không có dữ liệu');
+            return back()->with('error', 'Không có dữ liệu');
         }
         
         $filename = 'ds_tai_khoan' . '.csv';

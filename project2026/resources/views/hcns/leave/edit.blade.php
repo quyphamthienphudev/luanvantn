@@ -77,7 +77,6 @@
 </h1>
 
 <form action="/hcns/leave/update/{{ $leave->id }}" method="POST" class="bg-white p-6 rounded shadow w-1/2">
-
     @csrf
     @error('start_date')
         <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -97,7 +96,6 @@
                 value="{{ $leave->user->name }}" readonly>
         </div>              
     </div>
-
     <div class="row">
         <div class="col-md-6 mb-4">
             <label class="form-label fw-bold small">
@@ -105,7 +103,6 @@
             </label>
             <input type="date" name="start_date" class="form-control shadow-sm" value="{{ $leave->start_date }}">
         </div>
-
         <div class="col-md-6 mb-4">
             <label class="form-label fw-bold small">
                 Ngày kết thúc
@@ -113,20 +110,17 @@
             <input type="date" name="end_date" class="form-control shadow-sm" value="{{ $leave->end_date }}">
         </div>
     </div>
-
     <div class="mb-4">
         <label class="form-label fw-bold small">
             Lý do xin nghỉ phép
         </label>
         <textarea name="reason" class="form-control shadow-sm" rows="4">{{ $leave->reason }}</textarea>
     </div>
-
     <div class="d-flex flex-column flex-sm-row gap-3">
         <button type="submit" class="btn btn-save flex-grow-1">
             Lưu thay đổi
         </button>
     </div>
-
 </form>
 
 @endsection
