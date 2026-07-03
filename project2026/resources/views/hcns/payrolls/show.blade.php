@@ -19,7 +19,7 @@
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             Không tìm thấy bảng lương!
         </div>
-        <a href="/hcns/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded">Quay lại</a>
+        <a href="/hcns/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded" title="Quay lại">Quay lại</a>
         @else
         <h2 class="text-xl font-bold mb-4">Chi tiết bảng lương</h2>
         <table class="w-full">
@@ -73,7 +73,7 @@
             </tr>
         </table>
         <div class="mt-6">
-            <a href="/hcns/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded">Quay lại</a>
+            <a href="/hcns/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded" title="Quay lại">Quay lại</a>
         </div>
         @endif
     </div>

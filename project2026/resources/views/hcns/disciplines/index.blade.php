@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <a href="/hcns/disciplines/create" class="bg-blue-600 text-white px-4 py-2 rounded">
+    <a href="/hcns/disciplines/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm kỷ luật">
         Thêm kỷ luật
     </a>
 
@@ -45,9 +45,9 @@
                     <td class="p-3">{{ $d->decision_date ? date('d/m/Y', strtotime($d->decision_date)) : '' }}</td>
                     <td class="p-3 space-x-2">
                         <a href="/hcns/disciplines/edit/{{ $d->id }}"
-                            class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
+                            class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">Sửa</a>
                         <a href="/hcns/disciplines/delete/{{ $d->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
-                            onclick="return confirm('Bạn có muốn xoá kỷ luật này ?')">Xóa</a>
+                            onclick="return confirm('Bạn có muốn xoá kỷ luật này ?')" title="Xoá">Xoá</a>
                     </td>
                 </tr>
                 @empty

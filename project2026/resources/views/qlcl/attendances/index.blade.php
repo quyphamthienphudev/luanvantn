@@ -64,12 +64,12 @@
                         <td class="p-3 text-center">
                             <div class="flex space-x-2">
                                 <a href="/qlcl/attendances/edit/{{ $atd->id }}"
-                                    class="text-yellow-600 hover:underline">Sửa</a>
+                                    class="text-yellow-600 hover:underline" title="Sửa">Sửa</a>
                                 <a href="/qlcl/attendances/delete/{{ $atd->id }}" class="text-red-500 hover:underline"
-                                    onclick="return confirm('Bạn có muốn xóa bảng chấm công này?')">Xóa</a>
+                                    onclick="return confirm('Bạn có muốn xóa bảng chấm công này?')" title="Xoá">Xoá</a>
                                 @if($atd->confirm=='no')
                                 <a href="/qlcl/attendances/confirm/{{ $atd->id }}" class="text-blue-600 hover:underline"
-                                    onclick="return confirm('Bạn có muốn xác nhận bảng chấm công này?')">Xác nhận</a>
+                                    onclick="return confirm('Bạn có muốn xác nhận bảng chấm công này?')" title="Xác nhận">Xác nhận</a>
                                 @endif
                             </div>
                         </td>

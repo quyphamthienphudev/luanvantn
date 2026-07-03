@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <a href="/hcns/employees">← Quay lại</a>
+    <a href="/hcns/employees" title="← Quay lại">← Quay lại</a>
     <div class="bg-white p-6">
         <p>Mã nhân viên: {{ $employee->employee_code }}</p>
         <p>Họ tên nhân viên: {{ $employee->full_name }}</p>
@@ -77,7 +77,7 @@
                 <label>File chứng chỉ</label>
                 <input type="file" name="certificate_file" class="border p-2 w-full" accept=".pdf, .jpg, .jpeg, .png">
             </div>
-            <button class="bg-green-600 text-white px-4 py-2 rounded">Tải lên</button>
+            <button class="bg-green-600 text-white px-4 py-2 rounded" title="Tải lên">Tải lên</button>
         </form>
         <hr class="my-4">
         <h3 class="font-bold text-lg">Danh sách chứng chỉ</h3>
@@ -99,11 +99,11 @@
                 </td>
                 <td>
                     @if($c->certificate_file == '')
-                    <a href="" style="color:blue; font-weight:bold;" onclick="return alert('File không tồn tại')">Xem
+                    <a href="" style="color:blue; font-weight:bold;" onclick="return alert('File không tồn tại')" title="Xem file">Xem
                         file</a>
                     @else
                     <a href="/hcns/employees/certificate/view/{{ $c->id }}" target="_blank"
-                        style="color:blue; font-weight:bold;">Xem
+                        style="color:blue; font-weight:bold;" title="Xem file">Xem
                         file</a>
                     @endif
                 </td>

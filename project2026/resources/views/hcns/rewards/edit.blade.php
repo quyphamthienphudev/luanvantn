@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <a href="/hcns/rewards">← Quay lại</a>
+    <a href="/hcns/rewards" title="← Quay lại">← Quay lại</a>
     <form method="POST" action="/hcns/rewards/update/{{ $rewards->id }}" class="bg-white p-6 w-1/2">
         @csrf
         @error('title')
@@ -49,7 +49,7 @@
             <input type="date" name="decision_date" value="{{ $rewards->decision_date }}"
                 class="w-full border p-2 rounded">
         </div>
-        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cập nhật</button>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Cập nhật">Cập nhật</button>
     </form>
 </body>
 

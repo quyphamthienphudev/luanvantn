@@ -35,11 +35,11 @@
                     @for($i = 2001; $i <= 2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>Năm {{ $i }}</option>
                     @endfor
                 </select>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Xem bảng lương</button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" title="Xem bảng lương">Xem bảng lương</button>
             </form>
             <div class="flex gap-2">
-                <a href="/hcns/payrolls/create" class="bg-green-500 text-white px-4 py-2 rounded">+ Tạo</a>
-                <a href="/hcns/payrolls/export" class="bg-yellow-500 text-white px-4 py-2 rounded">Xuất Excel</a>
+                <a href="/hcns/payrolls/create" class="bg-green-500 text-white px-4 py-2 rounded" title="+ Tạo">+ Tạo</a>
+                <a href="/hcns/payrolls/export" class="bg-yellow-500 text-white px-4 py-2 rounded" title="Xuất Excel">Xuất Excel</a>
             </div>
         </div>
         <div class="overflow-x-auto">
@@ -75,12 +75,12 @@
                         <td class="border px-4 py-2 text-right">{{ number_format(($p->base_salary + $p->allowance + $p->bonus - $p->deduction) * 0.1 ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right font-bold">{{ number_format($p->total_salary ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-center">
-                            <a href="/hcns/payrolls/{{ $p->id }}" class="text-blue-500">Xem</a>
-                            <a href="/hcns/payrolls/edit/{{ $p->id }}" class="text-yellow-500 ml-2">Sửa</a>
+                            <a href="/hcns/payrolls/{{ $p->id }}" class="text-blue-500" title="Xem">Xem</a>
+                            <a href="/hcns/payrolls/edit/{{ $p->id }}" class="text-yellow-500 ml-2" title="Sửa">Sửa</a>
                             <form action="/hcns/payrolls/delete/{{ $p->id }}" method="POST" class="inline ml-2">
                                 @csrf
                                 <button type="submit" class="text-red-500"
-                                    onclick="return confirm('Bạn có muốn xóa bảng lương này ?')">Xóa</button>
+                                    onclick="return confirm('Bạn có muốn xóa bảng lương này ?')" title="Xoá">Xoá</button>
                             </form>
                         </td>
                     </tr>

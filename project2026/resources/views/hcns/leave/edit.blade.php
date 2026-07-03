@@ -68,7 +68,7 @@
 
 @section('content')
 
-<a href="/hcns/leave" class="btn btn-secondary">
+<a href="/hcns/leave" class="btn btn-secondary" title="← Quay lại">
     ← Quay lại
 </a>
 
@@ -117,7 +117,7 @@
         <textarea name="reason" class="form-control shadow-sm" rows="4">{{ $leave->reason }}</textarea>
     </div>
     <div class="d-flex flex-column flex-sm-row gap-3">
-        <button type="submit" class="btn btn-save flex-grow-1">
+        <button type="submit" class="btn btn-save flex-grow-1" title="Lưu thay đổi">
             Lưu thay đổi
         </button>
     </div>

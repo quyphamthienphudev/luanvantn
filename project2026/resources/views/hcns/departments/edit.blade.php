@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <a href="/hcns/departments" class="btn btn-secondary">
+    <a href="/hcns/departments" class="btn btn-secondary" title="← Quay lại">
         ← Quay lại
     </a>
     <h1 class="text-2xl font-bold mb-6">
@@ -37,7 +37,7 @@
             <input type="text" name="description" value="{{ $department->description }}" class="border p-2 w-full mb-2"
                 placeholder="Mô tả thông tin">
         </div>
-        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cập nhật</button>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Cập nhật">Cập nhật</button>
     </form>
 </body>
 

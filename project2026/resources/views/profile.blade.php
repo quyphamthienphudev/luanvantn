@@ -38,7 +38,7 @@
                 <input type="text" name="email" value="{{ auth()->user()->email }}"
                     class="w-full px-4 py-2 border rounded" placeholder="Email" maxlength="150">
             </div>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded" title="Cập nhật">
                 Cập nhật
             </button>
         </form>

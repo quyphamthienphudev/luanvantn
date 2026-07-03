@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <a href="/hcns/employees">← Quay lại</a>
+    <a href="/hcns/employees" title="← Quay lại">← Quay lại</a>
     <form method="POST" action="/hcns/employees/update/{{ $employee->id }}" class="bg-white p-6 w-1/2">
         @csrf
         @error('employee_code')
@@ -118,7 +118,7 @@
                 <option value="resigned" {{ $employee->status == 'resigned' ? 'selected' : '' }}>Đã nghỉ</option>
             </select>
         </div>
-        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cập nhật</button>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Cập nhật">Cập nhật</button>
     </form>
 </body>
 

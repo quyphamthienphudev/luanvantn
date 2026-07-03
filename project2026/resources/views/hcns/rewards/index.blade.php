@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <a href="/hcns/rewards/create" class="bg-blue-600 text-white px-4 py-2 rounded">
+    <a href="/hcns/rewards/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm khen thưởng">
         Thêm khen thưởng
     </a>
 
@@ -45,9 +45,9 @@
                     <td class="p-3">{{ $r->decision_date ? date('d/m/Y', strtotime($r->decision_date)) : '' }}</td>
                     <td class="p-3 space-x-2">
                         <a href="/hcns/rewards/edit/{{ $r->id }}"
-                            class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
+                            class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">Sửa</a>
                         <a href="/hcns/rewards/delete/{{ $r->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
-                            onclick="return confirm('Bạn có muốn xoá khen thưởng này ?')">Xóa</a>
+                            onclick="return confirm('Bạn có muốn xoá khen thưởng này ?')" title="Xoá">Xoá</a>
                     </td>
                 </tr>
                 @empty

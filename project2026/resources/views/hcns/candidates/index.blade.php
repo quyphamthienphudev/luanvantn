@@ -14,14 +14,14 @@
 </head>
 
 <body>
-    <a href="/hcns/candidates/create" class="bg-blue-600 text-white px-4 py-2 rounded">
+    <a href="/hcns/candidates/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm hồ sơ ứng viên">
         Thêm hồ sơ ứng viên
     </a>
 
     <form method="GET" action="/hcns/candidates" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo mã hồ sơ hoặc họ tên" style="width:300px;">
-        <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
+        <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
     </form>
 
     @if(session('success'))
@@ -47,11 +47,11 @@
                     <td class="p-3">{{ $c->full_name }}</td>
                     <td class="p-3 space-x-2">
                         <a href="/hcns/candidates/show/{{ $c->id }}"
-                            class="bg-blue-500 text-white px-3 py-1 rounded">Xem</a>
+                            class="bg-blue-500 text-white px-3 py-1 rounded" title="Xem">Xem</a>
                         <a href="/hcns/candidates/edit/{{ $c->id }}"
-                            class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
+                            class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">Sửa</a>
                         <a href="/hcns/candidates/delete/{{ $c->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
-                            onclick="return confirm('Bạn có muốn xoá hồ sơ ứng viên này ?')">Xóa</a>
+                            onclick="return confirm('Bạn có muốn xoá hồ sơ ứng viên này ?')" title="Xoá">Xoá</a>
                     </td>
                 </tr>
                 @empty

@@ -133,7 +133,7 @@
                         </div>
 
                         <div class="d-grid mt-4">
-                            <button type="submit" class="btn btn-primary shadow">
+                            <button type="submit" class="btn btn-primary shadow" title="Gửi đơn">
                                 Gửi đơn
                             </button>
                         </div>
@@ -184,7 +184,7 @@
                                     <td class="text-center pe-4">
                                         @if($l->status == 'pending')
                                         <a href="/leave/edit/{{ $l->id }}"
-                                            class="btn btn-sm btn-outline-primary shadow-sm px-3">
+                                            class="btn btn-sm btn-outline-primary shadow-sm px-3" title="Sửa">
                                             <i class="fas fa-edit me-1"></i> Sửa
                                         </a>
                                         @else

@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <a href="/hcns/candidates">← Quay lại</a>
+    <a href="/hcns/candidates" title="← Quay lại">← Quay lại</a>
     <form method="POST" action="/hcns/candidates/update/{{ $candidates->id }}" class="bg-white p-6 w-1/2">
         @csrf
         @error('full_name')
@@ -117,7 +117,7 @@
             <input type="text" name="province" value="{{ $candidates->province }}" class="w-full border p-2 rounded"
                 placeholder="Tỉnh / Thành phố">
         </div>
-        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cập nhật</button>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Cập nhật">Cập nhật</button>
     </form>
 </body>
 

@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <a href="/hcns/attendances" class="btn btn-secondary">
+    <a href="/hcns/attendances" class="btn btn-secondary" title="← Quay lại">
         ← Quay lại
     </a>
     <div class="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-lg shadow">
@@ -50,7 +50,7 @@
 
             <div class="flex justify-end mt-6">
                 <button type="submit"
-                    class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 font-bold">Cập nhật</button>
+                    class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 font-bold" title="Cập nhật">Cập nhật</button>
             </div>
         </form>
     </div>

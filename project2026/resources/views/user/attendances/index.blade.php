@@ -25,7 +25,7 @@
         <form action="/attendances/checkin" method="POST">
             @csrf
             <button type="submit"
-                class="w-full bg-blue-600 text-white py-4 rounded-lg text-lg font-semibold hover:bg-blue-700">
+                class="w-full bg-blue-600 text-white py-4 rounded-lg text-lg font-semibold hover:bg-blue-700" title="Xác nhận chấm công">
                 Xác nhận chấm công
             </button>
         </form>
@@ -44,7 +44,7 @@
         <form action="/attendances/checkout" method="POST">
             @csrf
             <button type="submit"
-                class="w-full bg-blue-600 text-white py-4 rounded-lg text-lg font-semibold hover:bg-blue-700">
+                class="w-full bg-blue-600 text-white py-4 rounded-lg text-lg font-semibold hover:bg-blue-700" title="Xác nhận chấm công">
                 Xác nhận chấm công
             </button>
         </form>

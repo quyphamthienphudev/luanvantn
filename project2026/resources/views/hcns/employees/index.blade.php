@@ -14,16 +14,16 @@
 </head>
 
 <body>
-    <a href="/hcns/employees/create" class="bg-blue-600 text-white px-4 py-2 rounded">
+    <a href="/hcns/employees/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm nhân viên">
         Thêm nhân viên
     </a>
-    <a href="/hcns/employees/export" class="bg-yellow-600 text-white px-4 py-2 rounded">
+    <a href="/hcns/employees/export" class="bg-yellow-600 text-white px-4 py-2 rounded" title="Xuất Excel">
         Xuất Excel
     </a>
     <form method="GET" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo mã nhân viên, tên nhân viên hoặc phòng ban" style="width:450px;">
-        <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
+        <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
     </form>
     @if(session('success'))
     <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
@@ -53,11 +53,11 @@
                     <td class="p-3">{{ $e->department->name }}</td>
                     <td class="p-3 space-x-2">
                         <a href="/hcns/employees/show/{{ $e->id }}"
-                            class="bg-blue-500 text-white px-3 py-1 rounded">Xem</a>
+                            class="bg-blue-500 text-white px-3 py-1 rounded" title="Xem">Xem</a>
                         <a href="/hcns/employees/edit/{{ $e->id }}"
-                            class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
+                            class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">Sửa</a>
                         <a href="/hcns/employees/delete/{{ $e->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
-                            onclick="return confirm('Bạn có muốn xoá nhân viên này ?')">Xóa</a>
+                            onclick="return confirm('Bạn có muốn xoá nhân viên này ?')" title="Xoá">Xoá</a>
                     </td>
                 </tr>
                 @empty

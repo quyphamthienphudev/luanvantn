@@ -16,7 +16,7 @@
 <body>
     <form method="GET" action="/qlcl/employees" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" style="width:400px;">
-        <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
+        <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
     </form>
 
     @if(session('success'))
@@ -43,7 +43,7 @@
                     <td class="p-3">{{ $e->full_name }}</td>
                     <td class="p-3">{{ $e->department->name }}</td>
                     <td class="p-3 space-x-2">
-                        <a href="/qlcl/employees/show/{{ $e->id }}" class="bg-blue-500 text-white px-3 py-1 rounded">Xem
+                        <a href="/qlcl/employees/show/{{ $e->id }}" class="bg-blue-500 text-white px-3 py-1 rounded" title="Xem chi tiết">Xem
                             chi tiết</a>
                     </td>
                 </tr>

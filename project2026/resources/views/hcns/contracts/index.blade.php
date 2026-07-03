@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <a href="/hcns/contracts/create" class="bg-blue-600 text-white px-4 py-2 rounded">
+    <a href="/hcns/contracts/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm hợp đồng lao động">
         Thêm hợp đồng lao động
     </a>
     @if(session('success'))
@@ -72,27 +72,27 @@
                     <td class="p-3">
                         @if($c->contract_type == 'probation')
                         <a href="/hcns/contracts/extend/{{ $c->id }}"
-                            class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
+                            class="bg-blue-500 text-white px-3 py-1 rounded" title="Gia hạn">Gia hạn</a>
                         <a href="/hcns/contracts/terminate/{{ $c->id }}"
-                            class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                            class="bg-red-600 text-white px-3 py-1 rounded" title="Thanh lý">Thanh lý</a>
                         @endif
                         @if($c->contract_type == 'fixed_term')
                         <a href="/hcns/contracts/extend/{{ $c->id }}"
-                            class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
+                            class="bg-blue-500 text-white px-3 py-1 rounded" title="Gia hạn">Gia hạn</a>
                         <a href="/hcns/contracts/terminate/{{ $c->id }}"
-                            class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                            class="bg-red-600 text-white px-3 py-1 rounded" title="Thanh lý">Thanh lý</a>
                         @endif
                         @if($c->contract_type == 'indefinite')
                         <a href="/hcns/contracts/terminate/{{ $c->id }}"
-                            class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                            class="bg-red-600 text-white px-3 py-1 rounded" title="Thanh lý">Thanh lý</a>
                         @endif
                     </td>
                     <td class="p-3">
                         @if($c->contract_file)
                         <a href="/hcns/contracts/view/{{ $c->id }}" target="_blank"
-                            class="bg-green-600 text-white px-3 py-1 rounded">Xem</a>
+                            class="bg-green-600 text-white px-3 py-1 rounded" title="Xem">Xem</a>
                         @else
-                        <a href="" class="bg-green-600 text-white px-3 py-1 rounded" onclick="return alert('File không tồn tại')">Xem</a>
+                        <a href="" class="bg-green-600 text-white px-3 py-1 rounded" onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
                         @endif
                     </td>
                 </tr>

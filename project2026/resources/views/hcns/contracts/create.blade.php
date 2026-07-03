@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <a href="/hcns/contracts">← Quay lại</a>
+    <a href="/hcns/contracts" title="← Quay lại">← Quay lại</a>
     <form method="POST" action="/hcns/contracts/store" class="bg-white p-6 rounded shadow w-1/2"
         enctype="multipart/form-data">
         @csrf
@@ -78,7 +78,7 @@
             <label>Ghi chú hợp đồng</label>
             <textarea name="description" class="w-full border p-2 rounded" rows="10" cols="40"></textarea>
         </div>
-        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lưu</button>
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" title="Lưu">Lưu</button>
     </form>
     <!-- javascript cập nhật mã nhân viên khi thay đổi chọn nhân viên -->
     <script>

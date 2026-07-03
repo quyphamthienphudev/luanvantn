@@ -46,7 +46,7 @@
                 <input type="password" name="new_password" class="w-full px-4 py-2 border rounded"
                     placeholder="Mật khẩu mới">
             </div>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded" title="Đổi mật khẩu">
                 Đổi mật khẩu
             </button>
         </form>

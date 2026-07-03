@@ -17,7 +17,7 @@
 
     <!-- Nút menu mobile -->
     <div class="md:hidden bg-blue-800 text-white p-4 flex items-center">
-        <button onclick="toggleSidebar()" class="text-2xl mr-4">
+        <button onclick="toggleSidebar()" class="text-2xl mr-4" title="Menu">
             ☰
         </button>
 
@@ -39,167 +39,167 @@
             </div>
 
             <!-- đóng menu -->
-            <button onclick="toggleSidebar()" class="md:hidden absolute top-4 right-4 text-white text-2xl">
+            <button onclick="toggleSidebar()" class="md:hidden absolute top-4 right-4 text-white text-2xl" title="Đóng Menu">
                 ✕
             </button>
 
             <nav class="flex-1 p-4 space-y-2">
 
                 @if(auth()->user()->role->name === 'admin')
-                <a href="/admin/home" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/admin/home" class="block px-4 py-2 rounded hover:bg-blue-700" title="Trang chủ">
                     Trang chủ
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'hcns')
-                <a href="/hcns/home" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/hcns/home" class="block px-4 py-2 rounded hover:bg-blue-700" title="Trang chủ">
                     Trang chủ
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'qlcl')
-                <a href="/qlcl/home" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/qlcl/home" class="block px-4 py-2 rounded hover:bg-blue-700" title="Trang chủ">
                     Trang chủ
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'httt')
-                <a href="/httt/home" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/httt/home" class="block px-4 py-2 rounded hover:bg-blue-700" title="Trang chủ">
                     Trang chủ
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'user')
-                <a href="/home" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/home" class="block px-4 py-2 rounded hover:bg-blue-700" title="Trang chủ">
                     Trang chủ
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'admin')
-                <a href="/admin/dashboard" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/admin/dashboard" class="block px-4 py-2 rounded hover:bg-blue-700" title="Báo cáo thống kê">
                     Báo cáo thống kê
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'hcns')
-                <a href="/hcns/employees" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/hcns/employees" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý nhân viên">
                     Quản lý nhân viên
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'hcns')
-                <a href="/hcns/contracts" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/hcns/contracts" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý hợp đồng lao động">
                     Quản lý hợp đồng lao động
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'hcns')
-                <a href="/hcns/departments" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/hcns/departments" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý phòng ban">
                     Quản lý phòng ban
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'hcns')
-                <a href="/hcns/positions" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/hcns/positions" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý công việc">
                     Quản lý công việc
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'hcns')
-                <a href="/hcns/candidates" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/hcns/candidates" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý hồ sơ ứng viên">
                     Quản lý hồ sơ ứng viên
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'hcns')
-                <a href="/hcns/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/hcns/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý lương">
                     Quản lý lương
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'hcns')
-                <a href="/hcns/attendances" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/hcns/attendances" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý chấm công">
                     Quản lý chấm công
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'hcns')
-                <a href="/hcns/rewards" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/hcns/rewards" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý khen thưởng">
                     Quản lý khen thưởng
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'hcns')
-                <a href="/hcns/disciplines" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/hcns/disciplines" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý kỷ luật">
                     Quản lý kỷ luật
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'hcns')
-                <a href="/hcns/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/hcns/leave" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý nghỉ phép">
                     Quản lý nghỉ phép
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'qlcl')
-                <a href="/qlcl/employees" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/qlcl/employees" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý nhân viên">
                     Quản lý nhân viên
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'qlcl')
-                <a href="/qlcl/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/qlcl/leave" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý nghỉ phép">
                     Quản lý nghỉ phép
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'qlcl')
-                <a href="/qlcl/attendances" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/qlcl/attendances" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý chấm công">
                     Quản lý chấm công
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'httt')
-                <a href="/httt/accounts" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/httt/accounts" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý tài khoản">
                     Quản lý tài khoản
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'httt')
-                <a href="/httt/roles" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/httt/roles" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý quyền truy cập">
                     Quản lý quyền truy cập
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'user')
-                <a href="/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700" title="Xem lương">
                     Xem lương
                 </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'user')
-                <a href="/attendances" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/attendances" class="block px-4 py-2 rounded hover:bg-blue-700" title="Chấm công">
                     Chấm công
                 </a>
                 @endif
                 @if(auth()->user()->role->name === 'user')
-                <a href="/leave" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/leave" class="block px-4 py-2 rounded hover:bg-blue-700" title="Đăng kí nghỉ phép">
                     Đăng kí nghỉ phép
                 </a>
                 @endif
 
-                <a href="/profile" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/profile" class="block px-4 py-2 rounded hover:bg-blue-700" title="Cập nhật thông tin">
                     Cập nhật thông tin
                 </a>
 
-                <a href="/change-password" class="block px-4 py-2 rounded hover:bg-blue-700">
+                <a href="/change-password" class="block px-4 py-2 rounded hover:bg-blue-700" title="Đổi mật khẩu">
                     Đổi mật khẩu
                 </a>
 
             </nav>
 
             <div class="p-4 border-t border-blue-700">
-                <a href="/logout" class="block text-center bg-red-500 hover:bg-red-600 py-2 rounded">
+                <a href="/logout" class="block text-center bg-red-500 hover:bg-red-600 py-2 rounded" title="Đăng xuất">
                     Đăng xuất
                 </a>
             </div>

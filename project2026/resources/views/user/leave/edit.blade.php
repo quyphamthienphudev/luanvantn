@@ -66,7 +66,7 @@
 
 @section('content')
 
-<a href="/leave" class="btn btn-secondary">
+<a href="/leave" class="btn btn-secondary" title="← Quay lại">
     ← Quay lại
 </a>
 <h1 class="text-2xl font-bold mb-6">
@@ -121,7 +121,7 @@
     </div>
 
     <div class="d-flex flex-column flex-sm-row gap-3">
-        <button type="submit" class="btn btn-save flex-grow-1">
+        <button type="submit" class="btn btn-save flex-grow-1" title="Lưu thay đổi">
             Lưu thay đổi
         </button>
     </div>

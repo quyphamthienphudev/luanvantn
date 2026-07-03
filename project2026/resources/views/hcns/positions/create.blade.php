@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <a href="/hcns/positions" class="btn btn-secondary">
+    <a href="/hcns/positions" class="btn btn-secondary" title="← Quay lại">
         ← Quay lại
     </a>
     <h1 class="text-2xl font-bold mb-6">
@@ -41,7 +41,7 @@
             <label>Lương cao nhất</label>
             <input type="text" name="max_salary" class="w-full border p-2 rounded" placeholder="Lương cao nhất">
         </div>
-        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" title="Lưu">
             Lưu
         </button>
     </form>

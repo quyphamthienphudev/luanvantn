@@ -14,16 +14,16 @@
 </head>
 
 <body>
-    <a href="/httt/accounts/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    <a href="/httt/accounts/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Thêm tài khoản">
         Thêm tài khoản
     </a>
-    <a href="/httt/accounts/export" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">
-        Xuất file Excel
+    <a href="/httt/accounts/export" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700" title="Xuất Excel">
+        Xuất Excel
     </a>
     <form method="GET" action="/httt/accounts" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo họ tên, email, quyền hoặc trạng thái" style="width:400px;">
-        <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
+        <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
     </form>
     @if(session('success'))
     <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
@@ -81,12 +81,12 @@
                     </td>
                     <td class="p-3 space-x-2">
                         <a href="/httt/accounts/edit/{{ $u->id }}"
-                            class="bg-yellow-500 text-white px-3 py-1 rounded">
+                            class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">
                             Sửa
                         </a>
                         <a href="/httt/accounts/delete/{{ $u->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
-                            onclick="return confirm('Bạn có muốn xoá tài khoản này ?')">
-                            Xóa
+                            onclick="return confirm('Bạn có muốn xoá tài khoản này ?')" title="Xoá">
+                            Xoá
                         </a>
                     </td>
                 </tr>

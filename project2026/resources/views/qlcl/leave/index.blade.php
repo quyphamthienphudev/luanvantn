@@ -103,7 +103,7 @@
                             onsubmit="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger btn-sm btn-action" title="Xóa"><i
+                            <button class="btn btn-danger btn-sm btn-action" title="Xoá"><i
                                     class="fas fa-trash"></i></button>
                         </form>
                     </div>
