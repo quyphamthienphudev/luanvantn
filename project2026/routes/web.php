@@ -22,6 +22,11 @@ use App\Http\Controllers\EmployeeCertificateController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ManageEmployeeRewardController;
 use App\Http\Controllers\ManageEmployeeDisciplinesController;
+use App\Http\Controllers\HomePageAdminController;
+use App\Http\Controllers\HomePageHCNSController;
+use App\Http\Controllers\HomePageQLCLController;
+use App\Http\Controllers\HomePageITController;
+use App\Http\Controllers\HomePageUserController;
 
 //-----------------------------------------------------------------------------------
 Route::get('/', function () {
@@ -56,11 +61,11 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/admin/home', [ManageUserControllerUser::class, 'homePage']);
-    Route::get('/hcns/home', [ManageUserControllerUser::class, 'homePage']);
-    Route::get('/qlcl/home', [ManageUserControllerUser::class, 'homePage']);
-    Route::get('/httt/home', [ManageUserControllerUser::class, 'homePage']);
-    Route::get('/home', [ManageUserControllerUser::class, 'homePage']);
+    Route::get('/admin/home', [HomePageAdminController::class, 'homePage']);
+    Route::get('/hcns/home', [HomePageHCNSController::class, 'homePage']);
+    Route::get('/qlcl/home', [HomePageQLCLController::class, 'homePage']);
+    Route::get('/httt/home', [HomePageITController::class, 'homePage']);
+    Route::get('/home', [HomePageUserController::class, 'homePage']);
 
     Route::get('/profile', [ManageUserControllerUser::class, 'editProfile']);
     Route::post('/profile', [ManageUserControllerUser::class, 'updateProfile']);

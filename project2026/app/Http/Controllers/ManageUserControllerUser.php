@@ -75,9 +75,4 @@ class ManageUserControllerUser extends Controller
 
         return back()->with('success', 'Đổi mật khẩu thành công');
     }
-    //HOME PAGE
-    public function homePage()
-    {
-        return view('home');
-    }
 }
