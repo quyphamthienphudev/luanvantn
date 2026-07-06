@@ -38,7 +38,7 @@ class LeaveControllerQLCL extends Controller
         $validate = $request->validate([
             'start_date' => 'required|date|after_or_equal:today',
             'end_date'   => 'required|date|after_or_equal:start_date',
-            'reason'     => 'required|string'
+            'reason'     => 'required'
         ], [
             'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
             'start_date.after_or_equal' => 'Ngày bắt đầu không được nhỏ hơn ngày hiện tại',

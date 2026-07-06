@@ -71,7 +71,7 @@ class ManageEmployeeControllerAdmin extends Controller
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh',
             'date_of_birth.before_or_equal' => 'Nhân viên phải từ 18 tuổi trở lên, vui lòng kiểm tra lại',
             'phone.required' => 'Vui lòng nhập số điện thoại',
-            'phone.numeric' => 'Số điện thoại chỉ được nhập số'
+            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'
         ]);
         $data = $request->all();
         $data['users_id'] = auth()->user()->id;

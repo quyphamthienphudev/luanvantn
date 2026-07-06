@@ -37,7 +37,7 @@ class LeaveControllerHCNS extends Controller
         $validate = $request->validate([
             'start_date' => 'required|date',
             'end_date'   => 'required|date|after_or_equal:start_date',
-            'reason'     => 'required|string'
+            'reason'     => 'required'
         ], [
             'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
             'end_date.required' => 'Vui lòng chọn ngày kết thúc',

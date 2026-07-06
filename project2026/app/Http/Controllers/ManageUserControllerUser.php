@@ -20,10 +20,11 @@ class ManageUserControllerUser extends Controller
     {
         $user = auth()->user();
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $user->id
+            'name' => ['required|regex:/^[\p{L}\p{N}\s]+$/u'],
+            'email' => 'required|email|unique:users,email,' . $user->id
         ],[
             'name.required' => 'Họ tên không được để trống',
+            'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại',
             'email.required' => 'Email không được để trống',
             'email.email' => 'Email không đúng định dạng',
             'email.unique' => 'Email này đã được sử dụng'

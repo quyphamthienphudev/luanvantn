@@ -42,11 +42,12 @@ class ManageUserControllerAdmin extends Controller
         }
 
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|regex:/^[\p{L}\p{N}\s]+$/u',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8'
         ],[
-            'name.required' => 'Tên không được để trống',
+            'name.required' => 'Họ tên không được để trống',
+            'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại',
             'email.required' => 'Email không được để trống',
             'email.email' => 'Email không đúng định dạng',
             'email.unique' => 'Email này đã được sử dụng',
@@ -85,11 +86,12 @@ class ManageUserControllerAdmin extends Controller
         }
 
         $request->validate([
-            'name'=>'required',
+            'name' => 'required|regex:/^[\p{L}\p{N}\s]+$/u',
             // 'email'=>'required|email|unique:users,email'
             'email' => 'required|email'
         ],[
             'name.required' => 'Họ tên không được để trống',
+            'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại',
             'email.required' => 'Email không được để trống',
             'email.email' => 'Email không đúng định dạng',
             // 'email.unique' => 'Email này đã được sử dụng',
@@ -229,7 +231,7 @@ class ManageUserControllerAdmin extends Controller
         $output = fopen('php://output', 'w');
         fwrite($output, "\xEF\xBB\xBF");
         
-        fputcsv($output, ['STT', 'Họ tên nhân viên', 'Email']);
+        fputcsv($output, ['STT', 'Họ tên', 'Email']);
         
         foreach ($users as $user) 
         {
