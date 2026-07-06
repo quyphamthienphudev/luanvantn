@@ -11,6 +11,11 @@ class EmployeeCertificateController extends Controller
 {
     public function store(Request $request,$employee_id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
             'certificate_name' => 'required',
             'issue_date' => 'required',
@@ -44,6 +49,11 @@ class EmployeeCertificateController extends Controller
 
     public function view($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+        
         $certificate = EmployeeCertificate::findOrFail($id);
         $path = storage_path('app/private/certificates/' . $certificate->certificate_file);
         return response()->file($path);

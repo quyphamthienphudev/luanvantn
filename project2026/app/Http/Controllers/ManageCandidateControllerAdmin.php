@@ -12,6 +12,10 @@ class ManageCandidateControllerAdmin extends Controller
     //INDEX
     public function index()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $candidates = DB::table('candidates')->get();
         return view('hcns.candidates.index',compact('candidates'));
     }
@@ -19,12 +23,21 @@ class ManageCandidateControllerAdmin extends Controller
     // SHOW CREATE
     public function create()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         return view('hcns.candidates.create');
     }
 
     //STORE
     public function store(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
         'candidate_id' => 'required|unique:candidates,candidate_id|regex:/^[A-Za-z0-9_-]+$/',
         'full_name' => 'required',
@@ -56,6 +69,10 @@ class ManageCandidateControllerAdmin extends Controller
     // EDIT
     public function edit($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $candidates = DB::table('candidates')->where('id',$id)->first();
         return view('hcns.candidates.edit',compact('candidates'));
     }
@@ -63,6 +80,11 @@ class ManageCandidateControllerAdmin extends Controller
     //UPDATE
     public function update(Request $request,$id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
         'full_name' => 'required',
         'first_name' => 'required',
@@ -106,6 +128,10 @@ class ManageCandidateControllerAdmin extends Controller
     // DELETE
     public function delete($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         DB::table('candidates')->where('id',$id)->delete();
         return redirect('/hcns/candidates')->with('success','Xóa hồ sơ thành công');
     }
@@ -113,6 +139,10 @@ class ManageCandidateControllerAdmin extends Controller
     // SHOW DETAIL
     public function show($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $candidate = Candidate::findOrFail($id);
         return view('hcns.candidates.show',compact('candidate'));
     }
@@ -120,15 +150,20 @@ class ManageCandidateControllerAdmin extends Controller
     //SEARCH
     public function search(Request $request)
     {
-    $search = $request->search;
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+        
+        $search = $request->search;
 
-    $candidates = DB::table('candidates')
-        ->when($search, function ($query) use ($search) {
-            $query->where('candidate_id', 'like', '%' . $search . '%')
-                  ->orWhere('full_name', 'like', '%' . $search . '%');
-        })
-        ->get();
+        $candidates = DB::table('candidates')
+            ->when($search, function ($query) use ($search) {
+                $query->where('candidate_id', 'like', '%' . $search . '%')
+                    ->orWhere('full_name', 'like', '%' . $search . '%');
+            })
+            ->get();
 
-    return view('hcns.candidates.index', compact('candidates', 'search'));
+        return view('hcns.candidates.index', compact('candidates', 'search'));
     }
 }

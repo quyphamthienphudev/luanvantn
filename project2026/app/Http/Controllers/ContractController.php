@@ -13,18 +13,31 @@ class ContractController extends Controller
 {
     public function index()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $contracts = Contract::with('employee')->get();
         return view('hcns.contracts.index', compact('contracts'));
     }
 
     public function create()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $employees = Employee::all();
         return view('hcns.contracts.create', compact('employees'));
     }
 
     public function store(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
             'employee_id'=>'required',
             'contract_type'=>'required',
@@ -66,6 +79,11 @@ class ContractController extends Controller
 
     public function extend($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $old = Contract::findOrFail($id);
 
         Contract::create([
@@ -88,6 +106,10 @@ class ContractController extends Controller
 
     public function terminate($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $contract = Contract::findOrFail($id);
         $contract->update(['status'=>'terminated']);
         return redirect('/hcns/contracts')->with('success','Thanh lý hợp đồng thành công');
@@ -95,6 +117,11 @@ class ContractController extends Controller
 
     public function viewFile($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+        
         $contract = Contract::findOrFail($id);
 
         if (!$contract->contract_file)

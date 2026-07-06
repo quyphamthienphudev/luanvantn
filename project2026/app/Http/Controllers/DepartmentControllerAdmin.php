@@ -12,6 +12,10 @@ class DepartmentControllerAdmin extends Controller
     //INDEX
     public function index()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $departments = Department::with('user')->get();
         return view('hcns.departments.index', compact('departments'));
     }
@@ -19,12 +23,21 @@ class DepartmentControllerAdmin extends Controller
     //SHOW CREATE
     public function create()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         return view('hcns.departments.create');
     }
 
     //STORE
     public function store(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
             'name' => 'required',
             'description' => 'required'
@@ -43,6 +56,10 @@ class DepartmentControllerAdmin extends Controller
     //SHOW EDIT
     public function edit($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $department = Department::findOrFail($id);
         return view('hcns.departments.edit', compact('department'));
     }
@@ -50,6 +67,11 @@ class DepartmentControllerAdmin extends Controller
     //UPDATE
     public function update(Request $request,$id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
             'name' => 'required',
             'description' => 'required'
@@ -64,6 +86,10 @@ class DepartmentControllerAdmin extends Controller
     //DELETE
     public function delete($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $hasEmployee = DB::table('employees')
             ->where('department_id', $id)
             ->exists();
@@ -78,6 +104,10 @@ class DepartmentControllerAdmin extends Controller
     //SEARCH
     public function search(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $search = $request->search;
 
         $departments = Department::with('user')
@@ -94,6 +124,11 @@ class DepartmentControllerAdmin extends Controller
     //EXPORT FILE
     public function export()
     {   
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+        
         $departments = DB::table('departments')
             ->select(
                 'name',

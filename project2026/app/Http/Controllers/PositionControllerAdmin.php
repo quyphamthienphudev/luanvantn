@@ -13,6 +13,10 @@ class PositionControllerAdmin extends Controller
     //INDEX
     public function index()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $positions = DB::table('positions')->get();
         return view('hcns.positions.index',compact('positions'));
     }
@@ -20,12 +24,21 @@ class PositionControllerAdmin extends Controller
     //SHOW CREATE
     public function create()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         return view('hcns.positions.create');
     }
 
     //STORE
     public function store(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
             'name' => 'required',
             'base_salary' => 'required|numeric|min:0',
@@ -54,6 +67,10 @@ class PositionControllerAdmin extends Controller
     //SHOW EDIT
     public function edit($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $position = DB::table('positions')->where('id',$id)->first();
         return view('hcns.positions.edit',compact('position'));
     }
@@ -61,6 +78,11 @@ class PositionControllerAdmin extends Controller
     //UPDATE
     public function update(Request $request,$id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
             'name' => 'required',
             'base_salary' => 'required|numeric|min:0',
@@ -90,6 +112,11 @@ class PositionControllerAdmin extends Controller
     //DELETE
     public function delete($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $hasEmployee = DB::table('employees')
             ->where('position_id', $id)
             ->exists();
@@ -107,6 +134,11 @@ class PositionControllerAdmin extends Controller
     //SEARCH
     public function search(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $search = $request->search;
 
         $positions = DB::table('positions')
@@ -124,6 +156,11 @@ class PositionControllerAdmin extends Controller
     //EXPORT FILE
     public function export()
     {   
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+        
         $positions = DB::table('positions')->select('name', 'base_salary', 'max_salary')->get();
         
         if ($positions->isEmpty()) 

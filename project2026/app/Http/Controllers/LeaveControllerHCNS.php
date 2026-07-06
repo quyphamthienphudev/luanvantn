@@ -9,18 +9,30 @@ class LeaveControllerHCNS extends Controller
 {
     public function index() 
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $allLeaves = LeaveRequest::with('user')->where('status','approved')->orderBy('start_date','desc')->get(); 
         return view('hcns.leave.index', compact('allLeaves'));
     }
 
     public function edit($id) 
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $leave = LeaveRequest::findOrFail($id);
         return view('hcns.leave.edit', compact('leave'));
     }
 
     public function update(Request $request, $id) 
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $leave = LeaveRequest::findOrFail($id);
         $validate = $request->validate([
             'start_date' => 'required|date',
@@ -38,6 +50,10 @@ class LeaveControllerHCNS extends Controller
 
     public function delete($id) 
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $leave = LeaveRequest::findOrFail($id);
         $leave->delete();
         return back()->with('success', 'Đã xóa đơn nghỉ phép');
@@ -45,6 +61,10 @@ class LeaveControllerHCNS extends Controller
 
     public function approve(Request $request, $id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $leave = LeaveRequest::findOrFail($id);
         $leave->update(['status' => 'approved']);
         return back()->with('success', 'Đã duyệt đơn nghỉ phép thành công');
@@ -52,6 +72,10 @@ class LeaveControllerHCNS extends Controller
 
     public function reject(Request $request, $id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $leave = LeaveRequest::findOrFail($id);
         $leave->update(['status' => 'rejected']);
         return back()->with('success', 'Đã từ chối đơn nghỉ phép');

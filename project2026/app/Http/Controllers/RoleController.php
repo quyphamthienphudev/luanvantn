@@ -12,6 +12,10 @@ class RoleController extends Controller
     //INDEX
     public function index()
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
         $roles = DB::table('roles')->get();
         return view('httt.roles.index',compact('roles'));
     }
@@ -19,12 +23,21 @@ class RoleController extends Controller
     //SHOW CREATE
     public function create()
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
         return view('httt.roles.create');
     }
 
     //STORE
     public function store(Request $request)
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
+
         $request->validate([
             'name' => 'required|regex:/^[A-Za-z0-9_-]+$/',
             'description' => 'required'
@@ -45,6 +58,10 @@ class RoleController extends Controller
     //SHOW EDIT
     public function edit($id)
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
         $roles = DB::table('roles')->where('id',$id)->first();
         return view('httt.roles.edit',compact('roles'));
     }
@@ -52,6 +69,11 @@ class RoleController extends Controller
     //UPDATE
     public function update(Request $request,$id)
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
+
         $request->validate([
             'description' => 'required'
         ],[
@@ -68,6 +90,11 @@ class RoleController extends Controller
     //DELETE
     public function delete($id)
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
+
         $hasUser = DB::table('users')->where('role_id', $id)->exists();
 
         if($hasUser)
@@ -83,6 +110,11 @@ class RoleController extends Controller
     //SEARCH
     public function search(Request $request)
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
+        
         $search = $request->search;
 
         $roles = DB::table('roles')

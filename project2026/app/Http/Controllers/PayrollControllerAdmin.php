@@ -10,6 +10,11 @@ class PayrollControllerAdmin extends Controller
 {
     public function index(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $month = $request->get('month', date('m'));
         $year = $request->get('year', date('Y'));
         
@@ -38,6 +43,11 @@ class PayrollControllerAdmin extends Controller
 
     public function create(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $employees = DB::table('employees')
             ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
             ->select('employees.*', 'positions.name as position_name', 'positions.base_salary')
@@ -49,6 +59,11 @@ class PayrollControllerAdmin extends Controller
 
     public function store(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
             'month' => 'required|integer|min:1|max:12',
@@ -103,6 +118,11 @@ class PayrollControllerAdmin extends Controller
 
     public function show($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $payroll = DB::table('payrolls')
             ->where('payrolls.id', $id)
             ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
@@ -122,6 +142,11 @@ class PayrollControllerAdmin extends Controller
 
     public function edit($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $payroll = DB::table('payrolls')->where('id', $id)->first();
         $employees = DB::table('employees')
             ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
@@ -133,6 +158,11 @@ class PayrollControllerAdmin extends Controller
 
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
             'month' => 'required|integer|min:1|max:12',
@@ -187,6 +217,11 @@ class PayrollControllerAdmin extends Controller
 
     public function delete($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $payroll = DB::table('payrolls')->where('id', $id)->first();
         DB::table('payrolls')->where('id', $id)->delete();
         return back()->with('success', 'Xóa bảng lương thành công');
@@ -194,6 +229,11 @@ class PayrollControllerAdmin extends Controller
 
     public function export(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+        
         $month = $request->get('month', date('m'));
         $year = $request->get('year', date('Y'));
         

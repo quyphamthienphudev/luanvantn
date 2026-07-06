@@ -10,18 +10,30 @@ class LeaveControllerQLCL extends Controller
 {
     public function index() 
     {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
         $allLeaves = LeaveRequest::with('user')->orderBy('start_date','desc')->get(); 
         return view('qlcl.leave.index', compact('allLeaves'));
     }
 
     public function edit($id) 
     {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
         $leave = LeaveRequest::findOrFail($id);
         return view('qlcl.leave.edit', compact('leave'));
     }
 
     public function update(Request $request, $id) 
     {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
         $leave = LeaveRequest::findOrFail($id);
         $validate = $request->validate([
             'start_date' => 'required|date|after_or_equal:today',
@@ -47,6 +59,10 @@ class LeaveControllerQLCL extends Controller
 
     public function delete($id) 
     {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
         $leave = LeaveRequest::findOrFail($id);
         $leave->delete();
         return back()->with('success', 'Đã xóa đơn nghỉ phép');
@@ -54,6 +70,10 @@ class LeaveControllerQLCL extends Controller
 
     public function approve(Request $request, $id)
     {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
         $leave = LeaveRequest::findOrFail($id);
         $leave->update([
             'status' => 'approved'
@@ -63,6 +83,10 @@ class LeaveControllerQLCL extends Controller
 
     public function reject(Request $request, $id)
     {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
         $leave = LeaveRequest::findOrFail($id);
         $leave->update([
             'status' => 'rejected'

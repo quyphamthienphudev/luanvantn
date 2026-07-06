@@ -14,6 +14,11 @@ class ManageEmployeeControllerAdmin extends Controller
     //INDEX + SEARCH
     public function index(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $search = $request->search;
 
         $employees = Employee::with('department','user')
@@ -33,6 +38,10 @@ class ManageEmployeeControllerAdmin extends Controller
     // SHOW CREATE
     public function create()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $departments = Department::all();
         $positions = Position::all();
         return view('hcns.employees.create', compact('departments','positions'));
@@ -41,6 +50,11 @@ class ManageEmployeeControllerAdmin extends Controller
     //STORE
     public function store(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
         'employee_code' => 'required|unique:employees,employee_code|regex:/^[A-Za-z0-9_-]+$/',
         'full_name' => 'required',
@@ -72,6 +86,10 @@ class ManageEmployeeControllerAdmin extends Controller
     // EDIT
     public function edit($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $employee = Employee::findOrFail($id);
         $departments = Department::all();
         $positions = Position::all();
@@ -81,6 +99,11 @@ class ManageEmployeeControllerAdmin extends Controller
     //UPDATE
     public function update(Request $request,$id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
         'employee_code' => 'required',
         'full_name' => 'required',
@@ -107,6 +130,10 @@ class ManageEmployeeControllerAdmin extends Controller
     // DELETE
     public function delete($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         // Kiểm tra ràng buộc dữ liệu
         $payroll = DB::table('payrolls')->where('employee_id', $id)->exists();
         if ($payroll) 
@@ -131,6 +158,10 @@ class ManageEmployeeControllerAdmin extends Controller
     // SHOW DETAIL
     public function show($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $employee = Employee::with('department', 'position', 'certificates')->findOrFail($id);
         return view('hcns.employees.show', compact('employee'));
     }
@@ -138,6 +169,11 @@ class ManageEmployeeControllerAdmin extends Controller
     //EXPORT FILE
     public function export()
     {   
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+        
         $employees = DB::table('employees')
             ->leftJoin('departments', 'employees.department_id', '=', 'departments.id')
             ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')

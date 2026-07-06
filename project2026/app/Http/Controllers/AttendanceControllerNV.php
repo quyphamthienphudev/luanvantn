@@ -14,6 +14,10 @@ class AttendanceControllerNV extends Controller
     // SHOW ATTENDANCE
     public function index()
     {
+        if (auth()->user()->role->name !== 'user') 
+        {
+            return back();
+        }
         $today = Carbon::today()->toDateString();
         $attendance = Attendance::where('users_id', Auth::id())->where('work_date', $today)->first();
         return view('user.attendances.index', compact('attendance'));
@@ -22,6 +26,10 @@ class AttendanceControllerNV extends Controller
     //CHECK IN
     public function checkIn()
     {
+        if (auth()->user()->role->name !== 'user') 
+        {
+            return back();
+        }
         $today = Carbon::today()->toDateString();
         $attendance = Attendance::where('users_id', Auth::id())->where('work_date', $today)->first();
         if ($attendance && $attendance->check_in) 
@@ -54,6 +62,10 @@ class AttendanceControllerNV extends Controller
     //CHECK OUT
     public function checkOut()
     {
+        if (auth()->user()->role->name !== 'user') 
+        {
+            return back();
+        }
         $today = Carbon::today()->toDateString();
         $attendance = Attendance::where('users_id', Auth::id())->where('work_date', $today)->first();
         if (!$attendance) 

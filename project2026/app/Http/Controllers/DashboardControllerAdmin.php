@@ -10,6 +10,10 @@ class DashboardControllerAdmin extends Controller
 {
     public function dashboard(Request $request)
     {
+        if (auth()->user()->role->name !== 'admin') 
+        {
+            return back();
+        }
         //employees đang làm việc
         $e_working = DB::table('employees')->where('status','working')->count();
 

@@ -10,6 +10,11 @@ class LeaveController extends Controller
 {
     public function index() 
     {
+        if (auth()->user()->role->name !== 'user') 
+        {
+            return back();
+        }
+
         $leaves = LeaveRequest::where('users_id', Auth::id())
                 ->orderBy('id', 'desc')
                 ->get();
@@ -20,6 +25,11 @@ class LeaveController extends Controller
 
     public function store(Request $request)
     {
+        if (auth()->user()->role->name !== 'user') 
+        {
+            return back();
+        }
+
         $validate = $request->validate([
         'start_date' => 'required|date|after_or_equal:today',
         'end_date'   => 'required|date|after_or_equal:start_date',
@@ -62,7 +72,12 @@ class LeaveController extends Controller
         return redirect('/leave')->with('success', 'Gửi đơn xin nghỉ phép thành công');
     }
 
-    public function edit($id) {
+    public function edit($id) 
+    {
+        if (auth()->user()->role->name !== 'user') 
+        {
+            return back();
+        }
         $leave = LeaveRequest::where('id', $id)
                 ->where('users_id', Auth::id())
                 ->where('status', 'pending')
@@ -71,7 +86,13 @@ class LeaveController extends Controller
         return view('user.leave.edit', compact('leave'));
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id) 
+    {
+        if (auth()->user()->role->name !== 'user') 
+        {
+            return back();
+        }
+        
         $leave = LeaveRequest::where('id', $id)
                 ->where('users_id', Auth::id())
                 ->where('status', 'pending')

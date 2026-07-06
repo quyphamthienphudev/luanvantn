@@ -13,12 +13,20 @@ class AttendanceController extends Controller
 
     public function index()
     {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
         $attendances = Attendance::with('user')->orderBy('work_date', 'desc')->get();
         return view('qlcl.attendances.index', compact('attendances'));
     }
 
     public function edit($id)
     {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
         $attendance = Attendance::findOrFail($id);
         $employees = Employee::all();
         return view('qlcl.attendances.edit', compact('attendance', 'employees'));
@@ -26,6 +34,11 @@ class AttendanceController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
+
         $request->validate([
             'work_date' => 'required|date'
         ],[
@@ -59,12 +72,22 @@ class AttendanceController extends Controller
 
     public function delete($id)
     {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
+
         Attendance::findOrFail($id)->delete();
         return back()->with('success','Xóa dữ liệu chấm công thành công');
     }
 
     public function confirm($id)
     {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
+        
         DB::table('attendances')->where('id',$id)->update(['confirm' => 'yes']);
         return redirect('/qlcl/attendances')->with('success','Xác nhận chấm công thành công');
     }

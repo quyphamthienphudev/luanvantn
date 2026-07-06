@@ -14,6 +14,10 @@ class ManageUserControllerAdmin extends Controller
     //INDEX
     public function index()
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
         $users = DB::table('users')->get();
         return view('httt.accounts.index',compact('users'));
     }
@@ -21,6 +25,10 @@ class ManageUserControllerAdmin extends Controller
     //SHOW CREATE
     public function create()
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
         $roles = DB::table('roles')->get();
         return view('httt.accounts.create',compact('roles'));
     }
@@ -28,6 +36,11 @@ class ManageUserControllerAdmin extends Controller
     //STORE
     public function store(Request $request)
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
+
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
@@ -54,6 +67,10 @@ class ManageUserControllerAdmin extends Controller
     //SHOW EDIT
     public function edit($id)
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
         $user = DB::table('users')->where('id',$id)->first();
         $roles = Role::all();
         return view('httt.accounts.edit',compact('user','roles'));
@@ -62,6 +79,11 @@ class ManageUserControllerAdmin extends Controller
     //UPDATE
     public function update(Request $request,$id)
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
+
         $request->validate([
             'name'=>'required',
             // 'email'=>'required|email|unique:users,email'
@@ -97,6 +119,10 @@ class ManageUserControllerAdmin extends Controller
     //DELETE
     public function delete($id)
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
         // Kiểm tra ràng buộc dữ liệu
         $attendance = DB::table('attendances')->where('users_id', $id)->exists();
         if ($attendance) 
@@ -151,6 +177,11 @@ class ManageUserControllerAdmin extends Controller
     //SEARCH
     public function search(Request $request)
     {
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
+
         $search = $request->search;
 
         $users = DB::table('users')
@@ -179,6 +210,11 @@ class ManageUserControllerAdmin extends Controller
     //EXPORT FILE
     public function export()
     {   
+        if (auth()->user()->role->name !== 'httt') 
+        {
+            return back();
+        }
+        
         $users = DB::table('users')->select('id', 'name', 'email')->get();
         
         if ($users->isEmpty()) 

@@ -11,6 +11,11 @@ class PayrollControllerUser extends Controller
 
     public function show()
     {
+        if (auth()->user()->role->name !== 'user') 
+        {
+            return back();
+        }
+
         $userId = auth()->id();
 
         $payroll = DB::table('payrolls')

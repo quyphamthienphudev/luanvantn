@@ -13,6 +13,10 @@ class ManageEmployeeDisciplinesController extends Controller
     //INDEX
     public function index()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $disciplines = RewardDiscipline::with('employee')->where('type','discipline')->orderBy('decision_date','desc')->get();
         return view('hcns.disciplines.index', compact('disciplines'));
     }
@@ -20,6 +24,10 @@ class ManageEmployeeDisciplinesController extends Controller
     // SHOW CREATE
     public function create()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $disciplines = RewardDiscipline::all();
         $employees = Employee::all();
         return view('hcns.disciplines.create', compact('disciplines','employees'));
@@ -28,6 +36,11 @@ class ManageEmployeeDisciplinesController extends Controller
     //STORE
     public function store(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
         'title' => 'required',
         'amount' => 'required|numeric|min:0',
@@ -48,6 +61,10 @@ class ManageEmployeeDisciplinesController extends Controller
     // EDIT
     public function edit($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $disciplines = RewardDiscipline::findOrFail($id);
         return view('hcns.disciplines.edit', compact('disciplines'));
     }
@@ -55,6 +72,11 @@ class ManageEmployeeDisciplinesController extends Controller
     //UPDATE
     public function update(Request $request,$id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
         'title' => 'required',
         'amount' => 'required|numeric|min:0',
@@ -73,6 +95,10 @@ class ManageEmployeeDisciplinesController extends Controller
     // DELETE
     public function delete($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         RewardDiscipline::findOrFail($id)->delete();
         return back()->with('success','Xóa kỷ luật thành công');
     }

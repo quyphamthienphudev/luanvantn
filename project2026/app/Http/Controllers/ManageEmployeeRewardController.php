@@ -13,6 +13,10 @@ class ManageEmployeeRewardController extends Controller
     //INDEX
     public function index()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $rewards = RewardDiscipline::with('employee')->where('type','reward')->orderBy('decision_date','desc')->get();
         return view('hcns.rewards.index', compact('rewards'));
     }
@@ -20,6 +24,10 @@ class ManageEmployeeRewardController extends Controller
     // SHOW CREATE
     public function create()
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $rewards = RewardDiscipline::all();
         $employees = Employee::all();
         return view('hcns.rewards.create', compact('rewards','employees'));
@@ -28,6 +36,11 @@ class ManageEmployeeRewardController extends Controller
     //STORE
     public function store(Request $request)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
         $request->validate([
         'title' => 'required',
         'amount' => 'required|numeric|min:0',
@@ -48,6 +61,10 @@ class ManageEmployeeRewardController extends Controller
     // EDIT
     public function edit($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $rewards = RewardDiscipline::findOrFail($id);
         return view('hcns.rewards.edit', compact('rewards'));
     }
@@ -55,6 +72,10 @@ class ManageEmployeeRewardController extends Controller
     //UPDATE
     public function update(Request $request,$id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         $request->validate([
         'title' => 'required',
         'amount' => 'required|numeric|min:0',
@@ -73,6 +94,10 @@ class ManageEmployeeRewardController extends Controller
     // DELETE
     public function delete($id)
     {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
         RewardDiscipline::findOrFail($id)->delete();
         return back()->with('success','Xóa khen thưởng thành công');
     }
