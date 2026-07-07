@@ -126,14 +126,16 @@ class ContractController extends Controller
 
         if (!$contract->contract_file)
         {
-            abort(404, 'Không tìm thấy file');
+            // abort(404, 'Không tìm thấy file');
+            return back();
         }
 
         $path = storage_path('app/private/' . $contract->contract_file);
 
         if (!file_exists($path))
         {
-            abort(404, 'File không tồn tại');
+            // abort(404, 'File không tồn tại');
+            return back();
         }
 
         return response()->file($path);
