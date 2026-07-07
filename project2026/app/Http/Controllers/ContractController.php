@@ -63,7 +63,7 @@ class ContractController extends Controller
 
         Contract::create([
             'employee_id'=>$request->employee_id,
-            'contract_code'=>'HD'.time(),
+            'contract_code'=>'HD'.rand(),
             'contract_type'=>$request->contract_type,
             'start_date'=>$request->start_date,
             'end_date'=>$request->end_date,
@@ -88,7 +88,7 @@ class ContractController extends Controller
 
         Contract::create([
             'employee_id'=>$old->employee_id,
-            'contract_code'=>'HD'.time(),
+            'contract_code'=>'HD'.rand(),
             'contract_type'=>'fixed_term',
             'start_date'=>now(),
             'end_date'=>now()->addYear(),

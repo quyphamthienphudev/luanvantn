@@ -19,7 +19,8 @@ class CompanyNetwork
 
         if(!str_starts_with($ip,'192.168.25.'))
         {
-            abort(403,'Không có quyền truy cập');
+            // abort(403,'Không có quyền truy cập');
+            return back();
         }
 
         return $next($request);
