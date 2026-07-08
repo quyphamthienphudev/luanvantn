@@ -32,7 +32,7 @@ class EmployeeCertificateController extends Controller
 
         $file = $request->file('certificate_file');
 
-        $fileName = time().'_'.$file->getClientOriginalName();
+        $fileName = rand().'_'.$file->getClientOriginalName();
 
         $file->storeAs('certificates', $fileName);
 

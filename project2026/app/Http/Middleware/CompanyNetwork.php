@@ -17,7 +17,7 @@ class CompanyNetwork
     {
         $ip = $request->ip();
 
-        if(!str_starts_with($ip,'185.27.134.'))
+        if(!str_starts_with($ip,'192.168.25.'))
         {
             // abort(403,'Không có quyền truy cập');
             return back();
