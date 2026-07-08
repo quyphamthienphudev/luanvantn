@@ -28,12 +28,12 @@
             @csrf
 
             <div class="mb-4">
-                <input type="email" name="email" required
+                <input type="text" name="email"
                     class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="Email">
             </div>
 
             <div class="mb-4">
-                <input type="password" name="password" required
+                <input type="password" name="password"
                     class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="Password">
             </div>
 
