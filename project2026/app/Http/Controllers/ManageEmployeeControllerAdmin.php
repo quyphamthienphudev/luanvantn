@@ -60,7 +60,8 @@ class ManageEmployeeControllerAdmin extends Controller
         'full_name' => 'required',
         'email' => 'required|email',
         'date_of_birth' => 'required|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
-        'phone' => 'required|numeric'
+        // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
+        'phone' => 'required|numeric|regex:/^0[0-9]+$/'
         ],[
             'employee_code.required' => 'Vui lòng nhập mã nhân viên',
             'employee_code.unique' => 'Mã nhân viên đã tồn tại, vui lòng kiểm tra lại',
@@ -71,7 +72,8 @@ class ManageEmployeeControllerAdmin extends Controller
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh',
             'date_of_birth.before_or_equal' => 'Nhân viên phải từ 18 tuổi trở lên, vui lòng kiểm tra lại',
             'phone.required' => 'Vui lòng nhập số điện thoại',
-            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'
+            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại',
+            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'
         ]);
         $data = $request->all();
         $data['users_id'] = auth()->user()->id;
@@ -110,7 +112,8 @@ class ManageEmployeeControllerAdmin extends Controller
         'hire_date' => 'required|date',
         'email' => 'required|email',
         'date_of_birth' => 'required|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
-        'phone' => 'required|numeric'
+        // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
+        'phone' => 'required|numeric|regex:/^0[0-9]+$/'
         ],[
             'employee_code.required' => 'Vui lòng nhập mã nhân viên',
             'full_name.required' => 'Vui lòng nhập họ tên nhân viên',
@@ -121,7 +124,9 @@ class ManageEmployeeControllerAdmin extends Controller
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh',
             'date_of_birth.before_or_equal' => 'Nhân viên phải từ 18 tuổi trở lên, vui lòng kiểm tra lại',
             'phone.required' => 'Vui lòng nhập số điện thoại',
-            'phone.numeric' => 'Số điện thoại chỉ được nhập số'
+            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại',
+            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'
+
         ]);
         Employee::findOrFail($id)->update($request->all());
         return redirect('/hcns/employees')->with('success','Cập nhật thông tin thành công');

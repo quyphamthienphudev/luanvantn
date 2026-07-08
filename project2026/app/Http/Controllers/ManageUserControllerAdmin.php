@@ -49,7 +49,7 @@ class ManageUserControllerAdmin extends Controller
             'name.required' => 'Họ tên không được để trống',
             'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại',
             'email.required' => 'Email không được để trống',
-            'email.email' => 'Email không đúng định dạng',
+            'email.email' => 'Email không hợp lệ, vui lòng kiểm tra lại',
             'email.unique' => 'Email này đã được sử dụng',
             'password.required' => 'Mật khẩu không được để trống',
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự'
@@ -93,7 +93,7 @@ class ManageUserControllerAdmin extends Controller
             'name.required' => 'Họ tên không được để trống',
             'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại',
             'email.required' => 'Email không được để trống',
-            'email.email' => 'Email không đúng định dạng',
+            'email.email' => 'Email không hợp lệ, vui lòng kiểm tra lại',
             // 'email.unique' => 'Email này đã được sử dụng',
             'password.required' => 'Mật khẩu không được để trống',
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự'

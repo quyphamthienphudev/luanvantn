@@ -46,11 +46,11 @@ class PositionControllerAdmin extends Controller
         ],[
             'name.required' => 'Tên công việc không được để trống',
             'base_salary.required' => 'Lương cơ bản không được để trống',
-            'base_salary.numeric' => 'Lương cơ bản chỉ được nhập số',
-            'base_salary.min' => 'Lương cơ bản không hợp lệ',
+            'base_salary.numeric' => 'Lương cơ bản không hợp lệ, vui lòng kiểm tra lại',
+            'base_salary.min' => 'Lương cơ bản không hợp lệ, vui lòng kiểm tra lại',
             'max_salary.required' => 'Lương cao nhất không được để trống',
-            'max_salary.numeric' => 'Lương cao nhất chỉ được nhập số',
-            'max_salary.min' => 'Lương cao nhất không hợp lệ',
+            'max_salary.numeric' => 'Lương cao nhất không hợp lệ, vui lòng kiểm tra lại',
+            'max_salary.min' => 'Lương cao nhất không hợp lệ, vui lòng kiểm tra lại',
             'max_salary.gte' => 'Lương cao nhất không được ít hơn lương cơ bản'
         ]);
 
@@ -90,11 +90,11 @@ class PositionControllerAdmin extends Controller
         ],[
             'name.required' => 'Tên công việc không được để trống',
             'base_salary.required' => 'Lương cơ bản không được để trống',
-            'base_salary.numeric' => 'Lương cơ bản chỉ được nhập số',
-            'base_salary.min' => 'Lương cơ bản không hợp lệ',
+            'base_salary.numeric' => 'Lương cơ bản không hợp lệ, vui lòng kiểm tra lại',
+            'base_salary.min' => 'Lương cơ bản không hợp lệ, vui lòng kiểm tra lại',
             'max_salary.required' => 'Lương cao nhất không được để trống',
-            'max_salary.numeric' => 'Lương cao nhất chỉ được nhập số',
-            'max_salary.min' => 'Lương cao nhất không hợp lệ',
+            'max_salary.numeric' => 'Lương cao nhất không hợp lệ, vui lòng kiểm tra lại',
+            'max_salary.min' => 'Lương cao nhất không hợp lệ, vui lòng kiểm tra lại',
             'max_salary.gte' => 'Lương cao nhất không được ít hơn lương cơ bản'
         ]);
 

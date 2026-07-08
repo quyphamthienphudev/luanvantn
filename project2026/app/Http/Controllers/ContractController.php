@@ -47,8 +47,8 @@ class ContractController extends Controller
         ],[
             'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
             'salary.required' => 'Vui lòng nhập mức lương',
-            'salary.numeric' => 'Mức lương chỉ được nhập số',
-            'salary.min' => 'Mức lương không hợp lệ',
+            'salary.numeric' => 'Mức lương không hợp lệ, vui lòng kiểm tra lại',
+            'salary.min' => 'Mức lương không hợp lệ, vui lòng kiểm tra lại',
             'contract_file.required' => 'Vui lòng chọn file để tải lên',
             'contract_file.mimes' => 'Định dạng file không phù hợp, chỉ cho phép file pdf, doc, docx',
             'contract_file.max' => 'Vui lòng tải lên file dưới 5 MB'
