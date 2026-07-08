@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class EmployeeCertificateController extends Controller
 {
-    public function store(Request $request,$employee_id)
+    public function store(Request $request, $employee_id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
