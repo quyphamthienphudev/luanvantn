@@ -100,7 +100,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/hcns/employees/export',[ManageEmployeeControllerAdmin::class,'export']);
     // Quản lý chứng chỉ
     Route::post('/hcns/employees/{id}/certificate/store', [EmployeeCertificateController::class,'store']);
-    Route::get('/hcns/employees/certificate/view/{id}', [EmployeeCertificateController::class,'view']);
+    Route::get('/hcns/employees/certificate/view/{id}', [EmployeeCertificateController::class,'viewFile']);
 });
 
 // Chức năng quản lý phòng ban

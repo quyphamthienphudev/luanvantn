@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\EmployeeCertificate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
 class EmployeeCertificateController extends Controller
 {
-    public function store(Request $request, $employee_id)
+    public function store(Request $request,$employee_id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
@@ -30,11 +31,12 @@ class EmployeeCertificateController extends Controller
             'certificate_file.max' => 'Vui lòng tải lên file dưới 5 MB'
         ]);
 
-        $file = $request->file('certificate_file');
+        $fileName = null;
 
-        $fileName = rand().'_'.$file->getClientOriginalName();
-
-        $file->storeAs('certificates', $fileName);
+        if($request->hasFile('certificate_file'))
+        {
+            $fileName = $request->file('certificate_file')->store('certificates');
+        }
 
         EmployeeCertificate::create([
             'employee_id' => $employee_id,
@@ -47,7 +49,7 @@ class EmployeeCertificateController extends Controller
         return back()->with('success', 'Thêm chứng chỉ thành công');
     }
 
-    public function view($id)
+    public function viewFile($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
@@ -55,7 +57,21 @@ class EmployeeCertificateController extends Controller
         }
         
         $certificate = EmployeeCertificate::findOrFail($id);
-        $path = storage_path('app/private/certificates/' . $certificate->certificate_file);
+
+        if (!$certificate->certificate_file)
+        {
+            // abort(404, 'Không tìm thấy file');
+            return back();
+        }
+
+        $path = storage_path('app/private/' . $certificate->certificate_file);
+
+        if (!file_exists($path))
+        {
+            // abort(404, 'File không tồn tại');
+            return back();
+        }
+        
         return response()->file($path);
     }
 }
