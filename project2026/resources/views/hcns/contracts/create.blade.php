@@ -18,24 +18,6 @@
     <form method="POST" action="/hcns/contracts/store" class="bg-white p-6 rounded shadow w-1/2"
         enctype="multipart/form-data">
         @csrf
-        @error('contract_type')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
-        @error('start_date')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
-        @error('end_date')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
-        @error('salary')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
-        @error('contract_file')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
-        @error('description')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
         <div class="mb-4">
             <label>Nhân viên</label>
             <select name="employee_id" id="employee_id" class="w-full border p-2 rounded">
@@ -61,21 +43,36 @@
         <div class="mb-4">
             <label>Ngày bắt đầu</label>
             <input type="date" name="start_date" class="w-full border p-2 rounded" value="{{ old('start_date') }}">
+            @error('start_date')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>Ngày kết thúc</label>
             <input type="date" name="end_date" class="w-full border p-2 rounded" value="{{ old('end_date') }}">
+            @error('end_date')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>Mức lương</label>
             <input type="text" name="salary" class="w-full border p-2 rounded" placeholder="Mức lương" value="{{ old('salary') }}">
+            @error('salary')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>File hợp đồng</label>
             <input type="file" name="contract_file" class="w-full border p-2 rounded" accept=".pdf,.doc,.docx" value="{{ old('contract_file') }}">
+            @error('contract_file')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>Ghi chú hợp đồng</label>
+            @error('description')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
             <textarea name="description" class="w-full border p-2 rounded" rows="10" cols="40">{{ old('description') }}</textarea>
         </div>
         <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" title="Lưu">Lưu</button>

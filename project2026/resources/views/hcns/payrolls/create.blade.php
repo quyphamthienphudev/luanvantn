@@ -21,9 +21,6 @@
             {{ session('error') }}
         </div>
         @endif
-        @error('allowance')
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{{ $message }}</div>
-        @enderror
         <form action="/hcns/payrolls" method="POST">
             @csrf
             <div class="mb-4">
@@ -48,6 +45,9 @@
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Phụ cấp</label>
                 <input type="text" name="allowance" class="w-full border p-2 rounded" value="{{ old('allowance') }}">
+                @error('allowance')
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="grid grid-cols-2 gap-4 mb-4">

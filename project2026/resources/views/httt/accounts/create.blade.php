@@ -20,26 +20,26 @@
     </h1>
     <form action="/httt/accounts/store" method="POST" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
-        @error('name')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
-        @error('email')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
-        @error('password')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
         <div class="mb-4">
             <label>Họ tên</label>
             <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Họ tên" value="{{ old('name') }}">
+            @error('name')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>Email</label>
             <input type="text" name="email" class="w-full border p-2 rounded" placeholder="Email" maxlength="150" value="{{ old('email') }}">
+            @error('email')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>Mật khẩu</label>
             <input type="password" name="password" class="w-full border p-2 rounded" placeholder="Mật khẩu" value="{{ old('password') }}">
+            @error('password')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>Quyền</label>

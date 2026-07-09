@@ -20,23 +20,28 @@
             {{ session('success') }}
         </div>
         @endif
-        @error('name')
-        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
-        @enderror
-        @error('email')
-        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
-        @enderror
+        @if(session('error'))
+        <div class="text-green-600 mb-4">
+            {{ session('error') }}
+        </div>
+        @endif
         <form method="POST">
             @csrf
             <div class="mb-4">
                 <label class="block mb-2">Họ tên</label>
                 <input type="text" name="name" value="{{ auth()->user()->name }}"
                     class="w-full px-4 py-2 border rounded" placeholder="Họ tên">
+                @error('name')
+                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-4">
                 <label class="block mb-2">Email</label>
                 <input type="text" name="email" value="{{ auth()->user()->email }}"
                     class="w-full px-4 py-2 border rounded" placeholder="Email" maxlength="150">
+                @error('email')
+                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                @enderror
             </div>
             <button class="bg-blue-600 text-white px-4 py-2 rounded" title="Cập nhật">
                 Cập nhật

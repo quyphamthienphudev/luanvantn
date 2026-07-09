@@ -17,21 +17,6 @@
     <a href="/hcns/employees" title="← Quay lại">← Quay lại</a>
     <form method="POST" action="/hcns/employees/store" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
-        @error('employee_code')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
-        @error('full_name')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
-        @error('email')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
-        @error('date_of_birth')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
-        @error('phone')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-        @enderror
         <div class="mb-4">
             <label>Phòng ban</label>
             <select name="department_id" class="w-full border p-2 rounded">
@@ -43,14 +28,23 @@
         <div class="mb-4">
             <label>Mã nhân viên</label>
             <input type="text" name="employee_code" class="w-full border p-2 rounded" placeholder="Mã nhân viên" maxlength="50" value="{{ old('employee_code') }}">
+            @error('employee_code')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>Họ tên nhân viên</label>
             <input type="text" name="full_name" class="w-full border p-2 rounded" placeholder="Họ tên nhân viên" value="{{ old('full_name') }}">
+            @error('full_name')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>Email</label>
             <input type="text" name="email" class="w-full border p-2 rounded" placeholder="Email" value="{{ old('email') }}">
+            @error('email')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>Công việc</label>
@@ -70,10 +64,16 @@
         <div class="mb-4">
             <label>Ngày sinh</label>
             <input type="date" name="date_of_birth" class="w-full border p-2 rounded" value="{{ old('date_of_birth') }}">
+            @error('date_of_birth')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>Số điện thoại</label>
             <input type="text" name="phone" class="w-full border p-2 rounded" placeholder="Số điện thoại" value="{{ old('phone') }}">
+            @error('phone')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label>Địa chỉ</label>

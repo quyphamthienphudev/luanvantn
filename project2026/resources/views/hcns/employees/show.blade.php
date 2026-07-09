@@ -49,33 +49,33 @@
         <form method="POST" action="/hcns/employees/{{ $employee->id }}/certificate/store"
             enctype="multipart/form-data">
             @csrf
-            @error('certificate_name')
-            <p class="text-red-500 text-sm">{{ $message }}</p>
-            @enderror
-            @error('issue_date')
-            <p class="text-red-500 text-sm">{{ $message }}</p>
-            @enderror
-            @error('expiry_date')
-            <p class="text-red-500 text-sm">{{ $message }}</p>
-            @enderror
-            @error('certificate_file')
-            <p class="text-red-500 text-sm">{{ $message }}</p>
-            @enderror
             <div class="mb-3">
                 <label>Tên chứng chỉ</label>
                 <input type="text" name="certificate_name" class="border p-2 w-full" value="{{ old('certificate_name') }}">
+                @error('certificate_name')
+                <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label>Ngày cấp</label>
                 <input type="date" name="issue_date" class="border p-2 w-full" value="{{ old('issue_date') }}">
+                @error('issue_date')
+                <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label>Ngày hết hạn</label>
                 <input type="date" name="expiry_date" class="border p-2 w-full" value="{{ old('expiry_date') }}">
+                @error('expiry_date')
+                <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label>File chứng chỉ</label>
                 <input type="file" name="certificate_file" class="border p-2 w-full" accept=".pdf, .jpg, .jpeg, .png" value="{{ old('certificate_file') }}">
+                @error('certificate_file')
+                <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
             </div>
             <button class="bg-green-600 text-white px-4 py-2 rounded" title="Tải lên">Tải lên</button>
         </form>

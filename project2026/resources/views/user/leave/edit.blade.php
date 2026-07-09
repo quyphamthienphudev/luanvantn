@@ -76,15 +76,6 @@
 <form action="/leave/update/{{ $leave->id }}" method="POST" class="bg-white p-6 rounded shadow w-1/2">
 
     @csrf
-    @error('start_date')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-    @enderror
-    @error('end_date')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-    @enderror
-    @error('reason')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
-    @enderror
     @if(session('error'))
     <div style="color: red; ">{{ session('error') }}</div>
     @endif
@@ -103,6 +94,9 @@
                 Ngày bắt đầu
             </label>
             <input type="date" name="start_date" class="form-control shadow-sm" value="{{ $leave->start_date }}">
+            @error('start_date')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="col-md-6 mb-4">
@@ -110,6 +104,9 @@
                 Ngày kết thúc
             </label>
             <input type="date" name="end_date" class="form-control shadow-sm" value="{{ $leave->end_date }}">
+            @error('end_date')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
     </div>
 
@@ -117,6 +114,9 @@
         <label class="form-label fw-bold small">
             Lý do xin nghỉ phép
         </label>
+        @error('reason')
+        <p class="text-red-500 text-sm">{{ $message }}</p>
+        @enderror
         <textarea name="reason" class="form-control shadow-sm" rows="4">{{ $leave->reason }}</textarea>
     </div>
 

@@ -99,15 +99,6 @@
                 <div class="card-body p-4">
                     <form action="/leave/store" method="POST">
                         @csrf
-                        @error('start_date')
-                        <p class="text-red-500 text-sm">{{ $message }}</p>
-                        @enderror
-                        @error('end_date')
-                        <p class="text-red-500 text-sm">{{ $message }}</p>
-                        @enderror
-                        @error('reason')
-                        <p class="text-red-500 text-sm">{{ $message }}</p>
-                        @enderror
                         <!-- NGÀY BẮT ĐẦU & KẾT THÚC -->
                         <div class="row">
                             <div class="col-6 mb-3">
@@ -115,12 +106,19 @@
                                 <input type="date" name="start_date" id="start_date"
                                     class="form-control"
                                     value="{{ old('start_date') }}">
+                                @error('start_date')
+                                <p class="text-red-500 text-sm">{{ $message }}</p>
+                                @enderror
                             </div>
+            
                             <div class="col-6 mb-3">
                                 <label class="form-label fw-bold small text-secondary">Ngày kết thúc</label>
                                 <input type="date" name="end_date" id="end_date"
                                     class="form-control"
                                     value="{{ old('end_date') }}">
+                                @error('end_date')
+                                <p class="text-red-500 text-sm">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
 
@@ -128,6 +126,9 @@
                         <div class="mb-3">
                             <label class="form-label fw-bold small text-secondary">Lý do xin nghỉ
                                 phép</label>
+                            @error('reason')
+                            <p class="text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                             <textarea name="reason" class="form-control"
                                 rows="4">{{ old('reason') }}</textarea>
                         </div>
