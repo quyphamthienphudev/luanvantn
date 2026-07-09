@@ -31,8 +31,7 @@
         <p>SĐT: {{ $candidate->phone }}</p>
         <p>Học vấn: {{ $candidate->education }}</p>
         <p>Email: {{ $candidate->email }}</p>
-        <p>Địa chỉ: {{ $candidate->address }}, {{ $candidate->street }}, {{ $candidate->ward }}, {{ $candidate->province
-            }}</p>
+        <p>Địa chỉ: {{ $candidate->address }}, {{ $candidate->street }}, {{ $candidate->ward }}, {{ $candidate->province }}</p>
     </div>
 </body>
 

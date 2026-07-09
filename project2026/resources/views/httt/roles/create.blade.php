@@ -28,11 +28,11 @@
         @enderror
         <div class="mb-4">
             <label>Tên quyền truy cập</label>
-            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên quyền truy cập" maxlength="50">
+            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên quyền truy cập" maxlength="50" value="{{ old('name') }}">
         </div>
         <div class="mb-4">
             <label>Mô tả</label>
-            <input type="text" name="description" class="w-full border p-2 rounded" placeholder="Mô tả">
+            <input type="text" name="description" class="w-full border p-2 rounded" placeholder="Mô tả" value="{{ old('description') }}">
         </div>
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" title="Lưu">
             Lưu

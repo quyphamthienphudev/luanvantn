@@ -31,15 +31,15 @@
         @enderror
         <div class="mb-4">
             <label>Tên công việc</label>
-            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên công việc" maxlength="100">
+            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Tên công việc" maxlength="100" value="{{ old('name') }}">
         </div>
         <div class="mb-4">
             <label>Lương cơ bản</label>
-            <input type="text" name="base_salary" class="w-full border p-2 rounded" placeholder="Lương cơ bản">
+            <input type="text" name="base_salary" class="w-full border p-2 rounded" placeholder="Lương cơ bản" value="{{ old('base_salary') }}">
         </div>
         <div class="mb-4">
             <label>Lương cao nhất</label>
-            <input type="text" name="max_salary" class="w-full border p-2 rounded" placeholder="Lương cao nhất">
+            <input type="text" name="max_salary" class="w-full border p-2 rounded" placeholder="Lương cao nhất" value="{{ old('max_salary') }}">
         </div>
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" title="Lưu">
             Lưu

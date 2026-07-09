@@ -89,7 +89,7 @@
                     </td>
                     <td class="p-3">
                         @if($c->contract_file)
-                        <a href="/hcns/contracts/view/{{ $c->id }}" class="bg-green-600 text-white px-3 py-1 rounded" title="Xem">Xem</a>
+                        <a href="/hcns/contracts/view/{{ $c->id }}" class="bg-green-600 text-white px-3 py-1 rounded" title="Xem" target="_blank">Xem</a>
                         @else
                         <a href="" class="bg-green-600 text-white px-3 py-1 rounded" onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
                         @endif

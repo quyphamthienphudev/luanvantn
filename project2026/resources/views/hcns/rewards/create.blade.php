@@ -36,15 +36,15 @@
         </div>
         <div class="mb-4">
             <label>Nội dung khen thưởng</label>
-            <input type="text" name="title" class="w-full border p-2 rounded" placeholder="Nội dung khen thưởng">
+            <input type="text" name="title" class="w-full border p-2 rounded" placeholder="Nội dung khen thưởng" value="{{ old('title') }}">
         </div>
         <div class="mb-4">
             <label>Số tiền</label>
-            <input type="text" name="amount" class="w-full border p-2 rounded" placeholder="Số tiền">
+            <input type="text" name="amount" class="w-full border p-2 rounded" placeholder="Số tiền" value="{{ old('amount') }}">
         </div>
         <div class="mb-4">
             <label>Ngày ra quyết định</label>
-            <input type="date" name="decision_date" class="w-full border p-2 rounded">
+            <input type="date" name="decision_date" class="w-full border p-2 rounded" value="{{ old('decision_date') }}">
         </div>
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" title="Lưu">Lưu</button>
     </form>

@@ -42,15 +42,15 @@
         </div>
         <div class="mb-4">
             <label>Mã nhân viên</label>
-            <input type="text" name="employee_code" class="w-full border p-2 rounded" placeholder="Mã nhân viên" maxlength="50">
+            <input type="text" name="employee_code" class="w-full border p-2 rounded" placeholder="Mã nhân viên" maxlength="50" value="{{ old('employee_code') }}">
         </div>
         <div class="mb-4">
             <label>Họ tên nhân viên</label>
-            <input type="text" name="full_name" class="w-full border p-2 rounded" placeholder="Họ tên nhân viên">
+            <input type="text" name="full_name" class="w-full border p-2 rounded" placeholder="Họ tên nhân viên" value="{{ old('full_name') }}">
         </div>
         <div class="mb-4">
             <label>Email</label>
-            <input type="text" name="email" class="w-full border p-2 rounded" placeholder="Email">
+            <input type="text" name="email" class="w-full border p-2 rounded" placeholder="Email" value="{{ old('email') }}">
         </div>
         <div class="mb-4">
             <label>Công việc</label>
@@ -69,27 +69,27 @@
         </div>
         <div class="mb-4">
             <label>Ngày sinh</label>
-            <input type="date" name="date_of_birth" class="w-full border p-2 rounded">
+            <input type="date" name="date_of_birth" class="w-full border p-2 rounded" value="{{ old('date_of_birth') }}">
         </div>
         <div class="mb-4">
             <label>Số điện thoại</label>
-            <input type="text" name="phone" class="w-full border p-2 rounded" placeholder="Số điện thoại">
+            <input type="text" name="phone" class="w-full border p-2 rounded" placeholder="Số điện thoại" value="{{ old('phone') }}">
         </div>
         <div class="mb-4">
             <label>Địa chỉ</label>
-            <input type="text" name="address" class="w-full border p-2 rounded" placeholder="Địa chỉ">
+            <input type="text" name="address" class="w-full border p-2 rounded" placeholder="Địa chỉ" value="{{ old('address') }}">
         </div>
         <div class="mb-4">
             <label>Tên đường</label>
-            <input type="text" name="street" class="w-full border p-2 rounded" placeholder="Tên đường">
+            <input type="text" name="street" class="w-full border p-2 rounded" placeholder="Tên đường" value="{{ old('street') }}">
         </div>
         <div class="mb-4">
             <label>Phường</label>
-            <input type="text" name="ward" class="w-full border p-2 rounded" placeholder="Phường">
+            <input type="text" name="ward" class="w-full border p-2 rounded" placeholder="Phường" value="{{ old('ward') }}">
         </div>
         <div class="mb-4">
             <label>Tỉnh / Thành phố</label>
-            <input type="text" name="province" class="w-full border p-2 rounded" placeholder="Tỉnh / Thành phố">
+            <input type="text" name="province" class="w-full border p-2 rounded" placeholder="Tỉnh / Thành phố" value="{{ old('province') }}">
         </div>
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" title="Lưu">Lưu</button>
     </form>

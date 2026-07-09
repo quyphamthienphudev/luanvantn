@@ -60,23 +60,23 @@
         </div>
         <div class="mb-4">
             <label>Ngày bắt đầu</label>
-            <input type="date" name="start_date" class="w-full border p-2 rounded">
+            <input type="date" name="start_date" class="w-full border p-2 rounded" value="{{ old('start_date') }}">
         </div>
         <div class="mb-4">
             <label>Ngày kết thúc</label>
-            <input type="date" name="end_date" class="w-full border p-2 rounded">
+            <input type="date" name="end_date" class="w-full border p-2 rounded" value="{{ old('end_date') }}">
         </div>
         <div class="mb-4">
             <label>Mức lương</label>
-            <input type="text" name="salary" class="w-full border p-2 rounded" placeholder="Mức lương">
+            <input type="text" name="salary" class="w-full border p-2 rounded" placeholder="Mức lương" value="{{ old('salary') }}">
         </div>
         <div class="mb-4">
             <label>File hợp đồng</label>
-            <input type="file" name="contract_file" class="w-full border p-2 rounded" accept=".pdf,.doc,.docx">
+            <input type="file" name="contract_file" class="w-full border p-2 rounded" accept=".pdf,.doc,.docx" value="{{ old('contract_file') }}">
         </div>
         <div class="mb-4">
             <label>Ghi chú hợp đồng</label>
-            <textarea name="description" class="w-full border p-2 rounded" rows="10" cols="40"></textarea>
+            <textarea name="description" class="w-full border p-2 rounded" rows="10" cols="40">{{ old('description') }}</textarea>
         </div>
         <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" title="Lưu">Lưu</button>
     </form>

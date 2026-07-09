@@ -31,15 +31,15 @@
         @enderror
         <div class="mb-4">
             <label>Họ tên</label>
-            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Họ tên">
+            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Họ tên" value="{{ old('name') }}">
         </div>
         <div class="mb-4">
             <label>Email</label>
-            <input type="text" name="email" class="w-full border p-2 rounded" placeholder="Email" maxlength="150">
+            <input type="text" name="email" class="w-full border p-2 rounded" placeholder="Email" maxlength="150" value="{{ old('email') }}">
         </div>
         <div class="mb-4">
             <label>Mật khẩu</label>
-            <input type="password" name="password" class="w-full border p-2 rounded" placeholder="Mật khẩu">
+            <input type="password" name="password" class="w-full border p-2 rounded" placeholder="Mật khẩu" value="{{ old('password') }}">
         </div>
         <div class="mb-4">
             <label>Quyền</label>

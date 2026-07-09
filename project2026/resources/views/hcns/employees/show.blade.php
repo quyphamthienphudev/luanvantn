@@ -63,19 +63,19 @@
             @enderror
             <div class="mb-3">
                 <label>Tên chứng chỉ</label>
-                <input type="text" name="certificate_name" class="border p-2 w-full">
+                <input type="text" name="certificate_name" class="border p-2 w-full" value="{{ old('certificate_name') }}">
             </div>
             <div class="mb-3">
                 <label>Ngày cấp</label>
-                <input type="date" name="issue_date" class="border p-2 w-full">
+                <input type="date" name="issue_date" class="border p-2 w-full" value="{{ old('issue_date') }}">
             </div>
             <div class="mb-3">
                 <label>Ngày hết hạn</label>
-                <input type="date" name="expiry_date" class="border p-2 w-full">
+                <input type="date" name="expiry_date" class="border p-2 w-full" value="{{ old('expiry_date') }}">
             </div>
             <div class="mb-3">
                 <label>File chứng chỉ</label>
-                <input type="file" name="certificate_file" class="border p-2 w-full" accept=".pdf, .jpg, .jpeg, .png">
+                <input type="file" name="certificate_file" class="border p-2 w-full" accept=".pdf, .jpg, .jpeg, .png" value="{{ old('certificate_file') }}">
             </div>
             <button class="bg-green-600 text-white px-4 py-2 rounded" title="Tải lên">Tải lên</button>
         </form>

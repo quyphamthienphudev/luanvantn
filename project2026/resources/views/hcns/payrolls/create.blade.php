@@ -47,7 +47,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Phụ cấp</label>
-                <input type="text" name="allowance" class="w-full border p-2 rounded">
+                <input type="text" name="allowance" class="w-full border p-2 rounded" value="{{ old('allowance') }}">
             </div>
 
             <div class="grid grid-cols-2 gap-4 mb-4">
