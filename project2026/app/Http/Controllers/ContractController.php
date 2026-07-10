@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Response;
 
 class ContractController extends Controller
 {
+    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -21,6 +22,7 @@ class ContractController extends Controller
         return view('hcns.contracts.index', compact('contracts'));
     }
 
+    //CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -31,6 +33,7 @@ class ContractController extends Controller
         return view('hcns.contracts.create', compact('employees'));
     }
 
+    //STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -40,11 +43,13 @@ class ContractController extends Controller
 
         $request->validate([
             'employee_id'=>'required',
+            'contract_code'=>'required',
             'contract_type'=>'required',
             'start_date'=>'required',
             'salary' => 'required|numeric|min:0',
             'contract_file' => 'required|mimes:pdf,doc,docx|max:5120'
         ],[
+            'contract_code.required' => 'Vui lòng nhập mã hợp đồng',
             'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
             'salary.required' => 'Vui lòng nhập mức lương',
             'salary.numeric' => 'Mức lương không hợp lệ, vui lòng kiểm tra lại',
@@ -63,7 +68,7 @@ class ContractController extends Controller
 
         Contract::create([
             'employee_id'=>$request->employee_id,
-            'contract_code'=>'HD'.rand(),
+            'contract_code'=>$request->contract_code,
             'contract_type'=>$request->contract_type,
             'start_date'=>$request->start_date,
             'end_date'=>$request->end_date,
@@ -77,7 +82,20 @@ class ContractController extends Controller
         return redirect('/hcns/contracts')->with('success','Thêm hợp đồng thành công');
     }
 
-    public function extend($id)
+    // EDIT
+    public function edit($id)
+    {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+        $contract = Contract::findOrFail($id);
+        $employees = Employee::all();
+        return view('hcns.contracts.edit', compact('contract','employees'));
+    }
+
+    //EXTEND
+    public function extend(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
@@ -86,12 +104,19 @@ class ContractController extends Controller
 
         $old = Contract::findOrFail($id);
 
+        $request->validate([
+        'end_date' => 'required|date|after_or_equal:today',
+        ],[
+            'end_date.required' => 'Vui lòng nhập ngày kết thúc',
+            'end_date.after_or_equal' => 'Ngày kết thúc không hợp lệ, vui lòng kiểm tra lại',
+        ]);
+
         Contract::create([
             'employee_id'=>$old->employee_id,
-            'contract_code'=>'HD'.rand(),
-            'contract_type'=>'fixed_term',
-            'start_date'=>now(),
-            'end_date'=>now()->addYear(),
+            'contract_code'=>$old->contract_code,
+            'contract_type'=>$old->contract_type,
+            'start_date'=>$old->end_date,
+            'end_date'=>$request->end_date,
             'salary'=>$old->salary,
             'description'=>$old->description,
             'contract_file'=>$old->contract_file,
@@ -104,6 +129,7 @@ class ContractController extends Controller
         return redirect('/hcns/contracts')->with('success','Gia hạn hợp đồng thành công');
     }
 
+    // TERMINATE
     public function terminate($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -115,6 +141,7 @@ class ContractController extends Controller
         return redirect('/hcns/contracts')->with('success','Thanh lý hợp đồng thành công');
     }
 
+    // VIEW FILE
     public function viewFile($id)
     {
         if (auth()->user()->role->name !== 'hcns') 

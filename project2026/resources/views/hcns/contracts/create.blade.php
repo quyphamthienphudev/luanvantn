@@ -19,6 +19,13 @@
         enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
+            <label>Mã hợp đồng</label>
+            <input type="text" name="contract_code" class="w-full border p-2 rounded" value="{{ old('contract_code') }}">
+            @error('contract_code')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-4">
             <label>Nhân viên</label>
             <select name="employee_id" id="employee_id" class="w-full border p-2 rounded">
                 @foreach($employees as $employee)

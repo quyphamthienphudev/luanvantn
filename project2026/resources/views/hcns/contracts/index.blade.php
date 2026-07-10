@@ -32,7 +32,8 @@
                     <th class="p-3">Ngày bắt đầu</th>
                     <th class="p-3">Ngày kết thúc</th>
                     <th class="p-3">Trạng thái</th>
-                    <th class="p-3">Hành động</th>
+                    <th class="p-3">Gia hạn</th>
+                    <th class="p-3">Thanh lý</th>
                     <th class="p-3">Xem hợp đồng</th>
                 </tr>
             </thead>
@@ -70,22 +71,10 @@
                         @endif
                     </td>
                     <td class="p-3">
-                        @if($c->contract_type == 'probation')
-                        <a href="/hcns/contracts/extend/{{ $c->id }}"
-                            class="bg-blue-500 text-white px-3 py-1 rounded" title="Gia hạn">Gia hạn</a>
-                        <a href="/hcns/contracts/terminate/{{ $c->id }}"
-                            class="bg-red-600 text-white px-3 py-1 rounded" title="Thanh lý">Thanh lý</a>
-                        @endif
-                        @if($c->contract_type == 'fixed_term')
-                        <a href="/hcns/contracts/extend/{{ $c->id }}"
-                            class="bg-blue-500 text-white px-3 py-1 rounded" title="Gia hạn">Gia hạn</a>
-                        <a href="/hcns/contracts/terminate/{{ $c->id }}"
-                            class="bg-red-600 text-white px-3 py-1 rounded" title="Thanh lý">Thanh lý</a>
-                        @endif
-                        @if($c->contract_type == 'indefinite')
-                        <a href="/hcns/contracts/terminate/{{ $c->id }}"
-                            class="bg-red-600 text-white px-3 py-1 rounded" title="Thanh lý">Thanh lý</a>
-                        @endif
+                        <a href="/hcns/contracts/edit/{{ $c->id }}" style="color:blue; font-weight:bold;" title="Gia hạn">Gia hạn</a>
+                    </td>
+                    <td class="p-3">
+                        <a href="/hcns/contracts/terminate/{{ $c->id }}" style="color:red; font-weight:bold;" title="Thanh lý">Thanh lý</a>
                     </td>
                     <td class="p-3">
                         @if($c->contract_file)

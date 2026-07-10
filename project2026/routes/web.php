@@ -224,7 +224,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/hcns/contracts', [ContractController::class,'index']);
     Route::get('/hcns/contracts/create', [ContractController::class,'create']);
     Route::post('/hcns/contracts/store',[ContractController::class,'store']);
-    Route::get('/hcns/contracts/extend/{id}', [ContractController::class,'extend']);
+    Route::get('/hcns/contracts/edit/{id}',[ContractController::class,'edit']);
+    Route::post('/hcns/contracts/extend/{id}', [ContractController::class,'extend']);
     Route::get('/hcns/contracts/terminate/{id}', [ContractController::class,'terminate']);
     Route::get('/hcns/contracts/view/{id}', [ContractController::class,'viewFile']);
 });
