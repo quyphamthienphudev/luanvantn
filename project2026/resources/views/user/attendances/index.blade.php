@@ -54,7 +54,7 @@
         </span>
         @else
         <span class="text-red-600">
-            Vui lòng chấm công vào làm trước.
+            Vui lòng chấm công vào làm trước
         </span>
         @endif
     </div>
