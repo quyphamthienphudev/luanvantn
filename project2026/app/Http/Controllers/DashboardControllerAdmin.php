@@ -30,6 +30,7 @@ class DashboardControllerAdmin extends Controller
                 'departments.name as department_name',
                 DB::raw('COUNT(employees.id) as total_employees')
             )
+            ->where('status','working')
             ->groupBy('departments.name')
             ->orderBy('departments.name','asc')
             ->get();
