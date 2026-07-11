@@ -93,21 +93,13 @@
         <h1 class="text-2xl font-bold mb-6">
             Tổng chi phí lương theo tháng và năm
         </h1>
-        <form method="GET" action="{{ url('/admin/dashboard') }}" class="bg-white p-6 rounded shadow w-1/2">
-
-            @csrf
-            @if(session('error_year'))
-            <p class="text-red-500 text-sm">{{ session('error_year') }}</p>
-            @endif
-            @if(session('error_month'))
-            <p class="text-red-500 text-sm">{{ session('error_month') }}</p>
-            @endif
+        <form method="GET" action="/admin/dashboard" class="bg-white p-6 rounded shadow w-1/2">
 
             <!-- Chọn tháng -->
             <div class="mb-4">
                 <label>Tháng</label>
                 <select name="month" class="w-full border p-2 rounded">
-                    @for($i=1;$i<=12;$i++) <option value="{{ $i }}" {{ $month== $i ? 'selected' :'' }}>
+                    @for($i=1;$i<=12;$i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' :'' }}>
                         Tháng {{ $i }}
                         </option>
                     @endfor
@@ -118,7 +110,7 @@
             <div class="mb-4">
                 <label>Năm</label>
                 <select name="year" class="w-full border p-2 rounded">
-                    @for($i=2001; $i<=2099; $i++) <option value="{{ $i }}" {{ $year== $i ? 'selected' :'' }}>
+                    @for($i=2001; $i<=2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' :'' }}>
                         Năm {{ $i }}
                         </option>
                     @endfor
@@ -145,18 +137,13 @@
         <h1 class="text-2xl font-bold mb-6">
             Tổng chi phí lương theo năm
         </h1>
-        <form method="GET" action="{{ url('/admin/dashboard') }}" class="bg-white p-6 rounded shadow w-1/2">
-
-            @csrf
-            @if(session('error_year'))
-            <p class="text-red-500 text-sm">{{ session('error_year') }}</p>
-            @endif
+        <form method="GET" action="/admin/dashboard" class="bg-white p-6 rounded shadow w-1/2">
             
             <!-- Chọn năm -->
             <div class="mb-4">
                 <label>Năm</label>
                 <select name="year" class="w-full border p-2 rounded">
-                    @for($i=2001; $i<=2099; $i++) <option value="{{ $i }}" {{ $year== $i ? 'selected' :'' }}>
+                    @for($i=2001; $i<=2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' :'' }}>
                         Năm {{ $i }}
                         </option>
                     @endfor

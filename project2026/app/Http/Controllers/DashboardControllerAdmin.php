@@ -48,27 +48,13 @@ class DashboardControllerAdmin extends Controller
         // Tổng lương theo năm
         if($request->has('filter_year'))
         {
-            if(!$year)
-            {
-                return back()->with('error_year','Vui lòng nhập năm để thống kê');
-            }
-            else 
-            {
-                $totalYearSalary = DB::table('payrolls')->whereRaw("year = ?", [$year])->sum('total_salary');
-            }
+            $totalYearSalary = DB::table('payrolls')->whereRaw("year = ?", [$year])->sum('total_salary');
         }
 
         // Tổng lương theo tháng và năm
         if($request->has('filter_month'))
         {
-            if(!$month || !$year)
-            {
-                return back()->with('error_month','Vui lòng điền đầy đủ tháng và năm để thống kê');
-            }
-            else 
-            {
-                $totalMonthSalary = DB::table('payrolls')->whereRaw("year = ?", [$year])->whereRaw("month = ?", [$month])->sum('total_salary');
-            }
+            $totalMonthSalary = DB::table('payrolls')->whereRaw("year = ?", [$year])->whereRaw("month = ?", [$month])->sum('total_salary');
         }
 
         return view('admin.dashboard',[
