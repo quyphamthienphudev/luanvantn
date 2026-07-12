@@ -182,6 +182,7 @@
                     Chấm công
                 </a>
                 @endif
+                
                 @if(auth()->user()->role->name === 'user')
                 <a href="/leave" class="block px-4 py-2 rounded hover:bg-blue-700" title="Đăng kí nghỉ phép">
                     Đăng kí nghỉ phép
@@ -196,13 +197,11 @@
                     Đổi mật khẩu
                 </a>
 
-            </nav>
-
-            <div class="p-4 border-t border-blue-700">
                 <a href="/logout" class="block text-center bg-red-500 hover:bg-red-600 py-2 rounded" title="Đăng xuất">
                     Đăng xuất
                 </a>
-            </div>
+
+            </nav>
 
         </aside>
 
