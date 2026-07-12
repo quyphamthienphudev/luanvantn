@@ -46,6 +46,7 @@
                 <th class="p-3">Nhân viên</th>
                 <th class="p-3">Lý do nghỉ phép</th>
                 <th class="p-3">Thời gian</th>
+                <th class="p-3">Số ngày nghỉ</th>
                 <th class="p-3">Trạng thái</th>
                 <th class="text-center">Hành động</th>
             </tr>
@@ -66,6 +67,9 @@
                         \Carbon\Carbon::parse($leave->start_date)->format('d/m/Y') }}</div>
                     <div class="small text-muted">đến {{ \Carbon\Carbon::parse($leave->end_date)->format('d/m/Y') }}
                     </div>
+                </td>
+                <td class="ps-3">
+                    <div><b>{{ $leave->number_days }} ngày</b></div>
                 </td>
                 <td class="ps-3">
                     @if($leave->status == 'pending')
