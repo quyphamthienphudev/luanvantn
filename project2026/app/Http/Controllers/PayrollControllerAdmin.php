@@ -238,16 +238,10 @@ class PayrollControllerAdmin extends Controller
             return back();
         }
         
-        $month = $request->get('month', date('m'));
-        $year =  $request->get('year', date('Y'));
-        
-        
         $payrolls = DB::table('payrolls')
             ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
             ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
             ->leftJoin('departments', 'employees.department_id', '=', 'departments.id')
-            ->where('payrolls.month', $month)
-            ->where('payrolls.year', $year)
             ->select(
                 'payrolls.*',
                 'employees.employee_code',
@@ -255,6 +249,8 @@ class PayrollControllerAdmin extends Controller
                 'positions.name as position_name',
                 'departments.name as department_name'
             )
+            ->orderBy('month','asc')
+            ->orderBy('year','asc')
             ->get();
 
         if ($payrolls->isEmpty()) 
@@ -262,14 +258,14 @@ class PayrollControllerAdmin extends Controller
             return back()->with('error', 'Không có dữ liệu');
         }
         
-        $filename = 'bang_luong_' . $month . '_' . $year . '.csv';
+        $filename = 'bang_luong' . '.csv';
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
         
         $output = fopen('php://output', 'w');
         fwrite($output, "\xEF\xBB\xBF");
         
-        fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Chức vụ', 'Lương cơ bản', 'Phụ cấp', 'Thưởng', 'Khấu trừ', 'Số ngày làm việc', 'Lương thực lãnh']);
+        fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Chức vụ', 'Tháng', 'Năm', 'Lương cơ bản', 'Phụ cấp', 'Thưởng', 'Khấu trừ', 'Số ngày làm việc', 'Lương thực lãnh']);
         
         $stt = 1;
         foreach ($payrolls as $payroll) 
@@ -280,6 +276,8 @@ class PayrollControllerAdmin extends Controller
                 $payroll->full_name ?? '',
                 $payroll->department_name ?? '',
                 $payroll->position_name ?? '',
+                $payroll->month ?? '',
+                $payroll->year ?? '',
                 $payroll->base_salary ?? 0,
                 $payroll->allowance ?? 0,
                 $payroll->bonus ?? 0,
