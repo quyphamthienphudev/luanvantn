@@ -71,10 +71,10 @@
                         @endif
                     </td>
                     <td class="p-3">
-                        <a href="/hcns/contracts/edit/{{ $c->id }}" style="color:blue; font-weight:bold;" title="Gia hạn">Gia hạn</a>
+                        <b><a href="/hcns/contracts/edit/{{ $c->id }}" style="color:blue;" title="Gia hạn">Gia hạn</a></b>
                     </td>
                     <td class="p-3">
-                        <a href="/hcns/contracts/terminate/{{ $c->id }}" style="color:red; font-weight:bold;" title="Thanh lý">Thanh lý</a>
+                        <b><a href="/hcns/contracts/terminate/{{ $c->id }}" style="color:red;" title="Thanh lý">Thanh lý</a></b>
                     </td>
                     <td class="p-3">
                         @if($c->contract_file)

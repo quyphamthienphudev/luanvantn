@@ -99,12 +99,9 @@
                 </td>
                 <td>
                     @if($c->certificate_file == '')
-                    <a href="" style="color:blue; font-weight:bold;" onclick="return alert('File không tồn tại')" title="Xem file">Xem
-                        file</a>
+                    <b><a href="" style="color:blue;" onclick="return alert('File không tồn tại')" title="Xem file">Xem file</a></b>
                     @else
-                    <a href="/hcns/employees/certificate/view/{{ $c->id }}" target="_blank"
-                        style="color:blue; font-weight:bold;" title="Xem file">Xem
-                        file</a>
+                    <b><a href="/hcns/employees/certificate/view/{{ $c->id }}" target="_blank" style="color:blue;" title="Xem file">Xem file</a></b>
                     @endif
                 </td>
             </tr>
