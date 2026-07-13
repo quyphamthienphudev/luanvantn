@@ -97,11 +97,12 @@ class PayrollControllerAdmin extends Controller
                     ->whereMonth('decision_date', $request->month)
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
+        $countAttendance = DB::table('attendances')->where('users_id', $employee->users_id)->count();
         if($request->allowance > $base_salary)
         {
             return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
         }
-        $total_salary = $base_salary + $request->allowance + $bonus - $deduction - 0.1 * ($base_salary + $request->allowance + $bonus - $deduction);
+        $total_salary = ($base_salary + $request->allowance + $bonus - $deduction) / 26 * $countAttendance;
         DB::table('payrolls')->insert([
             'employee_id' => $request->employee_id,
             'month' => $request->month,
@@ -197,11 +198,12 @@ class PayrollControllerAdmin extends Controller
                     ->whereMonth('decision_date', $request->month)
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
+        $countAttendance = DB::table('attendances')->where('users_id', $employee->users_id)->count();
         if($request->allowance > $base_salary)
         {
             return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
         }
-        $total_salary = $base_salary + $request->allowance + $bonus - $deduction - 0.1 * ($base_salary + $request->allowance + $bonus - $deduction);
+        $total_salary = ($base_salary + $request->allowance + $bonus - $deduction) / 26 * $countAttendance;
         DB::table('payrolls')->where('id', $id)->update([
             'employee_id' => $request->employee_id,
             'month' => $request->month,

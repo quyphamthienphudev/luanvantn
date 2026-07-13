@@ -55,10 +55,6 @@
                 <td class="py-2">{{ number_format($payroll->deduction ?? 0) }} VNĐ</td>
             </tr>
             <tr class="border-b">
-                <th class="text-left py-2">Thuế thu nhập cá nhân</th>
-                <td class="py-2">{{ number_format(($payroll->base_salary + $payroll->allowance + $payroll->bonus - $payroll->deduction) * 0.1 ?? 0) }} VNĐ</td>
-            </tr>
-            <tr class="border-b">
                 <th class="text-left py-2">Tháng</th>
                 <td class="py-2">{{ $payroll->month }}</td>
             </tr>

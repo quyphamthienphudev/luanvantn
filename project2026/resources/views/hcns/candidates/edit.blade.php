@@ -19,7 +19,7 @@
         @csrf
         <div class="mb-4">
             <label>Mã hồ sơ</label>
-            <input type="text" name="candidate_id" value="{{ $candidates->candidate_id }}"
+            <input type="text" name="" value="{{ $candidates->candidate_id }}"
                 class="w-full border p-2 rounded bg-gray-100" readonly>
         </div>
         <div class="mb-4">

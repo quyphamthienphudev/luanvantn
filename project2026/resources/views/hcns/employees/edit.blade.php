@@ -29,7 +29,7 @@
         </div>
         <div class="mb-4">
             <label>Mã nhân viên</label>
-            <input type="text" name="employee_code" value="{{ $employee->employee_code }}"
+            <input type="text" name="" value="{{ $employee->employee_code }}"
                 class="w-full border p-2 rounded bg-gray-100" readonly>
         </div>
         <div class="mb-4">

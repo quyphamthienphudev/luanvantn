@@ -31,7 +31,7 @@
 
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2">Ngày làm việc</label>
-                    <input type="date" name="work_date" value="{{ $attendance->work_date }}"
+                    <input type="date" name="" value="{{ $attendance->work_date }}"
                         class="w-full border rounded p-2 outline-none bg-gray-100" readonly>
                 </div>
 
