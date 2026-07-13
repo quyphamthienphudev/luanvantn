@@ -107,7 +107,6 @@ class ManageEmployeeControllerAdmin extends Controller
         }
 
         $request->validate([
-        'employee_code' => 'required',
         'full_name' => 'required',
         'hire_date' => 'required|date',
         'email' => 'required|email',
@@ -115,7 +114,6 @@ class ManageEmployeeControllerAdmin extends Controller
         // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
         'phone' => 'required|numeric|regex:/^0[0-9]+$/'
         ],[
-            'employee_code.required' => 'Vui lòng nhập mã nhân viên',
             'full_name.required' => 'Vui lòng nhập họ tên nhân viên',
             'hire_date.required' => 'Vui lòng chọn ngày vào làm',
             'hire_date.date' => 'Ngày vào làm không hợp lệ',

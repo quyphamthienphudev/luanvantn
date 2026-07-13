@@ -39,12 +39,6 @@ class AttendanceController extends Controller
             return back();
         }
 
-        $request->validate([
-            'work_date' => 'required|date'
-        ],[
-            'work_date.required' => 'Vui lòng chọn ngày chấm công'
-        ]);
-
         $attendance = Attendance::findOrFail($id);
         
         // Xác định trạng thái theo giờ vào
