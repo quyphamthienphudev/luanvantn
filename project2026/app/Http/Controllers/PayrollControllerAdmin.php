@@ -111,6 +111,7 @@ class PayrollControllerAdmin extends Controller
             'allowance' => $request->allowance,
             'bonus' => $bonus,
             'deduction' => $deduction,
+            'work_numbers' => $countAttendance,
             'total_salary' => $total_salary,
             'users_id' => Auth::id()
         ]);
@@ -212,6 +213,7 @@ class PayrollControllerAdmin extends Controller
             'allowance' => $request->allowance,
             'bonus' => $bonus,
             'deduction' => $deduction,
+            'work_numbers' => $countAttendance,
             'total_salary' => $total_salary
         ]);
         return redirect('/hcns/payrolls')->with('success', 'Cập nhật bảng lương thành công');
@@ -237,7 +239,8 @@ class PayrollControllerAdmin extends Controller
         }
         
         $month = $request->get('month', date('m'));
-        $year = $request->get('year', date('Y'));
+        $year =  $request->get('year', date('Y'));
+        
         
         $payrolls = DB::table('payrolls')
             ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
@@ -253,7 +256,7 @@ class PayrollControllerAdmin extends Controller
                 'departments.name as department_name'
             )
             ->get();
-        
+
         if ($payrolls->isEmpty()) 
         {
             return back()->with('error', 'Không có dữ liệu');
@@ -266,7 +269,7 @@ class PayrollControllerAdmin extends Controller
         $output = fopen('php://output', 'w');
         fwrite($output, "\xEF\xBB\xBF");
         
-        fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Chức vụ', 'Lương cơ bản', 'Phụ cấp', 'Thưởng', 'Khấu trừ', 'Lương thực lãnh']);
+        fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Chức vụ', 'Lương cơ bản', 'Phụ cấp', 'Thưởng', 'Khấu trừ', 'Số ngày làm việc', 'Lương thực lãnh']);
         
         $stt = 1;
         foreach ($payrolls as $payroll) 
@@ -281,6 +284,7 @@ class PayrollControllerAdmin extends Controller
                 $payroll->allowance ?? 0,
                 $payroll->bonus ?? 0,
                 $payroll->deduction ?? 0,
+                $payroll->work_numbers ?? 0,
                 $payroll->total_salary ?? 0
             ]);
             $stt++;
