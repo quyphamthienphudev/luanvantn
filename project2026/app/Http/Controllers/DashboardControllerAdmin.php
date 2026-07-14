@@ -58,13 +58,6 @@ class DashboardControllerAdmin extends Controller
             $totalMonthSalary = DB::table('payrolls')->where('month', $month)->where('year', $year)->sum('total_salary');
         }
 
-        return view('admin.dashboard',[
-            'e_working'=>$e_working,
-            'e_resign'=>$e_resign,
-            'employees'=>$employees,
-            'deptLabels'=>$deptLabels,'deptData'=>$deptData,
-            'totalYearSalary'=>$totalYearSalary,
-            'totalMonthSalary'=>$totalMonthSalary,'year'=>$year,'month'=>$month
-        ]);
+        return view('admin.dashboard', compact('e_working','e_resign','employees','deptLabels','deptData','totalYearSalary','totalMonthSalary','year','month'));
     }
 }

@@ -21,7 +21,7 @@ class ManageEmployeeControllerAdmin extends Controller
 
         $search = $request->search;
 
-        $employees = Employee::with('department','user')
+        $employees = Employee::with('department')
             ->when($search, function($q) use ($search){
                 $q->where('full_name','like','%'.$search.'%')
                   ->orWhere('employee_code',$search)
@@ -76,7 +76,6 @@ class ManageEmployeeControllerAdmin extends Controller
             'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'
         ]);
         $data = $request->all();
-        $data['users_id'] = auth()->user()->id;
         // Tự động set ngày vào làm
         $data['hire_date'] = date('Y-m-d');
         // Trạng thái mặc định

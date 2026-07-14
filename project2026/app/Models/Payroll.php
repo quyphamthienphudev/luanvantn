@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Payroll extends Model
 {
-    use HasFactory;
-
     protected $table = 'payrolls';
     
     protected $fillable = [
@@ -21,9 +18,4 @@ class Payroll extends Model
         'deduction',
         'total_salary'
     ];
-
-    public function user() 
-    {
-        return $this->belongsTo(User::class, 'users_id');
-    }
 }

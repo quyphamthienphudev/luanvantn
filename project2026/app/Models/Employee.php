@@ -21,16 +21,10 @@ class Employee extends Model
         'ward',
         'province',
         'hire_date',
-        'status',
-        'users_id'
+        'status'
     ];
 
     public $timestamps = false;
-
-    public function user() 
-    {
-        return $this->belongsTo(User::class, 'users_id');
-    }
 
     public function department()
     {

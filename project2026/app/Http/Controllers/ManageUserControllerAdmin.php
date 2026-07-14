@@ -98,13 +98,6 @@ class ManageUserControllerAdmin extends Controller
             'password.required' => 'Mật khẩu không được để trống',
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự'
         ]);
-
-        // Kiểm tra ràng buộc dữ liệu
-        $current_user = DB::table('users')->where('id', Auth::id())->exists();
-        if ($current_user) 
-        {
-            return back()->with('error', 'Không thể cập nhật thông tin tại đây, vui lòng truy cập vào mục Cập nhật thông tin');
-        }
         
         DB::table('users')
         ->where('id',$id)
@@ -131,43 +124,8 @@ class ManageUserControllerAdmin extends Controller
         {
             return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
         }
-        $candidate = DB::table('candidates')->where('users_id', $id)->exists();
-        if ($candidate) 
-        {
-            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
-        }
-        $contract = DB::table('contracts')->where('users_id', $id)->exists();
-        if ($contract) 
-        {
-            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
-        }
-        $department = DB::table('departments')->where('users_id', $id)->exists();
-        if ($department) 
-        {
-            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
-        }
-        $employee = DB::table('employees')->where('users_id', $id)->exists();
-        if ($employee) 
-        {
-            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
-        }
         $leave = DB::table('leave_requests')->where('users_id', $id)->exists();
         if ($leave) 
-        {
-            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
-        }
-        $payroll = DB::table('payrolls')->where('users_id', $id)->exists();
-        if ($payroll) 
-        {
-            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
-        }
-        $position = DB::table('positions')->where('users_id', $id)->exists();
-        if ($position) 
-        {
-            return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
-        }
-        $current_user = DB::table('users')->where('id', Auth::id())->exists();
-        if ($current_user) 
         {
             return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
         }

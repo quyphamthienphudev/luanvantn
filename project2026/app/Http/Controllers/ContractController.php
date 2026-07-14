@@ -75,8 +75,7 @@ class ContractController extends Controller
             'salary'=>$request->salary,
             'description'=>$request->description,
             'contract_file'=>$fileName,
-            'status'=>'active',
-            'users_id'=>auth()->id()
+            'status'=>'active'
         ]);
 
         return redirect('/hcns/contracts')->with('success','Thêm hợp đồng thành công');
@@ -120,8 +119,7 @@ class ContractController extends Controller
             'salary'=>$old->salary,
             'description'=>$old->description,
             'contract_file'=>$old->contract_file,
-            'status'=>'active',
-            'users_id'=>auth()->id()
+            'status'=>'active'
         ]);
 
         $old->update(['status'=>'expired']);

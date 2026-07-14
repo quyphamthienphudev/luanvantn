@@ -68,10 +68,6 @@ class AttendanceControllerNV extends Controller
         }
         $today = Carbon::today()->toDateString();
         $attendance = Attendance::where('users_id', Auth::id())->where('work_date', $today)->first();
-        if (!$attendance) 
-        {
-            return back()->with('success', 'Bạn chưa chấm công vào làm');
-        }
         if ($attendance->check_out) 
         {
             return back()->with('success', 'Bạn đã chấm công tan ca');

@@ -20,14 +20,8 @@ class Candidate extends Model
         'address',
         'street',
         'ward',
-        'province',
-        'users_id'
+        'province'
     ];
 
     public $timestamps = false;
-
-    public function user() 
-    {
-        return $this->belongsTo(User::class, 'users_id');
-    }
 }

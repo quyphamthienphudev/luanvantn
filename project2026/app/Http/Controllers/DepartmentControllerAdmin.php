@@ -16,7 +16,7 @@ class DepartmentControllerAdmin extends Controller
         {
             return back();
         }
-        $departments = Department::with('user')->get();
+        $departments = DB::table('departments')->get();
         return view('hcns.departments.index', compact('departments'));
     }
 
@@ -47,8 +47,7 @@ class DepartmentControllerAdmin extends Controller
         ]);
         Department::create([
             'name' => $request->name,
-            'description' => $request->description,
-            'users_id' => Auth::id()
+            'description' => $request->description
         ]);
         return redirect('/hcns/departments')->with('success','Thêm phòng ban thành công');
     }
@@ -110,7 +109,7 @@ class DepartmentControllerAdmin extends Controller
         }
         $search = $request->search;
 
-        $departments = Department::with('user')
+        $departments = DB::table('departments')
             ->when($search, function ($query) use ($search) {
 
             $query->where('name', 'like', '%' . $search . '%')

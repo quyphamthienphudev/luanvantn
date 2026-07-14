@@ -63,7 +63,6 @@ class ManageCandidateControllerAdmin extends Controller
             'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'
         ]);
         $data = $request->all();
-        $data['users_id'] = auth()->user()->id;
         Candidate::create($data);
         return redirect('/hcns/candidates')->with('success','Thêm hồ sơ thành công');
     }

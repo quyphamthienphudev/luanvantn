@@ -19,7 +19,7 @@ class ManageEmployeeControllerQLCL extends Controller
         {
             return back();
         }
-        $employees = Employee::with('department','user')
+        $employees = Employee::with('department')
             ->where('department_id','24')->orWhere('department_id','25')
             ->get();
 
@@ -47,7 +47,7 @@ class ManageEmployeeControllerQLCL extends Controller
         
         $search = $request->search;
 
-        $employees = Employee::with('department','user')
+        $employees = Employee::with('department')
             ->where('department_id','24')->orWhere('department_id','25')
             ->when($search, function ($query) use ($search) {
             

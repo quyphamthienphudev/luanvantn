@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class PayrollControllerUser extends Controller
 {
@@ -16,13 +17,17 @@ class PayrollControllerUser extends Controller
             return back();
         }
 
-        $userId = auth()->id();
+        $fullName = auth()->user()->name;
+        $month = Carbon::today()->toDateString();
+        $year = Carbon::today()->toDateString();
 
         $payroll = DB::table('payrolls')
             ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
             ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
             ->leftJoin('departments', 'employees.department_id', '=', 'departments.id')
-            ->where('employees.users_id', $userId)
+            ->where('employees.full_name', $fullName)
+            ->where('month', $month)
+            ->where('year', $year)
             ->select(
                 'payrolls.*',
                 'employees.employee_code',

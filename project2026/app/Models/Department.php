@@ -8,17 +8,12 @@ class Department extends Model
 {   
     protected $table = 'departments';
 
-    protected $fillable = ['name','description','users_id'];
+    protected $fillable = ['name','description'];
 
     public $timestamps = false;
     
     public function employees()
     {
         return $this->hasMany(Employee::class);
-    }
-
-    public function user() 
-    {
-        return $this->belongsTo(User::class, 'users_id');
     }
 }

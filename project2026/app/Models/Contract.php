@@ -17,8 +17,7 @@ class Contract extends Model
         'salary',
         'description',
         'contract_file',
-        'status',
-        'users_id'
+        'status'
     ];
 
     public $timestamps = false;
@@ -26,10 +25,5 @@ class Contract extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class,'users_id');
     }
 }

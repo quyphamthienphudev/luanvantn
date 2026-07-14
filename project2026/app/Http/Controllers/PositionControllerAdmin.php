@@ -57,8 +57,7 @@ class PositionControllerAdmin extends Controller
         DB::table('positions')->insert([
             'name'=>$request->name,
             'base_salary'=>$request->base_salary,
-            'max_salary'=>$request->max_salary,
-            'users_id' => Auth::id()
+            'max_salary'=>$request->max_salary
         ]);
 
         return redirect('/hcns/positions')->with('success','Thêm công việc thành công');
