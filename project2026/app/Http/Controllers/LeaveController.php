@@ -81,7 +81,7 @@ class LeaveController extends Controller
         $leave = LeaveRequest::where('id', $id)
                 ->where('users_id', Auth::id())
                 ->where('status', 'pending')
-                ->firstOrFail();
+                ->first();
 
         return view('user.leave.edit', compact('leave'));
     }
@@ -96,7 +96,7 @@ class LeaveController extends Controller
         $leave = LeaveRequest::where('id', $id)
                 ->where('users_id', Auth::id())
                 ->where('status', 'pending')
-                ->firstOrFail();
+                ->first();
 
         $validate = $request->validate([
             'start_date' => 'required|date|after_or_equal:today',

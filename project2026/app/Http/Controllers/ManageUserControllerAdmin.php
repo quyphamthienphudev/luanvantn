@@ -199,9 +199,24 @@ class ManageUserControllerAdmin extends Controller
                 $query->orWhere('role_id', 1);
             }
 
-            if (strtolower($search) == 'user') 
+            if (strtolower($search) == 'hcns') 
             {
                 $query->orWhere('role_id', 2);
+            }
+
+            if (strtolower($search) == 'qlcl') 
+            {
+                $query->orWhere('role_id', 3);
+            }
+
+            if (strtolower($search) == 'httt') 
+            {
+                $query->orWhere('role_id', 4);
+            }
+
+            if (strtolower($search) == 'user') 
+            {
+                $query->orWhere('role_id', 5);
             }
         })
         ->get();
