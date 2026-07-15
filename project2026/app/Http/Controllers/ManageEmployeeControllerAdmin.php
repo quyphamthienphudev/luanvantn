@@ -60,6 +60,11 @@ class ManageEmployeeControllerAdmin extends Controller
         'full_name' => 'required',
         'email' => 'required|email',
         'date_of_birth' => 'required|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
+        'identify' => 'required|regex:/^[A-Za-z0-9_-]+$/',
+        'national' => 'required',
+        'birthplace' => 'required',
+        'issue_date' => 'required',
+        'ethnic_group' => 'required',
         // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
         'phone' => 'required|numeric|regex:/^0[0-9]+$/'
         ],[
@@ -71,6 +76,12 @@ class ManageEmployeeControllerAdmin extends Controller
             'email.email' => 'Email không đúng định dạng',
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh',
             'date_of_birth.before_or_equal' => 'Nhân viên phải từ 18 tuổi trở lên, vui lòng kiểm tra lại',
+            'identify.required' => 'Vui lòng nhập CCCD',
+            'identify.regex' => 'CCCD không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt',
+            'national.required' => 'Vui lòng nhập quốc tịch',
+            'birthplace.required' => 'Vui lòng nhập nơi sinh',
+            'issue_date.required' => 'Vui lòng nhập ngày cấp',
+            'ethnic_group.required' => 'Vui lòng nhập dân tộc',
             'phone.required' => 'Vui lòng nhập số điện thoại',
             'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại',
             'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'
@@ -110,6 +121,11 @@ class ManageEmployeeControllerAdmin extends Controller
         'hire_date' => 'required|date',
         'email' => 'required|email',
         'date_of_birth' => 'required|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
+        'identify' => 'required|regex:/^[A-Za-z0-9_-]+$/',
+        'national' => 'required',
+        'birthplace' => 'required',
+        'issue_date' => 'required',
+        'ethnic_group' => 'required',
         // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
         'phone' => 'required|numeric|regex:/^0[0-9]+$/'
         ],[
@@ -120,6 +136,12 @@ class ManageEmployeeControllerAdmin extends Controller
             'email.email' => 'Email không đúng định dạng',
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh',
             'date_of_birth.before_or_equal' => 'Nhân viên phải từ 18 tuổi trở lên, vui lòng kiểm tra lại',
+            'identify.required' => 'Vui lòng nhập CCCD',
+            'identify.regex' => 'CCCD không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt',
+            'national.required' => 'Vui lòng nhập quốc tịch',
+            'birthplace.required' => 'Vui lòng nhập nơi sinh',
+            'issue_date.required' => 'Vui lòng nhập ngày cấp',
+            'ethnic_group.required' => 'Vui lòng nhập dân tộc',
             'phone.required' => 'Vui lòng nhập số điện thoại',
             'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại',
             'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'

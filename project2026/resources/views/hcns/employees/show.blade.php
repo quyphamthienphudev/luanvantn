@@ -29,6 +29,11 @@
             @endif
         </p>
         <p>Ngày sinh: {{ $employee->date_of_birth ? date('d/m/Y', strtotime($employee->date_of_birth)) : '' }}</p>
+        <p>CCCD: {{ $employee->identify }}</p>
+        <p>Quốc tịch: {{ $employee->national }}</p>
+        <p>Nơi sinh: {{ $employee->birthplace }}</p>
+        <p>Ngày cấp: {{ $employee->issue_date ? date('d/m/Y', strtotime($employee->issue_date)) : '' }}</p>
+        <p>Dân tộc: {{ $employee->ethnic_group }}</p>
         <p>SĐT: {{ $employee->phone }}</p>
         <p>Địa chỉ: {{ $employee->address }} , {{ $employee->street }} , {{ $employee->ward }} , {{ $employee->province
             }}</p>

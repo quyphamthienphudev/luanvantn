@@ -42,6 +42,7 @@
                     <th class="p-3">Mã nhân viên</th>
                     <th class="p-3">Họ tên nhân viên</th>
                     <th class="p-3">Phòng ban</th>
+                    <th class="p-3">Trạng thái</th>
                     <th class="p-3">Hành động</th>
                 </tr>
             </thead>
@@ -51,6 +52,14 @@
                     <td class="p-3">{{ $e->employee_code }}</td>
                     <td class="p-3">{{ $e->full_name }}</td>
                     <td class="p-3">{{ $e->department->name }}</td>
+                    <td class="p-3">
+                        @if($e->status == 'working')
+                        Đang làm việc
+                        @endif
+                        @if($e->status == 'resigned')
+                        Đã nghỉ việc
+                        @endif
+                    </td>
                     <td class="p-3 space-x-2">
                         <a href="/hcns/employees/show/{{ $e->id }}"
                             class="bg-blue-500 text-white px-3 py-1 rounded" title="Xem">Xem</a>

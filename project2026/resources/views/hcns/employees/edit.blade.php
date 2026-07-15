@@ -74,6 +74,46 @@
             @enderror
         </div>
         <div class="mb-4">
+            <label>CCCD</label>
+            <input type="text" name="identify" value="{{ $employee->identify }}" class="w-full border p-2 rounded"
+                placeholder="CCCD" maxlength="12">
+            @error('identify')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-4">
+            <label>Quốc tịch</label>
+            <input type="text" name="national" value="{{ $employee->national }}" class="w-full border p-2 rounded"
+                placeholder="Quốc tịch">
+            @error('national')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-4">
+            <label>Nơi sinh</label>
+            <input type="text" name="birthplace" value="{{ $employee->birthplace }}" class="w-full border p-2 rounded"
+                placeholder="Nơi sinh">
+            @error('birthplace')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-4">
+            <label>Ngày cấp</label>
+            <input type="date" name="issue_date" value="{{ $employee->issue_date }}"
+                class="w-full border p-2 rounded">
+            @error('issue_date')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-4">
+            <label>Dân tộc</label>
+            <input type="text" name="ethnic_group" value="{{ $employee->ethnic_group }}" class="w-full border p-2 rounded"
+                placeholder="Dân tộc">
+            @error('ethnic_group')
+            <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-4">
             <label>Số điện thoại</label>
             <input type="text" name="phone" value="{{ $employee->phone }}" class="w-full border p-2 rounded"
                 placeholder="Số điện thoại">
