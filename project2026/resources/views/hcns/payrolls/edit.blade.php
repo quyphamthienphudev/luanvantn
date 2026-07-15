@@ -65,7 +65,7 @@
                 <label class="block text-gray-700 font-bold mb-2">Phụ cấp (VNĐ)</label>
                 <input type="text" name="allowance" value="{{ $request->allowance }}" class="w-full border p-2 rounded">
                 @error('allowance')
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{{ $message }}</div>
+                <div class="text-red-700">{{ $message }}</div>
                 @enderror
             </div>
 
