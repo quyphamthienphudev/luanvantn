@@ -76,9 +76,6 @@
                 <td class="py-2 font-bold">{{ number_format($payroll->total_salary ?? 0) }} VNĐ</td>
             </tr>
         </table>
-        <div class="mt-6">
-            <a href="/hcns/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded" title="Quay lại">Quay lại</a>
-        </div>
         @endif
     </div>
 </body>
