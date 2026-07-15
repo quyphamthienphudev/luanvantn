@@ -14,8 +14,8 @@
 </head>
 
 <body>
+    <a href="/hcns/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded" title="Quay lại">Quay lại</a>
     <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
-        <a href="/hcns/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded" title="Quay lại">Quay lại</a>
         @if(!$payroll)
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             Không tìm thấy bảng lương!
