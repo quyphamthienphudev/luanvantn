@@ -22,7 +22,7 @@
     </a>
     <form method="GET" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
-            placeholder="Tìm theo mã nhân viên, tên nhân viên hoặc phòng ban" style="width:450px;">
+            placeholder="Tìm theo mã nhân viên, tên nhân viên, phòng ban hoặc trạng thái làm việc" style="width:550px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
     </form>
     @if(session('success'))
