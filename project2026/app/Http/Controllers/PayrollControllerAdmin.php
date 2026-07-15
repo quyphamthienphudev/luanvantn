@@ -97,11 +97,14 @@ class PayrollControllerAdmin extends Controller
                     ->whereMonth('decision_date', $request->month)
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
+        $countLeave = DB::table('attendances')
+                      ->leftJoin('users', 'users.id', '=', 'attendances.users_id')
+                      ->where('users.name', $employee->full_name)->count();
         if($request->allowance > $base_salary)
         {
             return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
         }
-        $total_salary = $base_salary + $request->allowance + $bonus - $deduction;
+        $total_salary = ($base_salary + $request->allowance + $bonus - $deduction) / 26 * $countLeave;
         DB::table('payrolls')->insert([
             'employee_id' => $request->employee_id,
             'month' => $request->month,
@@ -110,6 +113,7 @@ class PayrollControllerAdmin extends Controller
             'allowance' => $request->allowance,
             'bonus' => $bonus,
             'deduction' => $deduction,
+            'work_numbers' => $countLeave,
             'total_salary' => $total_salary
         ]);
         return redirect('/hcns/payrolls')->with('success', 'Tạo bảng lương thành công');
@@ -196,11 +200,14 @@ class PayrollControllerAdmin extends Controller
                     ->whereMonth('decision_date', $request->month)
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
+        $countLeave = DB::table('attendances')
+                      ->leftJoin('users', 'users.id', '=', 'attendances.users_id')
+                      ->where('users.name', $employee->full_name)->count();
         if($request->allowance > $base_salary)
         {
             return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
         }
-        $total_salary = $base_salary + $request->allowance + $bonus - $deduction;
+        $total_salary = ($base_salary + $request->allowance + $bonus - $deduction) / 26 * $countLeave;
         DB::table('payrolls')->where('id', $id)->update([
             'employee_id' => $request->employee_id,
             'month' => $request->month,
@@ -209,6 +216,7 @@ class PayrollControllerAdmin extends Controller
             'allowance' => $request->allowance,
             'bonus' => $bonus,
             'deduction' => $deduction,
+            'work_numbers' => $countLeave,
             'total_salary' => $total_salary
         ]);
         return redirect('/hcns/payrolls')->with('success', 'Cập nhật bảng lương thành công');
@@ -260,7 +268,7 @@ class PayrollControllerAdmin extends Controller
         $output = fopen('php://output', 'w');
         fwrite($output, "\xEF\xBB\xBF");
         
-        fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Chức vụ', 'Tháng', 'Năm', 'Lương cơ bản', 'Phụ cấp', 'Thưởng', 'Khấu trừ', 'Lương thực lãnh']);
+        fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Chức vụ', 'Tháng', 'Năm', 'Lương cơ bản', 'Phụ cấp', 'Thưởng', 'Khấu trừ', 'Số ngày làm việc', 'Lương thực lãnh']);
         
         $stt = 1;
         foreach ($payrolls as $payroll) 
@@ -277,6 +285,7 @@ class PayrollControllerAdmin extends Controller
                 $payroll->allowance ?? 0,
                 $payroll->bonus ?? 0,
                 $payroll->deduction ?? 0,
+                $payroll->work_numbers ?? 0,
                 $payroll->total_salary ?? 0
             ]);
             $stt++;

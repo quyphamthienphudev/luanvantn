@@ -16,6 +16,7 @@ class Payroll extends Model
         'allowance',
         'bonus',
         'deduction',
+        'work_numbers',
         'total_salary'
     ];
 }

@@ -18,8 +18,8 @@ class PayrollControllerUser extends Controller
         }
 
         $fullName = auth()->user()->name;
-        $month = Carbon::today()->toDateString();
-        $year = Carbon::today()->toDateString();
+        $month = Carbon::today()->month;
+        $year = Carbon::today()->year;
 
         $payroll = DB::table('payrolls')
             ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
