@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Employee;
-use App\Models\EmployeeCertificate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
+use App\Models\Employee;
+use App\Models\EmployeeCertificate;
 
 class EmployeeCertificateController extends Controller
 {

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 use Carbon\Carbon;
 use App\Models\Contract;
 use App\Models\Employee;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Response;
 
 class ContractController extends Controller
 {

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
 use App\Models\Department;
-use Illuminate\Support\Facades\DB;
-
 use App\Models\Position;
 
 class ManageEmployeeControllerQLCL extends Controller

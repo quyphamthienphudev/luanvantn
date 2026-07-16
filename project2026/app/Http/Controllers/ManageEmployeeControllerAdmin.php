@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Employee;
-use App\Models\Department;
 use Illuminate\Support\Facades\DB;
 use App\Models\Position;
 use App\Models\Attendance;
+use App\Models\Employee;
+use App\Models\Department;
 
 class ManageEmployeeControllerAdmin extends Controller
 {

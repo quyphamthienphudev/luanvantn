@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Candidate;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Candidate;
 
 class ManageCandidateControllerAdmin extends Controller
 {

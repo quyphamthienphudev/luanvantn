@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Position;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Position;
 
 class PositionControllerAdmin extends Controller
 {

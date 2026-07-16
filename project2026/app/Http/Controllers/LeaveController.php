@@ -2,9 +2,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\LeaveRequest;
 
 class LeaveController extends Controller
 {

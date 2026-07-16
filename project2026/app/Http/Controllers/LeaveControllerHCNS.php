@@ -2,8 +2,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\LeaveRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\LeaveRequest;
 
 class LeaveControllerHCNS extends Controller
 {
