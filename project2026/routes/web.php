@@ -98,6 +98,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/hcns/employees/delete/{id}',[ManageEmployeeControllerAdmin::class,'delete']);
     Route::get('/hcns/employees/show/{id}',[ManageEmployeeControllerAdmin::class,'show']);
     Route::get('/hcns/employees/export',[ManageEmployeeControllerAdmin::class,'export']);
+    Route::get('/hcns/employees/detail',[ManageEmployeeControllerAdmin::class,'detail']);
     // Quản lý chứng chỉ
     Route::post('/hcns/employees/{id}/certificate/store', [EmployeeCertificateController::class,'store']);
     Route::get('/hcns/employees/certificate/view/{id}', [EmployeeCertificateController::class,'viewFile']);

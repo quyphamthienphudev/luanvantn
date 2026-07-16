@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\Department;
 use Illuminate\Support\Facades\DB;
 use App\Models\Position;
+use App\Models\Attendance;
 
 class ManageEmployeeControllerAdmin extends Controller
 {
@@ -179,7 +180,7 @@ class ManageEmployeeControllerAdmin extends Controller
         return back()->with('success','Xóa nhân viên thành công');
     }
 
-    // SHOW DETAIL
+    // SHOW
     public function show($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -199,8 +200,8 @@ class ManageEmployeeControllerAdmin extends Controller
         }
         
         $employees = DB::table('employees')
-            ->leftJoin('departments', 'employees.department_id', '=', 'departments.id')
-            ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
+            ->join('departments', 'employees.department_id', '=', 'departments.id')
+            ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->where('status','working')
             ->select(
                 'employee_code',
@@ -262,5 +263,47 @@ class ManageEmployeeControllerAdmin extends Controller
         
         fclose($output);
         exit;
+    }
+
+    // DETAIL
+    public function detail(Request $request)
+    {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
+        $employees = Employee::all();
+        $employee = $request->get('employee_full_name');
+        $attendances = [];
+        $rewards = [];
+        $disciplines = [];
+
+        if($request->has('detail'))
+        {
+            $attendances = DB::table('attendances')
+                ->join('users', 'users.id', '=', 'attendances.users_id')
+                ->where('users.name', $employee)
+                ->where('confirm', 'yes')
+                ->orderBy('work_date','asc')
+                ->select('users.name','work_date','check_in','check_out','attendances.status')
+                ->get();
+
+            $rewards = DB::table('reward_discipline')
+                ->join('employees', 'employees.id', '=', 'reward_discipline.employee_id')
+                ->where('full_name', $employee)
+                ->where('type', 'reward')
+                ->orderBy('decision_date','asc')
+                ->get();
+
+            $disciplines = DB::table('reward_discipline')
+                ->join('employees', 'employees.id', '=', 'reward_discipline.employee_id')
+                ->where('full_name', $employee)
+                ->where('type', 'discipline')
+                ->orderBy('decision_date','asc')
+                ->get();
+        }
+
+        return view('hcns.employees.detail', compact('employees','attendances','rewards','disciplines'));
     }
 }

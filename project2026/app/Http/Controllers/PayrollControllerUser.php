@@ -22,9 +22,9 @@ class PayrollControllerUser extends Controller
         $year = Carbon::today()->year;
 
         $payroll = DB::table('payrolls')
-            ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
-            ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
-            ->leftJoin('departments', 'employees.department_id', '=', 'departments.id')
+            ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
+            ->join('positions', 'employees.position_id', '=', 'positions.id')
+            ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->where('employees.full_name', $fullName)
             ->where('month', $month)
             ->where('year', $year)

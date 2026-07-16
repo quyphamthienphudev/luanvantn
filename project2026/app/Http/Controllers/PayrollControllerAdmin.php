@@ -20,8 +20,8 @@ class PayrollControllerAdmin extends Controller
         
         $payrolls = DB::table('payrolls')
             ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
-            ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
-            ->leftJoin('departments', 'employees.department_id', '=', 'departments.id')
+            ->join('positions', 'employees.position_id', '=', 'positions.id')
+            ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->where('payrolls.month', $month)
             ->where('payrolls.year', $year)
             ->select(
@@ -34,7 +34,7 @@ class PayrollControllerAdmin extends Controller
             ->get();
         
         $employees = DB::table('employees')
-            ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
+            ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->select('employees.*', 'positions.name as position_name', 'positions.base_salary')
             ->get();
         
@@ -49,7 +49,7 @@ class PayrollControllerAdmin extends Controller
         }
 
         $employees = DB::table('employees')
-            ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
+            ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->select('employees.*', 'positions.name as position_name', 'positions.base_salary')
             ->get();
         $month = $request->get('month', date('m'));
@@ -99,7 +99,7 @@ class PayrollControllerAdmin extends Controller
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
         $countLeave = DB::table('attendances')
-                      ->leftJoin('users', 'users.id', '=', 'attendances.users_id')
+                      ->join('users', 'users.id', '=', 'attendances.users_id')
                       ->where('users.name', $employee->full_name)->count();
         if($request->allowance > $base_salary)
         {
@@ -130,8 +130,8 @@ class PayrollControllerAdmin extends Controller
         $payroll = DB::table('payrolls')
             ->where('payrolls.id', $id)
             ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
-            ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
-            ->leftJoin('departments', 'employees.department_id', '=', 'departments.id')
+            ->join('positions', 'employees.position_id', '=', 'positions.id')
+            ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->select(
                 'payrolls.*',
                 'employees.employee_code',
@@ -153,7 +153,7 @@ class PayrollControllerAdmin extends Controller
 
         $payroll = DB::table('payrolls')->where('id', $id)->first();
         $employees = DB::table('employees')
-            ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
+            ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->select('employees.*', 'positions.name as position_name', 'positions.base_salary')
             ->get();
         $request = DB::table('payrolls')->select('allowance')->where('id', $id)->first();
@@ -203,7 +203,7 @@ class PayrollControllerAdmin extends Controller
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
         $countLeave = DB::table('attendances')
-                      ->leftJoin('users', 'users.id', '=', 'attendances.users_id')
+                      ->join('users', 'users.id', '=', 'attendances.users_id')
                       ->where('users.name', $employee->full_name)->count();
         if($request->allowance > $base_salary)
         {
@@ -245,8 +245,8 @@ class PayrollControllerAdmin extends Controller
         
         $payrolls = DB::table('payrolls')
             ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
-            ->leftJoin('positions', 'employees.position_id', '=', 'positions.id')
-            ->leftJoin('departments', 'employees.department_id', '=', 'departments.id')
+            ->join('positions', 'employees.position_id', '=', 'positions.id')
+            ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->select(
                 'payrolls.*',
                 'employees.employee_code',
