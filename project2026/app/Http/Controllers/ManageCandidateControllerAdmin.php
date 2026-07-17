@@ -43,7 +43,7 @@ class ManageCandidateControllerAdmin extends Controller
         'first_name' => 'required',
         'last_name' => 'required',
         'email' => 'required|email',
-        'date_of_birth' => 'required|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
+        'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
         // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
         'phone' => 'required|numeric|regex:/^0[0-9]+$/'
         ],[
@@ -56,7 +56,7 @@ class ManageCandidateControllerAdmin extends Controller
             'email.required' => 'Vui lòng nhập email.',
             'email.email' => 'Email không đúng định dạng.',
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh.',
-            'date_of_birth.before_or_equal' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
+            'date_of_birth.before' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
             'phone.required' => 'Vui lòng nhập số điện thoại.',
             'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
             'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
@@ -90,7 +90,7 @@ class ManageCandidateControllerAdmin extends Controller
         'first_name' => 'required',
         'last_name' => 'required',
         'email' => 'required|email',
-        'date_of_birth' => 'required|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
+        'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
         // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
         'phone' => 'required|numeric|regex:/^0[0-9]+$/'
         ],[
@@ -100,7 +100,7 @@ class ManageCandidateControllerAdmin extends Controller
             'email.required' => 'Vui lòng nhập email.',
             'email.email' => 'Email không đúng định dạng.',
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh.',
-            'date_of_birth.before_or_equal' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
+            'date_of_birth.before' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
             'phone.required' => 'Vui lòng nhập số điện thoại.',
             'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
             'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'

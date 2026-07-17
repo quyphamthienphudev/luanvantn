@@ -47,7 +47,7 @@ class ContractController extends Controller
             'contract_type'=>'required',
             'start_date'=>'required',
             'salary' => 'required|numeric|min:0',
-            'contract_file' => 'required|mimes:pdf,doc,docx|max:5120'
+            'contract_file' => 'required|mimes:pdf,doc,docx|max:2048'
         ],[
             'contract_code.required' => 'Vui lòng nhập mã hợp đồng.',
             'start_date.required' => 'Vui lòng chọn ngày bắt đầu.',
@@ -56,7 +56,7 @@ class ContractController extends Controller
             'salary.min' => 'Mức lương không hợp lệ, vui lòng kiểm tra lại.',
             'contract_file.required' => 'Vui lòng chọn file để tải lên.',
             'contract_file.mimes' => 'Định dạng file không phù hợp, chỉ cho phép file pdf, doc, docx.',
-            'contract_file.max' => 'Vui lòng tải lên file dưới 5 MB.'
+            'contract_file.max' => 'Vui lòng tải lên file dưới 2 MB.'
         ]);
 
         $fileName = null;
@@ -104,10 +104,10 @@ class ContractController extends Controller
         $old = Contract::findOrFail($id);
 
         $request->validate([
-        'end_date' => 'required|date|after_or_equal:today',
+        'end_date' => 'required|date|after:today',
         ],[
             'end_date.required' => 'Vui lòng nhập ngày kết thúc.',
-            'end_date.after_or_equal' => 'Ngày kết thúc không hợp lệ, vui lòng kiểm tra lại.',
+            'end_date.after' => 'Ngày kết thúc không hợp lệ, vui lòng kiểm tra lại.',
         ]);
 
         Contract::create([
