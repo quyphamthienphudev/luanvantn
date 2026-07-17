@@ -20,15 +20,16 @@ class EmployeeCertificateController extends Controller
         $request->validate([
             'certificate_name' => 'required',
             'issue_date' => 'required',
-            'expiry_date' => 'required',
+            'expiry_date' => 'required|after_or_equal:issue_date',
             'certificate_file' => 'required|mimes:pdf,jpg,jpeg,png|max:5120'
         ],[
-            'certificate_name.required' => 'Vui lòng nhập tên chứng chỉ',
-            'issue_date.required' => 'Vui lòng chọn ngày cấp',
-            'expiry_date.required' => 'Vui lòng chọn ngày hết hạn',
-            'certificate_file.required' => 'Vui lòng tải file chứng chỉ lên',
-            'certificate_file.mimes' => 'Định dạng file không phù hợp, chỉ cho phép file pdf, jpg, jpeg, png',
-            'certificate_file.max' => 'Vui lòng tải lên file dưới 5 MB'
+            'certificate_name.required' => 'Vui lòng nhập tên chứng chỉ.',
+            'issue_date.required' => 'Vui lòng chọn ngày cấp.',
+            'expiry_date.required' => 'Vui lòng chọn ngày hết hạn.',
+            'expiry_date.after_or_equal' => 'Ngày hết hạn không hợp lệ, vui lòng kiểm tra lại.',
+            'certificate_file.required' => 'Vui lòng tải file chứng chỉ lên.',
+            'certificate_file.mimes' => 'Định dạng file không phù hợp, chỉ cho phép file pdf, jpg, jpeg, png.',
+            'certificate_file.max' => 'Vui lòng tải lên file dưới 5 MB.'
         ]);
 
         $fileName = null;

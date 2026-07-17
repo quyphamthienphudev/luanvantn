@@ -42,9 +42,9 @@ class RoleController extends Controller
             'name' => 'required|regex:/^[A-Za-z0-9_-]+$/',
             'description' => 'required'
         ],[
-            'name.required' => 'Tên quyền truy cập không được để trống',
-            'name.regex' => 'Tên quyền truy cập không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt',
-            'description.required' => 'Mô tả không được để trống'
+            'name.required' => 'Tên quyền truy cập không được để trống.',
+            'name.regex' => 'Tên quyền truy cập không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt.',
+            'description.required' => 'Mô tả không được để trống.'
         ]);
 
         DB::table('roles')->insert([

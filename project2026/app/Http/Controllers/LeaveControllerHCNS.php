@@ -39,10 +39,10 @@ class LeaveControllerHCNS extends Controller
             'end_date'   => 'required|date|after_or_equal:start_date',
             'reason'     => 'required'
         ], [
-            'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
-            'end_date.required' => 'Vui lòng chọn ngày kết thúc',
-            'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu',
-            'reason.required' => 'Vui lòng nhập lý do nghỉ phép'
+            'start_date.required' => 'Vui lòng chọn ngày bắt đầu.',
+            'end_date.required' => 'Vui lòng chọn ngày kết thúc.',
+            'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu.',
+            'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
         ]);
         $leave->update($validate);
         return redirect('/hcns/leave')->with('success', 'Cập nhật đơn nghỉ phép thành công');

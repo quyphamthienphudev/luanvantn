@@ -42,8 +42,8 @@ class DepartmentControllerAdmin extends Controller
             'name' => 'required',
             'description' => 'required'
         ],[
-            'name.required' => 'Tên phòng ban không được để trống',
-            'description.required' => 'Thông tin phòng ban không được để trống'
+            'name.required' => 'Tên phòng ban không được để trống.',
+            'description.required' => 'Thông tin phòng ban không được để trống.'
         ]);
         Department::create([
             'name' => $request->name,
@@ -75,8 +75,8 @@ class DepartmentControllerAdmin extends Controller
             'name' => 'required',
             'description' => 'required'
         ],[
-            'name.required' => 'Tên phòng ban không được để trống',
-            'description.required' => 'Thông tin phòng ban không được để trống'
+            'name.required' => 'Tên phòng ban không được để trống.',
+            'description.required' => 'Thông tin phòng ban không được để trống.'
         ]);
         Department::findOrFail($id)->update($request->all());
         return redirect('/hcns/departments')->with('success','Cập nhật phòng ban thành công');

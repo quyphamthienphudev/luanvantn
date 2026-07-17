@@ -46,13 +46,13 @@ class ManageUserControllerAdmin extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8'
         ],[
-            'name.required' => 'Họ tên không được để trống',
-            'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại',
-            'email.required' => 'Email không được để trống',
-            'email.email' => 'Email không hợp lệ, vui lòng kiểm tra lại',
-            'email.unique' => 'Email này đã được sử dụng',
-            'password.required' => 'Mật khẩu không được để trống',
-            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự'
+            'name.required' => 'Họ tên không được để trống.',
+            'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại.',
+            'email.required' => 'Email không được để trống.',
+            'email.email' => 'Email không hợp lệ, vui lòng kiểm tra lại.',
+            'email.unique' => 'Email này đã được sử dụng.',
+            'password.required' => 'Mật khẩu không được để trống.',
+            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.'
         ]);
 
         DB::table('users')->insert([
@@ -90,13 +90,13 @@ class ManageUserControllerAdmin extends Controller
             // 'email'=>'required|email|unique:users,email'
             'email' => 'required|email'
         ],[
-            'name.required' => 'Họ tên không được để trống',
-            'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại',
-            'email.required' => 'Email không được để trống',
-            'email.email' => 'Email không hợp lệ, vui lòng kiểm tra lại',
-            // 'email.unique' => 'Email này đã được sử dụng',
-            'password.required' => 'Mật khẩu không được để trống',
-            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự'
+            'name.required' => 'Họ tên không được để trống.',
+            'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại.',
+            'email.required' => 'Email không được để trống.',
+            'email.email' => 'Email không hợp lệ, vui lòng kiểm tra lại.',
+            // 'email.unique' => 'Email này đã được sử dụng.',
+            'password.required' => 'Mật khẩu không được để trống.',
+            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.'
         ]);
         
         DB::table('users')

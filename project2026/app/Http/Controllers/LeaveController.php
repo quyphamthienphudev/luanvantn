@@ -35,11 +35,11 @@ class LeaveController extends Controller
         'end_date'   => 'required|date|after_or_equal:start_date',
         'reason'     => 'required'
         ],[
-        'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
-        'start_date.after_or_equal' => 'Ngày bắt đầu không được nhỏ hơn ngày hiện tại',
-        'end_date.required' => 'Vui lòng chọn ngày kết thúc',
-        'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu',
-        'reason.required' => 'Vui lòng nhập lý do nghỉ phép'
+        'start_date.required' => 'Vui lòng chọn ngày bắt đầu.',
+        'start_date.after_or_equal' => 'Ngày bắt đầu không được nhỏ hơn ngày hiện tại.',
+        'end_date.required' => 'Vui lòng chọn ngày kết thúc.',
+        'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu.',
+        'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
         ]);
 
         // Đếm số lượng ngày nghỉ phép
@@ -103,11 +103,11 @@ class LeaveController extends Controller
             'end_date'   => 'required|date|after_or_equal:start_date',
             'reason'     => 'required'
         ],[
-            'start_date.required' => 'Vui lòng chọn ngày bắt đầu',
-            'start_date.after_or_equal' => 'Ngày bắt đầu không được nhỏ hơn ngày hiện tại',
-            'end_date.required' => 'Vui lòng chọn ngày kết thúc',
-            'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu',
-            'reason.required' => 'Vui lòng nhập lý do nghỉ phép'
+            'start_date.required' => 'Vui lòng chọn ngày bắt đầu.',
+            'start_date.after_or_equal' => 'Ngày bắt đầu không được nhỏ hơn ngày hiện tại.',
+            'end_date.required' => 'Vui lòng chọn ngày kết thúc.',
+            'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu.',
+            'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
         ]);
 
         // Tính số ngày nghỉ (bao gồm cả ngày bắt đầu và ngày kết thúc)

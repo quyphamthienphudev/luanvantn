@@ -46,11 +46,11 @@ class ManageEmployeeRewardController extends Controller
         'amount' => 'required|numeric|min:0',
         'decision_date' => 'required'
         ],[
-            'title.required' => 'Vui lòng nhập nội dung khen thưởng',
-            'amount.required' => 'Vui lòng nhập số tiền',
-            'amount.numeric' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại',
-            'amount.min' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại',
-            'decision_date.required' => 'Vui lòng chọn ngày ra quyết định'
+            'title.required' => 'Vui lòng nhập nội dung khen thưởng.',
+            'amount.required' => 'Vui lòng nhập số tiền.',
+            'amount.numeric' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại.',
+            'amount.min' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại.',
+            'decision_date.required' => 'Vui lòng chọn ngày ra quyết định.'
         ]);
         $data = $request->all();
         $data['type'] = 'reward';
@@ -81,11 +81,11 @@ class ManageEmployeeRewardController extends Controller
         'amount' => 'required|numeric|min:0',
         'decision_date' => 'required'
         ],[
-            'title.required' => 'Vui lòng nhập nội dung khen thưởng',
-            'amount.required' => 'Vui lòng nhập số tiền',
-            'amount.numeric' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại',
-            'amount.min' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại',
-            'decision_date.required' => 'Vui lòng chọn ngày ra quyết định'
+            'title.required' => 'Vui lòng nhập nội dung khen thưởng.',
+            'amount.required' => 'Vui lòng nhập số tiền.',
+            'amount.numeric' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại.',
+            'amount.min' => 'Số tiền nhập không hợp lệ, vui lòng kiểm tra lại.',
+            'decision_date.required' => 'Vui lòng chọn ngày ra quyết định.'
         ]);
         RewardDiscipline::findOrFail($id)->update($request->all());
         return redirect('/hcns/rewards')->with('success','Cập nhật khen thưởng thành công');

@@ -47,19 +47,19 @@ class ManageCandidateControllerAdmin extends Controller
         // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
         'phone' => 'required|numeric|regex:/^0[0-9]+$/'
         ],[
-            'candidate_id.required' => 'Vui lòng nhập mã hồ sơ',
-            'candidate_id.unique' => 'Mã hồ sơ đã tồn tại, vui lòng kiểm tra lại',
-            'candidate_id.regex' => 'Mã hồ sơ không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt',
-            'full_name.required' => 'Vui lòng nhập họ tên ứng viên',
-            'first_name.required' => 'Vui lòng nhập tên',
-            'last_name.required' => 'Vui lòng nhập họ',
-            'email.required' => 'Vui lòng nhập email',
-            'email.email' => 'Email không đúng định dạng',
-            'date_of_birth.required' => 'Vui lòng chọn ngày sinh',
-            'date_of_birth.before_or_equal' => 'Ứng viên phải từ 18 tuổi trở lên, vui lòng kiểm tra lại',
-            'phone.required' => 'Vui lòng nhập số điện thoại',
-            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại',
-            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'
+            'candidate_id.required' => 'Vui lòng nhập mã hồ sơ.',
+            'candidate_id.unique' => 'Mã hồ sơ đã tồn tại, vui lòng kiểm tra lại.',
+            'candidate_id.regex' => 'Mã hồ sơ không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt.',
+            'full_name.required' => 'Vui lòng nhập họ tên ứng viên.',
+            'first_name.required' => 'Vui lòng nhập tên.',
+            'last_name.required' => 'Vui lòng nhập họ.',
+            'email.required' => 'Vui lòng nhập email.',
+            'email.email' => 'Email không đúng định dạng.',
+            'date_of_birth.required' => 'Vui lòng chọn ngày sinh.',
+            'date_of_birth.before_or_equal' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.required' => 'Vui lòng nhập số điện thoại.',
+            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
         ]);
         $data = $request->all();
         Candidate::create($data);
@@ -94,16 +94,16 @@ class ManageCandidateControllerAdmin extends Controller
         // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
         'phone' => 'required|numeric|regex:/^0[0-9]+$/'
         ],[
-            'full_name.required' => 'Vui lòng nhập họ tên ứng viên',
-            'first_name.required' => 'Vui lòng nhập tên',
-            'last_name.required' => 'Vui lòng nhập họ',
-            'email.required' => 'Vui lòng nhập email',
-            'email.email' => 'Email không đúng định dạng',
-            'date_of_birth.required' => 'Vui lòng chọn ngày sinh',
-            'date_of_birth.before_or_equal' => 'Ứng viên phải từ 18 tuổi trở lên, vui lòng kiểm tra lại',
-            'phone.required' => 'Vui lòng nhập số điện thoại',
-            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại',
-            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'
+            'full_name.required' => 'Vui lòng nhập họ tên ứng viên.',
+            'first_name.required' => 'Vui lòng nhập tên.',
+            'last_name.required' => 'Vui lòng nhập họ.',
+            'email.required' => 'Vui lòng nhập email.',
+            'email.email' => 'Email không đúng định dạng.',
+            'date_of_birth.required' => 'Vui lòng chọn ngày sinh.',
+            'date_of_birth.before_or_equal' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.required' => 'Vui lòng nhập số điện thoại.',
+            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
         ]);
 
         DB::table('candidates')

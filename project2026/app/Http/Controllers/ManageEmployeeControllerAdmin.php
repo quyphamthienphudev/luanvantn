@@ -69,23 +69,23 @@ class ManageEmployeeControllerAdmin extends Controller
         // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
         'phone' => 'required|numeric|regex:/^0[0-9]+$/'
         ],[
-            'employee_code.required' => 'Vui lòng nhập mã nhân viên',
-            'employee_code.unique' => 'Mã nhân viên đã tồn tại, vui lòng kiểm tra lại',
-            'employee_code.regex' => 'Mã nhân viên không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt',
-            'full_name.required' => 'Vui lòng nhập họ tên nhân viên',
-            'email.required' => 'Vui lòng nhập email',
-            'email.email' => 'Email không đúng định dạng',
-            'date_of_birth.required' => 'Vui lòng chọn ngày sinh',
-            'date_of_birth.before_or_equal' => 'Nhân viên phải từ 18 tuổi trở lên, vui lòng kiểm tra lại',
-            'identify.required' => 'Vui lòng nhập CCCD',
-            'identify.regex' => 'CCCD không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt',
-            'national.required' => 'Vui lòng nhập quốc tịch',
-            'birthplace.required' => 'Vui lòng nhập nơi sinh',
-            'issue_date.required' => 'Vui lòng nhập ngày cấp',
-            'ethnic_group.required' => 'Vui lòng nhập dân tộc',
-            'phone.required' => 'Vui lòng nhập số điện thoại',
-            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại',
-            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'
+            'employee_code.required' => 'Vui lòng nhập mã nhân viên.',
+            'employee_code.unique' => 'Mã nhân viên đã tồn tại, vui lòng kiểm tra lại.',
+            'employee_code.regex' => 'Mã nhân viên không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt.',
+            'full_name.required' => 'Vui lòng nhập họ tên nhân viên.',
+            'email.required' => 'Vui lòng nhập email.',
+            'email.email' => 'Email không đúng định dạng.',
+            'date_of_birth.required' => 'Vui lòng chọn ngày sinh.',
+            'date_of_birth.before_or_equal' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
+            'identify.required' => 'Vui lòng nhập CCCD.',
+            'identify.regex' => 'CCCD không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt.',
+            'national.required' => 'Vui lòng nhập quốc tịch.',
+            'birthplace.required' => 'Vui lòng nhập nơi sinh.',
+            'issue_date.required' => 'Vui lòng nhập ngày cấp.',
+            'ethnic_group.required' => 'Vui lòng nhập dân tộc.',
+            'phone.required' => 'Vui lòng nhập số điện thoại.',
+            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
         ]);
         $data = $request->all();
         // Tự động set ngày vào làm
@@ -130,22 +130,22 @@ class ManageEmployeeControllerAdmin extends Controller
         // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
         'phone' => 'required|numeric|regex:/^0[0-9]+$/'
         ],[
-            'full_name.required' => 'Vui lòng nhập họ tên nhân viên',
-            'hire_date.required' => 'Vui lòng chọn ngày vào làm',
-            'hire_date.date' => 'Ngày vào làm không hợp lệ',
-            'email.required' => 'Vui lòng nhập email',
-            'email.email' => 'Email không đúng định dạng',
-            'date_of_birth.required' => 'Vui lòng chọn ngày sinh',
-            'date_of_birth.before_or_equal' => 'Nhân viên phải từ 18 tuổi trở lên, vui lòng kiểm tra lại',
-            'identify.required' => 'Vui lòng nhập CCCD',
-            'identify.regex' => 'CCCD không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt',
-            'national.required' => 'Vui lòng nhập quốc tịch',
-            'birthplace.required' => 'Vui lòng nhập nơi sinh',
-            'issue_date.required' => 'Vui lòng nhập ngày cấp',
-            'ethnic_group.required' => 'Vui lòng nhập dân tộc',
-            'phone.required' => 'Vui lòng nhập số điện thoại',
-            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại',
-            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại'
+            'full_name.required' => 'Vui lòng nhập họ tên nhân viên.',
+            'hire_date.required' => 'Vui lòng chọn ngày vào làm.',
+            'hire_date.date' => 'Ngày vào làm không hợp lệ.',
+            'email.required' => 'Vui lòng nhập email.',
+            'email.email' => 'Email không đúng định dạng.',
+            'date_of_birth.required' => 'Vui lòng chọn ngày sinh.',
+            'date_of_birth.before_or_equal' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
+            'identify.required' => 'Vui lòng nhập CCCD.',
+            'identify.regex' => 'CCCD không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt.',
+            'national.required' => 'Vui lòng nhập quốc tịch.',
+            'birthplace.required' => 'Vui lòng nhập nơi sinh.',
+            'issue_date.required' => 'Vui lòng nhập ngày cấp.',
+            'ethnic_group.required' => 'Vui lòng nhập dân tộc.',
+            'phone.required' => 'Vui lòng nhập số điện thoại.',
+            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
 
         ]);
         Employee::findOrFail($id)->update($request->all());

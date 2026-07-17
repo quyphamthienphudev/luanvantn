@@ -23,11 +23,11 @@ class ManageUserControllerUser extends Controller
             'name' => 'required|regex:/^[\p{L}\p{N}\s]+$/u',
             'email' => 'required|email|unique:users,email,' . $user->id
         ],[
-            'name.required' => 'Họ tên không được để trống',
-            'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại',
-            'email.required' => 'Email không được để trống',
-            'email.email' => 'Email không hợp lệ, vui lòng kiểm tra lại',
-            'email.unique' => 'Email này đã được sử dụng'
+            'name.required' => 'Họ tên không được để trống.',
+            'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại.',
+            'email.required' => 'Email không được để trống.',
+            'email.email' => 'Email không hợp lệ, vui lòng kiểm tra lại.',
+            'email.unique' => 'Email này đã được sử dụng.'
         ]);
 
         $user->name = $request->name;
@@ -51,10 +51,10 @@ class ManageUserControllerUser extends Controller
             'current_password' => 'required',
             'new_password' => 'required|min:8'
         ], [
-            'current_password.required' => 'Vui lòng nhập mật khẩu hiện tại',
-            'current_password.min' => 'Mật khẩu hiện tại không đúng',
-            'new_password.required' => 'Mật khẩu mới không được để trống',
-            'new_password.min' => 'Mật khẩu mới phải có ít nhất 8 ký tự'
+            'current_password.required' => 'Vui lòng nhập mật khẩu hiện tại.',
+            'current_password.min' => 'Mật khẩu hiện tại không đúng.',
+            'new_password.required' => 'Mật khẩu mới không được để trống.',
+            'new_password.min' => 'Mật khẩu mới phải có ít nhất 8 ký tự.'
         ]);
 
         $user = auth()->user();
