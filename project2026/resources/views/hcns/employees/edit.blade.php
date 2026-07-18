@@ -21,7 +21,7 @@
             <label>Phòng ban</label>
             <select name="department_id" class="w-full border p-2 rounded">
                 @foreach($departments as $d)
-                <option value="{{ $d->id }}" {{ $employee->department_id==$d->id ? 'selected' : '' }}>
+                <option value="{{ $d->id }}" {{ $employee->department_id == $d->id ? 'selected' : '' }}>
                     {{ $d->name }}
                 </option>
                 @endforeach
