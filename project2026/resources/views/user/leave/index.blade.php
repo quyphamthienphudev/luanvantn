@@ -163,8 +163,8 @@
                                 @forelse($leaves as $l)
                                 <tr>
                                     <td class="ps-4">
-                                        <div class="fw-bold">{{ $l->start_date }}</div>
-                                        <div class="text-muted small">đến {{ $l->end_date }}</div>
+                                        <div class="fw-bold">{{ $l->start_date ? date('d/m/Y', strtotime($l->start_date)) : '' }}</div>
+                                        <div class="text-muted small">đến {{ $l->end_date ? date('d/m/Y', strtotime($l->end_date)) : '' }}</div>
                                     </td>
                                     <td>
                                         <div class="fw-bold text-primary">{{ Auth::user()->name }}</div>

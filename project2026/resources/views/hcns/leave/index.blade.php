@@ -62,10 +62,8 @@
                     <div>{{ $leave->reason }}</div>
                 </td>
                 <td class="ps-3">
-                    <div class="small fw-bold text-dark">{{
-                        \Carbon\Carbon::parse($leave->start_date)->format('d/m/Y') }}</div>
-                    <div class="small text-muted">đến {{ \Carbon\Carbon::parse($leave->end_date)->format('d/m/Y') }}
-                    </div>
+                    <div class="small fw-bold text-dark">{{ $leave->start_date ? date('d/m/Y', strtotime($leave->start_date)) : '' }}</div>
+                    <div class="small text-muted">đến {{ $leave->end_date ? date('d/m/Y', strtotime($leave->end_date)) : '' }}</div>
                 </td>
                 <td class="ps-3">
                     @if($leave->status == 'pending')

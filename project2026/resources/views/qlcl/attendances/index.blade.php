@@ -43,7 +43,7 @@
                             <p class="font-bold text-gray-800">{{ $atd->user?->name ?? 'N/A' }}</p>
                             <!-- <p class="text-xs text-gray-500">Mã nhân viên: {{ $atd->user?->employee_code }}</p> -->
                         </td>
-                        <td class="p-3">{{ \Carbon\Carbon::parse($atd->work_date)->format('d/m/Y') }}</td>
+                        <td class="p-3">{{ $atd->work_date ? date('d/m/Y', strtotime($atd->work_date)) : '' }}</td>
                         <td class="p-3 font-medium">{{ $atd->check_in ?? 'Chưa có dữ liệu' }}</td>
                         <td class="p-3 font-medium">{{ $atd->check_out ?? 'Chưa có dữ liệu' }}</td>
                         <td class="p-3">
@@ -60,14 +60,14 @@
                                 @endif
                             </span>
                         </td>
-                        <td class="p-3">{{ $atd->confirm=='yes' ? 'Đã xác nhận' : 'Chưa xác nhận' }}</td>
+                        <td class="p-3">{{ $atd->confirm == 'yes' ? 'Đã xác nhận' : 'Chưa xác nhận' }}</td>
                         <td class="p-3 text-center">
                             <div class="flex space-x-2">
                                 <a href="/qlcl/attendances/edit/{{ $atd->id }}"
                                     class="text-yellow-600 hover:underline" title="Sửa">Sửa</a>
                                 <a href="/qlcl/attendances/delete/{{ $atd->id }}" class="text-red-500 hover:underline"
                                     onclick="return confirm('Bạn có muốn xóa bảng chấm công này?')" title="Xoá">Xoá</a>
-                                @if($atd->confirm=='no')
+                                @if($atd->confirm == 'no')
                                 <a href="/qlcl/attendances/confirm/{{ $atd->id }}" class="text-blue-600 hover:underline"
                                     onclick="return confirm('Bạn có muốn xác nhận bảng chấm công này?')" title="Xác nhận">Xác nhận</a>
                                 @endif
