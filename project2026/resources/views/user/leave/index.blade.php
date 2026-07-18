@@ -154,9 +154,9 @@
                             <thead class="table-light text-uppercase small fw-bold">
                                 <tr>
                                     <th class="ps-4 py-3 text-secondary">Thời gian</th>
-                                    <th class="text-secondary">Nhân viên</th>
-                                    <th class="text-secondary">Trạng thái</th>
-                                    <th class="text-secondary text-center">Thao tác</th>
+                                    <th class="ps-4 py-3 text-secondary">Nhân viên</th>
+                                    <th class="ps-4 py-3 text-secondary">Trạng thái</th>
+                                    <th class="ps-4 py-3 text-secondary text-center">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
