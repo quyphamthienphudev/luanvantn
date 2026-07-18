@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\LeaveRequest;
@@ -14,7 +15,12 @@ class LeaveControllerQLCL extends Controller
         {
             return back();
         }
-        $allLeaves = LeaveRequest::with('user')->orderBy('start_date','desc')->get(); 
+        $allLeaves = DB::table('leave_requests')
+                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->orderBy('start_date','desc')
+                ->select('users.name','employee_code','reason','start_date','end_date','number_days','leave_requests.status','leave_requests.id')
+                ->get();
         return view('qlcl.leave.index', compact('allLeaves'));
     }
 
@@ -24,7 +30,12 @@ class LeaveControllerQLCL extends Controller
         {
             return back();
         }
-        $leave = LeaveRequest::findOrFail($id);
+        $leave = DB::table('leave_requests')
+                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->where('leave_requests.id', $id)
+                ->select('employee_code', 'users.name','start_date','end_date','reason','leave_requests.id')
+                ->first();
         return view('qlcl.leave.edit', compact('leave'));
     }
 

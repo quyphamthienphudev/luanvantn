@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\LeaveRequest;
 
@@ -13,7 +14,13 @@ class LeaveControllerHCNS extends Controller
         {
             return back();
         }
-        $allLeaves = LeaveRequest::with('user')->where('status','approved')->orderBy('start_date','desc')->get(); 
+        $allLeaves = DB::table('leave_requests')
+                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->where('leave_requests.status','approved')
+                ->orderBy('start_date','desc')
+                ->select('users.name','employee_code','reason','start_date','end_date','leave_requests.status','leave_requests.id')
+                ->get();
         return view('hcns.leave.index', compact('allLeaves'));
     }
 
@@ -23,7 +30,12 @@ class LeaveControllerHCNS extends Controller
         {
             return back();
         }
-        $leave = LeaveRequest::findOrFail($id);
+        $leave = DB::table('leave_requests')
+                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->where('leave_requests.id', $id)
+                ->select('employee_code', 'users.name','start_date','end_date','reason','leave_requests.id')
+                ->first();
         return view('hcns.leave.edit', compact('leave'));
     }
 

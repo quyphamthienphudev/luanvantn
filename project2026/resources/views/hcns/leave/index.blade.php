@@ -55,8 +55,8 @@
             @forelse($allLeaves as $leave)
             <tr class="border-b">
                 <td class="ps-3">
-                    <div class="fw-bold">{{ $leave->user->name ?? $leave->employee->full_name ?? 'N/A' }}</div>
-                    <!-- <small class="text-muted">Mã nhân viên: {{ $leave->user->id ?? $leave->employee->employee_code }}</small> -->
+                    <div class="fw-bold">{{ $leave->name ?? 'N/A' }}</div>
+                    <small class="text-muted">Mã nhân viên: {{ $leave->employee_code }}</small>
                 </td>
                 <td class="ps-3">
                     <div>{{ $leave->reason }}</div>

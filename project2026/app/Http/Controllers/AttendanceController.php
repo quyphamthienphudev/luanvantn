@@ -17,7 +17,12 @@ class AttendanceController extends Controller
         {
             return back();
         }
-        $attendances = Attendance::with('user')->orderBy('work_date', 'desc')->get();
+        $attendances = DB::table('attendances')
+                ->join('users', 'users.id', '=', 'attendances.users_id')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->orderBy('work_date', 'desc')
+                ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
+                ->get();
         return view('qlcl.attendances.index', compact('attendances'));
     }
 
@@ -27,9 +32,13 @@ class AttendanceController extends Controller
         {
             return back();
         }
-        $attendance = Attendance::findOrFail($id);
-        $employees = Employee::all();
-        return view('qlcl.attendances.edit', compact('attendance', 'employees'));
+        $attendance = DB::table('attendances')
+                ->join('users', 'users.id', '=', 'attendances.users_id')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->where('attendances.id', $id)
+                ->select('employee_code','users.name','work_date','check_in','check_out','attendances.id')
+                ->first();
+        return view('qlcl.attendances.edit', compact('attendance'));
     }
 
     public function update(Request $request, $id)

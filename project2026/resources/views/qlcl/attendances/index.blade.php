@@ -40,8 +40,8 @@
                     @forelse($attendances as $atd)
                     <tr class="hover:bg-gray-50 border-b">
                         <td class="p-3">
-                            <p class="font-bold text-gray-800">{{ $atd->user?->name ?? 'N/A' }}</p>
-                            <!-- <p class="text-xs text-gray-500">Mã nhân viên: {{ $atd->user?->employee_code }}</p> -->
+                            <p class="font-bold text-gray-800">{{ $atd->name ?? 'N/A' }}</p>
+                            <p class="text-xs text-gray-500">Mã nhân viên: {{ $atd->employee_code }}</p>
                         </td>
                         <td class="p-3">{{ $atd->work_date ? date('d/m/Y', strtotime($atd->work_date)) : '' }}</td>
                         <td class="p-3 font-medium">{{ $atd->check_in ?? 'Chưa có dữ liệu' }}</td>

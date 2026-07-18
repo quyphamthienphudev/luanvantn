@@ -80,11 +80,18 @@
     <div class="row">
         <div class="col-md-6 mb-4">
             <label class="form-label fw-bold small">
-                Nhân viên
+            Mã nhân viên
             </label>
             <input type="text" name="" class="form-control shadow-sm bg-gray-100" 
-                value="{{ $leave->user->name }}" readonly>
-        </div>              
+                value="{{ $leave->employee_code }}" readonly>
+        </div>
+        <div class="col-md-6 mb-4">
+            <label class="form-label fw-bold small">
+            Tên nhân viên
+            </label>
+            <input type="text" name="" class="form-control shadow-sm bg-gray-100" 
+                value="{{ $leave->name }}" readonly>
+        </div>             
     </div>
 
     <div class="row">
@@ -97,7 +104,6 @@
             <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror
         </div>
-
         <div class="col-md-6 mb-4">
             <label class="form-label fw-bold small">
                 Ngày kết thúc
@@ -118,7 +124,7 @@
         @enderror
         <textarea name="reason" class="form-control shadow-sm" rows="4">{{ $leave->reason }}</textarea>
     </div>
-
+    
     <div class="d-flex flex-column flex-sm-row gap-3">
         <button type="submit" class="btn btn-save flex-grow-1" title="Lưu thay đổi">
             Lưu thay đổi
