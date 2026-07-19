@@ -25,20 +25,20 @@ class PayrollControllerAdmin extends Controller
             ->where('payrolls.month', $month)
             ->where('payrolls.year', $year)
             ->select(
-                'payrolls.*',
                 'employees.employee_code',
                 'employees.full_name',
                 'positions.name as position_name',
-                'departments.name as department_name'
+                'departments.name as department_name',
+                'payrolls.base_salary',
+                'allowance',
+                'bonus',
+                'deduction',
+                'total_salary',
+                'payrolls.id'
             )
             ->get();
         
-        $employees = DB::table('employees')
-            ->join('positions', 'employees.position_id', '=', 'positions.id')
-            ->select('employees.*', 'positions.name as position_name', 'positions.base_salary')
-            ->get();
-        
-        return view('hcns.payrolls.index', compact('payrolls', 'employees', 'month', 'year'));
+        return view('hcns.payrolls.index', compact('payrolls', 'month', 'year'));
     }
 
     public function create(Request $request)
@@ -133,11 +133,18 @@ class PayrollControllerAdmin extends Controller
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->select(
-                'payrolls.*',
                 'employees.employee_code',
                 'employees.full_name',
+                'departments.name as department_name',
                 'positions.name as position_name',
-                'departments.name as department_name'
+                'payrolls.base_salary',
+                'allowance',
+                'bonus',
+                'deduction',
+                'work_numbers',
+                'month',
+                'year',
+                'total_salary',
             )
             ->first();
             
@@ -248,11 +255,18 @@ class PayrollControllerAdmin extends Controller
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->select(
-                'payrolls.*',
                 'employees.employee_code',
                 'employees.full_name',
+                'departments.name as department_name',
                 'positions.name as position_name',
-                'departments.name as department_name'
+                'payrolls.base_salary',
+                'allowance',
+                'bonus',
+                'deduction',
+                'work_numbers',
+                'month',
+                'year',
+                'total_salary',
             )
             ->orderBy('month','asc')
             ->orderBy('year','asc')

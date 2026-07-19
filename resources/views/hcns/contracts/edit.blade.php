@@ -19,17 +19,17 @@
         @csrf
         <div class="mb-4">
             <label>Mã hợp đồng</label>
-            <input type="text" name="" value="{{ $contract->contract_code }}"
+            <input type="text" value="{{ $contract->contract_code }}"
                 class="w-full border p-2 rounded bg-gray-100" readonly>
         </div>
         <div class="mb-4">
             <label>Nhân viên</label>
-            <input type="text" name="" value="{{ $contract->employee->full_name }}"
+            <input type="text" value="{{ $contract->employee->full_name }}"
                 class="w-full border p-2 rounded bg-gray-100" readonly>
         </div>
         <div class="mb-4">
             <label>Ngày bắt đầu</label>
-            <input type="date" name="" value="{{ $contract->end_date }}" class="w-full border p-2 rounded bg-gray-100" readonly>
+            <input type="date" value="{{ $contract->end_date }}" class="w-full border p-2 rounded bg-gray-100" readonly>
         </div>
         <div class="mb-4">
             <label>Ngày kết thúc</label>

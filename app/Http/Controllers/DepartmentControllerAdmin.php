@@ -16,7 +16,7 @@ class DepartmentControllerAdmin extends Controller
         {
             return back();
         }
-        $departments = DB::table('departments')->get();
+        $departments = DB::table('departments')->select('name','description')->get();
         return view('hcns.departments.index', compact('departments'));
     }
 
@@ -128,12 +128,7 @@ class DepartmentControllerAdmin extends Controller
             return back();
         }
         
-        $departments = DB::table('departments')
-            ->select(
-                'name',
-                'description'
-            )
-            ->get();
+        $departments = DB::table('departments')->select('name','description')->get();
         
         if ($departments->isEmpty()) 
         {

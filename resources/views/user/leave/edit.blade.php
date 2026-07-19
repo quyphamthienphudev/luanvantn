@@ -84,7 +84,7 @@
             <label class="form-label fw-bold small">
                 Nhân viên
             </label>
-            <input type="text" name="" class="form-control shadow-sm bg-gray-100" value="{{ $leave->user->name }}" readonly>
+            <input type="text" class="form-control shadow-sm bg-gray-100" value="{{ $leave->user->name }}" readonly>
         </div>
     </div>
 

@@ -15,7 +15,7 @@ class ManageCandidateControllerAdmin extends Controller
         {
             return back();
         }
-        $candidates = DB::table('candidates')->get();
+        $candidates = DB::table('candidates')->select('candidate_id','full_name')->get();
         return view('hcns.candidates.index',compact('candidates'));
     }
 

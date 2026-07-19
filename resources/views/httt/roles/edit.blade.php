@@ -22,7 +22,7 @@
         @csrf
         <div class="mb-4">
             <label>Tên quyền truy cập</label>
-            <input type="text" name="" value="{{ $roles->name }}" class="w-full border p-2 rounded bg-gray-100"
+            <input type="text" value="{{ $roles->name }}" class="w-full border p-2 rounded bg-gray-100"
                 readonly>
         </div>
         <div class="mb-4">

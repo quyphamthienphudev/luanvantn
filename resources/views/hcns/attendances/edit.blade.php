@@ -25,19 +25,19 @@
             <div class="grid grid-cols-2 gap-6">
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2">Mã nhân viên</label>
-                    <input type="text" name="" value="{{ $attendance->employee_code }}"
+                    <input type="text" value="{{ $attendance->employee_code }}"
                         class="w-full border rounded p-2 outline-none bg-gray-100" readonly>
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2">Tên nhân viên</label>
-                    <input type="text" name="" value="{{ $attendance->name }}"
+                    <input type="text" value="{{ $attendance->name }}"
                         class="w-full border rounded p-2 outline-none bg-gray-100" readonly>
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2">Ngày làm việc</label>
-                    <input type="date" name="" value="{{ $attendance->work_date }}"
+                    <input type="date" value="{{ $attendance->work_date }}"
                         class="w-full border rounded p-2 outline-none bg-gray-100" readonly>
                 </div>
 

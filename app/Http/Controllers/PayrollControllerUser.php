@@ -29,11 +29,18 @@ class PayrollControllerUser extends Controller
             ->where('month', $month)
             ->where('year', $year)
             ->select(
-                'payrolls.*',
                 'employees.employee_code',
                 'employees.full_name',
+                'departments.name as department_name',
                 'positions.name as position_name',
-                'departments.name as department_name'
+                'payrolls.base_salary',
+                'allowance',
+                'bonus',
+                'deduction',
+                'work_numbers',
+                'month',
+                'year',
+                'total_salary',
             )
             ->first();
 

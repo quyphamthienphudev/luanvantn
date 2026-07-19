@@ -19,11 +19,11 @@
         @csrf
         <div class="mb-4">
             <label>Nhân viên</label>
-            <input type="text" name="" value="{{ $disciplines->employee->full_name }}" class="w-full border p-2 rounded bg-gray-100" readonly>
+            <input type="text" value="{{ $disciplines->employee->full_name }}" class="w-full border p-2 rounded bg-gray-100" readonly>
         </div>
         <div class="mb-4">
             <label>Mã nhân viên</label>
-            <input type="text" name="" value="{{ $disciplines->employee->employee_code }}" class="w-full border p-2 rounded bg-gray-100" readonly>
+            <input type="text" value="{{ $disciplines->employee->employee_code }}" class="w-full border p-2 rounded bg-gray-100" readonly>
         </div>
         <div class="mb-4">
             <label>Nội dung kỷ luật</label>

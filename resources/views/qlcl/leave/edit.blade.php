@@ -82,14 +82,14 @@
             <label class="form-label fw-bold small">
             Mã nhân viên
             </label>
-            <input type="text" name="" class="form-control shadow-sm bg-gray-100" 
+            <input type="text" class="form-control shadow-sm bg-gray-100" 
                 value="{{ $leave->employee_code }}" readonly>
         </div>
         <div class="col-md-6 mb-4">
             <label class="form-label fw-bold small">
             Tên nhân viên
             </label>
-            <input type="text" name="" class="form-control shadow-sm bg-gray-100" 
+            <input type="text" class="form-control shadow-sm bg-gray-100" 
                 value="{{ $leave->name }}" readonly>
         </div>             
     </div>

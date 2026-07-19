@@ -29,7 +29,7 @@ class ManageUserControllerAdmin extends Controller
         {
             return back();
         }
-        $roles = DB::table('roles')->get();
+        $roles = DB::table('roles')->select('id','description')->get();
         return view('httt.accounts.create',compact('roles'));
     }
 

@@ -16,7 +16,7 @@ class RoleController extends Controller
         {
             return back();
         }
-        $roles = DB::table('roles')->get();
+        $roles = DB::table('roles')->select('id','name','description')->get();
         return view('httt.roles.index',compact('roles'));
     }
 

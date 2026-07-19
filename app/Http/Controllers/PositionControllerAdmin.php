@@ -17,7 +17,7 @@ class PositionControllerAdmin extends Controller
         {
             return back();
         }
-        $positions = DB::table('positions')->get();
+        $positions = DB::table('positions')->select('name', 'base_salary', 'max_salary', 'id')->get();
         return view('hcns.positions.index',compact('positions'));
     }
 

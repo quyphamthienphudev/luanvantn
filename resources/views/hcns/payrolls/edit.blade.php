@@ -72,12 +72,12 @@
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Thưởng (VNĐ)</label>
-                    <input type="number" name="" class="w-full border rounded px-3 py-2 bg-gray-100"
+                    <input type="number" class="w-full border rounded px-3 py-2 bg-gray-100"
                         value="{{ $payroll->bonus }}" readonly>
                 </div>
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Khấu trừ (VNĐ)</label>
-                    <input type="number" name="" class="w-full border rounded px-3 py-2 bg-gray-100"
+                    <input type="number" class="w-full border rounded px-3 py-2 bg-gray-100"
                         value="{{ $payroll->deduction }}" readonly>
                 </div>
             </div>
