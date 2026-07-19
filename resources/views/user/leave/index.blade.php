@@ -90,7 +90,7 @@
 @endif
 <div class="rounded mt-6">
     <div class="row">
-        <!-- FORM ĐĂNG KÝ -->
+        <!-- Form đăng ký nghỉ phép -->
         <div class="col-lg-4 mb-4">
             <div class="card shadow-sm border-0">
                 <div class="card-header py-3 text-center">
@@ -99,7 +99,7 @@
                 <div class="card-body p-4">
                     <form action="/leave/store" method="POST">
                         @csrf
-                        <!-- NGÀY BẮT ĐẦU & NGÀY KẾT THÚC -->
+                        <!-- Ngày bắt đầu & ngày kết thúc -->
                         <div class="row">
                             <div class="col-6 mb-3">
                                 <label class="form-label fw-bold small text-secondary">Ngày bắt đầu</label>
@@ -122,7 +122,7 @@
                             </div>
                         </div>
 
-                        <!-- LÝ DO -->
+                        <!-- Lý do -->
                         <div class="mb-3">
                             <label class="form-label fw-bold small text-secondary">Lý do xin nghỉ
                                 phép</label>

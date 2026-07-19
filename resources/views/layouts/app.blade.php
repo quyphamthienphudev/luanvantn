@@ -7,7 +7,7 @@
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- script biểu đồ  -->
+    <!-- Script biểu đồ  -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
@@ -38,7 +38,7 @@
                 HỆ THỐNG QUẢN LÝ NHÂN SỰ
             </div>
 
-            <!-- đóng menu -->
+            <!-- Đóng menu -->
             <button onclick="toggleSidebar()" class="md:hidden absolute top-4 right-4 text-white text-2xl" title="Đóng Menu">
                 ✕
             </button>
