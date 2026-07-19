@@ -28,6 +28,7 @@
         <table class="w-full text-left">
             <thead class="bg-gray-200">
                 <tr>
+                    <th class="">Mã nhân viên</th>
                     <th class="p-3">Tên nhân viên</th>
                     <th class="p-3">Nội dung khen thưởng</th>
                     <th class="p-3">Số tiền</th>
@@ -39,6 +40,7 @@
             <tbody>
                 @forelse($rewards as $r)
                 <tr class="border-b">
+                    <td class="p-3">{{ $r->employee->employee_code }}</td>
                     <td class="p-3">{{ $r->employee->full_name }}</td>
                     <td class="p-3">{{ $r->title }}</td>
                     <td class="p-3">{{ number_format($r->amount) }} VNĐ</td>

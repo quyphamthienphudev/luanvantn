@@ -28,6 +28,7 @@
         <table class="w-full text-left">
             <thead class="bg-gray-200">
                 <tr>
+                    <th class="p-3">Mã nhân viên</th>
                     <th class="p-3">Tên nhân viên</th>
                     <th class="p-3">Nội dung kỷ luật</th>
                     <th class="p-3">Số tiền</th>
@@ -39,6 +40,7 @@
             <tbody>
                 @forelse($disciplines as $d)
                 <tr class="border-b">
+                    <td class="p-3">{{ $d->employee->employee_code }}</td>
                     <td class="p-3">{{ $d->employee->full_name }}</td>
                     <td class="p-3">{{ $d->title }}</td>
                     <td class="p-3">{{ number_format($d->amount) }} VNĐ</td>
