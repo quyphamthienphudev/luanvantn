@@ -15,6 +15,6 @@ jobs:
         username: ${{ secrets.USER }} 
         password: ${{ secrets.PASS }}
         # duong dan project
-        local-dir: ./project2026/
+        local-dir: ./
         # duong dan deploy hosting
         server-dir: /websitequanlynhansu.22web.org/htdocs/
