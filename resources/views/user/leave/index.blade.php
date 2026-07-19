@@ -99,7 +99,7 @@
                 <div class="card-body p-4">
                     <form action="/leave/store" method="POST">
                         @csrf
-                        <!-- NGÀY BẮT ĐẦU & KẾT THÚC -->
+                        <!-- NGÀY BẮT ĐẦU & NGÀY KẾT THÚC -->
                         <div class="row">
                             <div class="col-6 mb-3">
                                 <label class="form-label fw-bold small text-secondary">Ngày bắt đầu</label>
