@@ -212,18 +212,3 @@
 </div>
 
 @endsection
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    const startDateInput = document.getElementById('start_date');
-    const endDateInput = document.getElementById('end_date');
-    startDateInput.addEventListener('change', function () {
-        if (this.value) {
-            endDateInput.min = this.value;
-            if (endDateInput.value && endDateInput.value < this.value) {
-                endDateInput.value = this.value;
-            }
-        }
-    });
-</script>
