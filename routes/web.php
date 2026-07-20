@@ -172,7 +172,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/qlcl/leave/reject/{id}', [LeaveControllerQLCL::class, 'reject']);
     Route::get('/qlcl/leave/edit/{id}', [LeaveControllerQLCL::class, 'edit']);
     Route::post('/qlcl/leave/update/{id}', [LeaveControllerQLCL::class, 'update']);
-    Route::delete('/qlcl/leave/delete/{id}', [LeaveControllerQLCL::class, 'delete']);
+    Route::post('/qlcl/leave/delete/{id}', [LeaveControllerQLCL::class, 'delete']);
 });
 
 // Chức năng quản lý đơn xin nghỉ phép phòng hành chính nhân sự
@@ -182,7 +182,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/hcns/leave/reject/{id}', [LeaveControllerHCNS::class, 'reject']);
     Route::get('/hcns/leave/edit/{id}', [LeaveControllerHCNS::class, 'edit']);
     Route::post('/hcns/leave/update/{id}', [LeaveControllerHCNS::class, 'update']);
-    Route::delete('/hcns/leave/delete/{id}', [LeaveControllerHCNS::class, 'delete']);
+    Route::post('/hcns/leave/delete/{id}', [LeaveControllerHCNS::class, 'delete']);
 });
 
 // Chức năng quản lý quyền truy cập

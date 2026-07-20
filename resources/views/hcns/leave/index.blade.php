@@ -85,7 +85,6 @@
                         <form action="/hcns/leave/delete/{{ $leave->id }}" method="POST" class="m-0 p-0"
                             onsubmit="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
                             @csrf
-                            @method('DELETE')
                             <button class="btn btn-danger btn-sm btn-action" title="Xoá"><i
                                     class="fas fa-trash"></i></button>
                         </form>
