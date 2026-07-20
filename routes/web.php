@@ -142,7 +142,6 @@ Route::middleware('auth')->group(function () {
 
 // Chức năng quản lý lương phòng hành chính nhân sự
 Route::middleware(['auth'])->group(function () {
-    Route::get('/hcns/payrolls/export', [PayrollControllerAdmin::class, 'export']);
     Route::get('/hcns/payrolls', [PayrollControllerAdmin::class, 'index']);
     Route::get('/hcns/payrolls/create', [PayrollControllerAdmin::class, 'create']);
     Route::post('/hcns/payrolls', [PayrollControllerAdmin::class, 'store']);
@@ -150,6 +149,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/hcns/payrolls/edit/{id}', [PayrollControllerAdmin::class, 'edit']);
     Route::post('/hcns/payrolls/update/{id}', [PayrollControllerAdmin::class, 'update']);
     Route::post('/hcns/payrolls/delete/{id}', [PayrollControllerAdmin::class, 'delete']);
+    Route::get('/hcns/payrolls/export', [PayrollControllerAdmin::class, 'export']);
 });
 
 // Chức năng xem bảng lương của nhân viên
