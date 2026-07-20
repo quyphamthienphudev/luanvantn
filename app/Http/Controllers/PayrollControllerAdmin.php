@@ -91,7 +91,15 @@ class PayrollControllerAdmin extends Controller
         }
         $employee = DB::table('employees')->where('id', $request->employee_id)->first();
         $position = DB::table('positions')->where('id', $employee->position_id)->first();
-        $base_salary = $position->base_salary ?? 0;
+        $contract = DB::table('contracts')->where('id', $request->employee_id)->first();
+        if($contract->contract_type == 'probation')
+        {
+            $base_salary = $position->base_salary * 85 / 100 ?? 0;
+        }
+        else
+        {
+            $base_salary = $position->base_salary ?? 0;
+        }
         $bonus = DB::table('reward_discipline')
                 ->where('employee_id', $request->employee_id)
                 ->where('type', 'reward')
@@ -109,6 +117,7 @@ class PayrollControllerAdmin extends Controller
                       ->where('users.name', $employee->full_name)
                       ->whereMonth('work_date', $request->month)
                       ->whereYear('work_date', $request->year)
+                      ->where('confirm', 'yes')
                       ->count();
         if($countLeave == 0)
         {
@@ -212,7 +221,15 @@ class PayrollControllerAdmin extends Controller
         }
         $employee = DB::table('employees')->where('id', $request->employee_id)->first();
         $position = DB::table('positions')->where('id', $employee->position_id)->first();
-        $base_salary = $position->base_salary ?? 0;
+        $contract = DB::table('contracts')->where('id', $request->employee_id)->first();
+        if($contract->contract_type == 'probation')
+        {
+            $base_salary = $position->base_salary * 85 / 100 ?? 0;
+        }
+        else
+        {
+            $base_salary = $position->base_salary ?? 0;
+        }
         $bonus = DB::table('reward_discipline')
                 ->where('employee_id', $request->employee_id)
                 ->where('type', 'reward')
@@ -230,6 +247,7 @@ class PayrollControllerAdmin extends Controller
                       ->where('users.name', $employee->full_name)
                       ->whereMonth('work_date', $request->month)
                       ->whereYear('work_date', $request->year)
+                      ->where('confirm', 'yes')
                       ->count();
         if($countLeave == 0)
         {
