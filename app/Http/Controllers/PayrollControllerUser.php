@@ -25,9 +25,6 @@ class PayrollControllerUser extends Controller
             ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
-            ->where('employees.full_name', $fullName)
-            ->where('month', $month)
-            ->where('year', $year)
             ->select(
                 'employees.employee_code',
                 'employees.full_name',
@@ -42,6 +39,9 @@ class PayrollControllerUser extends Controller
                 'year',
                 'total_salary',
             )
+            ->where('employees.full_name', $fullName)
+            ->where('month', $month)
+            ->where('year', $year)
             ->first();
 
         return view('user.payrolls.show', compact('payroll'));

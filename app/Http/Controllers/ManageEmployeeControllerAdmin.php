@@ -202,7 +202,6 @@ class ManageEmployeeControllerAdmin extends Controller
         $employees = DB::table('employees')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
-            ->where('status','working')
             ->select(
                 'employee_code',
                 'full_name',
@@ -217,6 +216,7 @@ class ManageEmployeeControllerAdmin extends Controller
                 'ward',
                 'province'
             )
+            ->where('status','working')
             ->get();
         
         if ($employees->isEmpty()) 
@@ -273,7 +273,12 @@ class ManageEmployeeControllerAdmin extends Controller
             return back();
         }
 
-        $employees = Employee::all();
+        $employees = DB::table('employees')
+                    ->select('full_name','employee_code')
+                    ->where('employee_code','!=','EMP001')
+                    ->where('employee_code','!=','EMP016')
+                    ->where('employee_code','!=','EMP021')
+                    ->get();
         $employee = $request->get('employee_full_name');
         $attendances = [];
         $rewards = [];
@@ -283,14 +288,15 @@ class ManageEmployeeControllerAdmin extends Controller
         {
             $attendances = DB::table('attendances')
                 ->join('users', 'users.id', '=', 'attendances.users_id')
+                ->select('users.name','work_date','check_in','check_out','attendances.status')
                 ->where('users.name', $employee)
                 ->where('confirm', 'yes')
                 ->orderBy('work_date','asc')
-                ->select('users.name','work_date','check_in','check_out','attendances.status')
                 ->get();
 
             $rewards = DB::table('reward_discipline')
                 ->join('employees', 'employees.id', '=', 'reward_discipline.employee_id')
+                ->select('full_name','title','amount','decision_date')
                 ->where('full_name', $employee)
                 ->where('type', 'reward')
                 ->orderBy('decision_date','asc')
@@ -298,6 +304,7 @@ class ManageEmployeeControllerAdmin extends Controller
 
             $disciplines = DB::table('reward_discipline')
                 ->join('employees', 'employees.id', '=', 'reward_discipline.employee_id')
+                ->select('full_name','title','amount','decision_date')
                 ->where('full_name', $employee)
                 ->where('type', 'discipline')
                 ->orderBy('decision_date','asc')

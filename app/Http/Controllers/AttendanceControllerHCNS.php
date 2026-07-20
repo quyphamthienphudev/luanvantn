@@ -20,8 +20,8 @@ class AttendanceControllerHCNS extends Controller
         $attendances = DB::table('attendances')
                 ->join('users', 'users.id', '=', 'attendances.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->orderBy('work_date', 'desc')->where('confirm','yes')
                 ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
+                ->orderBy('work_date', 'desc')->where('confirm','yes')
                 ->get();
         return view('hcns.attendances.index', compact('attendances'));
     }
@@ -35,8 +35,8 @@ class AttendanceControllerHCNS extends Controller
         $attendance = DB::table('attendances')
                 ->join('users', 'users.id', '=', 'attendances.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->where('attendances.id', $id)
                 ->select('employee_code','users.name','work_date','check_in','check_out','attendances.id')
+                ->where('attendances.id', $id)
                 ->first();
         return view('hcns.attendances.edit', compact('attendance'));
     }

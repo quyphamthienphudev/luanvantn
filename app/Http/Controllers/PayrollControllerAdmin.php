@@ -22,8 +22,6 @@ class PayrollControllerAdmin extends Controller
             ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
-            ->where('payrolls.month', $month)
-            ->where('payrolls.year', $year)
             ->select(
                 'employees.employee_code',
                 'employees.full_name',
@@ -36,6 +34,11 @@ class PayrollControllerAdmin extends Controller
                 'total_salary',
                 'payrolls.id'
             )
+            ->where('payrolls.month', $month)
+            ->where('payrolls.year', $year)
+            ->where('employee_code','!=','EMP001')
+            ->where('employee_code','!=','EMP016')
+            ->where('employee_code','!=','EMP021')
             ->get();
         
         return view('hcns.payrolls.index', compact('payrolls', 'month', 'year'));
@@ -51,6 +54,9 @@ class PayrollControllerAdmin extends Controller
         $employees = DB::table('employees')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->select('employees.*', 'positions.name as position_name', 'positions.base_salary')
+            ->where('employee_code','!=','EMP001')
+            ->where('employee_code','!=','EMP016')
+            ->where('employee_code','!=','EMP021')
             ->get();
         $month = $request->get('month', date('m'));
         $year = $request->get('year', date('Y'));
@@ -128,7 +134,6 @@ class PayrollControllerAdmin extends Controller
         }
 
         $payroll = DB::table('payrolls')
-            ->where('payrolls.id', $id)
             ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
@@ -146,6 +151,7 @@ class PayrollControllerAdmin extends Controller
                 'year',
                 'total_salary',
             )
+            ->where('payrolls.id', $id)
             ->first();
             
         return view('hcns.payrolls.show', compact('payroll'));
@@ -162,6 +168,9 @@ class PayrollControllerAdmin extends Controller
         $employees = DB::table('employees')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->select('employees.*', 'positions.name as position_name', 'positions.base_salary')
+            ->where('employee_code','!=','EMP001')
+            ->where('employee_code','!=','EMP016')
+            ->where('employee_code','!=','EMP021')
             ->get();
         $request = DB::table('payrolls')->select('allowance')->where('id', $id)->first();
         return view('hcns.payrolls.edit', compact('payroll', 'employees','request'));
@@ -268,6 +277,9 @@ class PayrollControllerAdmin extends Controller
                 'year',
                 'total_salary',
             )
+            ->where('employee_code','!=','EMP001')
+            ->where('employee_code','!=','EMP016')
+            ->where('employee_code','!=','EMP021')
             ->orderBy('month','asc')
             ->orderBy('year','asc')
             ->get();
