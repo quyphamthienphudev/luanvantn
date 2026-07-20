@@ -28,19 +28,19 @@
         <table class="w-full">
             <tr class="border-b">
                 <th class="text-left py-2 w-1/3">Mã nhân viên</th>
-                <td class="py-2">{{ $payroll->employee_code ?? 'N/A' }}</td>
+                <td class="py-2">{{ $payroll->employee_code }}</td>
             </tr>
             <tr class="border-b">
                 <th class="text-left py-2">Họ tên</th>
-                <td class="py-2">{{ $payroll->full_name ?? 'N/A' }}</td>
+                <td class="py-2">{{ $payroll->full_name }}</td>
             </tr>
             <tr class="border-b">
                 <th class="text-left py-2">Phòng ban</th>
-                <td class="py-2">{{ $payroll->department_name ?? 'N/A' }}</td>
+                <td class="py-2">{{ $payroll->department_name }}</td>
             </tr>
             <tr class="border-b">
                 <th class="text-left py-2">Chức vụ</th>
-                <td class="py-2">{{ $payroll->position_name ?? 'N/A' }}</td>
+                <td class="py-2">{{ $payroll->position_name }}</td>
             </tr>
             <tr class="border-b">
                 <th class="text-left py-2">Lương cơ bản</th>

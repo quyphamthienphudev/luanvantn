@@ -63,10 +63,10 @@
                     @forelse($payrolls as $index => $p)
                     <tr>
                         <td class="border px-4 py-2 text-center">{{ $index + 1 }}</td>
-                        <td class="border px-4 py-2">{{ $p->employee_code ?? 'N/A' }}</td>
-                        <td class="border px-4 py-2">{{ $p->full_name ?? 'N/A' }}</td>
-                        <td class="border px-4 py-2">{{ $p->department_name ?? 'N/A' }}</td>
-                        <td class="border px-4 py-2">{{ $p->position_name ?? 'N/A' }}</td>
+                        <td class="border px-4 py-2">{{ $p->employee_code }}</td>
+                        <td class="border px-4 py-2">{{ $p->full_name }}</td>
+                        <td class="border px-4 py-2">{{ $p->department_name }}</td>
+                        <td class="border px-4 py-2">{{ $p->position_name }}</td>
                         <td class="border px-4 py-2 text-right">{{ number_format($p->base_salary ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right">{{ number_format($p->allowance ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right">{{ number_format($p->bonus ?? 0) }} VNĐ</td>

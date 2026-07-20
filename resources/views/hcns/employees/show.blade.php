@@ -35,12 +35,10 @@
         <p>Ngày cấp: {{ $employee->issue_date ? date('d/m/Y', strtotime($employee->issue_date)) : '' }}</p>
         <p>Dân tộc: {{ $employee->ethnic_group }}</p>
         <p>SĐT: {{ $employee->phone }}</p>
-        <p>Địa chỉ: {{ $employee->address }} , {{ $employee->street }} , {{ $employee->ward }} , {{ $employee->province
-            }}</p>
-        <p>Ngày vào làm:
-            {{ $employee->hire_date ? date('d/m/Y', strtotime($employee->hire_date)) : '' }}
-        </p>
-        <p>Trạng thái:
+        <p>Địa chỉ: {{ $employee->address }} , {{ $employee->street }} , {{ $employee->ward }} , {{ $employee->province }}</p>
+        <p>Ngày vào làm: {{ $employee->hire_date ? date('d/m/Y', strtotime($employee->hire_date)) : '' }}</p>
+        <p>
+            Trạng thái:
             @if($employee->status == 'working')
             Đang làm việc
             @else
