@@ -76,7 +76,7 @@
         <div class="mb-4">
             <label>CCCD</label>
             <input type="text" name="identify" value="{{ $employee->identify }}" class="w-full border p-2 rounded"
-                placeholder="CCCD" maxlength="12">
+                placeholder="CCCD">
             @error('identify')
             <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror
