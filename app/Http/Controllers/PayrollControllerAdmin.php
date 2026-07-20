@@ -106,7 +106,14 @@ class PayrollControllerAdmin extends Controller
                     ->sum('amount');
         $countLeave = DB::table('attendances')
                       ->join('users', 'users.id', '=', 'attendances.users_id')
-                      ->where('users.name', $employee->full_name)->count();
+                      ->where('users.name', $employee->full_name)
+                      ->whereMonth('work_date', $request->month)
+                      ->whereYear('work_date', $request->year)
+                      ->count();
+        if($countLeave == 0)
+        {
+            return back()->with('error', 'Nhân viên chưa có dữ liệu chấm công, vui lòng kiểm tra lại');
+        }
         if($request->allowance > $base_salary)
         {
             return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
@@ -220,7 +227,14 @@ class PayrollControllerAdmin extends Controller
                     ->sum('amount');
         $countLeave = DB::table('attendances')
                       ->join('users', 'users.id', '=', 'attendances.users_id')
-                      ->where('users.name', $employee->full_name)->count();
+                      ->where('users.name', $employee->full_name)
+                      ->whereMonth('work_date', $request->month)
+                      ->whereYear('work_date', $request->year)
+                      ->count();
+        if($countLeave == 0)
+        {
+            return back()->with('error', 'Nhân viên chưa có dữ liệu chấm công, vui lòng kiểm tra lại');
+        }
         if($request->allowance > $base_salary)
         {
             return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');

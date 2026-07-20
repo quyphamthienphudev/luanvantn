@@ -61,13 +61,13 @@ class ManageEmployeeControllerAdmin extends Controller
         'full_name' => 'required',
         'email' => 'required|email',
         'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
-        'identify' => 'required|regex:/^[A-Za-z0-9_-]+$/',
+        'identify' => 'required|regex:/^[A-Za-z0-9_-]+$/|min:12|max:12',
         'national' => 'required',
         'birthplace' => 'required',
         'issue_date' => 'required',
         'ethnic_group' => 'required',
-        // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
-        'phone' => 'required|numeric|regex:/^0[0-9]+$/'
+        // Số điện thoại bắt đầu bằng số 0
+        'phone' => 'required|regex:/^0[0-9]+$/|min:10|max:11'
         ],[
             'employee_code.required' => 'Vui lòng nhập mã nhân viên.',
             'employee_code.unique' => 'Mã nhân viên đã tồn tại, vui lòng kiểm tra lại.',
@@ -79,13 +79,16 @@ class ManageEmployeeControllerAdmin extends Controller
             'date_of_birth.before' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
             'identify.required' => 'Vui lòng nhập CCCD.',
             'identify.regex' => 'CCCD không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt.',
+            'identify.min' => 'CCCD không hợp lệ, vui lòng kiểm tra lại.',
+            'identify.max' => 'CCCD không hợp lệ, vui lòng kiểm tra lại.',
             'national.required' => 'Vui lòng nhập quốc tịch.',
             'birthplace.required' => 'Vui lòng nhập nơi sinh.',
             'issue_date.required' => 'Vui lòng nhập ngày cấp.',
             'ethnic_group.required' => 'Vui lòng nhập dân tộc.',
             'phone.required' => 'Vui lòng nhập số điện thoại.',
-            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
-            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
+            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.min' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.max' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
         ]);
         $data = $request->all();
         // Tự động set ngày vào làm
@@ -122,13 +125,13 @@ class ManageEmployeeControllerAdmin extends Controller
         'hire_date' => 'required|date',
         'email' => 'required|email',
         'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
-        'identify' => 'required|regex:/^[A-Za-z0-9_-]+$/',
+        'identify' => 'required|regex:/^[A-Za-z0-9_-]+$/|min:12|max:12',
         'national' => 'required',
         'birthplace' => 'required',
         'issue_date' => 'required',
         'ethnic_group' => 'required',
-        // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
-        'phone' => 'required|numeric|regex:/^0[0-9]+$/'
+        // Số điện thoại bắt đầu bằng số 0
+        'phone' => 'required|regex:/^0[0-9]+$/|min:10|max:11'
         ],[
             'full_name.required' => 'Vui lòng nhập họ tên nhân viên.',
             'hire_date.required' => 'Vui lòng chọn ngày vào làm.',
@@ -139,13 +142,16 @@ class ManageEmployeeControllerAdmin extends Controller
             'date_of_birth.before' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
             'identify.required' => 'Vui lòng nhập CCCD.',
             'identify.regex' => 'CCCD không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt.',
+            'identify.min' => 'CCCD không hợp lệ, vui lòng kiểm tra lại.',
+            'identify.max' => 'CCCD không hợp lệ, vui lòng kiểm tra lại.',
             'national.required' => 'Vui lòng nhập quốc tịch.',
             'birthplace.required' => 'Vui lòng nhập nơi sinh.',
             'issue_date.required' => 'Vui lòng nhập ngày cấp.',
             'ethnic_group.required' => 'Vui lòng nhập dân tộc.',
             'phone.required' => 'Vui lòng nhập số điện thoại.',
-            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
-            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
+            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.min' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.max' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
 
         ]);
         Employee::findOrFail($id)->update($request->all());

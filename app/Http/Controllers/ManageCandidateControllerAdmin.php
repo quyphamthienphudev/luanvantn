@@ -44,8 +44,8 @@ class ManageCandidateControllerAdmin extends Controller
         'last_name' => 'required',
         'email' => 'required|email',
         'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
-        // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
-        'phone' => 'required|numeric|regex:/^0[0-9]+$/'
+        // Số điện thoại bắt đầu bằng số 0
+        'phone' => 'required|regex:/^0[0-9]+$/|min:10|max:11'
         ],[
             'candidate_id.required' => 'Vui lòng nhập mã hồ sơ.',
             'candidate_id.unique' => 'Mã hồ sơ đã tồn tại, vui lòng kiểm tra lại.',
@@ -58,8 +58,9 @@ class ManageCandidateControllerAdmin extends Controller
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh.',
             'date_of_birth.before' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
             'phone.required' => 'Vui lòng nhập số điện thoại.',
-            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
-            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
+            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.min' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.max' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
         ]);
         $data = $request->all();
         Candidate::create($data);
@@ -91,8 +92,8 @@ class ManageCandidateControllerAdmin extends Controller
         'last_name' => 'required',
         'email' => 'required|email',
         'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
-        // Số điện thoại bắt đầu bằng số 0, độ dài không giới hạn
-        'phone' => 'required|numeric|regex:/^0[0-9]+$/'
+        // Số điện thoại bắt đầu bằng số 0
+        'phone' => 'required|regex:/^0[0-9]+$/|min:10|max:11'
         ],[
             'full_name.required' => 'Vui lòng nhập họ tên ứng viên.',
             'first_name.required' => 'Vui lòng nhập tên.',
@@ -102,8 +103,9 @@ class ManageCandidateControllerAdmin extends Controller
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh.',
             'date_of_birth.before' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
             'phone.required' => 'Vui lòng nhập số điện thoại.',
-            'phone.numeric' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
-            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
+            'phone.regex' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.min' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
+            'phone.max' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
         ]);
 
         DB::table('candidates')
