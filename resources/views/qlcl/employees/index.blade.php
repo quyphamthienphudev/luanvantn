@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <form method="get" action="/qlcl/employees" class="mt-4">
+    <form action="/qlcl/employees" method="get" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" style="width:400px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
     </form>

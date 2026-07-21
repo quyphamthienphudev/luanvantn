@@ -17,7 +17,7 @@
     <a href="/httt/roles/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Thêm quyền truy cập">
         Thêm quyền truy cập
     </a>
-    <form method="get" action="/httt/roles" class="mt-4">
+    <form action="/httt/roles" method="get"  class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo tên quyền truy cập hoặc mô tả" style="width:400px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>

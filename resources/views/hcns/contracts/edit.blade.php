@@ -15,7 +15,7 @@
 
 <body>
     <a href="/hcns/contracts" title="← Quay lại">← Quay lại</a>
-    <form method="post" action="/hcns/contracts/extend/{{ $contract->id }}" class="bg-white p-6 w-1/2">
+    <form action="/hcns/contracts/extend/{{ $contract->id }}" method="post" class="bg-white p-6 w-1/2">
         @csrf
         <div class="mb-4">
             <label>Mã hợp đồng</label>

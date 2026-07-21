@@ -26,7 +26,7 @@
         </div>
         @endif
         <div class="mb-6 flex justify-between items-center">
-            <form method="get" action="/hcns/payrolls" class="flex gap-2">
+            <form action="/hcns/payrolls" method="get" class="flex gap-2">
                 <select name="month" class="border rounded px-3 py-2">
                     @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng {{ $i }}</option>
                     @endfor

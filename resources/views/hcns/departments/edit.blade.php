@@ -18,7 +18,7 @@
     <h1 class="text-2xl font-bold mb-6">
         Cập nhật thông tin phòng ban
     </h1>
-    <form method="post" action="/hcns/departments/update/{{ $department->id }}"
+    <form action="/hcns/departments/update/{{ $department->id }}" method="post"
         class="bg-white p-6 rounded shadow w-1/2">
         @csrf
         <div class="mb-4">

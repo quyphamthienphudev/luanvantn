@@ -15,7 +15,7 @@
 
 <body>
     <a href="/hcns/contracts" title="← Quay lại">← Quay lại</a>
-    <form method="post" action="/hcns/contracts/store" class="bg-white p-6 rounded shadow w-1/2"
+    <form action="/hcns/contracts/store" method="post" class="bg-white p-6 rounded shadow w-1/2"
         enctype="multipart/form-data">
         @csrf
         <div class="mb-4">

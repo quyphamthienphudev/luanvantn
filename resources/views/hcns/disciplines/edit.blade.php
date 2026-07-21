@@ -15,7 +15,7 @@
 
 <body>
     <a href="/hcns/disciplines" title="← Quay lại">← Quay lại</a>
-    <form method="post" action="/hcns/disciplines/update/{{ $disciplines->id }}" class="bg-white p-6 w-1/2">
+    <form action="/hcns/disciplines/update/{{ $disciplines->id }}" method="post" class="bg-white p-6 w-1/2">
         @csrf
         <div class="mb-4">
             <label>Nhân viên</label>

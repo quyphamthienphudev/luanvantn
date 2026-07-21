@@ -18,7 +18,7 @@
     <h1 class="text-2xl font-bold mb-6">
         Thêm phòng ban
     </h1>
-    <form method="post" action="/hcns/departments/store" class="bg-white p-6 rounded shadow w-1/2">
+    <form action="/hcns/departments/store" method="post" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
         <div class="mb-4">
             <label>Tên phòng ban</label>

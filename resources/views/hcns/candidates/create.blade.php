@@ -15,7 +15,7 @@
 
 <body>
     <a href="/hcns/candidates" title="← Quay lại">← Quay lại</a>
-    <form method="post" action="/hcns/candidates/store" class="bg-white p-6 rounded shadow w-1/2">
+    <form action="/hcns/candidates/store" method="post" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
         <div class="mb-4">
             <label>Mã hồ sơ</label>

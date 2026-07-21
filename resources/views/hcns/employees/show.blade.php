@@ -49,7 +49,7 @@
         <h3 class="font-bold text-lg">
             Chứng chỉ
         </h3>
-        <form method="post" action="/hcns/employees/{{ $employee->id }}/certificate/store"
+        <form action="/hcns/employees/{{ $employee->id }}/certificate/store" method="post"
             enctype="multipart/form-data">
             @csrf
             <div class="mb-3">

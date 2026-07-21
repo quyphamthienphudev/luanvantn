@@ -93,7 +93,7 @@
         <h1 class="text-2xl font-bold mb-6">
             Tổng chi phí lương theo tháng và năm
         </h1>
-        <form method="get" action="/admin/dashboard" class="bg-white p-6 rounded shadow w-1/2">
+        <form action="/admin/dashboard" method="get" class="bg-white p-6 rounded shadow w-1/2">
 
             <!-- Chọn tháng -->
             <div class="mb-4">
@@ -137,7 +137,7 @@
         <h1 class="text-2xl font-bold mb-6">
             Tổng chi phí lương theo năm
         </h1>
-        <form method="get" action="/admin/dashboard" class="bg-white p-6 rounded shadow w-1/2">
+        <form action="/admin/dashboard" method="get" class="bg-white p-6 rounded shadow w-1/2">
             
             <!-- Chọn năm -->
             <div class="mb-4">

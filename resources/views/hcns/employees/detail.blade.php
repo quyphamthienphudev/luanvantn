@@ -19,7 +19,7 @@
         <h1 class="text-2xl font-bold mb-6">
             Chọn nhân viên để tra cứu
         </h1>
-        <form method="get" action="/hcns/employees/detail" class="bg-white p-6 rounded shadow w-1/2">
+        <form action="/hcns/employees/detail" method="get" class="bg-white p-6 rounded shadow w-1/2">
 
             <div class="mb-4">
             <label>Nhân viên</label>

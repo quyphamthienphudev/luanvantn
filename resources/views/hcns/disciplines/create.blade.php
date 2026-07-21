@@ -15,7 +15,7 @@
 
 <body>
     <a href="/hcns/disciplines" title="← Quay lại">← Quay lại</a>
-    <form method="post" action="/hcns/disciplines/store" class="bg-white p-6 rounded shadow w-1/2">
+    <form action="/hcns/disciplines/store" method="post" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
         <div class="mb-4">
             <label>Chọn nhân viên</label>

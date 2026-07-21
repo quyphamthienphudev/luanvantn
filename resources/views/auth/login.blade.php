@@ -24,7 +24,7 @@
         </div>
         @endif
 
-        <form method="post" action="/login">
+        <form action="/login" method="post">
             @csrf
 
             <div class="mb-4">
