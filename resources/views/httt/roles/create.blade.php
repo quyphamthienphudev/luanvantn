@@ -18,7 +18,7 @@
     <h1 class="text-2xl font-bold mb-6">
         Thêm quyền truy cập
     </h1>
-    <form action="/httt/roles/store" method="POST" class="bg-white p-6 rounded shadow w-1/2">
+    <form action="/httt/roles/store" method="post" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
         <div class="mb-4">
             <label>Tên quyền truy cập</label>

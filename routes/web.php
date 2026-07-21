@@ -159,7 +159,7 @@ Route::middleware(['auth'])->group(function () {
 
 // Chức năng quản lý đơn xin nghỉ phép của nhân viên
 Route::middleware(['auth'])->group(function () {
-    Route::get('/leave', [LeaveController::class, 'index'])->name('index');
+    Route::get('/leave', [LeaveController::class, 'index']);
     Route::post('/leave/store', [LeaveController::class, 'store']);
     Route::get('/leave/edit/{id}', [LeaveController::class, 'edit']);
     Route::post('/leave/update/{id}', [LeaveController::class, 'update']);
@@ -200,7 +200,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/qlcl/attendances/edit/{id}', [AttendanceController::class, 'edit']);
     Route::post('/qlcl/attendances/update/{id}', [AttendanceController::class, 'update']);
     Route::get('/qlcl/attendances/delete/{id}', [AttendanceController::class, 'delete']);
-    Route::get('/qlcl/attendances/confirm/{id}', [AttendanceController::class,'confirm']);
+    Route::post('/qlcl/attendances/confirm/{id}', [AttendanceController::class,'confirm']);
 });
 
 // Chức năng quản lý chấm công phòng hành chính nhân sự
@@ -225,7 +225,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/hcns/contracts/store',[ContractController::class,'store']);
     Route::get('/hcns/contracts/edit/{id}',[ContractController::class,'edit']);
     Route::post('/hcns/contracts/extend/{id}', [ContractController::class,'extend']);
-    Route::get('/hcns/contracts/terminate/{id}', [ContractController::class,'terminate']);
+    Route::post('/hcns/contracts/terminate/{id}', [ContractController::class,'terminate']);
     Route::get('/hcns/contracts/view/{id}', [ContractController::class,'viewFile']);
 });
 

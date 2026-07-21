@@ -68,8 +68,10 @@
                                 <a href="/qlcl/attendances/delete/{{ $atd->id }}" class="text-red-500 hover:underline"
                                     onclick="return confirm('Bạn có muốn xóa bảng chấm công này?')" title="Xoá">Xoá</a>
                                 @if($atd->confirm == 'no')
-                                <a href="/qlcl/attendances/confirm/{{ $atd->id }}" class="text-blue-600 hover:underline"
-                                    onclick="return confirm('Bạn có muốn xác nhận bảng chấm công này?')" title="Xác nhận">Xác nhận</a>
+                                <form action="/qlcl/attendances/confirm/{{ $atd->id }}" method="post" onsubmit="return confirm('Bạn có muốn xác nhận bảng chấm công này?')">
+                                    @csrf
+                                    <button class="text-blue-600 hover:underline" title="Xác nhận">Xác nhận</button>
+                                </form>
                                 @endif
                             </div>
                         </td>

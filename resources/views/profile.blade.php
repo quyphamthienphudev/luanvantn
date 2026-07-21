@@ -25,7 +25,7 @@
             {{ session('error') }}
         </div>
         @endif
-        <form method="POST">
+        <form method="post">
             @csrf
             <div class="mb-4">
                 <label class="block mb-2">Họ tên</label>

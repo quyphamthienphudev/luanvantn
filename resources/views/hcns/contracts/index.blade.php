@@ -74,7 +74,10 @@
                         <b><a href="/hcns/contracts/edit/{{ $c->id }}" style="color:blue;" title="Gia hạn">Gia hạn</a></b>
                     </td>
                     <td class="p-3">
-                        <b><a href="/hcns/contracts/terminate/{{ $c->id }}" style="color:red;" title="Thanh lý">Thanh lý</a></b>
+                        <form action="/hcns/contracts/terminate/{{ $c->id }}" method="post">
+                            @csrf
+                            <button style="color:red;" title="Thanh lý"><b>Thanh lý</b></button>
+                        </form>
                     </td>
                     <td class="p-3">
                         @if($c->contract_file)

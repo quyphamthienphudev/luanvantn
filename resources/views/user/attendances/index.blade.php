@@ -22,7 +22,7 @@
         </div>
 
         @if(!$attendance || !$attendance->check_in)
-        <form action="/attendances/checkin" method="POST">
+        <form action="/attendances/checkin" method="post">
             @csrf
             <button type="submit"
                 class="w-full bg-blue-600 text-white py-4 rounded-lg text-lg font-semibold hover:bg-blue-700" title="Xác nhận chấm công">
@@ -41,7 +41,7 @@
         </div>
 
         @if($attendance && !$attendance->check_out)
-        <form action="/attendances/checkout" method="POST">
+        <form action="/attendances/checkout" method="post">
             @csrf
             <button type="submit"
                 class="w-full bg-blue-600 text-white py-4 rounded-lg text-lg font-semibold hover:bg-blue-700" title="Xác nhận chấm công">

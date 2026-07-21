@@ -74,7 +74,7 @@
     Chỉnh sửa đơn xin nghỉ phép
 </h1>
 
-<form action="/qlcl/leave/update/{{ $leave->id }}" method="POST" class="bg-white p-6 rounded shadow w-1/2">
+<form action="/qlcl/leave/update/{{ $leave->id }}" method="post" class="bg-white p-6 rounded shadow w-1/2">
 
     @csrf
     <div class="row">
@@ -126,7 +126,7 @@
     </div>
     
     <div class="d-flex flex-column flex-sm-row gap-3">
-        <button type="submit" class="btn btn-save flex-grow-1" title="Lưu thay đổi">
+        <button class="btn btn-save flex-grow-1" title="Lưu thay đổi">
             Lưu thay đổi
         </button>
     </div>

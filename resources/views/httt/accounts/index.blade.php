@@ -20,7 +20,7 @@
     <a href="/httt/accounts/export" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700" title="Xuất Excel">
         Xuất Excel
     </a>
-    <form method="GET" action="/httt/accounts" class="mt-4">
+    <form method="get" action="/httt/accounts" class="mt-4">
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo họ tên, email, quyền hoặc trạng thái" style="width:400px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>

@@ -15,7 +15,7 @@
 
 <body>
     <a href="/hcns/employees" title="← Quay lại">← Quay lại</a>
-    <form method="POST" action="/hcns/employees/store" class="bg-white p-6 rounded shadow w-1/2">
+    <form method="post" action="/hcns/employees/store" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
         <div class="mb-4">
             <label>Phòng ban</label>

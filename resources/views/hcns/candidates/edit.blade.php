@@ -15,7 +15,7 @@
 
 <body>
     <a href="/hcns/candidates" title="← Quay lại">← Quay lại</a>
-    <form method="POST" action="/hcns/candidates/update/{{ $candidates->id }}" class="bg-white p-6 w-1/2">
+    <form method="post" action="/hcns/candidates/update/{{ $candidates->id }}" class="bg-white p-6 w-1/2">
         @csrf
         <div class="mb-4">
             <label>Mã hồ sơ</label>

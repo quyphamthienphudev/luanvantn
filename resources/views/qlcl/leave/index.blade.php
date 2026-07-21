@@ -81,30 +81,33 @@
                 <td class="text-center">
                     <div class="d-flex justify-content-center align-items-center gap-2 action-group ">
                         @if($leave->status == 'pending')
-                        <form action="/qlcl/leave/approve/{{ $leave->id }}" method="POST" class="m-0 p-0"
+                        <form action="/qlcl/leave/approve/{{ $leave->id }}" method="post" class="m-0 p-0"
                             onsubmit="return confirm('Bạn có muốn duyệt đơn xin nghỉ phép này ?')">
                             @csrf
                             <button class="btn btn-success btn-sm btn-action" title="Duyệt"><i
                                     class="fas fa-check"></i></button>
                         </form>
 
-                        <form action="/qlcl/leave/reject/{{ $leave->id }}" method="POST" class="m-0 p-0"
+                        <form action="/qlcl/leave/reject/{{ $leave->id }}" method="post" class="m-0 p-0"
                             onsubmit="return confirm('Bạn có muốn từ chối đơn xin nghỉ phép này ?')">
                             @csrf
                             <button class="btn btn-outline-danger btn-sm btn-action" title="Từ chối"><i
                                     class="fas fa-ban"></i></button>
                         </form>
 
-                        <a href="/qlcl/leave/edit/{{ $leave->id }}" class="btn btn-info btn-sm btn-action text-white"
-                            title="Chỉnh sửa">
-                            <i class="fas fa-edit"></i>
-                        </a>
+                        <button class="btn btn-info btn-sm btn-action text-white" title="Chỉnh sửa">
+                            <a href="/qlcl/leave/edit/{{ $leave->id }}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </button>
                         @endif
                         
-                        <a href="/qlcl/leave/delete/{{ $leave->id }}" class="btn btn-danger btn-sm btn-action" 
+                        <button class="btn btn-danger btn-sm btn-action" 
                             title="Xoá" onclick="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
-                            <i class="fas fa-trash"></i>
-                        </a>
+                                <a href="/qlcl/leave/delete/{{ $leave->id }}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                        </button>
                     </div>
                 </td>
             </tr>

@@ -97,7 +97,7 @@
                     Tạo đơn xin nghỉ phép
                 </div>
                 <div class="card-body p-4">
-                    <form action="/leave/store" method="POST">
+                    <form action="/leave/store" method="post">
                         @csrf
                         <!-- Ngày bắt đầu & ngày kết thúc -->
                         <div class="row">
@@ -134,7 +134,7 @@
                         </div>
 
                         <div class="d-grid mt-4">
-                            <button type="submit" class="btn btn-primary shadow" title="Gửi đơn">
+                            <button class="btn btn-primary shadow" title="Gửi đơn">
                                 Gửi đơn
                             </button>
                         </div>

@@ -20,7 +20,7 @@
     <div class="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-lg shadow">
         <h2 class="text-2xl font-bold mb-6 text-gray-800 text-black-600">Sửa thông tin chấm công</h2>
 
-        <form action="/qlcl/attendances/update/{{ $attendance->id }}" method="POST">
+        <form action="/qlcl/attendances/update/{{ $attendance->id }}" method="post">
             @csrf
             <div class="grid grid-cols-2 gap-6">
                 <div class="mb-4">
@@ -55,8 +55,7 @@
             </div>
 
             <div class="flex justify-end mt-6">
-                <button type="submit"
-                    class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 font-bold" title="Cập nhật">Cập nhật</button>
+                <button class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 font-bold" title="Cập nhật">Cập nhật</button>
             </div>
         </form>
     </div>

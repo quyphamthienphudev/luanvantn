@@ -15,7 +15,7 @@
 
 <body>
     <a href="/hcns/contracts" title="← Quay lại">← Quay lại</a>
-    <form method="POST" action="/hcns/contracts/store" class="bg-white p-6 rounded shadow w-1/2"
+    <form method="post" action="/hcns/contracts/store" class="bg-white p-6 rounded shadow w-1/2"
         enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
@@ -82,7 +82,7 @@
             @enderror
             <textarea name="description" class="w-full border p-2 rounded" rows="10" cols="40">{{ old('description') }}</textarea>
         </div>
-        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" title="Lưu">Lưu</button>
+        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" title="Lưu">Lưu</button>
     </form>
     <!-- javascript cập nhật mã nhân viên khi thay đổi chọn nhân viên -->
     <script>

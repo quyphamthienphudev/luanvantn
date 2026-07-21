@@ -19,7 +19,7 @@
         <h1 class="text-2xl font-bold mb-6">
             Chọn nhân viên để tra cứu
         </h1>
-        <form method="GET" action="/hcns/employees/detail" class="bg-white p-6 rounded shadow w-1/2">
+        <form method="get" action="/hcns/employees/detail" class="bg-white p-6 rounded shadow w-1/2">
 
             <div class="mb-4">
             <label>Nhân viên</label>
@@ -31,7 +31,7 @@
             </div>
 
             <!-- Button -->
-            <button type="submit" name="detail"
+            <button name="detail"
                 class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" title="Tra cứu">
                 Tra cứu
             </button>

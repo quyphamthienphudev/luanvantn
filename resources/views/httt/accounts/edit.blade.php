@@ -18,7 +18,7 @@
     <h1 class="text-2xl font-bold mb-6">
         Cập nhật thông tin tài khoản
     </h1>
-    <form action="/httt/accounts/update/{{ $user->id }}" method="POST" class="bg-white p-6 rounded shadow w-1/2">
+    <form action="/httt/accounts/update/{{ $user->id }}" method="post" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
         @if(session('error'))
         <p class="text-red-500 text-sm">

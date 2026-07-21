@@ -21,7 +21,7 @@
             {{ session('error') }}
         </div>
         @endif
-        <form action="/hcns/payrolls/update/{{ $payroll->id }}" method="POST">
+        <form action="/hcns/payrolls/update/{{ $payroll->id }}" method="post">
             @csrf
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Nhân viên</label>
@@ -84,7 +84,7 @@
 
             <div class="flex gap-2 justify-end">
                 <a href="/hcns/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded" title="Huỷ">Huỷ</a>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" title="Cập nhật">Cập nhật</button>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded" title="Cập nhật">Cập nhật</button>
             </div>
         </form>
     </div>
