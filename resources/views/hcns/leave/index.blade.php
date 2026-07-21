@@ -82,12 +82,11 @@
                             <i class="fas fa-edit"></i>
                         </a>
 
-                        <form action="/hcns/leave/delete/{{ $leave->id }}" method="POST" class="m-0 p-0"
-                            onsubmit="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
-                            @csrf
-                            <button class="btn btn-danger btn-sm btn-action" title="Xoá"><i
-                                    class="fas fa-trash"></i></button>
-                        </form>
+                        <a href="/hcns/leave/delete/{{ $leave->id }}" class="btn btn-danger btn-sm btn-action" 
+                            title="Xoá" onclick="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                        
                     </div>
                 </td>
             </tr>

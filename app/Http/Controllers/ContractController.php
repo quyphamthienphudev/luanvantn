@@ -134,8 +134,7 @@ class ContractController extends Controller
         {
             return back();
         }
-        $contract = Contract::findOrFail($id);
-        $contract->update(['status'=>'terminated']);
+        Contract::findOrFail($id)->update(['status'=>'terminated']);
         return redirect('/hcns/contracts')->with('success','Thanh lý hợp đồng thành công');
     }
 

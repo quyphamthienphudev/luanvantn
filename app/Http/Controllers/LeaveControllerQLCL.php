@@ -74,8 +74,7 @@ class LeaveControllerQLCL extends Controller
         {
             return back();
         }
-        $leave = LeaveRequest::findOrFail($id);
-        $leave->delete();
+        LeaveRequest::findOrFail($id)->delete();
         return back()->with('success', 'Đã xóa đơn nghỉ phép');
     }
 
@@ -85,10 +84,7 @@ class LeaveControllerQLCL extends Controller
         {
             return back();
         }
-        $leave = LeaveRequest::findOrFail($id);
-        $leave->update([
-            'status' => 'approved'
-        ]);
+        LeaveRequest::findOrFail($id)->update(['status' => 'approved']);
         return back()->with('success', 'Đã duyệt đơn nghỉ phép thành công');
     }
 
@@ -98,10 +94,7 @@ class LeaveControllerQLCL extends Controller
         {
             return back();
         }
-        $leave = LeaveRequest::findOrFail($id);
-        $leave->update([
-            'status' => 'rejected'
-        ]);
+        LeaveRequest::findOrFail($id)->update(['status' => 'rejected']);
         return back()->with('success', 'Đã từ chối đơn nghỉ phép');
     }
 } 

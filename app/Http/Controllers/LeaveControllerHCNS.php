@@ -66,30 +66,7 @@ class LeaveControllerHCNS extends Controller
         {
             return back();
         }
-        $leave = LeaveRequest::findOrFail($id);
-        $leave->delete();
+        LeaveRequest::findOrFail($id)->delete();
         return back()->with('success', 'Đã xóa đơn nghỉ phép');
-    }
-
-    public function approve(Request $request, $id)
-    {
-        if (auth()->user()->role->name !== 'hcns') 
-        {
-            return back();
-        }
-        $leave = LeaveRequest::findOrFail($id);
-        $leave->update(['status' => 'approved']);
-        return back()->with('success', 'Đã duyệt đơn nghỉ phép thành công');
-    }
-
-    public function reject(Request $request, $id)
-    {
-        if (auth()->user()->role->name !== 'hcns') 
-        {
-            return back();
-        }
-        $leave = LeaveRequest::findOrFail($id);
-        $leave->update(['status' => 'rejected']);
-        return back()->with('success', 'Đã từ chối đơn nghỉ phép');
     }
 } 

@@ -74,12 +74,8 @@
                         <td class="border px-4 py-2 text-right font-bold">{{ number_format($p->total_salary ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-center">
                             <a href="/hcns/payrolls/{{ $p->id }}" class="text-blue-500 hover:underline" title="Xem">Xem</a>
-                            <a href="/hcns/payrolls/edit/{{ $p->id }}" class="text-yellow-500 ml-2 hover:underline" title="Sửa">Sửa</a>
-                            <form action="/hcns/payrolls/delete/{{ $p->id }}" method="POST" class="inline ml-2">
-                                @csrf
-                                <button type="submit" class="text-red-500 hover:underline"
-                                    onclick="return confirm('Bạn có muốn xóa bảng lương này ?')" title="Xoá">Xoá</button>
-                            </form>
+                            <a href="/hcns/payrolls/edit/{{ $p->id }}" class="text-yellow-500 hover:underline" title="Sửa">Sửa</a>
+                            <a href="/hcns/payrolls/delete/{{ $p->id }}" class="text-red-500 hover:underline" onclick="return confirm('Bạn có muốn xóa bảng lương này ?')" title="Xoá">Xoá</a>
                         </td>
                     </tr>
                     @empty
