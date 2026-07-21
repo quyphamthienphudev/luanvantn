@@ -47,7 +47,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $u)
+                @forelse($users as $u)
                 <tr class="border-b">
                     <td class="p-3">{{ $u->name }}</td>
                     <td class="p-3">{{ $u->email }}</td>
@@ -90,7 +90,11 @@
                         </a>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="border-b">
+                    <td colspan="5" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

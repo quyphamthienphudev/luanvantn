@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($roles as $r)
+                @forelse($roles as $r)
                 <tr class="border-b">
                     <td class="p-3">{{ $r->name }}</td>
                     <td class="p-3">{{ $r->description }}</td>
@@ -56,7 +56,11 @@
                         </a>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="border-b">
+                    <td colspan="3" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
