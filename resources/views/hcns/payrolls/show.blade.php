@@ -18,13 +18,13 @@
     <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
         @if(!$payroll)
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            Không tìm thấy bảng lương!
+            Không tìm thấy bảng lương
         </div>
         @else
         <h2 class="text-xl font-bold mb-4">Chi tiết bảng lương</h2>
         <p><b>Thông tin chi tiết bảng lương dưới đây được tính theo công thức sau: </b></p>
         <br>
-        <p>Lương thực lãnh = (Lương cơ bản + Phụ cấp + Thưởng - Khấu trừ) / 26 * Số ngày làm việc thực tế</p>
+        <p>Lương thực lãnh = (Lương cơ bản + Phụ cấp + Thưởng - Khấu trừ) / 26 * Số ngày làm việc thực tế - Tạm ứng</p>
         <br>
         <table class="w-full">
             <tr class="border-b">
@@ -62,6 +62,10 @@
             <tr class="border-b">
                 <th class="text-left py-2">Số ngày làm việc</th>
                 <td class="py-2">{{ number_format($payroll->work_numbers ?? 0) }} ngày</td>
+            </tr>
+            <tr class="border-b">
+                <th class="text-left py-2">Tạm ứng</th>
+                <td class="py-2">{{ number_format($payroll->salary_advance ?? 0) }} VNĐ</td>
             </tr>
             <tr class="border-b">
                 <th class="text-left py-2">Tháng</th>

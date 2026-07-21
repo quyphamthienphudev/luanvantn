@@ -44,6 +44,11 @@
                 <input type="text" id="position_name" class="w-full border p-2 rounded bg-gray-100" readonly>
             </div>
 
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Lương cơ bản (VNĐ)</label>
+                <input type="text" id="base_salary" class="w-full border p-2 rounded bg-gray-100" readonly>
+            </div>
+
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Tháng</label>
@@ -63,8 +68,16 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Phụ cấp (VNĐ)</label>
-                <input type="text" name="allowance" value="{{ $request->allowance }}" class="w-full border p-2 rounded">
+                <input type="text" name="allowance" value="{{ $request->allowance }}" class="w-full border p-2 rounded" placeholder="Phụ cấp">
                 @error('allowance')
+                <div class="text-red-700">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Tạm ứng (VNĐ)</label>
+                <input type="text" name="salary_advance" value="{{ $request->salary_advance }}" class="w-full border p-2 rounded" placeholder="Tạm ứng">
+                @error('salary_advance')
                 <div class="text-red-700">{{ $message }}</div>
                 @enderror
             </div>
@@ -95,6 +108,7 @@
         const employeeSelect = document.getElementById('employee_id');
         const employeeCodeInput = document.getElementById('employee_code');
         const positionNameInput = document.getElementById('position_name');
+        const baseSalaryInput = document.getElementById('base_salary');
 
         function updateEmployeeCode() {
             let employeeId = employeeSelect.value;
@@ -106,6 +120,7 @@
             if (employee) {
                 employeeCodeInput.value = employee.employee_code;
                 positionNameInput.value = employee.position_name;
+                baseSalaryInput.value = employee.base_salary;
             }
         }
 

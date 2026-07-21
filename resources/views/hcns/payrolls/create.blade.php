@@ -43,9 +43,22 @@
             </div>
 
             <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2">Phụ cấp</label>
-                <input type="text" name="allowance" class="w-full border p-2 rounded" value="{{ old('allowance') }}">
+                <label class="block text-gray-700 font-bold mb-2">Lương cơ bản (VNĐ)</label>
+                <input type="text" id="base_salary" class="w-full border p-2 rounded bg-gray-100" readonly>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Phụ cấp (VNĐ)</label>
+                <input type="text" name="allowance" class="w-full border p-2 rounded" value="{{ old('allowance') }}" placeholder="Phụ cấp">
                 @error('allowance')
+                <div class="text-red-700">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Tạm ứng (VNĐ)</label>
+                <input type="text" name="salary_advance" class="w-full border p-2 rounded" value="{{ old('salary_advance') }}" placeholder="Tạm ứng">
+                @error('salary_advance')
                 <div class="text-red-700">{{ $message }}</div>
                 @enderror
             </div>
@@ -82,6 +95,7 @@
         const employeeSelect = document.getElementById('employee_id');
         const employeeCodeInput = document.getElementById('employee_code');
         const positionNameInput = document.getElementById('position_name');
+        const baseSalaryInput = document.getElementById('base_salary');
 
         function updateEmployeeCode() {
             let employeeId = employeeSelect.value;
@@ -93,6 +107,7 @@
             if (employee) {
                 employeeCodeInput.value = employee.employee_code;
                 positionNameInput.value = employee.position_name;
+                baseSalaryInput.value = employee.base_salary;
             }
         }
 

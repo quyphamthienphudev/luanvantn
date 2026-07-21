@@ -149,7 +149,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/hcns/payrolls/edit/{id}', [PayrollControllerAdmin::class, 'edit']);
     Route::post('/hcns/payrolls/update/{id}', [PayrollControllerAdmin::class, 'update']);
     Route::get('/hcns/payrolls/delete/{id}', [PayrollControllerAdmin::class, 'delete']);
-    Route::get('/hcns/payrolls/export', [PayrollControllerAdmin::class, 'export']);
+    Route::post('/hcns/payrolls/export', [PayrollControllerAdmin::class, 'export']);
 });
 
 // Chức năng xem bảng lương của nhân viên

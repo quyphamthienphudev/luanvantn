@@ -39,7 +39,10 @@
             </form>
             <div class="flex gap-2">
                 <a href="/hcns/payrolls/create" class="bg-green-500 text-white px-4 py-2 rounded" title="+ Tạo">+ Tạo</a>
-                <a href="/hcns/payrolls/export" class="bg-yellow-500 text-white px-4 py-2 rounded" title="Xuất Excel">Xuất Excel</a>
+                <form action="/hcns/payrolls/export" method="post">
+                    @csrf
+                    <button class="bg-yellow-500 text-white px-4 py-2 rounded" title="Xuất Excel">Xuất Excel</button>
+                </form>
             </div>
         </div>
         <div class="overflow-x-auto">
@@ -55,6 +58,7 @@
                         <th class="border px-4 py-2">Phụ cấp</th>
                         <th class="border px-4 py-2">Thưởng</th>
                         <th class="border px-4 py-2">Khấu trừ</th>
+                        <th class="border px-4 py-2">Tạm ứng</th>
                         <th class="border px-4 py-2">Lương thực lãnh</th>
                         <th class="border px-4 py-2">Thao tác</th>
                     </tr>
@@ -71,6 +75,7 @@
                         <td class="border px-4 py-2 text-right">{{ number_format($p->allowance ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right">{{ number_format($p->bonus ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right">{{ number_format($p->deduction ?? 0) }} VNĐ</td>
+                        <td class="border px-4 py-2 text-right">{{ number_format($p->salary_advance ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right font-bold">{{ number_format($p->total_salary ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-center">
                             <a href="/hcns/payrolls/{{ $p->id }}" class="text-blue-500 hover:underline" title="Xem">Xem</a>
