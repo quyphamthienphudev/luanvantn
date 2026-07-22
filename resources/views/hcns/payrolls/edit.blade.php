@@ -74,14 +74,6 @@
                 @enderror
             </div>
 
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2">Tạm ứng (VNĐ)</label>
-                <input type="text" name="salary_advance" value="{{ $request->salary_advance }}" class="w-full border p-2 rounded" placeholder="Tạm ứng">
-                @error('salary_advance')
-                <div class="text-red-700">{{ $message }}</div>
-                @enderror
-            </div>
-
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Thưởng (VNĐ)</label>

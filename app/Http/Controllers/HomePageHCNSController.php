@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class HomePageHCNSController extends Controller
 {
-    //HOME PAGE
+    // HOME PAGE
     public function homePage()
     {
         if (auth()->user()->role->name !== 'hcns') 

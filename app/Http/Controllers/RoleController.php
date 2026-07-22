@@ -9,7 +9,7 @@ use App\Models\User;
 
 class RoleController extends Controller
 {
-    //INDEX
+    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -20,7 +20,7 @@ class RoleController extends Controller
         return view('httt.roles.index',compact('roles'));
     }
 
-    //SHOW CREATE
+    // SHOW CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -30,7 +30,7 @@ class RoleController extends Controller
         return view('httt.roles.create');
     }
 
-    //STORE
+    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -55,7 +55,7 @@ class RoleController extends Controller
         return redirect('/httt/roles')->with('success','Thêm quyền truy cập thành công');
     }
 
-    //SHOW EDIT
+    // SHOW EDIT
     public function edit($id)
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -66,7 +66,7 @@ class RoleController extends Controller
         return view('httt.roles.edit',compact('roles'));
     }
 
-    //UPDATE
+    // UPDATE
     public function update(Request $request,$id)
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -87,7 +87,7 @@ class RoleController extends Controller
         return redirect('/httt/roles')->with('success','Cập nhật quyền truy cập thành công');
     }
 
-    //DELETE
+    // DELETE
     public function delete($id)
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -107,7 +107,7 @@ class RoleController extends Controller
         return redirect('/httt/roles')->with('success','Xóa quyền truy cập thành công');
     }
 
-    //SEARCH
+    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'httt') 

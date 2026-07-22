@@ -35,7 +35,6 @@ class PayrollControllerUser extends Controller
                 'bonus',
                 'deduction',
                 'work_numbers',
-                'salary_advance',
                 'month',
                 'year',
                 'total_salary',

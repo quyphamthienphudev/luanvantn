@@ -31,7 +31,6 @@ class PayrollControllerAdmin extends Controller
                 'allowance',
                 'bonus',
                 'deduction',
-                'salary_advance',
                 'total_salary',
                 'payrolls.id'
             )
@@ -75,15 +74,11 @@ class PayrollControllerAdmin extends Controller
             'employee_id' => 'required|exists:employees,id',
             'month' => 'required|integer|min:1|max:12',
             'year' => 'required|integer|min:2001|max:2099',
-            'allowance' => 'required|numeric|min:0',
-            'salary_advance' => 'required|numeric|min:0'
+            'allowance' => 'required|numeric|min:0'
         ],[
             'allowance.required' => 'Phụ cấp không được để trống.',
             'allowance.numeric' => 'Phụ cấp chỉ được nhập số.',
-            'allowance.min' => 'Phụ cấp không hợp lệ, vui lòng kiểm tra lại.',
-            'salary_advance.required' => 'Tạm ứng không được để trống.',
-            'salary_advance.numeric' => 'Tạm ứng chỉ được nhập số.',
-            'salary_advance.min' => 'Tạm ứng không hợp lệ, vui lòng kiểm tra lại.'
+            'allowance.min' => 'Phụ cấp không hợp lệ, vui lòng kiểm tra lại.'
         ]);
         $exists = DB::table('payrolls')
             ->where('employee_id', $request->employee_id)
@@ -132,11 +127,7 @@ class PayrollControllerAdmin extends Controller
         {
             return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
         }
-        if($request->salary_advance > $base_salary)
-        {
-            return back()->with('error', 'Số tiền tạm ứng không hợp lệ, vui lòng kiểm tra lại');
-        }
-        $total_salary = ($base_salary + $request->allowance + $bonus - $deduction) / 26 * $countLeave - $request->salary_advance;
+        $total_salary = ($base_salary + $request->allowance + $bonus - $deduction) / 26 * $countLeave;
         DB::table('payrolls')->insert([
             'employee_id' => $request->employee_id,
             'month' => $request->month,
@@ -146,7 +137,6 @@ class PayrollControllerAdmin extends Controller
             'bonus' => $bonus,
             'deduction' => $deduction,
             'work_numbers' => $countLeave,
-            'salary_advance' => $request->salary_advance,
             'total_salary' => $total_salary
         ]);
         return redirect('/hcns/payrolls')->with('success', 'Tạo bảng lương thành công');
@@ -173,7 +163,6 @@ class PayrollControllerAdmin extends Controller
                 'bonus',
                 'deduction',
                 'work_numbers',
-                'salary_advance',
                 'total_salary',
                 'month',
                 'year'
@@ -199,7 +188,7 @@ class PayrollControllerAdmin extends Controller
             ->where('employee_code','!=','EMP016')
             ->where('employee_code','!=','EMP021')
             ->get();
-        $request = DB::table('payrolls')->select('allowance','salary_advance')->where('id', $id)->first();
+        $request = DB::table('payrolls')->select('allowance')->where('id', $id)->first();
         return view('hcns.payrolls.edit', compact('payroll', 'employees','request'));
     }
 
@@ -214,15 +203,11 @@ class PayrollControllerAdmin extends Controller
             'employee_id' => 'required|exists:employees,id',
             'month' => 'required|integer|min:1|max:12',
             'year' => 'required|integer|min:2001|max:2099',
-            'allowance' => 'required|numeric|min:0',
-            'salary_advance' => 'required|numeric|min:0'
+            'allowance' => 'required|numeric|min:0'
         ],[
             'allowance.required' => 'Phụ cấp không được để trống.',
             'allowance.numeric' => 'Phụ cấp chỉ được nhập số.',
-            'allowance.min' => 'Phụ cấp không hợp lệ, vui lòng kiểm tra lại.',
-            'salary_advance.required' => 'Tạm ứng không được để trống.',
-            'salary_advance.numeric' => 'Tạm ứng chỉ được nhập số.',
-            'salary_advance.min' => 'Tạm ứng không hợp lệ, vui lòng kiểm tra lại.'
+            'allowance.min' => 'Phụ cấp không hợp lệ, vui lòng kiểm tra lại.'
         ]);
         $exists = DB::table('payrolls')
             ->where('employee_id', $request->employee_id)
@@ -272,11 +257,7 @@ class PayrollControllerAdmin extends Controller
         {
             return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
         }
-        if($request->salary_advance > $base_salary)
-        {
-            return back()->with('error', 'Số tiền tạm ứng không hợp lệ, vui lòng kiểm tra lại');
-        }
-        $total_salary = ($base_salary + $request->allowance + $bonus - $deduction) / 26 * $countLeave - $request->salary_advance;
+        $total_salary = ($base_salary + $request->allowance + $bonus - $deduction) / 26 * $countLeave;
         DB::table('payrolls')->where('id', $id)->update([
             'employee_id' => $request->employee_id,
             'month' => $request->month,
@@ -286,7 +267,6 @@ class PayrollControllerAdmin extends Controller
             'bonus' => $bonus,
             'deduction' => $deduction,
             'work_numbers' => $countLeave,
-            'salary_advance' => $request->salary_advance,
             'total_salary' => $total_salary
         ]);
         return redirect('/hcns/payrolls')->with('success', 'Cập nhật bảng lương thành công');

@@ -10,7 +10,7 @@ use App\Models\Position;
 class PositionControllerAdmin extends Controller
 {
 
-    //INDEX
+    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -21,7 +21,7 @@ class PositionControllerAdmin extends Controller
         return view('hcns.positions.index',compact('positions'));
     }
 
-    //SHOW CREATE
+    // SHOW CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -31,7 +31,7 @@ class PositionControllerAdmin extends Controller
         return view('hcns.positions.create');
     }
 
-    //STORE
+    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -63,7 +63,7 @@ class PositionControllerAdmin extends Controller
         return redirect('/hcns/positions')->with('success','Thêm công việc thành công');
     }
 
-    //SHOW EDIT
+    // SHOW EDIT
     public function edit($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -74,7 +74,7 @@ class PositionControllerAdmin extends Controller
         return view('hcns.positions.edit',compact('position'));
     }
 
-    //UPDATE
+    // UPDATE
     public function update(Request $request,$id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -108,7 +108,7 @@ class PositionControllerAdmin extends Controller
         return redirect('/hcns/positions')->with('success','Cập nhật công việc thành công');
     }
 
-    //DELETE
+    // DELETE
     public function delete($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -130,7 +130,7 @@ class PositionControllerAdmin extends Controller
         return redirect('/hcns/positions')->with('success','Xóa công việc thành công');
     }
 
-    //SEARCH
+    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -152,7 +152,7 @@ class PositionControllerAdmin extends Controller
         return view('hcns.positions.index', compact('positions', 'search'));
     }
 
-    //EXPORT FILE
+    // EXPORT FILE
     public function export()
     {   
         if (auth()->user()->role->name !== 'hcns') 

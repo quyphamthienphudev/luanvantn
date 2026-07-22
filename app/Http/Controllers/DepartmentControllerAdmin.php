@@ -9,7 +9,7 @@ use App\Models\Department;
 
 class DepartmentControllerAdmin extends Controller
 {
-    //INDEX
+    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -20,7 +20,7 @@ class DepartmentControllerAdmin extends Controller
         return view('hcns.departments.index', compact('departments'));
     }
 
-    //SHOW CREATE
+    // SHOW CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -30,7 +30,7 @@ class DepartmentControllerAdmin extends Controller
         return view('hcns.departments.create');
     }
 
-    //STORE
+    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -52,7 +52,7 @@ class DepartmentControllerAdmin extends Controller
         return redirect('/hcns/departments')->with('success','Thêm phòng ban thành công');
     }
 
-    //SHOW EDIT
+    // SHOW EDIT
     public function edit($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -63,7 +63,7 @@ class DepartmentControllerAdmin extends Controller
         return view('hcns.departments.edit', compact('department'));
     }
 
-    //UPDATE
+    // UPDATE
     public function update(Request $request,$id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -82,7 +82,7 @@ class DepartmentControllerAdmin extends Controller
         return redirect('/hcns/departments')->with('success','Cập nhật phòng ban thành công');
     }
 
-    //DELETE
+    // DELETE
     public function delete($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -100,7 +100,7 @@ class DepartmentControllerAdmin extends Controller
         return back()->with('success','Xóa phòng ban thành công');
     }
 
-    //SEARCH
+    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -120,7 +120,7 @@ class DepartmentControllerAdmin extends Controller
         return view('hcns.departments.index', compact('departments', 'search'));
     }
 
-    //EXPORT FILE
+    // EXPORT FILE
     public function export()
     {   
         if (auth()->user()->role->name !== 'hcns') 

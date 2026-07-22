@@ -11,18 +11,18 @@ use App\Models\Role;
 
 class ManageUserControllerAdmin extends Controller
 {
-    //INDEX
+    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'httt') 
         {
             return back();
         }
-        $users = DB::table('users')->get();
+        $users = User::with('role')->select('users.name','email','description','status','users.id')->get();
         return view('httt.accounts.index',compact('users'));
     }
 
-    //SHOW CREATE
+    // SHOW CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -33,7 +33,7 @@ class ManageUserControllerAdmin extends Controller
         return view('httt.accounts.create',compact('roles'));
     }
 
-    //STORE
+    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -65,7 +65,7 @@ class ManageUserControllerAdmin extends Controller
         return redirect('/httt/accounts')->with('success','Thêm tài khoản thành công');
     }
 
-    //SHOW EDIT
+    // SHOW EDIT
     public function edit($id)
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -77,7 +77,7 @@ class ManageUserControllerAdmin extends Controller
         return view('httt.accounts.edit',compact('user','roles'));
     }
 
-    //UPDATE
+    // UPDATE
     public function update(Request $request,$id)
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -111,7 +111,7 @@ class ManageUserControllerAdmin extends Controller
         return redirect('/httt/accounts')->with('success','Cập nhật tài khoản thành công');
     }
 
-    //DELETE
+    // DELETE
     public function delete($id)
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -134,7 +134,7 @@ class ManageUserControllerAdmin extends Controller
         return redirect('/httt/accounts')->with('success','Xóa tài khoản thành công');
     }
 
-    //SEARCH
+    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -150,39 +150,13 @@ class ManageUserControllerAdmin extends Controller
             // Tìm theo name hoặc email
             $query->where('name', 'like', '%' . $search . '%')
                   ->orWhere('email', 'like', '%' . $search . '%');
-
-            // Tìm theo quyền
-            if (strtolower($search) == 'admin') 
-            {
-                $query->orWhere('role_id', 1);
-            }
-
-            if (strtolower($search) == 'hcns') 
-            {
-                $query->orWhere('role_id', 2);
-            }
-
-            if (strtolower($search) == 'qlcl') 
-            {
-                $query->orWhere('role_id', 3);
-            }
-
-            if (strtolower($search) == 'httt') 
-            {
-                $query->orWhere('role_id', 4);
-            }
-
-            if (strtolower($search) == 'user') 
-            {
-                $query->orWhere('role_id', 5);
-            }
         })
         ->get();
 
         return view('httt.accounts.index', compact('users', 'search'));
     }
 
-    //EXPORT FILE
+    // EXPORT FILE
     public function export()
     {   
         if (auth()->user()->role->name !== 'httt') 

@@ -12,28 +12,15 @@ use App\Models\Department;
 class ManageEmployeeControllerAdmin extends Controller
 {
 
-    //INDEX + SEARCH
+    // INDEX
     public function index(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
-        $search = $request->search;
-
-        $employees = Employee::with('department')
-            ->when($search, function($q) use ($search){
-                $q->where('full_name','like','%'.$search.'%')
-                  ->orWhere('employee_code',$search)
-                  // Tìm theo tên phòng ban
-                  ->orWhereHas('department', function($query) use ($search){
-                        $query->where('name','like','%'.$search.'%');
-                    });
-            })
-            ->get();
-
-        return view('hcns.employees.index', compact('employees','search'));
+        $employees = Employee::with('department')->get();
+        return view('hcns.employees.index', compact('employees'));
     }
 
     // SHOW CREATE
@@ -48,7 +35,7 @@ class ManageEmployeeControllerAdmin extends Controller
         return view('hcns.employees.create', compact('departments','positions'));
     }
 
-    //STORE
+    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -112,7 +99,7 @@ class ManageEmployeeControllerAdmin extends Controller
         return view('hcns.employees.edit', compact('employee','departments','positions'));
     }
 
-    //UPDATE
+    // UPDATE
     public function update(Request $request,$id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -197,7 +184,7 @@ class ManageEmployeeControllerAdmin extends Controller
         return view('hcns.employees.show', compact('employee'));
     }
 
-    //EXPORT FILE
+    // EXPORT FILE
     public function export()
     {   
         if (auth()->user()->role->name !== 'hcns') 
@@ -319,5 +306,29 @@ class ManageEmployeeControllerAdmin extends Controller
         }
 
         return view('hcns.employees.detail', compact('employees','attendances','rewards','disciplines'));
+    }
+
+    // SEARCH
+    public function search(Request $request)
+    {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
+        $search = $request->search;
+
+        $employees = Employee::with('department')
+            ->when($search, function($q) use ($search){
+                $q->where('full_name','like','%'.$search.'%')
+                  ->orWhere('employee_code',$search)
+                  // Tìm theo tên phòng ban
+                  ->orWhereHas('department', function($query) use ($search){
+                        $query->where('name','like','%'.$search.'%');
+                    });
+            })
+            ->get();
+        
+        return view('hcns.employees.index', compact('employees','search'));
     }
 }

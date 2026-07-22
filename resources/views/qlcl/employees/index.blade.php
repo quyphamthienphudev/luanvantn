@@ -15,7 +15,8 @@
 
 <body>
     <form action="/qlcl/employees" method="get" class="mt-4">
-        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" style="width:400px;">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2" style="width:400px;"
+        placeholder="Tìm theo mã nhân viên hoặc họ tên nhân viên">
         <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
     </form>
 

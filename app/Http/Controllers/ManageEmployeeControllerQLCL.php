@@ -11,7 +11,7 @@ use App\Models\Position;
 class ManageEmployeeControllerQLCL extends Controller
 {
 
-    //INDEX
+    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'qlcl') 
@@ -36,7 +36,7 @@ class ManageEmployeeControllerQLCL extends Controller
         return view('qlcl.employees.show', compact('employee'));
     }
 
-    //SEARCH
+    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'qlcl') 
@@ -47,14 +47,14 @@ class ManageEmployeeControllerQLCL extends Controller
         $search = $request->search;
 
         $employees = Employee::with('department')
-            ->where('department_id','14')
+            ->where('department_id','=','14')
             ->when($search, function ($query) use ($search) {
-            
-            $query->where('employee_code', 'like', '%' . $search . '%')
-                  ->orWhere('full_name', 'like', '%' . $search . '%');
-
-        })
-        ->get();
+                $query->where(function($q) use ($search) {
+                    $q->where('employee_code', 'like', '%' . $search . '%')
+                      ->orWhere('full_name', 'like', '%' . $search . '%');
+                });
+            })
+            ->get();
 
         return view('qlcl.employees.index', compact('employees', 'search'));
     }

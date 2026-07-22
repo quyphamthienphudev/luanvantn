@@ -10,7 +10,7 @@ use App\Models\RewardDiscipline;
 class ManageEmployeeDisciplinesController extends Controller
 {
 
-    //INDEX
+    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -33,7 +33,7 @@ class ManageEmployeeDisciplinesController extends Controller
         return view('hcns.disciplines.create', compact('disciplines','employees'));
     }
 
-    //STORE
+    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -69,7 +69,7 @@ class ManageEmployeeDisciplinesController extends Controller
         return view('hcns.disciplines.edit', compact('disciplines'));
     }
 
-    //UPDATE
+    // UPDATE
     public function update(Request $request,$id)
     {
         if (auth()->user()->role->name !== 'hcns') 

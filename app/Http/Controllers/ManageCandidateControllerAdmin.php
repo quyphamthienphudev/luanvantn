@@ -8,7 +8,7 @@ use App\Models\Candidate;
 
 class ManageCandidateControllerAdmin extends Controller
 {
-    //INDEX
+    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -29,7 +29,7 @@ class ManageCandidateControllerAdmin extends Controller
         return view('hcns.candidates.create');
     }
 
-    //STORE
+    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -78,7 +78,7 @@ class ManageCandidateControllerAdmin extends Controller
         return view('hcns.candidates.edit',compact('candidates'));
     }
 
-    //UPDATE
+    // UPDATE
     public function update(Request $request,$id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -151,7 +151,7 @@ class ManageCandidateControllerAdmin extends Controller
         return view('hcns.candidates.show',compact('candidate'));
     }
 
-    //SEARCH
+    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 

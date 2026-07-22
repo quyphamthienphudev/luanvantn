@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class HomePageQLCLController extends Controller
 {
-    //HOME PAGE
+    // HOME PAGE
     public function homePage()
     {
         if (auth()->user()->role->name !== 'qlcl') 

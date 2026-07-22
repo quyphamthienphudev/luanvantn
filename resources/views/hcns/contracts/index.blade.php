@@ -17,6 +17,11 @@
     <a href="/hcns/contracts/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm hợp đồng lao động">
         Thêm hợp đồng lao động
     </a>
+    <form action="/hcns/contracts" method="get" class="mt-4">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
+            placeholder="Tìm theo mã hợp đồng hoặc nhân viên" style="width:300px;">
+        <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
+    </form>
     @if(session('success'))
     <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
         {{ session('success') }}

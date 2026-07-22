@@ -99,6 +99,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/hcns/employees/show/{id}',[ManageEmployeeControllerAdmin::class,'show']);
     Route::get('/hcns/employees/export',[ManageEmployeeControllerAdmin::class,'export']);
     Route::get('/hcns/employees/detail',[ManageEmployeeControllerAdmin::class,'detail']);
+    Route::get('/hcns/employees',[ManageEmployeeControllerAdmin::class,'search']);
     // Quản lý chứng chỉ
     Route::post('/hcns/employees/{id}/certificate/store', [EmployeeCertificateController::class,'store']);
     Route::get('/hcns/employees/certificate/view/{id}', [EmployeeCertificateController::class,'viewFile']);
@@ -227,6 +228,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/hcns/contracts/extend/{id}', [ContractController::class,'extend']);
     Route::post('/hcns/contracts/terminate/{id}', [ContractController::class,'terminate']);
     Route::get('/hcns/contracts/view/{id}', [ContractController::class,'viewFile']);
+    Route::get('/hcns/contracts', [ContractController::class,'search']);
 });
 
 // Chức năng quản lý khen thưởng

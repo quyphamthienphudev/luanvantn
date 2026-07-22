@@ -9,13 +9,13 @@ use App\Models\User;
 
 class ManageUserControllerUser extends Controller
 {
-    //SHOW UPDATE PROFILE
+    // SHOW UPDATE PROFILE
     public function editProfile()
     {
         return view('profile');
     }
 
-    //UPDATE PROFILE
+    // UPDATE PROFILE
     public function updateProfile(Request $request)
     {
         $user = auth()->user();
@@ -38,13 +38,13 @@ class ManageUserControllerUser extends Controller
 
     }
 
-    //SHOW CHANGE PASSWORD
+    // SHOW CHANGE PASSWORD
     public function showChangePassword()
     {
         return view('change-password');
     }
 
-    //CHANGE PASSWORD
+    // CHANGE PASSWORD
     public function changePassword(Request $request)
     {
         $request->validate([

@@ -22,7 +22,7 @@ class ContractController extends Controller
         return view('hcns.contracts.index', compact('contracts'));
     }
 
-    //CREATE
+    // CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -33,7 +33,7 @@ class ContractController extends Controller
         return view('hcns.contracts.create', compact('employees'));
     }
 
-    //STORE
+    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -93,7 +93,7 @@ class ContractController extends Controller
         return view('hcns.contracts.edit', compact('contract','employees'));
     }
 
-    //EXTEND
+    // EXTEND
     public function extend(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -163,5 +163,28 @@ class ContractController extends Controller
         }
 
         return response()->file($path);
+    }
+
+    // SEARCH
+    public function search(Request $request)
+    {
+        if (auth()->user()->role->name !== 'hcns') 
+        {
+            return back();
+        }
+
+        $search = $request->search;
+
+        $contracts = Contract::with('employee')
+            ->when($search, function ($query) use ($search) {
+
+            $query->where('contract_code', 'like', '%' . $search . '%')
+                  ->orWhereHas('employee', function($query) use ($search){
+                        $query->where('full_name','like','%'.$search.'%');
+                    });
+        })
+        ->get();
+
+        return view('hcns.contracts.index', compact('contracts', 'search'));
     }
 }
