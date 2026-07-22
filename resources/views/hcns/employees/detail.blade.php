@@ -45,7 +45,8 @@
         <table class="w-full text-left">
             <thead class="bg-gray-200">
                 <tr>
-                    <th class="p-3">Nhân viên</th>
+                    <th class="p-3">Mã nhân viên</th>
+                    <th class="p-3">Tên nhân viên</th>
                     <th class="p-3">Ngày làm việc</th>
                     <th class="p-3">Giờ vào</th>
                     <th class="p-3">Giờ ra</th>
@@ -55,6 +56,7 @@
             <tbody>
                 @forelse($attendances as $a)
                 <tr class="border-b">
+                    <td class="p-3">{{ $a->employee_code }}</td>
                     <td class="p-3">{{ $a->name }}</td>
                     <td class="p-3">{{ $a->work_date ? date('d/m/Y', strtotime($a->work_date)) : '' }}</td>
                     <td class="p-3">{{ $a->check_in }}</td>
@@ -75,7 +77,7 @@
                 </tr>
                 @empty
                 <tr class="border-b">
-                    <td colspan="4" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
+                    <td colspan="6" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
                 </tr>
                 @endforelse
             </tbody>
@@ -89,7 +91,8 @@
         <table class="w-full text-left">
             <thead class="bg-gray-200">
                 <tr>
-                    <th class="p-3">Nhân viên</th>
+                    <th class="p-3">Mã nhân viên</th>
+                    <th class="p-3">Tên nhân viên</th>
                     <th class="p-3">Nội dung khen thưởng</th>
                     <th class="p-3">Số tiền</th>
                     <th class="p-3">Ngày ra quyết định</th>
@@ -98,6 +101,7 @@
             <tbody>
                 @forelse($rewards as $r)
                 <tr class="border-b">
+                    <td class="p-3">{{ $r->employee_code }}</td>
                     <td class="p-3">{{ $r->full_name }}</td>
                     <td class="p-3">{{ $r->title }}</td>
                     <td class="p-3">{{ $r->amount }}</td>
@@ -105,7 +109,7 @@
                 </tr>
                 @empty
                 <tr class="border-b">
-                    <td colspan="4" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
+                    <td colspan="5" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
                 </tr>
                 @endforelse
             </tbody>
@@ -119,7 +123,8 @@
         <table class="w-full text-left">
             <thead class="bg-gray-200">
                 <tr>
-                    <th class="p-3">Nhân viên</th>
+                    <th class="p-3">Mã nhân viên</th>
+                    <th class="p-3">Tên nhân viên</th>
                     <th class="p-3">Nội dung kỷ luật</th>
                     <th class="p-3">Số tiền</th>
                     <th class="p-3">Ngày ra quyết định</th>
@@ -128,6 +133,7 @@
             <tbody>
                 @forelse($disciplines as $d)
                 <tr class="border-b">
+                    <td class="p-3">{{ $d->employee_code }}</td>
                     <td class="p-3">{{ $d->full_name }}</td>
                     <td class="p-3">{{ $d->title }}</td>
                     <td class="p-3">{{ $d->amount }}</td>
@@ -135,7 +141,7 @@
                 </tr>
                 @empty
                 <tr class="border-b">
-                    <td colspan="4" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
+                    <td colspan="5" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
                 </tr>
                 @endforelse
             </tbody>
