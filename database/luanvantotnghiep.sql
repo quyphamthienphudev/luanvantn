@@ -11,7 +11,7 @@
  Target Server Version : 80407 (8.4.7)
  File Encoding         : 65001
 
- Date: 23/07/2026 10:02:05
+ Date: 23/07/2026 16:05:14
 */
 
 SET NAMES utf8mb4;
@@ -31,6 +31,7 @@ CREATE TABLE `attendances`  (
   `confirm` enum('yes','no') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'no',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_attendance_user`(`users_id` ASC) USING BTREE,
+  INDEX `index_attendance`(`work_date` ASC, `check_in` ASC, `check_out` ASC, `status` ASC, `confirm` ASC) USING BTREE,
   CONSTRAINT `fk_attendance_user` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 10771 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
@@ -10828,7 +10829,8 @@ CREATE TABLE `candidates`  (
   `ward` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `province` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `candidate_id`(`candidate_id` ASC) USING BTREE
+  UNIQUE INDEX `candidate_id`(`candidate_id` ASC) USING BTREE,
+  INDEX `index_candidate`(`gender` ASC, `date_of_birth` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 46 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -10872,6 +10874,7 @@ CREATE TABLE `contracts`  (
   `status` enum('active','expired','terminated') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'active',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_contract_employee`(`employee_id` ASC) USING BTREE,
+  INDEX `index_contract`(`contract_code` ASC, `contract_type` ASC, `start_date` ASC, `end_date` ASC, `salary` ASC, `contract_file` ASC, `status` ASC) USING BTREE,
   CONSTRAINT `fk_contract_employee` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 361 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
@@ -11276,6 +11279,7 @@ CREATE TABLE `employee_certificates`  (
   `expiry_date` date NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `employee_id`(`employee_id` ASC) USING BTREE,
+  INDEX `index_certificate`(`certificate_file` ASC, `issue_date` ASC, `expiry_date` ASC) USING BTREE,
   CONSTRAINT `employee_certificates_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 721 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
@@ -12032,6 +12036,7 @@ CREATE TABLE `employees`  (
   UNIQUE INDEX `employee_code`(`employee_code` ASC) USING BTREE,
   INDEX `fk_employee_department`(`department_id` ASC) USING BTREE,
   INDEX `fk_employee_position`(`position_id` ASC) USING BTREE,
+  INDEX `index_employee`(`gender` ASC, `date_of_birth` ASC, `issue_date` ASC, `hire_date` ASC, `status` ASC) USING BTREE,
   CONSTRAINT `fk_employee_department` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_employee_position` FOREIGN KEY (`position_id`) REFERENCES `positions` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1000 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
@@ -12414,6 +12419,7 @@ CREATE TABLE `leave_requests`  (
   `status` enum('pending','approved','rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'pending',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_leave_employee`(`users_id` ASC) USING BTREE,
+  INDEX `index_leave_request`(`start_date` ASC, `end_date` ASC, `number_days` ASC, `status` ASC) USING BTREE,
   CONSTRAINT `fk_leave_user` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
@@ -12446,7 +12452,8 @@ CREATE TABLE `payrolls`  (
   `work_numbers` int NOT NULL,
   `total_salary` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `employee_id`(`employee_id` ASC, `month` ASC, `year` ASC) USING BTREE,
+  INDEX `fk_employee_payroll`(`employee_id` ASC) USING BTREE,
+  INDEX `index_payroll`(`month` ASC, `year` ASC, `base_salary` ASC, `allowance` ASC, `bonus` ASC, `deduction` ASC, `work_numbers` ASC, `total_salary` ASC) USING BTREE,
   CONSTRAINT `fk_employee_payroll` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1445 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
@@ -12821,7 +12828,8 @@ CREATE TABLE `positions`  (
   `base_salary` int NOT NULL DEFAULT 0,
   `max_salary` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `name`(`name` ASC) USING BTREE
+  UNIQUE INDEX `name`(`name` ASC) USING BTREE,
+  INDEX `index_position`(`base_salary` ASC, `max_salary` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -12851,6 +12859,7 @@ CREATE TABLE `reward_discipline`  (
   `decision_date` date NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_employee_reward_discipline`(`employee_id` ASC) USING BTREE,
+  INDEX `index_reward_discipline`(`type` ASC, `amount` ASC, `decision_date` ASC) USING BTREE,
   CONSTRAINT `fk_employee_reward_discipline` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 721 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
@@ -13613,6 +13622,7 @@ CREATE TABLE `users`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `email`(`email` ASC) USING BTREE,
   INDEX `fk_users_role`(`role_id` ASC) USING BTREE,
+  INDEX `index_user`(`status` ASC) USING BTREE,
   CONSTRAINT `fk_users_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 387 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
