@@ -6,20 +6,22 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Quản lý hợp đồng lao động</title>
 </head>
+
 <body>
     <a href="/hcns/contracts/create" class="bg-blue-600 text-white px-4 py-2 rounded">
         Thêm hợp đồng lao động
     </a>
     <?php if(session('success')): ?>
-        <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
-            <?php echo e(session('success')); ?>
+    <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
+        <?php echo e(session('success')); ?>
 
-        </div>
+    </div>
     <?php endif; ?>
     <div class="bg-white shadow rounded mt-6">
         <table class="w-full text-left">
@@ -36,19 +38,19 @@
                 </tr>
             </thead>
             <tbody>
-            <?php $__currentLoopData = $contracts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__empty_1 = true; $__currentLoopData = $contracts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <tr class="border-b">
                     <td class="p-3"><?php echo e($c->contract_code); ?></td>
                     <td class="p-3"><?php echo e($c->employee->full_name); ?></td>
                     <td class="p-3">
                         <?php if($c->contract_type == 'probation'): ?>
-                            Hợp đồng thử việc
+                        Hợp đồng thử việc
                         <?php endif; ?>
                         <?php if($c->contract_type == 'fixed_term'): ?>
-                            Hợp đồng xác định thời hạn 
+                        Hợp đồng xác định thời hạn
                         <?php endif; ?>
                         <?php if($c->contract_type == 'indefinite'): ?>
-                            Hợp đồng không xác định thời hạn
+                        Hợp đồng không xác định thời hạn
                         <?php endif; ?>
                     </td>
                     <td class="p-3">
@@ -61,41 +63,52 @@
                     </td>
                     <td class="p-3">
                         <?php if($c->status == 'active'): ?>
-                            Còn hạn
+                        Còn hạn
                         <?php endif; ?>
                         <?php if($c->status == 'expired'): ?>
-                            Đã hết hạn
+                        Đã hết hạn
                         <?php endif; ?>
                         <?php if($c->status == 'terminated'): ?>
-                            Đã thanh lý
+                        Đã thanh lý
                         <?php endif; ?>
                     </td>
                     <td class="p-3">
                         <?php if($c->contract_type == 'probation'): ?>
-                        <a href="/hcns/contracts/extend/<?php echo e($c->id); ?>" class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
-                        <a href="/hcns/contracts/terminate/<?php echo e($c->id); ?>" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        <a href="/hcns/contracts/extend/<?php echo e($c->id); ?>"
+                            class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
+                        <a href="/hcns/contracts/terminate/<?php echo e($c->id); ?>"
+                            class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
                         <?php endif; ?>
                         <?php if($c->contract_type == 'fixed_term'): ?>
-                        <a href="/hcns/contracts/extend/<?php echo e($c->id); ?>" class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
-                        <a href="/hcns/contracts/terminate/<?php echo e($c->id); ?>" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        <a href="/hcns/contracts/extend/<?php echo e($c->id); ?>"
+                            class="bg-blue-500 text-white px-3 py-1 rounded">Gia hạn</a>
+                        <a href="/hcns/contracts/terminate/<?php echo e($c->id); ?>"
+                            class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
                         <?php endif; ?>
                         <?php if($c->contract_type == 'indefinite'): ?>
-                        <a href="/hcns/contracts/terminate/<?php echo e($c->id); ?>" class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
+                        <a href="/hcns/contracts/terminate/<?php echo e($c->id); ?>"
+                            class="bg-red-600 text-white px-3 py-1 rounded">Thanh lý</a>
                         <?php endif; ?>
                     </td>
-                    <td class="p-3 ">
+                    <td class="p-3">
                         <?php if($c->contract_file): ?>
-                        <a href="/hcns/contracts/view/<?php echo e($c->id); ?>" target="_blank" class="bg-green-600 text-white px-3 py-1 rounded">Xem</a>
+                        <a href="/hcns/contracts/view/<?php echo e($c->id); ?>" target="_blank"
+                            class="bg-green-600 text-white px-3 py-1 rounded">Xem</a>
                         <?php else: ?>
                         <a href="" class="bg-green-600 text-white px-3 py-1 rounded">Xem</a>
                         <?php endif; ?>
                     </td>
                 </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </tbody>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                <tr class="border-b">
+                    <td colspan="8" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+                </tr>
+                <?php endif; ?>
+            </tbody>
         </table>
     </div>
 </body>
+
 </html>
 
 <?php $__env->stopSection(); ?>

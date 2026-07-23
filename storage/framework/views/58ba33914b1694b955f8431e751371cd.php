@@ -53,7 +53,7 @@
         </thead>
 
         <tbody>
-            <?php $__currentLoopData = $allLeaves; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $leave): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__empty_1 = true; $__currentLoopData = $allLeaves; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $leave): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <tr class="border-b">
                 <td class="ps-3">
                     <div class="fw-bold"><?php echo e($leave->user->name ?? $leave->employee->full_name ?? 'N/A'); ?></div>
@@ -79,25 +79,11 @@
                 </td>
                 <td class="text-center">
                     <div class="d-flex justify-content-center align-items-center gap-2 action-group ">
-                        <?php if($leave->status == 'pending'): ?>
-                        <form action="/hcns/leave/approve/<?php echo e($leave->id); ?>" method="POST" class="m-0 p-0">
-                            <?php echo csrf_field(); ?>
-                            <button class="btn btn-success btn-sm btn-action" title="Duyệt"><i
-                                    class="fas fa-check"></i></button>
-                        </form>
-
-                        <form action="/hcns/leave/reject/<?php echo e($leave->id); ?>" method="POST" class="m-0 p-0"
-                            onsubmit="return confirm('Từ chối đơn nghỉ phép này ?')">
-                            <?php echo csrf_field(); ?>
-                            <button class="btn btn-outline-danger btn-sm btn-action" title="Từ chối"><i
-                                    class="fas fa-ban"></i></button>
-                        </form>
 
                         <a href="/hcns/leave/edit/<?php echo e($leave->id); ?>" class="btn btn-info btn-sm btn-action text-white"
                             title="Chỉnh sửa">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <?php endif; ?>
 
                         <form action="/hcns/leave/delete/<?php echo e($leave->id); ?>" method="POST" class="m-0 p-0"
                             onsubmit="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
@@ -109,7 +95,14 @@
                     </div>
                 </td>
             </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+            <tr class="border-b">
+                <!-- <td class="ps-3 text-center">
+                    <div>Chưa có dữ liệu</div>
+                </td> -->
+                <td colspan="5" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+            </tr>
+            <?php endif; ?>
         </tbody>
 
     </table>

@@ -2,11 +2,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Thêm tài khoản</title>
 </head>
+
 <body>
     <a href="/httt/accounts" class="btn btn-secondary">
         ← Quay lại
@@ -48,35 +50,30 @@ endif;
 unset($__errorArgs, $__bag); ?>
         <div class="mb-4">
             <label>Họ tên</label>
-            <input type="text" name="name"
-            class="w-full border p-2 rounded" placeholder="Họ tên">
+            <input type="text" name="name" class="w-full border p-2 rounded" placeholder="Họ tên">
         </div>
         <div class="mb-4">
             <label>Email</label>
-            <input type="text" name="email"
-            class="w-full border p-2 rounded" placeholder="Email">
+            <input type="text" name="email" class="w-full border p-2 rounded" placeholder="Email">
         </div>
         <div class="mb-4">
             <label>Mật khẩu</label>
-            <input type="password" name="password"
-            class="w-full border p-2 rounded" placeholder="Mật khẩu">
+            <input type="password" name="password" class="w-full border p-2 rounded" placeholder="Mật khẩu">
         </div>
         <div class="mb-4">
             <label>Quyền</label>
             <select name="role" class="w-full border p-2 rounded">
-                <option value="1">Admin</option>
-                <option value="2">Hanh chinh nhan su</option>
-                <option value="3">Quan ly chat luong</option>
-                <option value="4">He thong thong tin</option>
-                <option value="5">Nhan vien</option>
+                <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($r->id); ?>"><?php echo e($r->description); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
         </div>
-        <button
-        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
             Lưu
         </button>
     </form>
 </body>
+
 </html>
 
 <?php $__env->stopSection(); ?>

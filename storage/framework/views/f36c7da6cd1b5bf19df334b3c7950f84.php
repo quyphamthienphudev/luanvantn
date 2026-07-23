@@ -4,11 +4,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Trang chủ</title>
 </head>
+
 <body>
     <h1 class="text-2xl font-bold mb-6">
         Project luận văn tốt nghiệp
@@ -25,8 +27,8 @@
 
     </div>
 </body>
+
 </html>
 
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\quy\Desktop\project2026\resources\views/home.blade.php ENDPATH**/ ?>

@@ -4,15 +4,17 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Thêm khen thưởng</title>
 </head>
+
 <body>
     <a href="/hcns/rewards">← Quay lại</a>
     <form method="POST" action="/hcns/rewards/store" class="bg-white p-6 rounded shadow w-1/2">
-    <?php echo csrf_field(); ?>
+        <?php echo csrf_field(); ?>
         <?php $__errorArgs = ['title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -46,9 +48,9 @@ unset($__errorArgs, $__bag); ?>
         <div class="mb-4">
             <label>Chọn nhân viên</label>
             <select name="employee_id" class="w-full border p-2 rounded">
-            <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $e): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <option value="<?php echo e($e->id); ?>"><?php echo e($e->full_name); ?></option>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $e): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($e->id); ?>"><?php echo e($e->full_name); ?> - <?php echo e($e->employee_code); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
         </div>
         <div class="mb-4">
@@ -66,6 +68,7 @@ unset($__errorArgs, $__bag); ?>
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lưu</button>
     </form>
 </body>
+
 </html>
 
 <?php $__env->stopSection(); ?>

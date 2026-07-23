@@ -53,7 +53,7 @@
         </thead>
 
         <tbody>
-            <?php $__currentLoopData = $allLeaves; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $leave): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__empty_1 = true; $__currentLoopData = $allLeaves; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $leave): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <tr class="border-b">
                 <td class="ps-3">
                     <div class="fw-bold"><?php echo e($leave->user->name ?? $leave->employee->full_name ?? 'N/A'); ?></div>
@@ -80,14 +80,15 @@
                 <td class="text-center">
                     <div class="d-flex justify-content-center align-items-center gap-2 action-group ">
                         <?php if($leave->status == 'pending'): ?>
-                        <form action="/qlcl/leave/approve/<?php echo e($leave->id); ?>" method="POST" class="m-0 p-0">
+                        <form action="/qlcl/leave/approve/<?php echo e($leave->id); ?>" method="POST" class="m-0 p-0"
+                            onsubmit="return confirm('Bạn có muốn duyệt đơn xin nghỉ phép này ?')">
                             <?php echo csrf_field(); ?>
                             <button class="btn btn-success btn-sm btn-action" title="Duyệt"><i
                                     class="fas fa-check"></i></button>
                         </form>
 
                         <form action="/qlcl/leave/reject/<?php echo e($leave->id); ?>" method="POST" class="m-0 p-0"
-                            onsubmit="return confirm('Từ chối đơn nghỉ phép này ?')">
+                            onsubmit="return confirm('Bạn có muốn từ chối đơn xin nghỉ phép này ?')">
                             <?php echo csrf_field(); ?>
                             <button class="btn btn-outline-danger btn-sm btn-action" title="Từ chối"><i
                                     class="fas fa-ban"></i></button>
@@ -109,7 +110,11 @@
                     </div>
                 </td>
             </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+            <tr class="border-b">
+                <td colspan="5" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+            </tr>
+            <?php endif; ?>
         </tbody>
 
     </table>

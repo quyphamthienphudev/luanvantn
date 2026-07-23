@@ -2,11 +2,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Cập nhật thông tin công việc</title>
 </head>
+
 <body>
     <a href="/hcns/positions" class="btn btn-secondary">
         ← Quay lại
@@ -14,8 +16,7 @@
     <h1 class="text-2xl font-bold mb-6">
         Cập nhật thông tin công việc
     </h1>
-    <form action="/hcns/positions/update/<?php echo e($position->id); ?>" method="POST"
-    class="bg-white p-6 rounded shadow w-1/2">
+    <form action="/hcns/positions/update/<?php echo e($position->id); ?>" method="POST" class="bg-white p-6 rounded shadow w-1/2">
         <?php echo csrf_field(); ?>
         <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -49,28 +50,25 @@ endif;
 unset($__errorArgs, $__bag); ?>
         <div class="mb-4">
             <label>Tên công việc</label>
-            <input type="text" name="name"
-            value="<?php echo e($position->name); ?>"
-            class="w-full border p-2 rounded" placeholder="Tên công việc">
+            <input type="text" name="name" value="<?php echo e($position->name); ?>" class="w-full border p-2 rounded"
+                placeholder="Tên công việc">
         </div>
         <div class="mb-4">
             <label>Lương cơ bản</label>
-            <input type="text" name="base_salary"
-            value="<?php echo e($position->base_salary); ?>"
-            class="w-full border p-2 rounded" placeholder="Lương cơ bản">
+            <input type="text" name="base_salary" value="<?php echo e($position->base_salary); ?>" class="w-full border p-2 rounded"
+                placeholder="Lương cơ bản">
         </div>
         <div class="mb-4">
             <label>Lương cao nhất</label>
-            <input type="text" name="max_salary"
-            value="<?php echo e($position->max_salary); ?>"
-            class="w-full border p-2 rounded" placeholder="Lương cao nhất">
+            <input type="text" name="max_salary" value="<?php echo e($position->max_salary); ?>" class="w-full border p-2 rounded"
+                placeholder="Lương cao nhất">
         </div>
-        <button
-        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
             Cập nhật
         </button>
     </form>
 </body>
+
 </html>
 
 <?php $__env->stopSection(); ?>

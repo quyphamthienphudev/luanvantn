@@ -15,7 +15,7 @@
     <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
         <?php if(!$payroll): ?>
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            Không tìm thấy bảng lương!
+            Không tìm thấy bảng lương
         </div>
         <?php else: ?>
         <h2 class="text-xl font-bold mb-4">Chi tiết bảng lương</h2>
@@ -41,6 +41,10 @@
                 <td class="py-2"><?php echo e(number_format($payroll->base_salary ?? 0)); ?> VNĐ</td>
             </tr>
             <tr class="border-b">
+                <th class="text-left py-2">Thuế thu nhập cá nhân</th>
+                <td class="py-2"><?php echo e(number_format($payroll->base_salary * 0.1 ?? 0)); ?> VNĐ</td>
+            </tr>
+            <tr class="border-b">
                 <th class="text-left py-2">Thưởng</th>
                 <td class="py-2"><?php echo e(number_format($payroll->bonus ?? 0)); ?> VNĐ</td>
             </tr>
@@ -57,7 +61,7 @@
                 <td class="py-2"><?php echo e($payroll->year); ?></td>
             </tr>
             <tr class="border-b">
-                <th class="text-left py-2">Tổng lương</th>
+                <th class="text-left py-2">Lương thực lãnh</th>
                 <td class="py-2 font-bold text-red-700"><?php echo e(number_format($payroll->total_salary ?? 0)); ?> VNĐ</td>
             </tr>
         </table>

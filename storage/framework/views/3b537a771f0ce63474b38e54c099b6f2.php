@@ -35,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $__currentLoopData = $attendances; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $atd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $attendances; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $atd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <tr class="hover:bg-gray-50 border-b">
                         <td class="p-3">
                             <p class="font-bold text-gray-800"><?php echo e($atd->user?->name ?? 'N/A'); ?></p>
@@ -47,8 +47,15 @@
                         <td class="p-3">
                             <span
                                 class="px-2 py-1 rounded text-xs <?php echo e($atd->status == 'present' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'); ?>">
-                                <?php echo e($atd->status); ?>
-
+                                <?php if($atd->status == 'present'): ?>
+                                Đúng giờ
+                                <?php endif; ?>
+                                <?php if($atd->status == 'late'): ?>
+                                Đi trễ
+                                <?php endif; ?>
+                                <?php if($atd->status == 'absent'): ?>
+                                Vắng mặt
+                                <?php endif; ?>
                             </span>
                         </td>
                         <td class="p-3"><?php echo e($atd->confirm=='yes' ? 'Đã xác nhận' : 'Chưa xác nhận'); ?></td>
@@ -59,13 +66,17 @@
                                 <a href="/qlcl/attendances/delete/<?php echo e($atd->id); ?>" class="text-red-500 hover:underline"
                                     onclick="return confirm('Bạn có muốn xóa bảng chấm công này?')">Xóa</a>
                                 <?php if($atd->confirm=='no'): ?>
-                                <a href="/qlcl/attendances/confirm/<?php echo e($atd->id); ?>"
-                                    class="text-blue-600 hover:underline">Xác nhận</a>
+                                <a href="/qlcl/attendances/confirm/<?php echo e($atd->id); ?>" class="text-blue-600 hover:underline"
+                                    onclick="return confirm('Bạn có muốn xác nhận bảng chấm công này?')">Xác nhận</a>
                                 <?php endif; ?>
                             </div>
                         </td>
                     </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <tr class="hover:bg-gray-50 border-b">
+                        <td colspan="7" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+                    </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>

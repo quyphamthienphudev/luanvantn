@@ -104,7 +104,7 @@ unset($__errorArgs, $__bag); ?>
 
             <div class="mb-3">
                 <label>File chứng chỉ</label>
-                <input type="file" name="certificate_file" class="border p-2 w-full">
+                <input type="file" name="certificate_file" class="border p-2 w-full" accept=".pdf, .jpg, .jpeg, .png">
             </div>
             <button class="bg-green-600 text-white px-4 py-2 rounded">Tải lên</button>
         </form>
@@ -133,7 +133,8 @@ unset($__errorArgs, $__bag); ?>
                     <a href="" style="color:blue; font-weight:bold;">Xem
                         file</a>
                     <?php else: ?>
-                    <a href="/hcns/employees/certificate/view/<?php echo e($c->id); ?>" target="_blank" style="color:blue; font-weight:bold;">Xem
+                    <a href="/hcns/employees/certificate/view/<?php echo e($c->id); ?>" target="_blank"
+                        style="color:blue; font-weight:bold;">Xem
                         file</a>
                     <?php endif; ?>
                 </td>

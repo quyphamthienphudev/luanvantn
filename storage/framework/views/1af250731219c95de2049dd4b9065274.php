@@ -4,16 +4,18 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Thêm nhân viên</title>
 </head>
+
 <body>
     <a href="/hcns/employees">← Quay lại</a>
     <form method="POST" action="/hcns/employees/store" class="bg-white p-6 rounded shadow w-1/2">
-    <?php echo csrf_field(); ?>
-    <?php $__errorArgs = ['employee_code'];
+        <?php echo csrf_field(); ?>
+        <?php $__errorArgs = ['employee_code'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -64,6 +66,14 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
         <div class="mb-4">
+            <label>Phòng ban</label>
+            <select name="department_id" class="w-full border p-2 rounded">
+                <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($d->id); ?>"><?php echo e($d->name); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
+        </div>
+        <div class="mb-4">
             <label>Mã nhân viên</label>
             <input type="text" name="employee_code" class="w-full border p-2 rounded" placeholder="Mã nhân viên">
         </div>
@@ -72,23 +82,15 @@ unset($__errorArgs, $__bag); ?>
             <input type="text" name="full_name" class="w-full border p-2 rounded" placeholder="Họ tên nhân viên">
         </div>
         <div class="mb-4">
-            <label>Phòng ban</label>
-            <select name="department_id" class="w-full border p-2 rounded">
-            <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <option value="<?php echo e($d->id); ?>"><?php echo e($d->name); ?></option>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </select>
-        </div>
-        <div class="mb-4">
             <label>Email</label>
             <input type="text" name="email" class="w-full border p-2 rounded" placeholder="Email">
         </div>
         <div class="mb-4">
             <label>Công việc</label>
             <select name="position_id" class="w-full border p-2 rounded">
-            <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <option value="<?php echo e($p->id); ?>"><?php echo e($p->name); ?></option>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
         </div>
         <div class="mb-4">
@@ -125,6 +127,7 @@ unset($__errorArgs, $__bag); ?>
         <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lưu</button>
     </form>
 </body>
+
 </html>
 
 <?php $__env->stopSection(); ?>

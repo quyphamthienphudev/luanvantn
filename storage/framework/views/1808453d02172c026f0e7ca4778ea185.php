@@ -2,19 +2,22 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Cập nhật thông tin phòng ban</title>
 </head>
+
 <body>
     <a href="/hcns/departments" class="btn btn-secondary">
-    ← Quay lại
+        ← Quay lại
     </a>
     <h1 class="text-2xl font-bold mb-6">
-    Cập nhật thông tin phòng ban
+        Cập nhật thông tin phòng ban
     </h1>
-    <form method="POST" action="/hcns/departments/update/<?php echo e($department->id); ?>" class="bg-white p-6 rounded shadow w-1/2">
+    <form method="POST" action="/hcns/departments/update/<?php echo e($department->id); ?>"
+        class="bg-white p-6 rounded shadow w-1/2">
         <?php echo csrf_field(); ?>
         <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -38,15 +41,18 @@ endif;
 unset($__errorArgs, $__bag); ?>
         <div class="mb-4">
             <label>Tên phòng ban</label>
-            <input type="text" name="name" value="<?php echo e($department->name); ?>" class="border p-2 w-full mb-2" placeholder="Tên phòng ban">
+            <input type="text" name="name" value="<?php echo e($department->name); ?>" class="border p-2 w-full mb-2"
+                placeholder="Tên phòng ban">
         </div>
         <div class="mb-4">
             <label>Mô tả thông tin</label>
-            <input type="text" name="description" value="<?php echo e($department->description); ?>" class="border p-2 w-full mb-2" placeholder="Mô tả thông tin">
+            <input type="text" name="description" value="<?php echo e($department->description); ?>" class="border p-2 w-full mb-2"
+                placeholder="Mô tả thông tin">
         </div>
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Cập nhật</button>
     </form>
 </body>
+
 </html>
 
 <?php $__env->stopSection(); ?>

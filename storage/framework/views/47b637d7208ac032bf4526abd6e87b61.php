@@ -22,29 +22,40 @@
         <?php endif; ?>
         <form action="/hcns/payrolls" method="POST">
             <?php echo csrf_field(); ?>
-
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Nhân viên</label>
-                <select name="employee_id" class="w-full border rounded px-3 py-2">
-                    <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($employee->id); ?>"><?php echo e($employee->employee_code); ?> - <?php echo e($employee->full_name); ?> (<?php echo e($employee->position_name ?? 'N/A'); ?>)</option>
+                <select name="employee_id" id="employee_id" class="w-full border rounded px-3 py-2">
+                    <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $e): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($e->id); ?>"><?php echo e($e->full_name); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Mã nhân viên</label>
+                <input type="text" id="employee_code" class="w-full border p-2 rounded bg-gray-100" readonly>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Công việc</label>
+                <input type="text" id="position_name" class="w-full border p-2 rounded bg-gray-100" readonly>
             </div>
 
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Tháng</label>
                     <select name="month" class="w-full border rounded px-3 py-2">
-                        <?php for($i = 1; $i <= 12; $i++): ?> <option value="<?php echo e($i); ?>" <?php echo e($month == $i ? 'selected' : ''); ?>>Tháng <?php echo e($i); ?></option>
-                            <?php endfor; ?>
+                        <?php for($i = 1; $i <= 12; $i++): ?> <option value="<?php echo e($i); ?>" <?php echo e($month==$i ? 'selected' : ''); ?>>Tháng
+                            <?php echo e($i); ?></option>
+                        <?php endfor; ?>
                     </select>
                 </div>
                 <div>
                     <label class="block text-gray-700 font-bold mb-2">Năm</label>
                     <select name="year" class="w-full border rounded px-3 py-2">
-                        <?php for($i = 2020; $i <= 2099; $i++): ?> <option value="<?php echo e($i); ?>" <?php echo e($year == $i ? 'selected' : ''); ?>>Năm <?php echo e($i); ?></option>
-                            <?php endfor; ?>
+                        <?php for($i = 2001; $i <= 2099; $i++): ?> <option value="<?php echo e($i); ?>" <?php echo e($year==$i ? 'selected' : ''); ?>>Năm
+                            <?php echo e($i); ?></option>
+                        <?php endfor; ?>
                     </select>
                 </div>
             </div>
@@ -55,6 +66,31 @@
             </div>
         </form>
     </div>
+    <!-- javascript cập nhật mã nhân viên khi thay đổi chọn nhân viên -->
+    <script>
+        const employees = <?php echo json_encode($employees, 15, 512) ?>;
+
+        const employeeSelect = document.getElementById('employee_id');
+        const employeeCodeInput = document.getElementById('employee_code');
+        const positionNameInput = document.getElementById('position_name');
+
+        function updateEmployeeCode() {
+            let employeeId = employeeSelect.value;
+
+            let employee = employees.find(
+                item => item.id == employeeId
+            );
+
+            if (employee) {
+                employeeCodeInput.value = employee.employee_code;
+                positionNameInput.value = employee.position_name;
+            }
+        }
+
+        employeeSelect.addEventListener('change', updateEmployeeCode);
+
+        updateEmployeeCode();
+    </script>
 </body>
 
 </html>

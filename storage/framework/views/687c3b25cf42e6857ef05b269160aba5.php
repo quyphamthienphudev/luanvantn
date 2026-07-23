@@ -4,16 +4,19 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống quản lý nhân sự - Quản lý phòng ban</title>
 </head>
+
 <body>
-    <a href="/hcns/departments/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Thêm phòng ban</a>
-    <a href="/hcns/departments/export" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">Xuất file Excel</a>
+    <a href="/hcns/departments/create" class="bg-blue-600 text-white px-4 py-2 rounded">Thêm phòng ban</a>
+    <a href="/hcns/departments/export" class="bg-yellow-600 text-white px-4 py-2 rounded">Xuất Excel</a>
     <form method="GET" action="/hcns/departments" class="mt-4">
-        Tìm kiếm: <input type="text" name="search" value="<?php echo e($search); ?>" class="border p-2" placeholder="Tìm theo tên phòng ban hoặc mô tả" style="width:300px;">
+        Tìm kiếm: <input type="text" name="search" value="<?php echo e($search); ?>" class="border p-2"
+            placeholder="Tìm theo tên phòng ban hoặc mô tả" style="width:300px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded">Tìm</button>
     </form>
     <?php if(session('success')): ?>
@@ -38,21 +41,28 @@
                 </tr>
             </thead>
             <tbody>
-            <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__empty_1 = true; $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <tr class="border-b">
                     <td class="p-3"><?php echo e($d->name); ?></td>
                     <td class="p-3"><?php echo e($d->description); ?></td>
                     <td class="p-3 space-x-2">
-                        <a href="/hcns/departments/edit/<?php echo e($d->id); ?>" class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
+                        <a href="/hcns/departments/edit/<?php echo e($d->id); ?>"
+                            class="bg-yellow-500 text-white px-3 py-1 rounded">Sửa</a>
                         <a href="/hcns/departments/delete/<?php echo e($d->id); ?>" class="bg-red-600 text-white px-3 py-1 rounded"
-                        onclick="return confirm('Bạn có muốn xoá phòng ban này ?')">Xóa</a>
+                            onclick="return confirm('Bạn có muốn xoá phòng ban này ?')">Xóa</a>
                     </td>
                 </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                <tr class="border-b">
+                    <!-- <td class="p-3 text-center">Chưa có dữ liệu</td> -->
+                    <td colspan="3" class="text-center py-10 text-gray-500">Chưa có dữ liệu</td>
+                </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
 </body>
+
 </html>
 
 <?php $__env->stopSection(); ?>

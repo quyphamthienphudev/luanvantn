@@ -77,9 +77,16 @@
 
 <?php $__env->startSection('content'); ?>
 
+<p>Số ngày nghỉ phép còn lại: <b style="color: red; "><?php echo e($resumeLeave); ?></b> ngày</p>
 <?php if(session('success')): ?>
 <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
     <?php echo e(session('success')); ?>
+
+</div>
+<?php endif; ?>
+<?php if(session('error')): ?>
+<div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm" role="alert">
+    <?php echo e(session('error')); ?>
 
 </div>
 <?php endif; ?>
@@ -94,77 +101,58 @@
                 <div class="card-body p-4">
                     <form action="/leave/store" method="POST">
                         <?php echo csrf_field(); ?>
+                        <?php $__errorArgs = ['start_date'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <p class="text-red-500 text-sm"><?php echo e($message); ?></p>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                        <?php $__errorArgs = ['end_date'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <p class="text-red-500 text-sm"><?php echo e($message); ?></p>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                        <?php $__errorArgs = ['reason'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <p class="text-red-500 text-sm"><?php echo e($message); ?></p>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                         <!-- NGÀY BẮT ĐẦU & KẾT THÚC -->
                         <div class="row">
                             <div class="col-6 mb-3">
-                                <label class="form-label fw-bold small text-uppercase text-secondary">Từ ngày <span
-                                        class="text-danger">*</span></label>
+                                <label class="form-label fw-bold small text-secondary">Ngày bắt đầu</label>
                                 <input type="date" name="start_date" id="start_date"
-                                    class="form-control <?php $__errorArgs = ['start_date'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
-                                    value="<?php echo e(old('start_date')); ?>" min="<?php echo e(date('Y-m-d')); ?>">
-                                <?php $__errorArgs = ['start_date'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> <div class="invalid-feedback fw-bold"><?php echo e($message); ?></div>
-                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
+                                    class="form-control"
+                                    value="<?php echo e(old('start_date')); ?>">
                             </div>
                             <div class="col-6 mb-3">
-                                <label class="form-label fw-bold small text-uppercase text-secondary">Đến ngày <span
-                                        class="text-danger">*</span></label>
+                                <label class="form-label fw-bold small text-secondary">Ngày kết thúc</label>
                                 <input type="date" name="end_date" id="end_date"
-                                    class="form-control <?php $__errorArgs = ['end_date'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
-                                    value="<?php echo e(old('end_date')); ?>" min="<?php echo e(date('Y-m-d')); ?>">
-                                <?php $__errorArgs = ['end_date'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> <div class="invalid-feedback fw-bold"><?php echo e($message); ?></div>
-                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
+                                    class="form-control"
+                                    value="<?php echo e(old('end_date')); ?>">
                             </div>
                         </div>
 
                         <!-- LÝ DO -->
                         <div class="mb-3">
-                            <label class="form-label fw-bold small text-uppercase text-secondary">Lý do xin nghỉ
-                                phép<span class="text-danger"> *</span></label>
-                            <textarea name="reason" class="form-control <?php $__errorArgs = ['reason'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
+                            <label class="form-label fw-bold small text-secondary">Lý do xin nghỉ
+                                phép</label>
+                            <textarea name="reason" class="form-control"
                                 rows="4"><?php echo e(old('reason')); ?></textarea>
-                            <?php $__errorArgs = ['reason'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> <div class="invalid-feedback fw-bold"><?php echo e($message); ?></div> <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
                         </div>
 
                         <div class="d-grid mt-4">
@@ -194,21 +182,21 @@ unset($__errorArgs, $__bag); ?>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $__empty_1 = true; $__currentLoopData = $leaves; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $leave): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                <?php $__empty_1 = true; $__currentLoopData = $leaves; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $l): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr>
                                     <td class="ps-4">
-                                        <div class="fw-bold"><?php echo e($leave->start_date); ?></div>
-                                        <div class="text-muted small">đến <?php echo e($leave->end_date); ?></div>
+                                        <div class="fw-bold"><?php echo e($l->start_date); ?></div>
+                                        <div class="text-muted small">đến <?php echo e($l->end_date); ?></div>
                                     </td>
                                     <td>
                                         <div class="fw-bold text-primary"><?php echo e(Auth::user()->name); ?></div>
-                                        <small class="text-muted">Lý do: <?php echo e($leave->reason); ?></small>
+                                        <small class="text-muted">Lý do: <?php echo e($l->reason); ?></small>
                                     </td>
                                     <td>
-                                        <?php if($leave->status == 'pending'): ?>
+                                        <?php if($l->status == 'pending'): ?>
                                         <span class="badge bg-warning text-dark status-badge"><i
                                                 class="fas fa-spinner fa-spin me-1"></i> Chờ duyệt</span>
-                                        <?php elseif($leave->status == 'approved'): ?>
+                                        <?php elseif($l->status == 'approved'): ?>
                                         <span class="badge bg-success shadow-sm"><i
                                                 class="fas fa-check-circle me-1"></i> Đồng ý</span>
                                         <?php else: ?>
@@ -217,8 +205,8 @@ unset($__errorArgs, $__bag); ?>
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-center pe-4">
-                                        <?php if($leave->status == 'pending'): ?>
-                                        <a href="/leave/edit/<?php echo e($leave->id); ?>"
+                                        <?php if($l->status == 'pending'): ?>
+                                        <a href="/leave/edit/<?php echo e($l->id); ?>"
                                             class="btn btn-sm btn-outline-primary shadow-sm px-3">
                                             <i class="fas fa-edit me-1"></i> Sửa
                                         </a>
@@ -231,8 +219,8 @@ unset($__errorArgs, $__bag); ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                 <tr>
                                     <td colspan="4" class="text-center py-5 text-muted">
-                                        <i class="fas fa-folder-open fa-3x mb-3 d-block opacity-25"></i>
-                                        Bạn chưa tạo đơn xin nghỉ phép nào.
+                                        <i class="fas fa-3x mb-3 d-block opacity-25"></i>
+                                        Bạn chưa tạo đơn xin nghỉ phép nào
                                     </td>
                                 </tr>
                                 <?php endif; ?>
