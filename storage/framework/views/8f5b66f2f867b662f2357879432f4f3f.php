@@ -13,7 +13,7 @@
 
 <body>
     <a href="/hcns/employees" title="← Quay lại">← Quay lại</a>
-    <form method="POST" action="/hcns/employees/update/<?php echo e($employee->id); ?>" class="bg-white p-6 w-1/2">
+    <form action="/hcns/employees/update/<?php echo e($employee->id); ?>" method="post" class="bg-white p-6 w-1/2">
         <?php echo csrf_field(); ?>
         <div class="mb-4">
             <label>Phòng ban</label>
@@ -97,7 +97,7 @@ unset($__errorArgs, $__bag); ?>
         <div class="mb-4">
             <label>CCCD</label>
             <input type="text" name="identify" value="<?php echo e($employee->identify); ?>" class="w-full border p-2 rounded"
-                placeholder="CCCD" maxlength="12">
+                placeholder="CCCD">
             <?php $__errorArgs = ['identify'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -232,4 +232,5 @@ unset($__errorArgs, $__bag); ?>
 </html>
 
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\quy\Desktop\PROJECT-2026\resources\views/hcns/employees/edit.blade.php ENDPATH**/ ?>

@@ -34,11 +34,9 @@
         <p>Dân tộc: <?php echo e($employee->ethnic_group); ?></p>
         <p>SĐT: <?php echo e($employee->phone); ?></p>
         <p>Địa chỉ: <?php echo e($employee->address); ?> , <?php echo e($employee->street); ?> , <?php echo e($employee->ward); ?> , <?php echo e($employee->province); ?></p>
-        <p>Ngày vào làm:
-            <?php echo e($employee->hire_date ? date('d/m/Y', strtotime($employee->hire_date)) : ''); ?>
-
-        </p>
-        <p>Trạng thái:
+        <p>Ngày vào làm: <?php echo e($employee->hire_date ? date('d/m/Y', strtotime($employee->hire_date)) : ''); ?></p>
+        <p>
+            Trạng thái:
             <?php if($employee->status == 'working'): ?>
             Đang làm việc
             <?php else: ?>
@@ -49,7 +47,7 @@
         <h3 class="font-bold text-lg">
             Chứng chỉ
         </h3>
-        <form method="POST" action="/hcns/employees/<?php echo e($employee->id); ?>/certificate/store"
+        <form action="/hcns/employees/<?php echo e($employee->id); ?>/certificate/store" method="post"
             enctype="multipart/form-data">
             <?php echo csrf_field(); ?>
             <div class="mb-3">
