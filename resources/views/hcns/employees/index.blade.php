@@ -14,16 +14,25 @@
 </head>
 
 <body>
-    <a href="/hcns/employees/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm nhân viên">
-        Thêm nhân viên
-    </a>
-    <a href="/hcns/employees/export" class="bg-yellow-600 text-white px-4 py-2 rounded" title="Xuất Excel">
-        Xuất Excel
-    </a>
-    <a href="/hcns/employees/detail" class="bg-green-600 text-white px-4 py-2 rounded" title="Tra cứu thông tin chi tiết">
-        Tra cứu thông tin chi tiết
-    </a>
+    <div class="flex space-x-2"> 
+        <a href="/hcns/employees/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm nhân viên">
+            Thêm nhân viên
+        </a>
+        <form action="/hcns/employees/export" method="post">
+        @csrf
+            <button class="bg-yellow-600 text-white px-4 py-2 rounded" title="Xuất Excel">
+                Xuất Excel
+            </button>
+        </form>
+        <form action="/hcns/employees/detail" method="post">
+            @csrf 
+            <button class="bg-green-600 text-white px-4 py-2 rounded" title="Tra cứu thông tin chi tiết">
+                Tra cứu thông tin chi tiết
+            </button>
+        </form>
+    </div>
     <form method="get" action="/hcns/employees" class="mt-4">
+        @csrf
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo mã nhân viên, họ tên nhân viên hoặc phòng ban" style="width:450px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
@@ -63,13 +72,18 @@
                         Đã nghỉ việc
                         @endif
                     </td>
-                    <td class="p-3 space-x-2">
-                        <a href="/hcns/employees/show/{{ $e->id }}"
-                            class="bg-blue-500 text-white px-3 py-1 rounded" title="Xem">Xem</a>
-                        <a href="/hcns/employees/edit/{{ $e->id }}"
-                            class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">Sửa</a>
-                        <a href="/hcns/employees/delete/{{ $e->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
-                            onclick="return confirm('Bạn có muốn xoá nhân viên này ?')" title="Xoá">Xoá</a>
+                    <td class="p-3">
+                        <div class="flex space-x-2">
+                            <a href="/hcns/employees/show/{{ $e->id }}"
+                                class="bg-blue-500 text-white px-3 py-1 rounded" title="Xem">Xem</a>
+                            <a href="/hcns/employees/edit/{{ $e->id }}"
+                                class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">Sửa</a>
+                            <form action="/hcns/employees/delete/{{ $e->id }}" method="post">
+                                @csrf
+                                <button class="bg-red-600 text-white px-3 py-1 rounded"
+                                onclick="return confirm('Bạn có muốn xoá nhân viên này ?')" title="Xoá">Xoá</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty

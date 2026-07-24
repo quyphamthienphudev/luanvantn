@@ -102,12 +102,13 @@
                         </button>
                         @endif
                         
-                        <button class="btn btn-danger btn-sm btn-action" 
+                        <form action="/qlcl/leave/delete/{{ $leave->id }}" method="post" class="m-0 p-0">
+                            @csrf 
+                            <button class="btn btn-danger btn-sm btn-action" 
                             title="Xoá" onclick="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
-                                <a href="/qlcl/leave/delete/{{ $leave->id }}">
                                     <i class="fas fa-trash"></i>
-                                </a>
-                        </button>
+                            </button>
+                        </form>
                     </div>
                 </td>
             </tr>

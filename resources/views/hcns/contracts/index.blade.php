@@ -13,11 +13,12 @@
     <title>Hệ thống quản lý nhân sự - Quản lý hợp đồng lao động</title>
 </head>
 
-<body>
+<body> 
     <a href="/hcns/contracts/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm hợp đồng lao động">
         Thêm hợp đồng lao động
     </a>
     <form action="/hcns/contracts" method="get" class="mt-4">
+        @csrf
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo mã hợp đồng hoặc nhân viên" style="width:300px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
@@ -37,9 +38,7 @@
                     <th class="p-3">Ngày bắt đầu</th>
                     <th class="p-3">Ngày kết thúc</th>
                     <th class="p-3">Trạng thái</th>
-                    <th class="p-3">Gia hạn</th>
-                    <th class="p-3">Thanh lý</th>
-                    <th class="p-3">Xem hợp đồng</th>
+                    <th class="p-3 text-center">Hành động</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,20 +75,18 @@
                         @endif
                     </td>
                     <td class="p-3">
-                        <b><a href="/hcns/contracts/edit/{{ $c->id }}" style="color:blue;" title="Gia hạn">Gia hạn</a></b>
-                    </td>
-                    <td class="p-3">
-                        <form action="/hcns/contracts/terminate/{{ $c->id }}" method="post">
-                            @csrf
-                            <button style="color:red;" title="Thanh lý"><b>Thanh lý</b></button>
-                        </form>
-                    </td>
-                    <td class="p-3">
-                        @if($c->contract_file)
-                        <a href="/hcns/contracts/view/{{ $c->id }}" class="bg-green-600 text-white px-3 py-1 rounded" title="Xem">Xem</a>
-                        @else
-                        <a href="" class="bg-green-600 text-white px-3 py-1 rounded" onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
-                        @endif
+                        <div class="flex space-x-2"> 
+                            <a href="/hcns/contracts/edit/{{ $c->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded" title="Gia hạn">Gia hạn</a>
+                            <form action="/hcns/contracts/terminate/{{ $c->id }}" method="post">
+                                @csrf
+                                <button class="bg-red-600 text-white px-3 py-1 rounded" title="Thanh lý">Thanh lý</button>
+                            </form>
+                            @if($c->contract_file)
+                            <a href="/hcns/contracts/view/{{ $c->id }}" class="bg-blue-600 text-white px-3 py-1 rounded" title="Xem">Xem</a>
+                            @else
+                            <a href="" class="bg-blue-600 text-white px-3 py-1 rounded" onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
+                            @endif
+                        </div>
                     </td>
                 </tr>
                 @empty

@@ -69,6 +69,7 @@
 <a href="/leave" class="btn btn-secondary" title="← Quay lại">
     ← Quay lại
 </a>
+
 <h1 class="text-2xl font-bold mb-6">
     Chỉnh sửa đơn xin nghỉ phép
 </h1>

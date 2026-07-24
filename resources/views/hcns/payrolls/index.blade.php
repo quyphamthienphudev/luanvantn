@@ -27,6 +27,7 @@
         @endif
         <div class="mb-6 flex justify-between items-center">
             <form action="/hcns/payrolls" method="get" class="flex gap-2">
+                @csrf
                 <select name="month" class="border rounded px-3 py-2">
                     @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng {{ $i }}</option>
                     @endfor
@@ -76,9 +77,17 @@
                         <td class="border px-4 py-2 text-right">{{ number_format($p->deduction ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-right font-bold">{{ number_format($p->total_salary ?? 0) }} VNĐ</td>
                         <td class="border px-4 py-2 text-center">
-                            <a href="/hcns/payrolls/{{ $p->id }}" class="text-blue-500 hover:underline" title="Xem">Xem</a>
-                            <a href="/hcns/payrolls/edit/{{ $p->id }}" class="text-yellow-500 hover:underline" title="Sửa">Sửa</a>
-                            <a href="/hcns/payrolls/delete/{{ $p->id }}" class="text-red-500 hover:underline" onclick="return confirm('Bạn có muốn xóa bảng lương này ?')" title="Xoá">Xoá</a>
+                            <div class="flex space-x-2">
+                                <form action="/hcns/payrolls/{{ $p->id }}" method="post">
+                                    @csrf 
+                                    <button class="bg-blue-500 text-white px-3 py-1 rounded" title="Xem">Xem</button>
+                                </form>
+                                <a href="/hcns/payrolls/edit/{{ $p->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">Sửa</a>
+                                <form action="/hcns/payrolls/delete/{{ $p->id }}" method="post">
+                                    @csrf 
+                                    <button class="bg-red-600 text-white px-3 py-1 rounded" onclick="return confirm('Bạn có muốn xóa bảng lương này ?')" title="Xoá">Xoá</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @empty

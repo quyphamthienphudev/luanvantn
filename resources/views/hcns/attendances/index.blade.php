@@ -64,8 +64,8 @@
                         <td class="p-3 text-center">
                             <div class="flex space-x-2">
                                 <a href="/hcns/attendances/edit/{{ $atd->id }}"
-                                    class="text-yellow-600 hover:underline" title="Sửa">Sửa</a>
-                                <a href="/hcns/attendances/delete/{{ $atd->id }}" class="text-red-500 hover:underline"
+                                    class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">Sửa</a>
+                                <a href="/hcns/attendances/delete/{{ $atd->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
                                     onclick="return confirm('Bạn có muốn xóa bảng chấm công này?')" title="Xoá">Xoá</a>
                             </div>
                         </td>

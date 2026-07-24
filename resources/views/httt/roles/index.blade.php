@@ -16,8 +16,9 @@
 <body>
     <a href="/httt/roles/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Thêm quyền truy cập">
         Thêm quyền truy cập
-    </a>
+        </a>
     <form action="/httt/roles" method="get"  class="mt-4">
+        @csrf
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo tên quyền truy cập hoặc mô tả" style="width:400px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
@@ -46,14 +47,17 @@
                 <tr class="border-b">
                     <td class="p-3">{{ $r->name }}</td>
                     <td class="p-3">{{ $r->description }}</td>
-                    <td class="p-3 space-x-2">
+                    <td class="flex space-x-2 p-3">
                         <a href="/httt/roles/edit/{{ $r->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">
                             Sửa
                         </a>
-                        <a href="/httt/roles/delete/{{ $r->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
+                        <form action="/httt/roles/delete/{{ $r->id }}" method="post">
+                            @csrf
+                            <button class="bg-red-600 text-white px-3 py-1 rounded"
                             onclick="return confirm('Bạn có muốn xoá quyền truy cập này ?')" title="Xoá">
                             Xoá
-                        </a>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @empty

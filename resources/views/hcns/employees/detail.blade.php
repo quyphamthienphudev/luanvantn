@@ -19,8 +19,8 @@
         <h1 class="text-2xl font-bold mb-6">
             Chọn nhân viên để tra cứu
         </h1>
-        <form action="/hcns/employees/detail" method="get" class="bg-white p-6 rounded shadow w-1/2">
-
+        <form action="/hcns/employees/detail" method="post" class="bg-white p-6 rounded shadow w-1/2">
+            @csrf
             <div class="mb-4">
             <label>Nhân viên</label>
             <select name="employee_full_name" class="w-full border p-2 rounded">

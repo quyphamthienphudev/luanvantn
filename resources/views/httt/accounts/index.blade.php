@@ -14,13 +14,19 @@
 </head>
 
 <body>
-    <a href="/httt/accounts/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Thêm tài khoản">
-        Thêm tài khoản
-    </a>
-    <a href="/httt/accounts/export" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700" title="Xuất Excel">
-        Xuất Excel
-    </a>
+    <div class="flex space-x-2">
+        <a href="/httt/accounts/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Thêm tài khoản">
+            Thêm tài khoản
+            </a>
+        <form action="/httt/accounts/export" method="post">
+            @csrf
+            <button class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700" title="Xuất Excel">
+            Xuất Excel
+            </button>
+        </form>
+    </div>
     <form action="/httt/accounts" method="get" class="mt-4">
+        @csrf
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo họ tên hoặc email" style="width:250px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
@@ -69,25 +75,30 @@
                         @endif
                     </td>
                     <td class="p-3">
-                        @if($u->status == 'active')
-                        <span class="bg-green-200 text-green-700 px-2 py-1 rounded text-sm">
-                            Đang hoạt động
-                        </span>
-                        @elseif($u->status == 'suspend')
-                        <span class="bg-red-200 text-red-700 px-2 py-1 rounded text-sm">
-                            Tạm dừng
-                        </span>
-                        @endif
+                        <div class="flex space-x-2" style="width:150px;">
+                            @if($u->status == 'active')
+                            <span class="bg-green-200 text-green-700 px-2 py-1 rounded text-sm">
+                                Đang hoạt động
+                            </span>
+                            @elseif($u->status == 'suspend')
+                            <span class="bg-red-200 text-red-700 px-2 py-1 rounded text-sm">
+                                Tạm dừng
+                            </span>
+                            @endif
+                        </div>
                     </td>
-                    <td class="p-3 space-x-2">
-                        <a href="/httt/accounts/edit/{{ $u->id }}"
-                            class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">
+                    <td class="flex space-x-2 p-5">
+                        <a href="/httt/accounts/edit/{{ $u->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded"
+                             title="Sửa">
                             Sửa
-                        </a>
-                        <a href="/httt/accounts/delete/{{ $u->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
+                            </a>
+                        <form action="/httt/accounts/delete/{{ $u->id }}" method="post">
+                            @csrf 
+                            <button class="bg-red-600 text-white px-3 py-1 rounded"
                             onclick="return confirm('Bạn có muốn xoá tài khoản này ?')" title="Xoá">
                             Xoá
-                        </a>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @empty

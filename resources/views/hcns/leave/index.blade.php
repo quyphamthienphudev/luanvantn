@@ -77,16 +77,19 @@
                 <td class="text-center">
                     <div class="d-flex justify-content-center align-items-center gap-2 action-group ">
 
-                        <button class="btn btn-info btn-sm btn-action text-white" title="Chỉnh sửa">
-                            <a href="/hcns/leave/edit/{{ $leave->id }}"><i class="fas fa-edit"></i></a>
-                        </button>
+                        <a href="/hcns/leave/edit/{{ $leave->id }}">
+                            <button class="btn btn-info btn-sm btn-action text-white" title="Chỉnh sửa">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </a>
                         
-                        <button class="btn btn-danger btn-sm btn-action" title="Xoá">
-                            <a href="/hcns/leave/delete/{{ $leave->id }}" onclick="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
+                        <form action="/hcns/leave/delete/{{ $leave->id }}" method="post" class="m-0 p-0">
+                            @csrf 
+                            <button class="btn btn-danger btn-sm btn-action" title="Xoá"
+                            onclick="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
                                 <i class="fas fa-trash"></i>
-                            </a>
-                        </button>
-                        
+                            </button>
+                        </form>
                     </div>
                 </td>
             </tr>

@@ -63,14 +63,13 @@
                         <td class="p-3">{{ $atd->confirm == 'yes' ? 'Đã xác nhận' : 'Chưa xác nhận' }}</td>
                         <td class="p-3 text-center">
                             <div class="flex space-x-2">
-                                <a href="/qlcl/attendances/edit/{{ $atd->id }}"
-                                    class="text-yellow-600 hover:underline" title="Sửa">Sửa</a>
-                                <a href="/qlcl/attendances/delete/{{ $atd->id }}" class="text-red-500 hover:underline"
+                                <a href="/qlcl/attendances/edit/{{ $atd->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">Sửa</a>
+                                <a href="/qlcl/attendances/delete/{{ $atd->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
                                     onclick="return confirm('Bạn có muốn xóa bảng chấm công này?')" title="Xoá">Xoá</a>
                                 @if($atd->confirm == 'no')
                                 <form action="/qlcl/attendances/confirm/{{ $atd->id }}" method="post" onsubmit="return confirm('Bạn có muốn xác nhận bảng chấm công này?')">
                                     @csrf
-                                    <button class="text-blue-600 hover:underline" title="Xác nhận">Xác nhận</button>
+                                    <button class="bg-blue-500 text-white px-3 py-1 rounded" title="Xác nhận">Xác nhận</button>
                                 </form>
                                 @endif
                             </div>

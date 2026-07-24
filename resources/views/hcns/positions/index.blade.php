@@ -14,13 +14,19 @@
 </head>
 
 <body>
-    <a href="/hcns/positions/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm công việc">
-        Thêm công việc
-    </a>
-    <a href="/hcns/positions/export" class="bg-yellow-600 text-white px-4 py-2 rounded" title="Xuất Excel">
-        Xuất Excel
-    </a>
+    <div class="flex space-x-2">
+        <a href="/hcns/positions/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm công việc">
+            Thêm công việc
+        </a>
+        <form action="/hcns/positions/export" method="post">
+            @csrf 
+            <button class="bg-yellow-600 text-white px-4 py-2 rounded" title="Xuất Excel">
+                Xuất Excel
+            </button>
+        </form>
+    </div>
     <form action="/hcns/positions" method="get" class="mt-4">
+        @csrf
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo tên công việc hoặc lương cơ bản" style="width:350px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
@@ -51,16 +57,21 @@
                     <td class="p-3">{{ $p->name }}</td>
                     <td class="p-3">{{ number_format($p->base_salary) }} VNĐ</td>
                     <td class="p-3">{{ number_format($p->max_salary) }} VNĐ</td>
-                    <td class="p-3 space-x-2">
-                        <a href="/hcns/positions/edit/{{ $p->id }}"
-                            class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">
-                            Sửa
-                        </a>
-                        <a href="/hcns/positions/delete/{{ $p->id }}"
-                            class="bg-red-600 text-white px-3 py-1 rounded"
-                            onclick="return confirm('Bạn có muốn xoá công việc này ?')" title="Xoá">
-                            Xoá
-                        </a>
+                    <td class="p-3">
+                        <div class="flex space-x-2">
+                            <a href="/hcns/positions/edit/{{ $p->id }}"
+                                class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">
+                                    Sửa
+                            </a>
+                            <form action="/hcns/positions/delete/{{ $p->id }}" method="post">
+                                @csrf 
+                                <button
+                                class="bg-red-600 text-white px-3 py-1 rounded"
+                                onclick="return confirm('Bạn có muốn xoá công việc này ?')" title="Xoá">
+                                        Xoá
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty

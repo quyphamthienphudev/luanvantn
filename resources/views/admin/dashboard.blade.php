@@ -94,7 +94,7 @@
             Tổng chi phí lương theo tháng và năm
         </h1>
         <form action="/admin/dashboard" method="get" class="bg-white p-6 rounded shadow w-1/2">
-
+            @csrf
             <!-- Chọn tháng -->
             <div class="mb-4">
                 <label>Tháng</label>
@@ -138,7 +138,7 @@
             Tổng chi phí lương theo năm
         </h1>
         <form action="/admin/dashboard" method="get" class="bg-white p-6 rounded shadow w-1/2">
-            
+            @csrf
             <!-- Chọn năm -->
             <div class="mb-4">
                 <label>Năm</label>

@@ -184,10 +184,9 @@
                                     </td>
                                     <td class="text-center pe-4">
                                         @if($l->status == 'pending')
-                                        <a href="/leave/edit/{{ $l->id }}"
-                                            class="btn btn-sm btn-outline-primary shadow-sm px-3" title="Sửa">
-                                            <i class="fas fa-edit me-1"></i> Sửa
-                                        </a>
+                                        <a href="/leave/edit/{{ $l->id }}" class="btn btn-sm btn-outline-primary shadow-sm px-3" title="Sửa">
+                                                <i class="fas fa-edit me-1"></i> Sửa
+                                            </a>
                                         @else
                                         <span class="text-muted small fw-italic"><i class="fas fa-lock"></i> Đã hoàn
                                             tất</span>

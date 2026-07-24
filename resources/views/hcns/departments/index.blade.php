@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Danh sách phòng ban')
+@section('title','Quản lý phòng ban')
 
 @section('content')
 
@@ -14,9 +14,15 @@
 </head>
 
 <body>
-    <a href="/hcns/departments/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm phòng ban">Thêm phòng ban</a>
-    <a href="/hcns/departments/export" class="bg-yellow-600 text-white px-4 py-2 rounded" title="Xuất Excel">Xuất Excel</a>
+    <div class="flex space-x-2">
+        <a href="/hcns/departments/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm phòng ban">Thêm phòng ban</a>
+        <form action="/hcns/departments/export" method="post">
+            @csrf 
+            <button class="bg-yellow-600 text-white px-4 py-2 rounded" title="Xuất Excel">Xuất Excel</button>
+        </form>
+    </div>
     <form action="/hcns/departments" method="get" class="mt-4">
+        @csrf
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
             placeholder="Tìm theo tên phòng ban hoặc mô tả" style="width:300px;">
         <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
@@ -45,11 +51,16 @@
                 <tr class="border-b">
                     <td class="p-3">{{ $d->name }}</td>
                     <td class="p-3">{{ $d->description }}</td>
-                    <td class="p-3 space-x-2">
-                        <a href="/hcns/departments/edit/{{ $d->id }}"
+                    <td class="p-3">
+                        <div class="flex space-x-2">
+                            <a href="/hcns/departments/edit/{{ $d->id }}"
                             class="bg-yellow-500 text-white px-3 py-1 rounded" title="Sửa">Sửa</a>
-                        <a href="/hcns/departments/delete/{{ $d->id }}" class="bg-red-600 text-white px-3 py-1 rounded"
-                            onclick="return confirm('Bạn có muốn xoá phòng ban này ?')" title="Xoá">Xoá</a>
+                        <form action="/hcns/departments/delete/{{ $d->id }}" method="post">
+                            @csrf 
+                            <button class="bg-red-600 text-white px-3 py-1 rounded"
+                            onclick="return confirm('Bạn có muốn xoá phòng ban này ?')" title="Xoá">Xoá</button>
+                        </form>
+                        </div>
                     </td>
                 </tr>
                 @empty
