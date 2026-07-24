@@ -14,14 +14,14 @@ class DashboardControllerAdmin extends Controller
         {
             return back();
         }
-        //employees đang làm việc
-        $e_working = DB::table('employees')->where('status','working')->count();
+        // Employees đang làm việc
+        $e_working = DB::table('employees')->where('status','working')->count('employee_code');
 
-        //employees đã nghỉ việc
-        $e_resign = DB::table('employees')->where('status','resigned')->count();
+        // Employees đã nghỉ việc
+        $e_resign = DB::table('employees')->where('status','resigned')->count('employee_code');
 
-        //employees
-        $employees = DB::table('employees')->count();
+        // Employees
+        $employees = DB::table('employees')->count('employee_code');
 
         // ===== THỐNG KÊ NHÂN VIÊN THEO PHÒNG BAN =====
         $employeesByDepartment = DB::table('employees')
