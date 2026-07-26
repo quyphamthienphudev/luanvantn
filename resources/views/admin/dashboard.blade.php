@@ -125,12 +125,10 @@
 
         </form>
         <br>
-        <div class="grid grid-cols-4 gap-6">
+        <div class="bg-white p-6 rounded shadow w-1/2">
             @if(!is_null($totalMonthSalary))
-            <div class="bg-white p-6 rounded-xl shadow">
                 <h3 class="text-gray-500">Tổng lương tháng {{ $month }} / năm {{ $year }}</h3>
                 <p class="text-3xl font-bold text-purple-600">{{ number_format($totalMonthSalary) }} VNĐ</p>
-            </div>
             @endif
         </div>
         <br>
@@ -158,12 +156,10 @@
 
         </form>
         <br>
-        <div class="grid grid-cols-4 gap-6">
+        <div class="bg-white p-6 rounded shadow w-1/2">
             @if(!is_null($totalYearSalary))
-            <div class="bg-white p-6 rounded-xl shadow">
                 <h3 class="text-gray-500">Tổng lương năm {{ $year }}</h3>
                 <p class="text-3xl font-bold text-green-600">{{ number_format($totalYearSalary) }} VNĐ</p>
-            </div>
             @endif
         </div>
     </div>

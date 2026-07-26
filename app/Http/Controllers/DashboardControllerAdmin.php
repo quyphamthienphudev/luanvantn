@@ -28,7 +28,7 @@ class DashboardControllerAdmin extends Controller
             ->join('departments','employees.department_id','=','departments.id')
             ->select(
                 'departments.name as department_name',
-                DB::raw('COUNT(employees.id) as total_employees')
+                DB::raw('COUNT(employee_code) as total_employees')
             )
             ->where('status','working')
             ->groupBy('departments.name')
