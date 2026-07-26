@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
-class RoleController extends Controller
+class RoleController 
 {
     // INDEX
     public function index()

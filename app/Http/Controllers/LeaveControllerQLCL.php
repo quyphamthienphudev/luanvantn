@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\LeaveRequest;
 
-class LeaveControllerQLCL extends Controller
+class LeaveControllerQLCL 
 {
     public function index() 
     {

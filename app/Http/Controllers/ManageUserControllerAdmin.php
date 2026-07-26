@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Role;
 
-class ManageUserControllerAdmin extends Controller
+class ManageUserControllerAdmin 
 {
     // INDEX
     public function index()

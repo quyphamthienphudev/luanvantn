@@ -8,7 +8,7 @@ use App\Models\Attendance;
 use App\Models\Employee;
 use Carbon\Carbon;
 
-class AttendanceController extends Controller
+class AttendanceController 
 {
 
     public function index()

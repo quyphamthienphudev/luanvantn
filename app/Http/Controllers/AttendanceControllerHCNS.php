@@ -8,7 +8,7 @@ use App\Models\Attendance;
 use App\Models\Employee;
 use Carbon\Carbon;
 
-class AttendanceControllerHCNS extends Controller
+class AttendanceControllerHCNS 
 {
 
     public function index()

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
-class ManageUserControllerUser extends Controller
+class ManageUserControllerUser 
 {
     // SHOW UPDATE PROFILE
     public function editProfile()

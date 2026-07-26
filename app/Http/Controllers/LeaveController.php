@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\LeaveRequest;
 
-class LeaveController extends Controller
+class LeaveController 
 {
     public function index() 
     {
@@ -55,7 +55,7 @@ class LeaveController extends Controller
         $numberDays = $startDate->diffInDays($endDate) + 1;
 
         // Kiểm tra số ngày nghỉ phép
-        if($numberDays > $countLeave)
+        if($numberDays > 12)
         {
             return back()->with('error', 'Số ngày nghỉ phép còn lại không đủ, vui lòng kiểm tra lại');
         }
@@ -116,7 +116,7 @@ class LeaveController extends Controller
         $numberDays = $startDate->diffInDays($endDate) + 1;
         // Kiểm tra số ngày nghỉ phép
         $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
-        if($numberDays > $countLeave)
+        if($numberDays > 12)
         {
             return back()->with('error', 'Số ngày nghỉ phép còn lại không đủ, vui lòng kiểm tra lại');
         }

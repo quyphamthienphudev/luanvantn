@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-class PayrollControllerUser extends Controller
+class PayrollControllerUser 
 {
 
     public function show()

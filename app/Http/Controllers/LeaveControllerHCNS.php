@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\LeaveRequest;
 
-class LeaveControllerHCNS extends Controller
+class LeaveControllerHCNS 
 {
     public function index() 
     {

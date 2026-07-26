@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Candidate;
 
-class ManageCandidateControllerAdmin extends Controller
+class ManageCandidateControllerAdmin 
 {
     // INDEX
     public function index()

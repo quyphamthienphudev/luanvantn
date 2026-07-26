@@ -9,7 +9,7 @@ use App\Models\Attendance;
 use App\Models\Employee;
 use App\Models\Department;
 
-class ManageEmployeeControllerAdmin extends Controller
+class ManageEmployeeControllerAdmin 
 {
 
     // INDEX

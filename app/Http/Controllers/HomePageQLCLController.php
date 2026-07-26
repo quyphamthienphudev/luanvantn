@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-class HomePageQLCLController extends Controller
+class HomePageQLCLController 
 {
     // HOME PAGE
     public function homePage(Request $request)

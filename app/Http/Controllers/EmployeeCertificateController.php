@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Response;
 use App\Models\Employee;
 use App\Models\EmployeeCertificate;
 
-class EmployeeCertificateController extends Controller
+class EmployeeCertificateController 
 {
     public function store(Request $request,$employee_id)
     {

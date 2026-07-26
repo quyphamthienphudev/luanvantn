@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use App\Models\Contract;
 use App\Models\Employee;
 
-class ContractController extends Controller
+class ContractController 
 {
     // INDEX
     public function index()

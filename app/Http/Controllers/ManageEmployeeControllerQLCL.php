@@ -8,7 +8,7 @@ use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Position;
 
-class ManageEmployeeControllerQLCL extends Controller
+class ManageEmployeeControllerQLCL 
 {
 
     // INDEX

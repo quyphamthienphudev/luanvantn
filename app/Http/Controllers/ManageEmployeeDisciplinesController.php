@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
 use App\Models\RewardDiscipline;
 
-class ManageEmployeeDisciplinesController extends Controller
+class ManageEmployeeDisciplinesController 
 {
 
     // INDEX

@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use App\Models\Attendance;
 use App\Models\User;
 
-class AttendanceControllerNV extends Controller
+class AttendanceControllerNV 
 {
     // SHOW ATTENDANCE
     public function index()

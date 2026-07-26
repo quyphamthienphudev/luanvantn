@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomePageITController extends Controller
+class HomePageITController 
 {
     // HOME PAGE
     public function homePage()
