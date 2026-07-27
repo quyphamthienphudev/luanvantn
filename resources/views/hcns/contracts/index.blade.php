@@ -14,9 +14,11 @@
 </head>
 
 <body> 
-    <a href="/hcns/contracts/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm hợp đồng lao động">
-        Thêm hợp đồng lao động
-    </a>
+    <div class="flex space-x-2">
+        <a href="/hcns/contracts/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm hợp đồng lao động">
+            Thêm hợp đồng lao động
+        </a>
+    </div>
     <form action="/hcns/contracts" method="get" class="mt-4">
         @csrf
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"

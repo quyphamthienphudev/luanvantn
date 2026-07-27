@@ -49,13 +49,14 @@ class LeaveController
             return back()->with('error', 'Bạn đã sử dụng hết 12 ngày nghỉ phép, không thể gửi thêm đơn nghỉ phép mới');
         }
 
+        $resumeLeave = 12 - $countLeave;
         // Tính số ngày nghỉ (bao gồm cả ngày bắt đầu và ngày kết thúc)
         $startDate = Carbon::parse($validate['start_date']);
         $endDate   = Carbon::parse($validate['end_date']);
         $numberDays = $startDate->diffInDays($endDate) + 1;
 
         // Kiểm tra số ngày nghỉ phép
-        if($numberDays > 12)
+        if($numberDays > $resumeLeave)
         {
             return back()->with('error', 'Số ngày nghỉ phép còn lại không đủ, vui lòng kiểm tra lại');
         }
@@ -110,13 +111,16 @@ class LeaveController
             'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
         ]);
 
+        // Đếm số lượng ngày nghỉ phép
+        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
+        
+        $resumeLeave = 12 - $countLeave;
         // Tính số ngày nghỉ (bao gồm cả ngày bắt đầu và ngày kết thúc)
         $startDate = Carbon::parse($validate['start_date']);
         $endDate   = Carbon::parse($validate['end_date']);
         $numberDays = $startDate->diffInDays($endDate) + 1;
         // Kiểm tra số ngày nghỉ phép
-        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
-        if($numberDays > 12)
+        if($numberDays > $resumeLeave)
         {
             return back()->with('error', 'Số ngày nghỉ phép còn lại không đủ, vui lòng kiểm tra lại');
         }

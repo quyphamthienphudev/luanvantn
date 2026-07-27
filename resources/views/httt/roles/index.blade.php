@@ -14,9 +14,11 @@
 </head>
 
 <body>
-    <a href="/httt/roles/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Thêm quyền truy cập">
-        Thêm quyền truy cập
+    <div class="flex space-x-2">
+        <a href="/httt/roles/create" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Thêm quyền truy cập">
+            Thêm quyền truy cập
         </a>
+    </div>
     <form action="/httt/roles" method="get"  class="mt-4">
         @csrf
         Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"

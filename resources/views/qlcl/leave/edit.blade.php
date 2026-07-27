@@ -77,6 +77,9 @@
 <form action="/qlcl/leave/update/{{ $leave->id }}" method="post" class="bg-white p-6 rounded shadow w-1/2">
 
     @csrf
+    @if(session('error'))
+    <div style="color: red; ">{{ session('error') }}</div>
+    @endif
     <div class="row">
         <div class="col-md-6 mb-4">
             <label class="form-label fw-bold small">

@@ -14,9 +14,11 @@
 </head>
 
 <body>
-    <a href="/hcns/candidates/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm hồ sơ ứng viên">
-        Thêm hồ sơ ứng viên
-    </a>
+    <div class="flex space-x-2">
+        <a href="/hcns/candidates/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm hồ sơ ứng viên">
+            Thêm hồ sơ ứng viên
+        </a>
+    </div>
 
     <form action="/hcns/candidates" method="get" class="mt-4">
         @csrf

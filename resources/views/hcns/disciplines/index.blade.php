@@ -13,10 +13,12 @@
     <title>Hệ thống quản lý nhân sự - Quản lý kỷ luật</title>
 </head>
 
-<body> 
-    <a href="/hcns/disciplines/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm kỷ luật">
-        Thêm kỷ luật
-    </a>
+<body>
+    <div class="flex space-x-2">
+        <a href="/hcns/disciplines/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm kỷ luật">
+            Thêm kỷ luật
+        </a>
+    </div>
     </form>
     @if(session('success'))
     <div class="bg-green-200 text-green-800 p-3 rounded mt-4">

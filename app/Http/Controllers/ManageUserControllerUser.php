@@ -20,17 +20,17 @@ class ManageUserControllerUser
     {
         $user = auth()->user();
         $request->validate([
-            'name' => 'required|regex:/^[\p{L}\p{N}\s]+$/u',
+            // 'name' => 'required|regex:/^[\p{L}\p{N}\s]+$/u',
             'email' => 'required|email|unique:users,email,' . $user->id
         ],[
-            'name.required' => 'Họ tên không được để trống.',
-            'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại.',
+            // 'name.required' => 'Họ tên không được để trống.',
+            // 'name.regex' => 'Họ tên không hợp lệ, vui lòng kiểm tra lại.',
             'email.required' => 'Email không được để trống.',
             'email.email' => 'Email không hợp lệ, vui lòng kiểm tra lại.',
             'email.unique' => 'Email này đã được sử dụng.'
         ]);
 
-        $user->name = $request->name;
+        // $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
 

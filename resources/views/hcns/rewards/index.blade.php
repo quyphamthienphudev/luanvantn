@@ -14,9 +14,11 @@
 </head>
 
 <body>
-    <a href="/hcns/rewards/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm khen thưởng">
-        Thêm khen thưởng
-    </a>
+    <div class="flex space-x-2">
+        <a href="/hcns/rewards/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm khen thưởng">
+            Thêm khen thưởng
+        </a>
+    </div>
     @if(session('success'))
     <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
         {{ session('success') }}

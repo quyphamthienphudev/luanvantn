@@ -29,11 +29,11 @@
             @csrf
             <div class="mb-4">
                 <label class="block mb-2">Họ tên</label>
-                <input type="text" name="name" value="{{ auth()->user()->name }}"
-                    class="w-full px-4 py-2 border rounded" placeholder="Họ tên">
-                @error('name')
+                <input type="text" value="{{ auth()->user()->name }}"
+                    class="w-full px-4 py-2 border rounded bg-gray-100" placeholder="Họ tên" readonly>
+                <!-- @error('name')
                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
-                @enderror
+                @enderror -->
             </div>
             <div class="mb-4">
                 <label class="block mb-2">Email</label>
