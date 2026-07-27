@@ -22,7 +22,7 @@ class PayrollControllerUser
         $year = Carbon::today()->year;
 
         $payroll = DB::table('payrolls')
-            ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
+            ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->select(

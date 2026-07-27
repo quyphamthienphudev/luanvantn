@@ -19,7 +19,7 @@ class PayrollControllerAdmin
         $year = $request->get('year', date('Y'));
         
         $payrolls = DB::table('payrolls')
-            ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
+            ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->select(
@@ -150,7 +150,7 @@ class PayrollControllerAdmin
         }
 
         $payroll = DB::table('payrolls')
-            ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
+            ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->select(
@@ -292,7 +292,7 @@ class PayrollControllerAdmin
         }
         
         $payrolls = DB::table('payrolls')
-            ->leftJoin('employees', 'payrolls.employee_id', '=', 'employees.id')
+            ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->select(
