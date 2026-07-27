@@ -155,7 +155,7 @@ Route::middleware(['auth'])->group(function () {
 
 // Chức năng xem bảng lương của nhân viên
 Route::middleware(['auth'])->group(function () {
-    Route::post('/payrolls', [PayrollControllerUser::class, 'show']);
+    Route::get('/payrolls', [PayrollControllerUser::class, 'show']);
 });
 
 // Chức năng quản lý đơn xin nghỉ phép của nhân viên

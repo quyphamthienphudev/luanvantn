@@ -172,10 +172,9 @@
                 @endif
 
                 @if(auth()->user()->role->name === 'user')
-                <form action="/payrolls" method="post" class="block px-4 py-2 rounded hover:bg-blue-700">
-                    @csrf
-                    <button title="Xem lương">Xem lương</button>
-                </form>
+                <a href="/payrolls" class="block px-4 py-2 rounded hover:bg-blue-700" title="Xem lương">
+                    Xem lương
+                </a>
                 @endif
 
                 @if(auth()->user()->role->name === 'user')
