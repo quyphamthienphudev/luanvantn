@@ -18,6 +18,10 @@ class LeaveController
         $leaves = LeaveRequest::where('users_id', Auth::id())
                 ->orderBy('id', 'desc')
                 ->get();
+        // Lấy 10 bản ghi mới nhất
+	    // $leaves = LeaveRequest::where('users_id', Auth::id())
+        //         ->orderBy('id', 'desc')
+        //         ->paginate(10);
         $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
         $resumeLeave = 12 - $countLeave;
         return view('user.leave.index', compact('leaves','resumeLeave'));
