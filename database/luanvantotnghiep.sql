@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80407 (8.4.7)
  Source Host           : localhost:3306
- Source Schema         : luanvantotnghiep
+ Source Schema         : thang6
 
  Target Server Type    : MySQL
  Target Server Version : 80407 (8.4.7)
  File Encoding         : 65001
 
- Date: 23/07/2026 16:39:33
+ Date: 28/07/2026 08:19:07
 */
 
 SET NAMES utf8mb4;
@@ -11280,7 +11280,7 @@ CREATE TABLE `employee_certificates`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `employee_id`(`employee_id` ASC) USING BTREE,
   INDEX `index_certificate`(`certificate_file` ASC, `issue_date` ASC, `expiry_date` ASC) USING BTREE,
-  CONSTRAINT `employee_certificates_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `fk_employee_certificate` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 721 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -13623,7 +13623,7 @@ CREATE TABLE `users`  (
   UNIQUE INDEX `email`(`email` ASC) USING BTREE,
   INDEX `fk_users_role`(`role_id` ASC) USING BTREE,
   INDEX `index_user`(`status` ASC) USING BTREE,
-  CONSTRAINT `fk_users_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `fk_user_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 387 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
