@@ -11,7 +11,7 @@
  Target Server Version : 80407 (8.4.7)
  File Encoding         : 65001
 
- Date: 28/07/2026 16:45:55
+ Date: 30/07/2026 17:27:01
 */
 
 SET NAMES utf8mb4;
@@ -13946,7 +13946,7 @@ INSERT INTO `users` VALUES (17, 5, 'Hoàng Văn Anh', 'emp017@tinhvan.com', '$2y
 INSERT INTO `users` VALUES (18, 5, 'Phạm Thị Dung', 'emp018@tinhvan.com', '$2y$12$FJzCOS81/aDXZpEkdRoACeXnCYRAiLkXszk6p0wLFgRm5D2GQcHVS', 'active');
 INSERT INTO `users` VALUES (19, 5, 'Lê Văn Chính', 'emp019@tinhvan.com', '$2y$12$FJzCOS81/aDXZpEkdRoACeXnCYRAiLkXszk6p0wLFgRm5D2GQcHVS', 'active');
 INSERT INTO `users` VALUES (20, 5, 'Trần Thị Tuyết', 'emp020@tinhvan.com', '$2y$12$FJzCOS81/aDXZpEkdRoACeXnCYRAiLkXszk6p0wLFgRm5D2GQcHVS', 'active');
-INSERT INTO `users` VALUES (21, 1, 'Admin', 'bangiamdoc@tinhvan.com', '$2y$12$FJzCOS81/aDXZpEkdRoACeXnCYRAiLkXszk6p0wLFgRm5D2GQcHVS', 'active');
+INSERT INTO `users` VALUES (21, 1, 'Admin', 'banlanhdao@tinhvan.com', '$2y$12$FJzCOS81/aDXZpEkdRoACeXnCYRAiLkXszk6p0wLFgRm5D2GQcHVS', 'active');
 INSERT INTO `users` VALUES (22, 4, 'Quy', 'phonghethongthongtin@tinhvan.com', '$2y$12$FJzCOS81/aDXZpEkdRoACeXnCYRAiLkXszk6p0wLFgRm5D2GQcHVS', 'active');
 INSERT INTO `users` VALUES (23, 5, 'Lê Phong', 'emp022@tinhvan.com', '$2y$12$FJzCOS81/aDXZpEkdRoACeXnCYRAiLkXszk6p0wLFgRm5D2GQcHVS', 'active');
 INSERT INTO `users` VALUES (24, 5, 'Lê Quốc', 'emp023@tinhvan.com', '$2y$12$FJzCOS81/aDXZpEkdRoACeXnCYRAiLkXszk6p0wLFgRm5D2GQcHVS', 'active');
