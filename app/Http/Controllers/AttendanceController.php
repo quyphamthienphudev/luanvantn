@@ -11,18 +11,34 @@ use Carbon\Carbon;
 class AttendanceController 
 {
 
-    public function index()
+    public function index(Request $request)
     {
         if (auth()->user()->role->name !== 'qlcl') 
         {
             return back();
         }
-        $attendances = DB::table('attendances')
-                ->join('users', 'users.id', '=', 'attendances.users_id')
-                ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
-                ->orderBy('work_date', 'desc')
-                ->get();
+        $date = $request->date;
+        $today = Carbon::today()->toDateString();
+        if($date)
+        {
+            $attendances = DB::table('attendances')
+            ->join('users', 'users.id', '=', 'attendances.users_id')
+            ->join('employees', 'users.name', '=', 'employees.full_name')
+            ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
+            ->where('work_date', $date)
+            ->orderBy('work_date', 'desc')
+            ->get();
+        }
+        else
+        {
+            $attendances = DB::table('attendances')
+            ->join('users', 'users.id', '=', 'attendances.users_id')
+            ->join('employees', 'users.name', '=', 'employees.full_name')
+            ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
+            ->where('work_date', $today)
+            ->orderBy('work_date', 'desc')
+            ->get();
+        }
         return view('qlcl.attendances.index', compact('attendances'));
     }
 
