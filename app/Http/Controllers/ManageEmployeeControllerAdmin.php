@@ -282,8 +282,8 @@ class ManageEmployeeControllerAdmin
             $attendances = DB::table('attendances')
                 ->join('users', 'users.id', '=', 'attendances.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('employee_code','users.name','work_date','check_in','check_out','attendances.status')
-                ->where('users.name', $employee)
+                ->select('employee_code','name','work_date','check_in','check_out','attendances.status')
+                ->where('name', $employee)
                 ->where('confirm', 'yes')
                 ->orderBy('work_date','asc')
                 ->get();
@@ -320,11 +320,11 @@ class ManageEmployeeControllerAdmin
 
         $employees = Employee::with('department')
             ->when($search, function($q) use ($search){
-                $q->where('full_name','like','%'.$search.'%')
+                $q->where('full_name','like','%'. $search .'%')
                   ->orWhere('employee_code',$search)
                   // Tìm theo tên phòng ban
                   ->orWhereHas('department', function($query) use ($search){
-                        $query->where('name','like','%'.$search.'%');
+                        $query->where('name','like','%'. $search .'%');
                     });
             })
             ->get();

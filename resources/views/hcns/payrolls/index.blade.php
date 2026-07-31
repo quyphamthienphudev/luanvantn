@@ -40,7 +40,7 @@
             </form>
             <div class="flex gap-2">
                 <a href="/hcns/payrolls/create" class="bg-green-500 text-white px-4 py-2 rounded" title="+ Tạo">+ Tạo</a>
-                <form action="/hcns/payrolls/export" method="post">
+                <form action="/hcns/payrolls/export" method="get">
                     @csrf
                     <button class="bg-yellow-500 text-white px-4 py-2 rounded" title="Xuất Excel">Xuất Excel</button>
                 </form>

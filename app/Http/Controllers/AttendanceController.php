@@ -22,7 +22,7 @@ class AttendanceController
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
                 ->orderBy('work_date', 'desc')
-                ->paginate(357);
+                ->get();
         return view('qlcl.attendances.index', compact('attendances'));
     }
 

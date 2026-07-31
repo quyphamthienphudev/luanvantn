@@ -27,16 +27,16 @@ class DashboardControllerAdmin
         $employeesByDepartment = DB::table('employees')
             ->join('departments','employees.department_id','=','departments.id')
             ->select(
-                'departments.name as department_name',
+                'name',
                 DB::raw('COUNT(employee_code) as total_employees')
             )
             ->where('status','working')
-            ->groupBy('departments.name')
-            ->orderBy('departments.name','asc')
+            ->groupBy('name')
+            ->orderBy('name','asc')
             ->get();
 
         // Tách dữ liệu cho biểu đồ
-        $deptLabels = $employeesByDepartment->pluck('department_name');
+        $deptLabels = $employeesByDepartment->pluck('name');
         $deptData = $employeesByDepartment->pluck('total_employees');
 
         // ===== THỐNG KÊ LƯƠNG =====
@@ -58,6 +58,6 @@ class DashboardControllerAdmin
             $totalMonthSalary = DB::table('payrolls')->where('month', $month)->where('year', $year)->sum('total_salary');
         }
 
-        return view('admin.dashboard', compact('e_working','e_resign','employees','deptLabels','deptData','totalYearSalary','totalMonthSalary','year','month'));
+        return view('admin.dashboard', compact('e_working','e_resign','employees','deptLabels','deptData','totalYearSalary','totalMonthSalary','month','year'));
     }
 }

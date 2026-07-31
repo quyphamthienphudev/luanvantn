@@ -18,7 +18,7 @@ class LeaveControllerQLCL
         $allLeaves = DB::table('leave_requests')
                 ->join('users', 'users.id', '=', 'leave_requests.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('users.name','employee_code','reason','start_date','end_date','number_days','leave_requests.status','leave_requests.id')
+                ->select('name','employee_code','reason','start_date','end_date','number_days','leave_requests.status','leave_requests.id')
                 ->orderBy('start_date','desc')
                 ->get();
         return view('qlcl.leave.index', compact('allLeaves'));
@@ -33,7 +33,7 @@ class LeaveControllerQLCL
         $leave = DB::table('leave_requests')
                 ->join('users', 'users.id', '=', 'leave_requests.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('employee_code', 'users.name','start_date','end_date','reason','leave_requests.id')
+                ->select('employee_code', 'name','start_date','end_date','reason','leave_requests.id')
                 ->where('leave_requests.id', $id)
                 ->first();
         return view('qlcl.leave.edit', compact('leave'));

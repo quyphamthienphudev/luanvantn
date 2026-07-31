@@ -150,7 +150,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/hcns/payrolls/edit/{id}', [PayrollControllerAdmin::class, 'edit']);
     Route::post('/hcns/payrolls/update/{id}', [PayrollControllerAdmin::class, 'update']);
     Route::post('/hcns/payrolls/delete/{id}', [PayrollControllerAdmin::class, 'delete']);
-    Route::post('/hcns/payrolls/export', [PayrollControllerAdmin::class, 'export']);
+    Route::get('/hcns/payrolls/export', [PayrollControllerAdmin::class, 'export']);
 });
 
 // Chức năng xem bảng lương của nhân viên
@@ -252,7 +252,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Chức năng chấm công cho nhân viên
-Route::middleware('auth')->group(function () {
+Route::middleware('auth','company.network')->group(function () {
     Route::get('/attendances', [AttendanceControllerNV::class, 'index']);
     Route::post('/attendances/checkin', [AttendanceControllerNV::class, 'checkIn']);
     Route::post('/attendances/checkout', [AttendanceControllerNV::class, 'checkOut']);

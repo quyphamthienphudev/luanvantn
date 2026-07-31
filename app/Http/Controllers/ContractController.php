@@ -180,7 +180,7 @@ class ContractController
 
             $query->where('contract_code', 'like', '%' . $search . '%')
                   ->orWhereHas('employee', function($query) use ($search){
-                        $query->where('full_name','like','%'.$search.'%');
+                        $query->where('full_name','like','%'. $search .'%');
                     });
         })
         ->get();

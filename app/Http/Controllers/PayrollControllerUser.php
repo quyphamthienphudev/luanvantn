@@ -26,8 +26,8 @@ class PayrollControllerUser
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->select(
-                'employees.employee_code',
-                'employees.full_name',
+                'employee_code',
+                'full_name',
                 'departments.name as department_name',
                 'positions.name as position_name',
                 'payrolls.base_salary',
@@ -39,7 +39,7 @@ class PayrollControllerUser
                 'year',
                 'total_salary',
             )
-            ->where('employees.full_name', $fullName)
+            ->where('full_name', $fullName)
             ->where('month', $month)
             ->where('year', $year)
             ->first();
