@@ -19,6 +19,12 @@ class AttendanceControllerNV
             return back();
         }
         $today = Carbon::today()->toDateString();
+        $leave_request = DB::table('leave_requests')->where('users_id', Auth::id())->where('start_date', $today)->where('status', 'approved')->exists();
+        if($leave_request)
+        {
+            echo "<script>alert('Nhân viên đã xin nghỉ phép hôm nay, vui lòng liên hệ phòng quản lý chất lượng để biết thông tin chi tiết.')</script>";
+            return view('user.attendances.warning');
+        }
         $attendance = Attendance::where('users_id', Auth::id())->where('work_date', $today)->first();
         return view('user.attendances.index', compact('attendance'));
     }
@@ -37,7 +43,7 @@ class AttendanceControllerNV
             return back()->with('success', 'Bạn đã chấm công vào làm');
         }
         $currentTime = Carbon::now();
-        $status = $currentTime->format('H:i:s') > '08:00:00' ? 'late' : 'present';
+        $status = $currentTime->format('H:i:s') >= '08:01:00' ? 'late' : 'present';
         if (!$attendance) 
         {
             Attendance::create([

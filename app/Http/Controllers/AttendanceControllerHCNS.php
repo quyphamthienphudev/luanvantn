@@ -11,18 +11,36 @@ use Carbon\Carbon;
 class AttendanceControllerHCNS 
 {
 
-    public function index()
+    public function index(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-        $attendances = DB::table('attendances')
+        $date = $request->date;
+        $today = Carbon::today()->toDateString();
+        if($date)
+        {
+            $attendances = DB::table('attendances')
                 ->join('users', 'users.id', '=', 'attendances.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
-                ->orderBy('work_date', 'desc')->where('confirm','yes')
+                ->where('work_date', $date)
+                ->where('confirm','yes')
+                ->orderBy('work_date', 'desc')
                 ->get();
+        }
+        else
+        {
+            $attendances = DB::table('attendances')
+                ->join('users', 'users.id', '=', 'attendances.users_id')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
+                ->where('work_date', $today)
+                ->where('confirm','yes')
+                ->orderBy('work_date', 'desc')
+                ->get();
+        }
         return view('hcns.attendances.index', compact('attendances'));
     }
 
@@ -55,13 +73,13 @@ class AttendanceControllerHCNS
 
         if(!empty($request->check_in))
         {
-            if($request->check_in > '08:00')
+            if($request->check_in < '08:01')
             {
-                $status = 'late';
+                $status = 'present';
             }
             else
             {
-                $status = 'present';
+                $status = 'late';
             }
         }
 

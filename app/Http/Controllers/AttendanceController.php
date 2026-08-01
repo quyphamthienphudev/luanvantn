@@ -71,13 +71,13 @@ class AttendanceController
 
         if(!empty($request->check_in))
         {
-            if($request->check_in > '08:00')
+            if($request->check_in < '08:01')
             {
-                $status = 'late';
+                $status = 'present';
             }
             else
             {
-                $status = 'present';
+                $status = 'late';
             }
         }
 
