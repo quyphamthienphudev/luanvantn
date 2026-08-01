@@ -9,18 +9,32 @@ use App\Models\LeaveRequest;
 
 class LeaveControllerQLCL 
 {
-    public function index() 
+    public function index(Request $request) 
     {
         if (auth()->user()->role->name !== 'qlcl') 
         {
             return back();
         }
-        $allLeaves = DB::table('leave_requests')
+        $date = $request->date;
+        if($date)
+        {
+            $allLeaves = DB::table('leave_requests')
+                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->select('name','employee_code','reason','start_date','end_date','number_days','leave_requests.status','leave_requests.id')
+                ->where('start_date', $date)
+                ->orderBy('end_date','desc')
+                ->get();
+        }
+        else
+        {
+            $allLeaves = DB::table('leave_requests')
                 ->join('users', 'users.id', '=', 'leave_requests.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('name','employee_code','reason','start_date','end_date','number_days','leave_requests.status','leave_requests.id')
                 ->orderBy('start_date','desc')
                 ->get();
+        }
         return view('qlcl.leave.index', compact('allLeaves'));
     }
 
