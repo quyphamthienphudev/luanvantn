@@ -102,7 +102,7 @@
             <label class="form-label fw-bold small">
                 Ngày bắt đầu
             </label>
-            <input type="date" name="start_date" class="form-control shadow-sm" value="{{ $leave->start_date }}">
+            <input type="date" name="start_date" class="form-control shadow-sm" value="{{ old('start_date', $leave->start_date) }}">
             @error('start_date')
             <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror
@@ -111,7 +111,7 @@
             <label class="form-label fw-bold small">
                 Ngày kết thúc
             </label>
-            <input type="date" name="end_date" class="form-control shadow-sm" value="{{ $leave->end_date }}">
+            <input type="date" name="end_date" class="form-control shadow-sm" value="{{ old('end_date', $leave->end_date) }}">
             @error('end_date')
             <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror
@@ -125,7 +125,7 @@
         @error('reason')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
-        <textarea name="reason" class="form-control shadow-sm" rows="4">{{ $leave->reason }}</textarea>
+        <textarea name="reason" class="form-control shadow-sm" rows="4">{{ old('reason', $leave->reason) }}</textarea>
     </div>
     
     <div class="d-flex flex-column flex-sm-row gap-3">

@@ -27,7 +27,7 @@
         </div>
         <div class="mb-4">
             <label>Mô tả</label>
-            <input type="text" name="description" value="{{ $roles->description }}" class="w-full border p-2 rounded"
+            <input type="text" name="description" value="{{ old('description', $roles->description) }}" class="w-full border p-2 rounded"
                 placeholder="Mô tả">
             @error('description')
             <p class="text-red-500 text-sm">{{ $message }}</p>

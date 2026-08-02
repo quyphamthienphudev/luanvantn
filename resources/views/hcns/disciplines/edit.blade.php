@@ -27,7 +27,7 @@
         </div>
         <div class="mb-4">
             <label>Nội dung kỷ luật</label>
-            <input type="text" name="title" value="{{ $disciplines->title }}" class="w-full border p-2 rounded"
+            <input type="text" name="title" value="{{ old('title', $disciplines->title) }}" class="w-full border p-2 rounded"
                 placeholder="Nội dung kỷ luật">
             @error('title')
             <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -35,7 +35,7 @@
         </div>
         <div class="mb-4">
             <label>Số tiền</label>
-            <input type="text" name="amount" value="{{ $disciplines->amount }}" class="w-full border p-2 rounded"
+            <input type="text" name="amount" value="{{ old('amount', $disciplines->amount) }}" class="w-full border p-2 rounded"
                 placeholder="Số tiền">
             @error('amount')
             <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -43,7 +43,7 @@
         </div>
         <div class="mb-4">
             <label>Ngày ra quyết định</label>
-            <input type="date" name="decision_date" value="{{ $disciplines->decision_date }}"
+            <input type="date" name="decision_date" value="{{ old('decision_date', $disciplines->decision_date) }}"
                 class="w-full border p-2 rounded">
             @error('decision_date')
             <p class="text-red-500 text-sm">{{ $message }}</p>

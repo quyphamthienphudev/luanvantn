@@ -22,7 +22,7 @@
         @csrf
         <div class="mb-4">
             <label>Tên công việc</label>
-            <input type="text" name="name" value="{{ $position->name }}" class="w-full border p-2 rounded"
+            <input type="text" name="name" value="{{ old('name', $position->name) }}" class="w-full border p-2 rounded"
                 placeholder="Tên công việc" maxlength="100">
             @error('name')
             <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -30,7 +30,7 @@
         </div>
         <div class="mb-4">
             <label>Lương cơ bản</label>
-            <input type="text" name="base_salary" value="{{ $position->base_salary }}" class="w-full border p-2 rounded"
+            <input type="text" name="base_salary" value="{{ old('base_salary', $position->base_salary) }}" class="w-full border p-2 rounded"
                 placeholder="Lương cơ bản">
             @error('base_salary')
             <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -38,7 +38,7 @@
         </div>
         <div class="mb-4">
             <label>Lương cao nhất</label>
-            <input type="text" name="max_salary" value="{{ $position->max_salary }}" class="w-full border p-2 rounded"
+            <input type="text" name="max_salary" value="{{ old('max_salary', $position->max_salary) }}" class="w-full border p-2 rounded"
                 placeholder="Lương cao nhất">
             @error('max_salary')
             <p class="text-red-500 text-sm">{{ $message }}</p>

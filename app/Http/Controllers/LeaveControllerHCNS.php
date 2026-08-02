@@ -8,19 +8,34 @@ use App\Models\LeaveRequest;
 
 class LeaveControllerHCNS 
 {
-    public function index() 
+    public function index(Request $request) 
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-        $allLeaves = DB::table('leave_requests')
+        $date = $request->date;
+        if($date)
+        {
+            $allLeaves = DB::table('leave_requests')
+                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->select('name','employee_code','reason','start_date','end_date','leave_requests.status','leave_requests.id')
+                ->where('start_date', $date)
+                ->where('leave_requests.status','approved')
+                ->orderBy('start_date','desc')
+                ->get();
+        }
+        else
+        {
+            $allLeaves = DB::table('leave_requests')
                 ->join('users', 'users.id', '=', 'leave_requests.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('name','employee_code','reason','start_date','end_date','leave_requests.status','leave_requests.id')
                 ->where('leave_requests.status','approved')
                 ->orderBy('start_date','desc')
                 ->get();
+        }
         return view('hcns.leave.index', compact('allLeaves'));
     }
 

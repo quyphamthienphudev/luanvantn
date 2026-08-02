@@ -20,14 +20,9 @@
     </h1>
     <form action="/httt/accounts/update/{{ $user->id }}" method="post" class="bg-white p-6 rounded shadow w-1/2">
         @csrf
-        @if(session('error'))
-        <p class="text-red-500 text-sm">
-            {{ session('error') }}
-        </p>
-        @endif
         <div class="mb-4">
             <label>Họ tên</label>
-            <input type="text" name="name" value="{{ $user->name }}" class="w-full border p-2 rounded"
+            <input type="text" name="name" value="{{ old('name', $user->name) }}" class="w-full border p-2 rounded"
                 placeholder="Họ tên">
             @error('name')
             <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -35,7 +30,7 @@
         </div>
         <div class="mb-4">
             <label>Email</label>
-            <input type="text" name="email" value="{{ $user->email }}" class="w-full border p-2 rounded"
+            <input type="text" name="email" value="{{ old('email', $user->email) }}" class="w-full border p-2 rounded"
                 placeholder="Email" maxlength="150">
             @error('email')
             <p class="text-red-500 text-sm">{{ $message }}</p>

@@ -31,6 +31,22 @@
 
 @section('content')
 
+<h2 class="text-2xl font-bold text-gray-800">Chọn ngày để xem danh sách nghỉ phép</h2>
+<br>
+<div class="flex space-x-2">
+    <form action="/hcns/leave" method="get">
+        @csrf 
+        <input type="date" name="date" class="border p-2 rounded">
+        <button class="bg-blue-600 text-white px-4 py-2 rounded" title="Xem">
+            Xem
+        </button>
+    </form>
+</div>
+
+<div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold text-gray-800">Danh sách đơn xin nghỉ phép</h2>
+</div>
+
 @if(session('success'))
 <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
     {{ session('success') }}

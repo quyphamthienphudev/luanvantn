@@ -37,7 +37,7 @@
             </div>
             <div class="mb-4">
                 <label class="block mb-2">Email</label>
-                <input type="text" name="email" value="{{ auth()->user()->email }}"
+                <input type="text" name="email" value="{{ old('email', auth()->user()->email) }}"
                     class="w-full px-4 py-2 border rounded" placeholder="Email" maxlength="150">
                 @error('email')
                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>

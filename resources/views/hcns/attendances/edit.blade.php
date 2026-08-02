@@ -43,13 +43,13 @@
 
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2">Giờ vào</label>
-                    <input type="time" name="check_in" value="{{ $attendance->check_in }}"
+                    <input type="time" name="check_in" value="{{ old('check_in', $attendance->check_in) }}"
                         class="w-full border rounded p-2 outline-none">
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2">Giờ ra</label>
-                    <input type="time" name="check_out" value="{{ $attendance->check_out }}"
+                    <input type="time" name="check_out" value="{{ old('check_out', $attendance->check_out) }}"
                         class="w-full border rounded p-2 outline-none">
                 </div>
             </div>
