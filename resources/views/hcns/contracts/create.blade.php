@@ -70,7 +70,7 @@
         </div>
         <div class="mb-4">
             <label>File hợp đồng</label>
-            <input type="file" name="contract_file" class="w-full border p-2 rounded" accept=".pdf,.doc,.docx" value="{{ old('contract_file') }}">
+            <input type="file" name="contract_file" class="w-full border p-2 rounded" accept=".pdf,.doc,.docx">
             @error('contract_file')
             <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror

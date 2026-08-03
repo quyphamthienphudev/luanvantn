@@ -29,6 +29,7 @@ class EmployeeCertificateController
             'expiry_date.after' => 'Ngày hết hạn không hợp lệ, vui lòng kiểm tra lại.',
             'certificate_file.required' => 'Vui lòng tải file chứng chỉ lên.',
             'certificate_file.mimes' => 'Định dạng file không phù hợp, chỉ cho phép file pdf, jpg, jpeg, png.',
+            'certificate_file.uploaded' => 'Vui lòng tải lên file dưới 2 MB.',
             'certificate_file.max' => 'Vui lòng tải lên file dưới 2 MB.'
         ]);
 

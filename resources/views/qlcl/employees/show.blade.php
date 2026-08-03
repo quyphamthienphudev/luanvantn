@@ -21,11 +21,12 @@
         <p>Phòng ban: {{ $employee->department->name }}</p>
         <p>Email: {{ $employee->email }}</p>
         <p>Công việc: {{ $employee->position->name }}</p>
-        <p>Giới tính:
+        <p>
+            Giới tính:
             @if($employee->gender == 'male')
-            Nam
+                Nam
             @else
-            Nữ
+                Nữ
             @endif
         </p>
         <p>Ngày sinh: {{ $employee->date_of_birth ? date('d/m/Y', strtotime($employee->date_of_birth)) : '' }}</p>
@@ -35,9 +36,9 @@
         <p>
             Trạng thái:
             @if($employee->status == 'working')
-            Đang làm việc
+                Đang làm việc
             @else
-            Đã nghỉ việc
+                Đã nghỉ việc
             @endif
         </p>
     </div>
