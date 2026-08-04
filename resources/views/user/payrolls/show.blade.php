@@ -23,7 +23,9 @@
         <h2 class="text-xl font-bold mb-4">Chi tiết bảng lương</h2>
         <p><b>Thông tin chi tiết bảng lương dưới đây được tính theo công thức sau: </b></p>
         <br>
-        <p>Lương thực lãnh = (Lương cơ bản + Phụ cấp + Thưởng - Khấu trừ) / 26 * Số ngày làm việc thực tế</p>
+        <p>Lương tháng = (Lương cơ bản + Phụ cấp) / 26 * Số ngày làm việc thực tế</p>
+        <br>
+        <p>Lương thực lãnh = Lương tháng + Thưởng - Khấu trừ</p>
         <br>
         <table class="w-full">
             <tr class="border-b">
@@ -69,6 +71,10 @@
             <tr class="border-b">
                 <th class="text-left py-2">Năm</th>
                 <td class="py-2">{{ $payroll->year }}</td>
+            </tr>
+            <tr class="border-b">
+                <th class="text-left py-2">Lương tháng</th>
+                <td class="py-2">{{ number_format($payroll->month_salary ?? 0) }} VNĐ</td>
             </tr>
             <tr class="border-b">
                 <th class="text-left py-2">Lương thực lãnh</th>

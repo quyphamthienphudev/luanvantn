@@ -31,6 +31,7 @@ class PayrollControllerAdmin
                 'allowance',
                 'bonus',
                 'deduction',
+                'month_salary',
                 'total_salary',
                 'payrolls.id'
             )
@@ -127,7 +128,8 @@ class PayrollControllerAdmin
         {
             return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
         }
-        $total_salary = ($base_salary + $request->allowance + $bonus - $deduction) / 26 * $countLeave;
+        $month_salary = ($base_salary + $request->allowance) / 26 * $countLeave;
+        $total_salary = $month_salary + $bonus - $deduction;
         DB::table('payrolls')->insert([
             'employee_id' => $request->employee_id,
             'month' => $request->month,
@@ -137,6 +139,7 @@ class PayrollControllerAdmin
             'bonus' => $bonus,
             'deduction' => $deduction,
             'work_numbers' => $countLeave,
+            'month_salary' => $month_salary,
             'total_salary' => $total_salary
         ]);
         return redirect('/hcns/payrolls')->with('success', 'Tạo bảng lương thành công');
@@ -163,6 +166,7 @@ class PayrollControllerAdmin
                 'bonus',
                 'deduction',
                 'work_numbers',
+                'month_salary',
                 'total_salary',
                 'month',
                 'year'
@@ -257,7 +261,8 @@ class PayrollControllerAdmin
         {
             return back()->with('error', 'Phụ cấp không được lớn hơn lương cơ bản');
         }
-        $total_salary = ($base_salary + $request->allowance + $bonus - $deduction) / 26 * $countLeave;
+        $month_salary = ($base_salary + $request->allowance) / 26 * $countLeave;
+        $total_salary = $month_salary + $bonus - $deduction;
         DB::table('payrolls')->where('id', $id)->update([
             'employee_id' => $request->employee_id,
             'month' => $request->month,
@@ -267,6 +272,7 @@ class PayrollControllerAdmin
             'bonus' => $bonus,
             'deduction' => $deduction,
             'work_numbers' => $countLeave,
+            'month_salary' => $month_salary,
             'total_salary' => $total_salary
         ]);
         return redirect('/hcns/payrolls')->with('success', 'Cập nhật bảng lương thành công');

@@ -46,6 +46,8 @@ class ManageEmployeeControllerAdmin
         $request->validate([
         'employee_code' => 'required|unique:employees,employee_code|regex:/^[A-Za-z0-9_-]+$/',
         'full_name' => 'required',
+        // Họ tên phải có ít nhất 2 từ
+        // 'full_name' => 'required|regex:/^\S+\s+\S+.*$/',
         'email' => 'required|email',
         'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
         'identify' => 'required|regex:/^[A-Za-z0-9_-]+$/|min:12|max:12',
@@ -60,6 +62,7 @@ class ManageEmployeeControllerAdmin
             'employee_code.unique' => 'Mã nhân viên đã tồn tại, vui lòng kiểm tra lại.',
             'employee_code.regex' => 'Mã nhân viên không được chứa chữ có dấu, khoảng trắng hoặc ký tự đặc biệt.',
             'full_name.required' => 'Vui lòng nhập họ tên nhân viên.',
+            // 'full_name.regex' => 'Họ tên nhân viên không hợp lệ, vui lòng kiểm tra lại.',
             'email.required' => 'Vui lòng nhập email.',
             'email.email' => 'Email không đúng định dạng.',
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh.',

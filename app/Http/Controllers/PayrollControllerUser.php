@@ -37,6 +37,7 @@ class PayrollControllerUser
                 'work_numbers',
                 'month',
                 'year',
+                'month_salary',
                 'total_salary',
             )
             ->where('full_name', $fullName)
