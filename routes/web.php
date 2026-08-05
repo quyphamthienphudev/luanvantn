@@ -4,29 +4,29 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceControllerHCNS;
 use App\Http\Controllers\AttendanceControllerNV;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DashboardControllerAdmin;
 use App\Http\Controllers\DepartmentControllerAdmin;
+use App\Http\Controllers\EmployeeCertificateController;
+use App\Http\Controllers\HomePageAdminController;
+use App\Http\Controllers\HomePageHCNSController;
+use App\Http\Controllers\HomePageITController;
+use App\Http\Controllers\HomePageQLCLController;
+use App\Http\Controllers\HomePageUserController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LeaveControllerHCNS;
 use App\Http\Controllers\LeaveControllerQLCL;
 use App\Http\Controllers\ManageCandidateControllerAdmin;
 use App\Http\Controllers\ManageEmployeeControllerAdmin;
 use App\Http\Controllers\ManageEmployeeControllerQLCL;
+use App\Http\Controllers\ManageEmployeeDisciplinesController;
+use App\Http\Controllers\ManageEmployeeRewardController;
 use App\Http\Controllers\ManageUserControllerAdmin;
 use App\Http\Controllers\ManageUserControllerUser;
 use App\Http\Controllers\PayrollControllerAdmin;
 use App\Http\Controllers\PayrollControllerUser;
 use App\Http\Controllers\PositionControllerAdmin;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\EmployeeCertificateController;
-use App\Http\Controllers\ContractController;
-use App\Http\Controllers\ManageEmployeeRewardController;
-use App\Http\Controllers\ManageEmployeeDisciplinesController;
-use App\Http\Controllers\HomePageAdminController;
-use App\Http\Controllers\HomePageHCNSController;
-use App\Http\Controllers\HomePageQLCLController;
-use App\Http\Controllers\HomePageITController;
-use App\Http\Controllers\HomePageUserController;
 
 //-----------------------------------------------------------------------------------
 Route::get('/', function () {
@@ -252,7 +252,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Chức năng chấm công cho nhân viên
-Route::middleware('auth')->group(function () {
+Route::middleware('auth','company.network')->group(function () {
     Route::get('/attendances', [AttendanceControllerNV::class, 'index']);
     Route::post('/attendances/checkin', [AttendanceControllerNV::class, 'checkIn']);
     Route::post('/attendances/checkout', [AttendanceControllerNV::class, 'checkOut']);
