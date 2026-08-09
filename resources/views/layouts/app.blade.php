@@ -77,7 +77,7 @@
 
                 @if(auth()->user()->role->name === 'admin')
                 <a href="/admin/dashboard" class="block px-4 py-2 rounded hover:bg-blue-700" title="Báo cáo thống kê">
-                    Báo cáo thống kê
+                    Thống kê nâng cao
                 </a>
                 @endif
 

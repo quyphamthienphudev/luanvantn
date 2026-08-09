@@ -5,7 +5,7 @@ use App\Http\Controllers\AttendanceControllerHCNS;
 use App\Http\Controllers\AttendanceControllerNV;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContractController;
-use App\Http\Controllers\DashboardControllerAdmin;
+use App\Http\Controllers\DashboardAdvancedControllerAdmin;
 use App\Http\Controllers\DepartmentControllerAdmin;
 use App\Http\Controllers\EmployeeCertificateController;
 use App\Http\Controllers\HomePageAdminController;
@@ -85,7 +85,7 @@ Route::middleware('auth')->group(function () {
 
 // Chức năng báo cáo thống kê
 Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard',[DashboardControllerAdmin::class,'dashboard']);
+    Route::get('/admin/dashboard',[DashboardAdvancedControllerAdmin::class,'dashboardAdvanced']);
 });
 
 // Chức năng quản lý nhân viên của phòng hành chính nhân sự
