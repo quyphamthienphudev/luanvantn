@@ -33,7 +33,6 @@ class HomePageAdminController
             )
             ->where('status','working')
             ->groupBy('name')
-            ->orderBy('name','asc')
             ->get();
 
         // Tách dữ liệu cho biểu đồ
