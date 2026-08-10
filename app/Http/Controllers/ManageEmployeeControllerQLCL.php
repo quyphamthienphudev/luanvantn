@@ -19,7 +19,7 @@ class ManageEmployeeControllerQLCL
             return back();
         }
         $employees = Employee::with('department')
-            ->where('department_id','14')
+            ->where('department_id', '14')
             ->get();
 
         return view('qlcl.employees.index', compact('employees'));
@@ -32,7 +32,7 @@ class ManageEmployeeControllerQLCL
         {
             return back();
         }
-        $employee = Employee::with('department','position')->findOrFail($id);
+        $employee = Employee::with('department', 'position')->findOrFail($id);
         return view('qlcl.employees.show', compact('employee'));
     }
 
@@ -47,7 +47,7 @@ class ManageEmployeeControllerQLCL
         $search = $request->search;
 
         $employees = Employee::with('department')
-            ->where('department_id','=','14')
+            ->where('department_id', '=', '14')
             ->when($search, function ($query) use ($search) {
                 $query->where(function($q) use ($search) {
                     $q->where('employee_code', 'like', '%' . $search . '%')
@@ -56,6 +56,6 @@ class ManageEmployeeControllerQLCL
             })
             ->get();
 
-        return view('qlcl.employees.index', compact('employees', 'search'));
+        return view('qlcl.employees.index', compact('search', 'employees'));
     }
 }

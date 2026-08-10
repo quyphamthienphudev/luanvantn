@@ -86,7 +86,7 @@ class AttendanceController
             'check_out' => $request->check_out,
             'status'    => $status
         ]);
-        return redirect('/qlcl/attendances')->with('success','Cập nhật chấm công thành công');
+        return redirect('/qlcl/attendances')->with('success', 'Cập nhật chấm công thành công');
     }
 
     public function delete($id)
@@ -97,7 +97,7 @@ class AttendanceController
         }
 
         Attendance::findOrFail($id)->delete();
-        return back()->with('success','Xóa dữ liệu chấm công thành công');
+        return back()->with('success', 'Xóa dữ liệu chấm công thành công');
     }
 
     public function confirm($id)
@@ -108,6 +108,6 @@ class AttendanceController
         }
         
         DB::table('attendances')->where('id',$id)->update(['confirm' => 'yes']);
-        return redirect('/qlcl/attendances')->with('success','Xác nhận chấm công thành công');
+        return redirect('/qlcl/attendances')->with('success', 'Xác nhận chấm công thành công');
     }
 }

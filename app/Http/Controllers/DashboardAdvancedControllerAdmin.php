@@ -34,6 +34,6 @@ class DashboardAdvancedControllerAdmin
             $totalMonthSalary = DB::table('payrolls')->where('month', $month)->where('year', $year)->sum('total_salary');
         }
 
-        return view('admin.dashboard', compact('totalYearSalary','totalMonthSalary','month','year'));
+        return view('admin.dashboard', compact('totalYearSalary', 'totalMonthSalary', 'month', 'year'));
     }
 }

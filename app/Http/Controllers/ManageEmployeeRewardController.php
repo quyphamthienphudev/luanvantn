@@ -17,7 +17,7 @@ class ManageEmployeeRewardController
         {
             return back();
         }
-        $rewards = RewardDiscipline::with('employee')->where('type','reward')->orderBy('decision_date','desc')->get();
+        $rewards = RewardDiscipline::with('employee')->where('type', 'reward')->orderBy('decision_date', 'desc')->get();
         return view('hcns.rewards.index', compact('rewards'));
     }
 
@@ -30,7 +30,7 @@ class ManageEmployeeRewardController
         }
         $rewards = RewardDiscipline::all();
         $employees = Employee::all();
-        return view('hcns.rewards.create', compact('rewards','employees'));
+        return view('hcns.rewards.create', compact('rewards', 'employees'));
     }
 
     // STORE
@@ -55,7 +55,7 @@ class ManageEmployeeRewardController
         $data = $request->all();
         $data['type'] = 'reward';
         RewardDiscipline::create($data);
-        return redirect('/hcns/rewards')->with('success','Thêm khen thưởng thành công');
+        return redirect('/hcns/rewards')->with('success', 'Thêm khen thưởng thành công');
     }
 
     // EDIT
@@ -70,7 +70,7 @@ class ManageEmployeeRewardController
     }
 
     // UPDATE
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
@@ -88,7 +88,7 @@ class ManageEmployeeRewardController
             'decision_date.required' => 'Vui lòng chọn ngày ra quyết định.'
         ]);
         RewardDiscipline::findOrFail($id)->update($request->all());
-        return redirect('/hcns/rewards')->with('success','Cập nhật khen thưởng thành công');
+        return redirect('/hcns/rewards')->with('success', 'Cập nhật khen thưởng thành công');
     }
 
     // DELETE
@@ -99,7 +99,7 @@ class ManageEmployeeRewardController
             return back();
         }
         RewardDiscipline::findOrFail($id)->delete();
-        return back()->with('success','Xóa khen thưởng thành công');
+        return back()->with('success', 'Xóa khen thưởng thành công');
     }
 
 }

@@ -17,8 +17,11 @@ class PayrollControllerAdmin
 
         $month = $request->get('month', date('m'));
         $year = $request->get('year', date('Y'));
-        
-        $payrolls = DB::table('payrolls')
+        $search = $request->search;
+
+        if($search)
+        {
+            $payrolls = DB::table('payrolls')
             ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
@@ -37,12 +40,44 @@ class PayrollControllerAdmin
             )
             ->where('month', $month)
             ->where('year', $year)
-            ->where('employee_code','!=','EMP001')
-            ->where('employee_code','!=','EMP016')
-            ->where('employee_code','!=','EMP021')
+            ->when($search, function ($query) use ($search) {
+
+            // Tìm theo mã nhân viên, họ tên, tên phòng ban hoặc tên công việc
+            $query->where('employee_code', 'like', '%' . $search . '%')
+                  ->orWhere('full_name', 'like', '%' . $search . '%')
+                  ->orWhere('departments.name', 'like', '%' . $search . '%')
+                  ->orWhere('positions.name', 'like', '%' . $search . '%');
+            })
             ->get();
+        }
+        else
+        {
+            $payrolls = DB::table('payrolls')
+            ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
+            ->join('positions', 'employees.position_id', '=', 'positions.id')
+            ->join('departments', 'employees.department_id', '=', 'departments.id')
+            ->select(
+                'employee_code',
+                'full_name',
+                'positions.name as position_name',
+                'departments.name as department_name',
+                'payrolls.base_salary',
+                'allowance',
+                'bonus',
+                'deduction',
+                'month_salary',
+                'total_salary',
+                'payrolls.id'
+            )
+            ->where('month', $month)
+            ->where('year', $year)
+            ->where('employee_code', '!=', 'EMP001')
+            ->where('employee_code', '!=', 'EMP016')
+            ->where('employee_code', '!=', 'EMP021')
+            ->get();
+        }
         
-        return view('hcns.payrolls.index', compact('payrolls', 'month', 'year'));
+        return view('hcns.payrolls.index', compact('month', 'year', 'search', 'payrolls'));
     }
 
     public function create(Request $request)
@@ -55,9 +90,9 @@ class PayrollControllerAdmin
         $employees = DB::table('employees')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->select('employees.*', 'positions.name as position_name', 'base_salary')
-            ->where('employee_code','!=','EMP001')
-            ->where('employee_code','!=','EMP016')
-            ->where('employee_code','!=','EMP021')
+            ->where('employee_code', '!=', 'EMP001')
+            ->where('employee_code', '!=', 'EMP016')
+            ->where('employee_code', '!=', 'EMP021')
             ->get();
         $month = $request->get('month', date('m'));
         $year = $request->get('year', date('Y'));
@@ -188,12 +223,12 @@ class PayrollControllerAdmin
         $employees = DB::table('employees')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->select('employees.*', 'positions.name as position_name', 'base_salary')
-            ->where('employee_code','!=','EMP001')
-            ->where('employee_code','!=','EMP016')
-            ->where('employee_code','!=','EMP021')
+            ->where('employee_code', '!=', 'EMP001')
+            ->where('employee_code', '!=', 'EMP016')
+            ->where('employee_code', '!=', 'EMP021')
             ->get();
         $request = DB::table('payrolls')->select('allowance')->where('id', $id)->first();
-        return view('hcns.payrolls.edit', compact('payroll', 'employees','request'));
+        return view('hcns.payrolls.edit', compact('payroll', 'employees', 'request'));
     }
 
     public function update(Request $request, $id)
@@ -314,11 +349,11 @@ class PayrollControllerAdmin
                 'year',
                 'total_salary'
             )
-            ->where('employee_code','!=','EMP001')
-            ->where('employee_code','!=','EMP016')
-            ->where('employee_code','!=','EMP021')
-            ->orderBy('month','asc')
-            ->orderBy('year','asc')
+            ->where('employee_code', '!=', 'EMP001')
+            ->where('employee_code', '!=', 'EMP016')
+            ->where('employee_code', '!=', 'EMP021')
+            ->orderBy('month', 'asc')
+            ->orderBy('year', 'asc')
             ->get();
 
         if ($payrolls->isEmpty()) 
@@ -333,7 +368,7 @@ class PayrollControllerAdmin
         $output = fopen('php://output', 'w');
         fwrite($output, "\xEF\xBB\xBF");
         
-        fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Chức vụ', 'Tháng', 'Năm', 'Lương cơ bản', 'Phụ cấp', 'Thưởng', 'Khấu trừ', 'Số ngày làm việc', 'Lương thực lãnh']);
+        fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Công việc', 'Tháng', 'Năm', 'Lương cơ bản', 'Phụ cấp', 'Thưởng', 'Khấu trừ', 'Số ngày làm việc', 'Lương thực lãnh']);
         
         $stt = 1;
         foreach ($payrolls as $payroll) 

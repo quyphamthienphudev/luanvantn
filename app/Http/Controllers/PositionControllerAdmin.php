@@ -18,7 +18,7 @@ class PositionControllerAdmin
             return back();
         }
         $positions = DB::table('positions')->select('name', 'base_salary', 'max_salary', 'id')->get();
-        return view('hcns.positions.index',compact('positions'));
+        return view('hcns.positions.index', compact('positions'));
     }
 
     // SHOW CREATE
@@ -55,12 +55,12 @@ class PositionControllerAdmin
         ]);
 
         DB::table('positions')->insert([
-            'name'=>$request->name,
-            'base_salary'=>$request->base_salary,
-            'max_salary'=>$request->max_salary
+            'name' => $request->name,
+            'base_salary' => $request->base_salary,
+            'max_salary' => $request->max_salary
         ]);
 
-        return redirect('/hcns/positions')->with('success','Thêm công việc thành công');
+        return redirect('/hcns/positions')->with('success', 'Thêm công việc thành công');
     }
 
     // SHOW EDIT
@@ -70,12 +70,12 @@ class PositionControllerAdmin
         {
             return back();
         }
-        $position = DB::table('positions')->where('id',$id)->first();
-        return view('hcns.positions.edit',compact('position'));
+        $position = DB::table('positions')->where('id', $id)->first();
+        return view('hcns.positions.edit', compact('position'));
     }
 
     // UPDATE
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
@@ -100,12 +100,12 @@ class PositionControllerAdmin
         DB::table('positions')
         ->where('id',$id)
         ->update([
-            'name'=>$request->name,
-            'base_salary'=>$request->base_salary,
-            'max_salary'=>$request->max_salary
+            'name' => $request->name,
+            'base_salary' => $request->base_salary,
+            'max_salary' => $request->max_salary
         ]);
 
-        return redirect('/hcns/positions')->with('success','Cập nhật công việc thành công');
+        return redirect('/hcns/positions')->with('success', 'Cập nhật công việc thành công');
     }
 
     // DELETE
@@ -122,12 +122,12 @@ class PositionControllerAdmin
 
         if($hasEmployee)
         {
-            return back()->with('error','Công việc này đang có nhân viên, không thể xóa');
+            return back()->with('error', 'Công việc này đang có nhân viên, không thể xóa');
         }
 
-        DB::table('positions')->where('id',$id)->delete();
+        DB::table('positions')->where('id', $id)->delete();
 
-        return redirect('/hcns/positions')->with('success','Xóa công việc thành công');
+        return redirect('/hcns/positions')->with('success', 'Xóa công việc thành công');
     }
 
     // SEARCH
@@ -149,7 +149,7 @@ class PositionControllerAdmin
             })
         ->get();
 
-        return view('hcns.positions.index', compact('positions', 'search'));
+        return view('hcns.positions.index', compact('search', 'positions'));
     }
 
     // EXPORT FILE

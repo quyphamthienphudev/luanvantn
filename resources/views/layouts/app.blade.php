@@ -148,6 +148,12 @@
                 @endif
 
                 @if(auth()->user()->role->name === 'qlcl')
+                <a href="/qlcl/leave/resume" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý nhân viên">
+                    Xem số ngày nghỉ phép còn lại
+                </a>
+                @endif
+
+                @if(auth()->user()->role->name === 'qlcl')
                 <a href="/qlcl/leave" class="block px-4 py-2 rounded hover:bg-blue-700" title="Quản lý nghỉ phép">
                     Quản lý nghỉ phép
                 </a>

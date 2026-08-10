@@ -16,14 +16,14 @@ class HomePageITController
             return back();
         }
         // Accounts đang hoạt động
-        $a_active = DB::table('users')->where('status','active')->count('email');
+        $a_active = DB::table('users')->where('status', 'active')->count('email');
 
         // Accounts đã tạm dừng
-        $a_suspended = DB::table('users')->where('status','suspended')->count('email');
+        $a_suspended = DB::table('users')->where('status', 'suspended')->count('email');
 
         // Accounts
         $accounts = DB::table('users')->count('email');
 
-        return view('httt.home', compact('a_active','a_suspended','accounts'));
+        return view('httt.home', compact('a_active', 'a_suspended', 'accounts'));
     }
 }

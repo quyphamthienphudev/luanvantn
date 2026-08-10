@@ -16,7 +16,7 @@ class HomePageUserController
             return back();
         }
         // Số ngày nghỉ phép đã sử dụng
-        $l_used = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
+        $l_used = LeaveRequest::where('users_id', Auth::id())->where('status', 'approved')->sum('number_days');
         // Số ngày nghỉ phép còn lại
         $l_resume = 12 - $l_used;
         // Số ngày nghỉ phép cả năm

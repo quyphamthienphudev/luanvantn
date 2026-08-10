@@ -22,9 +22,9 @@ class LeaveController
 	    // $leaves = LeaveRequest::where('users_id', Auth::id())
         //         ->orderBy('id', 'desc')
         //         ->paginate(10);
-        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
+        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status', 'approved')->sum('number_days');
         $resumeLeave = 12 - $countLeave;
-        return view('user.leave.index', compact('leaves','resumeLeave'));
+        return view('user.leave.index', compact('resumeLeave', 'leaves'));
     }
 
     public function store(Request $request)
@@ -47,7 +47,7 @@ class LeaveController
         ]);
 
         // Đếm số lượng ngày nghỉ phép
-        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
+        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status', 'approved')->sum('number_days');
         if ($countLeave >= 12) 
         {
             return back()->with('error', 'Bạn đã sử dụng hết 12 ngày nghỉ phép, không thể gửi thêm đơn nghỉ phép mới');
@@ -116,7 +116,7 @@ class LeaveController
         ]);
 
         // Đếm số lượng ngày nghỉ phép
-        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
+        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status', 'approved')->sum('number_days');
         
         $resumeLeave = 12 - $countLeave;
         // Tính số ngày nghỉ (bao gồm cả ngày bắt đầu và ngày kết thúc)

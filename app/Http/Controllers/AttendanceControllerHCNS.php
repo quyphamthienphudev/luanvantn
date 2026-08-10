@@ -24,9 +24,9 @@ class AttendanceControllerHCNS
             $attendances = DB::table('attendances')
                 ->join('users', 'users.id', '=', 'attendances.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
+                ->select('users.name', 'employee_code', 'work_date', 'check_in', 'check_out', 'attendances.status', 'confirm', 'attendances.id')
                 ->where('work_date', $date)
-                ->where('confirm','yes')
+                ->where('confirm', 'yes')
                 ->orderBy('work_date', 'desc')
                 ->get();
         }
@@ -35,9 +35,9 @@ class AttendanceControllerHCNS
             $attendances = DB::table('attendances')
                 ->join('users', 'users.id', '=', 'attendances.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
+                ->select('users.name', 'employee_code', 'work_date', 'check_in', 'check_out', 'attendances.status', 'confirm', 'attendances.id')
                 ->where('work_date', $today)
-                ->where('confirm','yes')
+                ->where('confirm', 'yes')
                 ->orderBy('work_date', 'desc')
                 ->get();
         }
@@ -53,7 +53,7 @@ class AttendanceControllerHCNS
         $attendance = DB::table('attendances')
                 ->join('users', 'users.id', '=', 'attendances.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('employee_code','users.name','work_date','check_in','check_out','attendances.id')
+                ->select('employee_code', 'users.name', 'work_date', 'check_in', 'check_out', 'attendances.id')
                 ->where('attendances.id', $id)
                 ->first();
         return view('hcns.attendances.edit', compact('attendance'));
@@ -88,7 +88,7 @@ class AttendanceControllerHCNS
             'check_out' => $request->check_out,
             'status'    => $status
         ]);
-        return redirect('/hcns/attendances')->with('success','Cập nhật chấm công thành công');
+        return redirect('/hcns/attendances')->with('success', 'Cập nhật chấm công thành công');
     }
 
     public function delete($id)
@@ -98,6 +98,6 @@ class AttendanceControllerHCNS
             return back();
         }
         Attendance::findOrFail($id)->delete();
-        return back()->with('success','Xóa dữ liệu chấm công thành công');
+        return back()->with('success', 'Xóa dữ liệu chấm công thành công');
     }
 }

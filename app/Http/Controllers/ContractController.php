@@ -56,6 +56,7 @@ class ContractController
             'salary.min' => 'Mức lương không hợp lệ, vui lòng kiểm tra lại.',
             'contract_file.required' => 'Vui lòng chọn file để tải lên.',
             'contract_file.mimes' => 'Định dạng file không phù hợp, chỉ cho phép file pdf, doc, docx.',
+            'contract_file.uploaded' => 'Vui lòng tải lên file dưới 2 MB.',
             'contract_file.max' => 'Vui lòng tải lên file dưới 2 MB.'
         ]);
 
@@ -78,7 +79,7 @@ class ContractController
             'status'=>'active'
         ]);
 
-        return redirect('/hcns/contracts')->with('success','Thêm hợp đồng thành công');
+        return redirect('/hcns/contracts')->with('success', 'Thêm hợp đồng thành công');
     }
 
     // EDIT
@@ -90,7 +91,7 @@ class ContractController
         }
         $contract = Contract::findOrFail($id);
         $employees = Employee::all();
-        return view('hcns.contracts.edit', compact('contract','employees'));
+        return view('hcns.contracts.edit', compact('contract', 'employees'));
     }
 
     // EXTEND
@@ -124,7 +125,7 @@ class ContractController
 
         $old->update(['status'=>'expired']);
 
-        return redirect('/hcns/contracts')->with('success','Gia hạn hợp đồng thành công');
+        return redirect('/hcns/contracts')->with('success', 'Gia hạn hợp đồng thành công');
     }
 
     // TERMINATE
@@ -135,7 +136,7 @@ class ContractController
             return back();
         }
         Contract::findOrFail($id)->update(['status'=>'terminated']);
-        return redirect('/hcns/contracts')->with('success','Thanh lý hợp đồng thành công');
+        return redirect('/hcns/contracts')->with('success', 'Thanh lý hợp đồng thành công');
     }
 
     // VIEW FILE
@@ -185,6 +186,6 @@ class ContractController
         })
         ->get();
 
-        return view('hcns.contracts.index', compact('contracts', 'search'));
+        return view('hcns.contracts.index', compact('search', 'contracts'));
     }
 }

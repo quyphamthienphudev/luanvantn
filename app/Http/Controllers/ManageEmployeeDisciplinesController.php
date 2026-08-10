@@ -17,7 +17,7 @@ class ManageEmployeeDisciplinesController
         {
             return back();
         }
-        $disciplines = RewardDiscipline::with('employee')->where('type','discipline')->orderBy('decision_date','desc')->get();
+        $disciplines = RewardDiscipline::with('employee')->where('type', 'discipline')->orderBy('decision_date', 'desc')->get();
         return view('hcns.disciplines.index', compact('disciplines'));
     }
 
@@ -30,7 +30,7 @@ class ManageEmployeeDisciplinesController
         }
         $disciplines = RewardDiscipline::all();
         $employees = Employee::all();
-        return view('hcns.disciplines.create', compact('disciplines','employees'));
+        return view('hcns.disciplines.create', compact('disciplines', 'employees'));
     }
 
     // STORE
@@ -55,7 +55,7 @@ class ManageEmployeeDisciplinesController
         $data = $request->all();
         $data['type'] = 'discipline';
         RewardDiscipline::create($data);
-        return redirect('/hcns/disciplines')->with('success','Thêm kỷ luật thành công');
+        return redirect('/hcns/disciplines')->with('success', 'Thêm kỷ luật thành công');
     }
 
     // EDIT
@@ -70,7 +70,7 @@ class ManageEmployeeDisciplinesController
     }
 
     // UPDATE
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
@@ -89,7 +89,7 @@ class ManageEmployeeDisciplinesController
             'decision_date.required' => 'Vui lòng chọn ngày ra quyết định.'
         ]);
         RewardDiscipline::findOrFail($id)->update($request->all());
-        return redirect('/hcns/disciplines')->with('success','Cập nhật kỷ luật thành công');
+        return redirect('/hcns/disciplines')->with('success', 'Cập nhật kỷ luật thành công');
     }
 
     // DELETE
@@ -100,7 +100,7 @@ class ManageEmployeeDisciplinesController
             return back();
         }
         RewardDiscipline::findOrFail($id)->delete();
-        return back()->with('success','Xóa kỷ luật thành công');
+        return back()->with('success', 'Xóa kỷ luật thành công');
     }
 
 }

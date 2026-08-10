@@ -42,7 +42,7 @@
                 <td class="py-2">{{ $payroll->department_name }}</td>
             </tr>
             <tr class="border-b">
-                <th class="text-left py-2">Chức vụ</th>
+                <th class="text-left py-2">Công việc</th>
                 <td class="py-2">{{ $payroll->position_name }}</td>
             </tr>
             <tr class="border-b">

@@ -36,6 +36,8 @@
                     @for($i = 2001; $i <= 2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>Năm {{ $i }}</option>
                     @endfor
                 </select>
+                <input type="text" name="search" value="{{ $search }}" class="border p-2"
+                    placeholder="Tìm theo mã nhân viên, họ tên, phòng ban hoặc chức vụ" style="width:450px;">
                 <button class="bg-blue-500 text-white px-4 py-2 rounded" title="Xem bảng lương">Xem bảng lương</button>
             </form>
             <div class="flex gap-2">
@@ -54,7 +56,7 @@
                         <th class="border px-4 py-2">Mã nhân viên</th>
                         <th class="border px-4 py-2">Họ tên</th>
                         <th class="border px-4 py-2">Phòng ban</th>
-                        <th class="border px-4 py-2">Chức vụ</th>
+                        <th class="border px-4 py-2">Công việc</th>
                         <th class="border px-4 py-2">Lương cơ bản</th>
                         <th class="border px-4 py-2">Phụ cấp</th>
                         <th class="border px-4 py-2">Thưởng</th>

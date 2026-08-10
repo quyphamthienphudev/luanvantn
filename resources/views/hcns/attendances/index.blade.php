@@ -30,7 +30,11 @@
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-800">Danh sách chấm công nhân viên</h2>
         </div>
-
+        <p>
+            Lưu ý: Danh sách chấm công bên dưới chỉ hiển thị những bản ghi chấm công
+            đã được xác nhận
+        </p>
+        <br>
         @if(session('success'))
         <div class="bg-green-100 text-green-700 p-3 rounded mb-4">{{ session('success') }}</div>
         @endif

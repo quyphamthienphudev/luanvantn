@@ -174,6 +174,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/qlcl/leave/edit/{id}', [LeaveControllerQLCL::class, 'edit']);
     Route::post('/qlcl/leave/update/{id}', [LeaveControllerQLCL::class, 'update']);
     Route::post('/qlcl/leave/delete/{id}', [LeaveControllerQLCL::class, 'delete']);
+    Route::get('/qlcl/leave/resume', [LeaveControllerQLCL::class, 'countResumeLeave']);
 });
 
 // Chức năng quản lý đơn xin nghỉ phép phòng hành chính nhân sự

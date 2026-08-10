@@ -19,16 +19,16 @@ class HomePageQLCLController
         $today = Carbon::now()->today();
         $month = $request->get('month', date('m'));
         // Số lượng đơn nghỉ phép đã duyệt
-        $countLeaveRequestApproved = DB::table('leave_requests')->where('status','approved')->count('users_id');
+        $countLeaveRequestApproved = DB::table('leave_requests')->where('status', 'approved')->count('users_id');
         // Số lượng đơn nghỉ phép đang chờ
-        $countLeaveRequestPending = DB::table('leave_requests')->where('status','pending')->count('users_id');
+        $countLeaveRequestPending = DB::table('leave_requests')->where('status', 'pending')->count('users_id');
         // Số lượng đơn nghỉ phép từ chối
-        $countLeaveRequestRejected = DB::table('leave_requests')->where('status','rejected')->count('users_id');
+        $countLeaveRequestRejected = DB::table('leave_requests')->where('status', 'rejected')->count('users_id');
         // Số lượng nhân viên chấm công hôm nay
         $countAttendanceToday = DB::table('attendances')->where('work_date', $today)->count('users_id');
         // Số lượng nhân viên chấm công tháng này
-        $countAttendanceForMonth = DB::table('attendances')->distinct('users_id')->whereMonth('work_date',$month)->count('users_id');
+        $countAttendanceForMonth = DB::table('attendances')->distinct('users_id')->whereMonth('work_date', $month)->count('users_id');
         
-        return view('qlcl.home',compact('countLeaveRequestApproved','countLeaveRequestPending','countLeaveRequestRejected','countAttendanceToday','countAttendanceForMonth'));
+        return view('qlcl.home',compact('countLeaveRequestApproved', 'countLeaveRequestPending', 'countLeaveRequestRejected', 'countAttendanceToday', 'countAttendanceForMonth'));
     }
 }

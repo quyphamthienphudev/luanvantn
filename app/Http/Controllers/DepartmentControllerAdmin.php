@@ -16,7 +16,7 @@ class DepartmentControllerAdmin
         {
             return back();
         }
-        $departments = DB::table('departments')->select('name','description')->get();
+        $departments = DB::table('departments')->select('name', 'description')->get();
         return view('hcns.departments.index', compact('departments'));
     }
 
@@ -49,7 +49,7 @@ class DepartmentControllerAdmin
             'name' => $request->name,
             'description' => $request->description
         ]);
-        return redirect('/hcns/departments')->with('success','Thêm phòng ban thành công');
+        return redirect('/hcns/departments')->with('success', 'Thêm phòng ban thành công');
     }
 
     // SHOW EDIT
@@ -64,7 +64,7 @@ class DepartmentControllerAdmin
     }
 
     // UPDATE
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
@@ -79,7 +79,7 @@ class DepartmentControllerAdmin
             'description.required' => 'Thông tin phòng ban không được để trống.'
         ]);
         Department::findOrFail($id)->update($request->all());
-        return redirect('/hcns/departments')->with('success','Cập nhật phòng ban thành công');
+        return redirect('/hcns/departments')->with('success', 'Cập nhật phòng ban thành công');
     }
 
     // DELETE
@@ -94,10 +94,10 @@ class DepartmentControllerAdmin
             ->exists();
 
         if($hasEmployee){
-            return back()->with('error','Phòng ban này đang có nhân viên, không thể xóa');
+            return back()->with('error', 'Phòng ban này đang có nhân viên, không thể xóa');
         }
         Department::findOrFail($id)->delete();
-        return back()->with('success','Xóa phòng ban thành công');
+        return back()->with('success', 'Xóa phòng ban thành công');
     }
 
     // SEARCH
@@ -117,7 +117,7 @@ class DepartmentControllerAdmin
         })
         ->get();
 
-        return view('hcns.departments.index', compact('departments', 'search'));
+        return view('hcns.departments.index', compact('search', 'departments'));
     }
 
     // EXPORT FILE
@@ -128,7 +128,7 @@ class DepartmentControllerAdmin
             return back();
         }
         
-        $departments = DB::table('departments')->select('name','description')->get();
+        $departments = DB::table('departments')->select('name', 'description')->get();
         
         if ($departments->isEmpty()) 
         {

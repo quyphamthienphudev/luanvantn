@@ -18,8 +18,8 @@ class ManageUserControllerAdmin
         {
             return back();
         }
-        $users = User::with('role')->select('users.name','email','description','status','users.id')->get();
-        return view('httt.accounts.index',compact('users'));
+        $users = User::with('role')->select('users.name', 'email', 'description', 'status', 'users.id')->get();
+        return view('httt.accounts.index', compact('users'));
     }
 
     // SHOW CREATE
@@ -29,8 +29,8 @@ class ManageUserControllerAdmin
         {
             return back();
         }
-        $roles = DB::table('roles')->select('id','description')->get();
-        return view('httt.accounts.create',compact('roles'));
+        $roles = DB::table('roles')->select('id', 'description')->get();
+        return view('httt.accounts.create', compact('roles'));
     }
 
     // STORE
@@ -56,13 +56,13 @@ class ManageUserControllerAdmin
         ]);
 
         DB::table('users')->insert([
-            'role_id'=>$request->role,
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>bcrypt($request->password)
+            'role_id' => $request->role,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
         ]);
 
-        return redirect('/httt/accounts')->with('success','Thêm tài khoản thành công');
+        return redirect('/httt/accounts')->with('success', 'Thêm tài khoản thành công');
     }
 
     // SHOW EDIT
@@ -72,13 +72,13 @@ class ManageUserControllerAdmin
         {
             return back();
         }
-        $user = DB::table('users')->where('id',$id)->first();
+        $user = DB::table('users')->where('id', $id)->first();
         $roles = Role::all();
-        return view('httt.accounts.edit',compact('user','roles'));
+        return view('httt.accounts.edit', compact('user', 'roles'));
     }
 
     // UPDATE
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'httt') 
         {
@@ -102,13 +102,13 @@ class ManageUserControllerAdmin
         DB::table('users')
         ->where('id',$id)
         ->update([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'status'=>$request->status,
-            'role_id'=>$request->role
+            'name' => $request->name,
+            'email' => $request->email,
+            'status' => $request->status,
+            'role_id' => $request->role
         ]);
 
-        return redirect('/httt/accounts')->with('success','Cập nhật tài khoản thành công');
+        return redirect('/httt/accounts')->with('success', 'Cập nhật tài khoản thành công');
     }
 
     // DELETE
@@ -130,8 +130,8 @@ class ManageUserControllerAdmin
             return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
         }
 
-        DB::table('users')->where('id',$id)->delete();
-        return redirect('/httt/accounts')->with('success','Xóa tài khoản thành công');
+        DB::table('users')->where('id', $id)->delete();
+        return redirect('/httt/accounts')->with('success', 'Xóa tài khoản thành công');
     }
 
     // SEARCH
@@ -153,7 +153,7 @@ class ManageUserControllerAdmin
         })
         ->get();
 
-        return view('httt.accounts.index', compact('users', 'search'));
+        return view('httt.accounts.index', compact('search', 'users'));
     }
 
     // EXPORT FILE

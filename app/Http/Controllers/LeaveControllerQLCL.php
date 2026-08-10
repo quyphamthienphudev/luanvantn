@@ -21,9 +21,9 @@ class LeaveControllerQLCL
             $allLeaves = DB::table('leave_requests')
                 ->join('users', 'users.id', '=', 'leave_requests.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('name','employee_code','reason','start_date','end_date','number_days','leave_requests.status','leave_requests.id')
+                ->select('name', 'employee_code', 'reason', 'start_date', 'end_date', 'number_days', 'leave_requests.status', 'leave_requests.id')
                 ->where('start_date', $date)
-                ->orderBy('end_date','desc')
+                ->orderBy('end_date', 'desc')
                 ->get();
         }
         else
@@ -31,8 +31,8 @@ class LeaveControllerQLCL
             $allLeaves = DB::table('leave_requests')
                 ->join('users', 'users.id', '=', 'leave_requests.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('name','employee_code','reason','start_date','end_date','number_days','leave_requests.status','leave_requests.id')
-                ->orderBy('start_date','desc')
+                ->select('name', 'employee_code', 'reason', 'start_date', 'end_date', 'number_days', 'leave_requests.status', 'leave_requests.id')
+                ->orderBy('start_date', 'desc')
                 ->get();
         }
         return view('qlcl.leave.index', compact('allLeaves'));
@@ -47,7 +47,7 @@ class LeaveControllerQLCL
         $leave = DB::table('leave_requests')
                 ->join('users', 'users.id', '=', 'leave_requests.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('employee_code', 'name','start_date','end_date','reason','leave_requests.id')
+                ->select('employee_code', 'name', 'start_date', 'end_date', 'reason', 'leave_requests.id')
                 ->where('leave_requests.id', $id)
                 ->first();
         return view('qlcl.leave.edit', compact('leave'));
@@ -73,7 +73,7 @@ class LeaveControllerQLCL
         ]);
 
         // Đếm số lượng ngày nghỉ phép
-        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status','approved')->sum('number_days');
+        $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status', 'approved')->sum('number_days');
         
         $resumeLeave = 12 - $countLeave;
 
@@ -121,5 +121,27 @@ class LeaveControllerQLCL
         }
         LeaveRequest::findOrFail($id)->update(['status' => 'rejected']);
         return back()->with('success', 'Đã từ chối đơn nghỉ phép');
+    }
+
+    public function countResumeLeave()
+    {
+        if (auth()->user()->role->name !== 'qlcl') 
+        {
+            return back();
+        }
+
+        $countResumeLeave = DB::table('leave_requests')
+            ->join('users', 'users.id', '=', 'leave_requests.users_id')
+            ->join('employees', 'users.name', '=', 'employees.full_name')
+            ->select(
+                'name',
+                'employee_code',
+                DB::raw('SUM(number_days) as number_days_used')
+            )
+            ->groupBy('employee_code')
+            ->orderBy('employee_code','asc')
+            ->get();
+        
+        return view('qlcl.resume-leave', compact('countResumeLeave'));
     }
 } 

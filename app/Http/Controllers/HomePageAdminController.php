@@ -16,22 +16,22 @@ class HomePageAdminController
             return back();
         }
         // Employees đang làm việc
-        $e_working = DB::table('employees')->where('status','working')->count('employee_code');
+        $e_working = DB::table('employees')->where('status', 'working')->count('employee_code');
 
         // Employees đã nghỉ việc
-        $e_resign = DB::table('employees')->where('status','resigned')->count('employee_code');
+        $e_resign = DB::table('employees')->where('status', 'resigned')->count('employee_code');
 
         // Employees
         $employees = DB::table('employees')->count('employee_code');
 
         // ===== THỐNG KÊ NHÂN VIÊN THEO PHÒNG BAN =====
         $employeesByDepartment = DB::table('employees')
-            ->join('departments','employees.department_id','=','departments.id')
+            ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->select(
                 'name',
                 DB::raw('COUNT(employee_code) as total_employees')
             )
-            ->where('status','working')
+            ->where('status', 'working')
             ->groupBy('name')
             ->get();
 
@@ -39,6 +39,6 @@ class HomePageAdminController
         $deptLabels = $employeesByDepartment->pluck('name');
         $deptData = $employeesByDepartment->pluck('total_employees');
 
-        return view('admin.home', compact('e_working','e_resign','employees','deptLabels','deptData'));
+        return view('admin.home', compact('e_working', 'e_resign', 'employees', 'deptLabels', 'deptData'));
     }
 }

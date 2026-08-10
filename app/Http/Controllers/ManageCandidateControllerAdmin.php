@@ -15,7 +15,7 @@ class ManageCandidateControllerAdmin
         {
             return back();
         }
-        $candidates = DB::table('candidates')->select('candidate_id','full_name')->get();
+        $candidates = DB::table('candidates')->select('candidate_id', 'full_name')->get();
         return view('hcns.candidates.index',compact('candidates'));
     }
 
@@ -64,7 +64,7 @@ class ManageCandidateControllerAdmin
         ]);
         $data = $request->all();
         Candidate::create($data);
-        return redirect('/hcns/candidates')->with('success','Thêm hồ sơ thành công');
+        return redirect('/hcns/candidates')->with('success', 'Thêm hồ sơ thành công');
     }
 
     // EDIT
@@ -74,12 +74,12 @@ class ManageCandidateControllerAdmin
         {
             return back();
         }
-        $candidates = DB::table('candidates')->where('id',$id)->first();
+        $candidates = DB::table('candidates')->where('id', $id)->first();
         return view('hcns.candidates.edit',compact('candidates'));
     }
 
     // UPDATE
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
@@ -111,22 +111,22 @@ class ManageCandidateControllerAdmin
         DB::table('candidates')
         ->where('id',$id)
         ->update([
-            'full_name'=>$request->full_name,
-            'first_name'=>$request->first_name,
-            'last_name'=>$request->last_name,
-            'gender'=>$request->gender,
-            'date_of_birth'=>$request->date_of_birth,
-            'phone'=>$request->phone,
-            'education'=>$request->education,
-            'email'=>$request->email,
-            'address'=>$request->address,
-            'street'=>$request->street,
-            'ward'=>$request->ward,
-            'province'=>$request->province
+            'full_name' => $request->full_name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'gender' => $request->gender,
+            'date_of_birth' => $request->date_of_birth,
+            'phone' => $request->phone,
+            'education' => $request->education,
+            'email' => $request->email,
+            'address' => $request->address,
+            'street' => $request->street,
+            'ward' => $request->ward,
+            'province' => $request->province
         ]);
         
         Candidate::findOrFail($id)->update($request->all());
-        return redirect('/hcns/candidates')->with('success','Cập nhật hồ sơ thành công');
+        return redirect('/hcns/candidates')->with('success', 'Cập nhật hồ sơ thành công');
     }
 
     // DELETE
@@ -136,8 +136,8 @@ class ManageCandidateControllerAdmin
         {
             return back();
         }
-        DB::table('candidates')->where('id',$id)->delete();
-        return redirect('/hcns/candidates')->with('success','Xóa hồ sơ thành công');
+        DB::table('candidates')->where('id', $id)->delete();
+        return redirect('/hcns/candidates')->with('success', 'Xóa hồ sơ thành công');
     }
 
     // SHOW DETAIL
@@ -148,7 +148,7 @@ class ManageCandidateControllerAdmin
             return back();
         }
         $candidate = Candidate::findOrFail($id);
-        return view('hcns.candidates.show',compact('candidate'));
+        return view('hcns.candidates.show', compact('candidate'));
     }
 
     // SEARCH
@@ -168,6 +168,6 @@ class ManageCandidateControllerAdmin
             })
             ->get();
 
-        return view('hcns.candidates.index', compact('candidates', 'search'));
+        return view('hcns.candidates.index', compact('search', 'candidates'));
     }
 }

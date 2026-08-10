@@ -32,7 +32,7 @@ class ManageEmployeeControllerAdmin
         }
         $departments = Department::all();
         $positions = Position::all();
-        return view('hcns.employees.create', compact('departments','positions'));
+        return view('hcns.employees.create', compact('departments', 'positions'));
     }
 
     // STORE
@@ -86,7 +86,7 @@ class ManageEmployeeControllerAdmin
         // Trạng thái mặc định
         $data['status'] = 'working';
         Employee::create($data);
-        return redirect('/hcns/employees')->with('success','Thêm nhân viên thành công');
+        return redirect('/hcns/employees')->with('success', 'Thêm nhân viên thành công');
     }
 
     // EDIT
@@ -99,11 +99,11 @@ class ManageEmployeeControllerAdmin
         $employee = Employee::findOrFail($id);
         $departments = Department::all();
         $positions = Position::all();
-        return view('hcns.employees.edit', compact('employee','departments','positions'));
+        return view('hcns.employees.edit', compact('employee', 'departments', 'positions'));
     }
 
     // UPDATE
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
@@ -212,7 +212,7 @@ class ManageEmployeeControllerAdmin
                 'ward',
                 'province'
             )
-            ->where('status','working')
+            ->where('status', 'working')
             ->get();
         
         if ($employees->isEmpty()) 
@@ -270,10 +270,10 @@ class ManageEmployeeControllerAdmin
         }
 
         $employees = DB::table('employees')
-                    ->select('full_name','employee_code')
-                    ->where('employee_code','!=','EMP001')
-                    ->where('employee_code','!=','EMP016')
-                    ->where('employee_code','!=','EMP021')
+                    ->select('full_name', 'employee_code')
+                    ->where('employee_code', '!=', 'EMP001')
+                    ->where('employee_code', '!=', 'EMP016')
+                    ->where('employee_code', '!=', 'EMP021')
                     ->get();
         $employee = $request->get('employee_full_name');
         $attendances = [];
@@ -285,7 +285,7 @@ class ManageEmployeeControllerAdmin
             $attendances = DB::table('attendances')
                 ->join('users', 'users.id', '=', 'attendances.users_id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('employee_code','name','work_date','check_in','check_out','attendances.status')
+                ->select('employee_code', 'name', 'work_date', 'check_in', 'check_out', 'attendances.status')
                 ->where('name', $employee)
                 ->where('confirm', 'yes')
                 ->orderBy('work_date','asc')
@@ -293,22 +293,22 @@ class ManageEmployeeControllerAdmin
 
             $rewards = DB::table('reward_discipline')
                 ->join('employees', 'employees.id', '=', 'reward_discipline.employee_id')
-                ->select('employee_code','full_name','title','amount','decision_date')
+                ->select('employee_code', 'full_name', 'title', 'amount', 'decision_date')
                 ->where('full_name', $employee)
                 ->where('type', 'reward')
-                ->orderBy('decision_date','asc')
+                ->orderBy('decision_date', 'asc')
                 ->get();
 
             $disciplines = DB::table('reward_discipline')
                 ->join('employees', 'employees.id', '=', 'reward_discipline.employee_id')
-                ->select('employee_code','full_name','title','amount','decision_date')
+                ->select('employee_code', 'full_name', 'title', 'amount', 'decision_date')
                 ->where('full_name', $employee)
                 ->where('type', 'discipline')
-                ->orderBy('decision_date','asc')
+                ->orderBy('decision_date', 'asc')
                 ->get();
         }
 
-        return view('hcns.employees.detail', compact('employees','attendances','rewards','disciplines'));
+        return view('hcns.employees.detail', compact('employees', 'attendances', 'rewards', 'disciplines'));
     }
 
     // SEARCH
@@ -323,15 +323,15 @@ class ManageEmployeeControllerAdmin
 
         $employees = Employee::with('department')
             ->when($search, function($q) use ($search){
-                $q->where('full_name','like','%'. $search .'%')
+                $q->where('full_name', 'like', '%'. $search .'%')
                   ->orWhere('employee_code',$search)
                   // Tìm theo tên phòng ban
                   ->orWhereHas('department', function($query) use ($search){
-                        $query->where('name','like','%'. $search .'%');
+                        $query->where('name', 'like', '%'. $search .'%');
                     });
             })
             ->get();
         
-        return view('hcns.employees.index', compact('employees','search'));
+        return view('hcns.employees.index', compact('search', 'employees'));
     }
 }

@@ -16,8 +16,8 @@ class RoleController
         {
             return back();
         }
-        $roles = DB::table('roles')->select('id','name','description')->get();
-        return view('httt.roles.index',compact('roles'));
+        $roles = DB::table('roles')->select('id', 'name', 'description')->get();
+        return view('httt.roles.index', compact('roles'));
     }
 
     // SHOW CREATE
@@ -52,7 +52,7 @@ class RoleController
             'description'=> $request->description
         ]);
 
-        return redirect('/httt/roles')->with('success','Thêm quyền truy cập thành công');
+        return redirect('/httt/roles')->with('success', 'Thêm quyền truy cập thành công');
     }
 
     // SHOW EDIT
@@ -62,12 +62,12 @@ class RoleController
         {
             return back();
         }
-        $roles = DB::table('roles')->where('id',$id)->first();
-        return view('httt.roles.edit',compact('roles'));
+        $roles = DB::table('roles')->where('id', $id)->first();
+        return view('httt.roles.edit', compact('roles'));
     }
 
     // UPDATE
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'httt') 
         {
@@ -84,7 +84,7 @@ class RoleController
         ->where('id',$id)
         ->update(['description' => $request->description]);
 
-        return redirect('/httt/roles')->with('success','Cập nhật quyền truy cập thành công');
+        return redirect('/httt/roles')->with('success', 'Cập nhật quyền truy cập thành công');
     }
 
     // DELETE
@@ -99,12 +99,12 @@ class RoleController
 
         if($hasUser)
         {
-            return back()->with('error','Quyền này đang có người dùng, không thể xóa');
+            return back()->with('error', 'Quyền này đang có người dùng, không thể xóa');
         }
 
-        DB::table('roles')->where('id',$id)->delete();
+        DB::table('roles')->where('id', $id)->delete();
 
-        return redirect('/httt/roles')->with('success','Xóa quyền truy cập thành công');
+        return redirect('/httt/roles')->with('success', 'Xóa quyền truy cập thành công');
     }
 
     // SEARCH
@@ -126,6 +126,6 @@ class RoleController
             })
         ->get();
 
-        return view('httt.roles.index', compact('roles', 'search'));
+        return view('httt.roles.index', compact('search', 'roles'));
     }
 }
