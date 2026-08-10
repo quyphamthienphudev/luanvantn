@@ -68,15 +68,15 @@ class ContractController
         }
 
         Contract::create([
-            'employee_id'=>$request->employee_id,
-            'contract_code'=>$request->contract_code,
-            'contract_type'=>$request->contract_type,
-            'start_date'=>$request->start_date,
-            'end_date'=>$request->end_date,
-            'salary'=>$request->salary,
-            'description'=>$request->description,
-            'contract_file'=>$fileName,
-            'status'=>'active'
+            'employee_id' => $request->employee_id,
+            'contract_code' => $request->contract_code,
+            'contract_type' => $request->contract_type,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'salary' => $request->salary,
+            'description' => $request->description,
+            'contract_file' => $fileName,
+            'status' => 'active'
         ]);
 
         return redirect('/hcns/contracts')->with('success', 'Thêm hợp đồng thành công');
@@ -105,22 +105,22 @@ class ContractController
         $old = Contract::findOrFail($id);
 
         $request->validate([
-        'end_date' => 'required|date|after:today',
+            'end_date' => 'required|date|after:today',
         ],[
             'end_date.required' => 'Vui lòng nhập ngày kết thúc.',
             'end_date.after' => 'Ngày kết thúc không hợp lệ, vui lòng kiểm tra lại.',
         ]);
 
         Contract::create([
-            'employee_id'=>$old->employee_id,
-            'contract_code'=>$old->contract_code,
-            'contract_type'=>$old->contract_type,
-            'start_date'=>$old->end_date,
-            'end_date'=>$request->end_date,
-            'salary'=>$old->salary,
-            'description'=>$old->description,
-            'contract_file'=>$old->contract_file,
-            'status'=>'active'
+            'employee_id' => $old->employee_id,
+            'contract_code' => $old->contract_code,
+            'contract_type' => $old->contract_type,
+            'start_date' => $old->end_date,
+            'end_date' => $request->end_date,
+            'salary' => $old->salary,
+            'description' => $old->description,
+            'contract_file' => $old->contract_file,
+            'status' => 'active'
         ]);
 
         $old->update(['status'=>'expired']);
@@ -135,7 +135,7 @@ class ContractController
         {
             return back();
         }
-        Contract::findOrFail($id)->update(['status'=>'terminated']);
+        Contract::findOrFail($id)->update(['status' => 'terminated']);
         return redirect('/hcns/contracts')->with('success', 'Thanh lý hợp đồng thành công');
     }
 
@@ -181,7 +181,7 @@ class ContractController
 
             $query->where('contract_code', 'like', '%' . $search . '%')
                   ->orWhereHas('employee', function($query) use ($search){
-                        $query->where('full_name','like','%'. $search .'%');
+                        $query->where('full_name', 'like', '%'. $search .'%');
                     });
         })
         ->get();

@@ -203,9 +203,12 @@
                     Đổi mật khẩu
                 </a>
 
-                <a href="/logout" class="block text-center bg-red-500 hover:bg-red-600 py-2 rounded" title="Đăng xuất">
-                    Đăng xuất
-                </a>
+                <form action="/logout" method="post" class="block text-center bg-red-500 hover:bg-red-600 py-2 rounded">
+                    @csrf 
+                    <button title="Đăng xuất">
+                        Đăng xuất
+                    </button>
+                </form>
 
             </nav>
 
