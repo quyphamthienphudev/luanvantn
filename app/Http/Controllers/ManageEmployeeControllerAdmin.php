@@ -324,7 +324,7 @@ class ManageEmployeeControllerAdmin
         $employees = Employee::with('department')
             ->when($search, function($q) use ($search){
                 $q->where('full_name', 'like', '%'. $search .'%')
-                  ->orWhere('employee_code',$search)
+                  ->orWhere('employee_code', $search)
                   // Tìm theo tên phòng ban
                   ->orWhereHas('department', function($query) use ($search){
                         $query->where('name', 'like', '%'. $search .'%');
