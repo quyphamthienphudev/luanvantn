@@ -131,12 +131,13 @@ class LeaveControllerQLCL
         }
 
         $countResumeLeave = DB::table('leave_requests')
-            ->join('users', 'users.id', '=', 'leave_requests.users_id')
+            ->join('users', 'leave_requests.users_id', '=', 'users.id')
             ->join('employees', 'users.name', '=', 'employees.full_name')
             ->select(
                 'name',
                 'employee_code',
-                DB::raw('SUM(number_days) as number_days_used')
+                DB::raw('SUM(number_days) as number_days_used'),
+                DB::raw('12 - SUM(number_days) as number_days_resume')
             )
             ->groupBy('employee_code')
             ->orderBy('employee_code','asc')
