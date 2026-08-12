@@ -118,7 +118,7 @@ class ContractController
             'start_date' => $old->end_date,
             'end_date' => $request->end_date,
             'salary' => $old->salary,
-            'description' => $old->description,
+            'description' => $request->description,
             'contract_file' => $old->contract_file,
             'status' => 'active'
         ]);

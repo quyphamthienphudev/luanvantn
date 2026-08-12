@@ -38,6 +38,10 @@
             <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror
         </div>
+        <div class="mb-4">
+            <label>Ghi chú hợp đồng</label>
+            <textarea name="description" class="w-full border p-2 rounded" rows="10" cols="40">{{ old('description', $contract->description) }}</textarea>
+        </div>
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Gia hạn">Gia hạn</button>
     </form>
 </body>
