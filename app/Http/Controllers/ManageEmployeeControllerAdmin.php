@@ -283,7 +283,7 @@ class ManageEmployeeControllerAdmin
         if($request->has('detail'))
         {
             $attendances = DB::table('attendances')
-                ->join('users', 'users.id', '=', 'attendances.users_id')
+                ->join('users', 'attendances.users_id', '=', 'users.id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('employee_code', 'name', 'work_date', 'check_in', 'check_out', 'attendances.status')
                 ->where('name', $employee)
@@ -292,7 +292,7 @@ class ManageEmployeeControllerAdmin
                 ->get();
 
             $rewards = DB::table('reward_discipline')
-                ->join('employees', 'employees.id', '=', 'reward_discipline.employee_id')
+                ->join('employees', 'reward_discipline.employee_id', '=', 'employees.id')
                 ->select('employee_code', 'full_name', 'title', 'amount', 'decision_date')
                 ->where('full_name', $employee)
                 ->where('type', 'reward')
@@ -300,7 +300,7 @@ class ManageEmployeeControllerAdmin
                 ->get();
 
             $disciplines = DB::table('reward_discipline')
-                ->join('employees', 'employees.id', '=', 'reward_discipline.employee_id')
+                ->join('employees', 'reward_discipline.employee_id', '=', 'employees.id')
                 ->select('employee_code', 'full_name', 'title', 'amount', 'decision_date')
                 ->where('full_name', $employee)
                 ->where('type', 'discipline')

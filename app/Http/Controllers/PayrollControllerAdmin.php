@@ -149,7 +149,7 @@ class PayrollControllerAdmin
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
         $countLeave = DB::table('attendances')
-                      ->join('users', 'users.id', '=', 'attendances.users_id')
+                      ->join('users', 'attendances.users_id', '=', 'users.id')
                       ->where('name', $employee->full_name)
                       ->whereMonth('work_date', $request->month)
                       ->whereYear('work_date', $request->year)
@@ -282,7 +282,7 @@ class PayrollControllerAdmin
                     ->whereYear('decision_date', $request->year)
                     ->sum('amount');
         $countLeave = DB::table('attendances')
-                      ->join('users', 'users.id', '=', 'attendances.users_id')
+                      ->join('users', 'attendances.users_id', '=', 'users.id')
                       ->where('name', $employee->full_name)
                       ->whereMonth('work_date', $request->month)
                       ->whereYear('work_date', $request->year)

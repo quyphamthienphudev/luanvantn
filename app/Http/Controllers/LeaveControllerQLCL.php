@@ -19,7 +19,7 @@ class LeaveControllerQLCL
         if($date)
         {
             $allLeaves = DB::table('leave_requests')
-                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('users', 'leave_requests.users_id', '=', 'users.id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('name', 'employee_code', 'reason', 'start_date', 'end_date', 'number_days', 'leave_requests.status', 'leave_requests.id')
                 ->where('start_date', $date)
@@ -29,7 +29,7 @@ class LeaveControllerQLCL
         else
         {
             $allLeaves = DB::table('leave_requests')
-                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('users', 'leave_requests.users_id', '=', 'users.id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('name', 'employee_code', 'reason', 'start_date', 'end_date', 'number_days', 'leave_requests.status', 'leave_requests.id')
                 ->orderBy('start_date', 'desc')
@@ -45,7 +45,7 @@ class LeaveControllerQLCL
             return back();
         }
         $leave = DB::table('leave_requests')
-                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('users', 'leave_requests.users_id', '=', 'users.id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('employee_code', 'name', 'start_date', 'end_date', 'reason', 'leave_requests.id')
                 ->where('leave_requests.id', $id)
@@ -139,8 +139,8 @@ class LeaveControllerQLCL
                 DB::raw('SUM(number_days) as number_days_used'),
                 DB::raw('12 - SUM(number_days) as number_days_resume')
             )
-            ->groupBy('employee_code','name')
-            ->orderBy('employee_code','asc')
+            ->groupBy('employee_code', 'name')
+            ->orderBy('employee_code', 'asc')
             ->get();
         
         return view('qlcl.resume-leave', compact('countResumeLeave'));

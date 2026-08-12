@@ -18,7 +18,7 @@ class LeaveControllerHCNS
         if($date)
         {
             $allLeaves = DB::table('leave_requests')
-                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('users', 'leave_requests.users_id', '=', 'users.id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('name', 'employee_code', 'reason', 'start_date', 'end_date', 'leave_requests.status', 'leave_requests.id')
                 ->where('start_date', $date)
@@ -29,7 +29,7 @@ class LeaveControllerHCNS
         else
         {
             $allLeaves = DB::table('leave_requests')
-                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('users', 'leave_requests.users_id', '=', 'users.id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('name', 'employee_code', 'reason', 'start_date', 'end_date', 'leave_requests.status', 'leave_requests.id')
                 ->where('leave_requests.status', 'approved')
@@ -46,7 +46,7 @@ class LeaveControllerHCNS
             return back();
         }
         $leave = DB::table('leave_requests')
-                ->join('users', 'users.id', '=', 'leave_requests.users_id')
+                ->join('users', 'leave_requests.users_id', '=', 'users.id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('employee_code', 'name', 'start_date', 'end_date', 'reason', 'leave_requests.id')
                 ->where('leave_requests.id', $id)

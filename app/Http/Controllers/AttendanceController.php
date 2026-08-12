@@ -22,7 +22,7 @@ class AttendanceController
         if($date)
         {
             $attendances = DB::table('attendances')
-            ->join('users', 'users.id', '=', 'attendances.users_id')
+            ->join('users', 'attendances.users_id', '=', 'users.id')
             ->join('employees', 'users.name', '=', 'employees.full_name')
             ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
             ->where('work_date', $date)
@@ -32,7 +32,7 @@ class AttendanceController
         else
         {
             $attendances = DB::table('attendances')
-            ->join('users', 'users.id', '=', 'attendances.users_id')
+            ->join('users', 'attendances.users_id', '=', 'users.id')
             ->join('employees', 'users.name', '=', 'employees.full_name')
             ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
             ->where('work_date', $today)
@@ -49,7 +49,7 @@ class AttendanceController
             return back();
         }
         $attendance = DB::table('attendances')
-                ->join('users', 'users.id', '=', 'attendances.users_id')
+                ->join('users', 'attendances.users_id', '=', 'users.id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('employee_code','users.name','work_date','check_in','check_out','attendances.id')
                 ->where('attendances.id', $id)
