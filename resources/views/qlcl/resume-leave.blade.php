@@ -58,10 +58,10 @@
                     <div>{{ $c->number_days_used }} ngày</div>
                 </td>
                 <td class="ps-3">
-                    <div>{{ 12 - $c->number_days_used }} ngày</div>
+                    <div>{{ $c->number_days_resume }} ngày</div>
                 </td>
                 <td class="ps-3">
-                    @if(12 - $c->number_days_used == 0)
+                    @if($c->number_days_resume == 0)
                     <span class="badge bg-danger status-badge">Hết ngày nghỉ</span>
                     @else
                     <span class="badge bg-success status-badge">Còn ngày nghỉ</span>
