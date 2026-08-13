@@ -84,6 +84,16 @@
                                 @else
                                     <a href="" class="bg-blue-600 text-white px-3 py-1 rounded" onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
                                 @endif
+                            @elseif($c->contract_type == 'probation' || $c->contract_type == 'indefinite')
+                                <form action="/hcns/contracts/terminate/{{ $c->id }}" method="post">
+                                    @csrf
+                                    <button class="bg-red-600 text-white px-3 py-1 rounded" title="Thanh lý">Thanh lý</button>
+                                </form>
+                                @if($c->contract_file)
+                                    <a href="/hcns/contracts/view/{{ $c->id }}" class="bg-blue-600 text-white px-3 py-1 rounded" title="Xem">Xem</a>
+                                @else
+                                    <a href="" class="bg-blue-600 text-white px-3 py-1 rounded" onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
+                                @endif
                             @else
                                 <a href="/hcns/contracts/edit/{{ $c->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded" title="Gia hạn">Gia hạn</a>
                                 <form action="/hcns/contracts/terminate/{{ $c->id }}" method="post">

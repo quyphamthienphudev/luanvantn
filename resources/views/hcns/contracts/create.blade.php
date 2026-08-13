@@ -15,6 +15,12 @@
 
 <body>
     <a href="/hcns/contracts" title="← Quay lại">← Quay lại</a>
+    @if(session('error'))
+    <div class="bg-red-200 text-red-800 p-6 rounded shadow w-1/2">
+        {{ session('error') }}
+    </div>
+    @endif
+    <br>
     <form action="/hcns/contracts/store" method="post" class="bg-white p-6 rounded shadow w-1/2"
         enctype="multipart/form-data">
         @csrf

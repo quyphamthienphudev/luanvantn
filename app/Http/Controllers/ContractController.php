@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use Carbon\Carbon;
@@ -40,12 +41,23 @@ class ContractController
         {
             return back();
         }
+        
+        $countContract = DB::table('contracts')
+                        ->where('contract_type', 'fixed_term')
+                        ->where('status', 'expired')
+                        ->where('employee_id', $request->employee_id)
+                        ->count();
+        
+        if($countContract >= 2)
+        {
+            return back()->with('error', 'Không thể tạo thêm hợp đồng lao động xác định thời hạn, vui lòng kiểm tra lại');
+        }
 
         $request->validate([
-            'employee_id'=>'required',
-            'contract_code'=>'required',
-            'contract_type'=>'required',
-            'start_date'=>'required',
+            'employee_id' => 'required',
+            'contract_code' => 'required',
+            'contract_type' => 'required',
+            'start_date' => 'required',
             'salary' => 'required|numeric|min:0',
             'contract_file' => 'required|mimes:pdf,doc,docx|max:2048'
         ],[
@@ -64,7 +76,7 @@ class ContractController
 
         if($request->hasFile('contract_file'))
         {
-            $fileName = $request->file('contract_file')->store('contracts');
+             $fileName = $request->file('contract_file')->store('contracts');
         }
 
         Contract::create([
@@ -104,27 +116,46 @@ class ContractController
 
         $old = Contract::findOrFail($id);
 
-        $request->validate([
-            'end_date' => 'required|date|after:today',
-        ],[
-            'end_date.required' => 'Vui lòng nhập ngày kết thúc.',
-            'end_date.after' => 'Ngày kết thúc không hợp lệ, vui lòng kiểm tra lại.',
-        ]);
+        if($request->end_date == '')
+        {
+            Contract::create([
+                'employee_id' => $old->employee_id,
+                'contract_code' => $old->contract_code,
+                'contract_type' => 'indefinite',
+                'start_date' => $old->end_date,
+                'end_date' => $request->end_date,
+                'salary' => $old->salary,
+                'description' => $request->description,
+                'contract_file' => $old->contract_file,
+                'status' => 'active'
+            ]);
 
-        Contract::create([
-            'employee_id' => $old->employee_id,
-            'contract_code' => $old->contract_code,
-            'contract_type' => $old->contract_type,
-            'start_date' => $old->end_date,
-            'end_date' => $request->end_date,
-            'salary' => $old->salary,
-            'description' => $request->description,
-            'contract_file' => $old->contract_file,
-            'status' => 'active'
-        ]);
+            $old->update(['status'=>'expired']);
+        }
 
-        $old->update(['status'=>'expired']);
+        else
+        {
+            $request->validate([
+                'end_date' => 'date|after:today',
+            ],[
+                'end_date.after' => 'Ngày kết thúc không hợp lệ, vui lòng kiểm tra lại.',
+            ]);
 
+            Contract::create([
+                'employee_id' => $old->employee_id,
+                'contract_code' => $old->contract_code,
+                'contract_type' => $old->contract_type,
+                'start_date' => $old->end_date,
+                'end_date' => $request->end_date,
+                'salary' => $old->salary,
+                'description' => $request->description,
+                'contract_file' => $old->contract_file,
+                'status' => 'active'
+            ]);
+
+            $old->update(['status'=>'expired']);
+        }
+        
         return redirect('/hcns/contracts')->with('success', 'Gia hạn hợp đồng thành công');
     }
 
