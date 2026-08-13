@@ -156,11 +156,6 @@ class ManageEmployeeControllerAdmin
             return back();
         }
         // Kiểm tra ràng buộc dữ liệu
-        $payroll = DB::table('payrolls')->where('employee_id', $id)->exists();
-        if ($payroll) 
-        {
-            return back()->with('error', 'Nhân viên đã có bảng lương, không thể xoá nhân viên này');
-        }
         $contract = DB::table('contracts')->where('employee_id', $id)->exists();
         if ($contract) 
         {
@@ -170,6 +165,16 @@ class ManageEmployeeControllerAdmin
         if ($reward_discipline) 
         {
             return back()->with('error', 'Nhân viên đã có khen thưởng hoặc kỷ luật, không thể xoá nhân viên này');
+        }
+        $payroll = DB::table('payrolls')->where('employee_id', $id)->exists();
+        if ($payroll) 
+        {
+            return back()->with('error', 'Nhân viên đã có bảng lương, không thể xoá nhân viên này');
+        }
+        $certificates = DB::table('employee_certificates')->where('employee_id', $id)->exists();
+        if ($certificates) 
+        {
+            return back()->with('error', 'Nhân viên đã có chứng chỉ, không thể xoá nhân viên này');
         }
         
         Employee::findOrFail($id)->delete();

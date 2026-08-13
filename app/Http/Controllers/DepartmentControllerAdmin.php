@@ -93,7 +93,8 @@ class DepartmentControllerAdmin
             ->where('department_id', $id)
             ->exists();
 
-        if($hasEmployee){
+        if($hasEmployee)
+        {
             return back()->with('error', 'Phòng ban này đang có nhân viên, không thể xóa');
         }
         Department::findOrFail($id)->delete();
