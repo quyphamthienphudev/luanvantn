@@ -26,7 +26,7 @@ class AttendanceController
             ->join('employees', 'users.name', '=', 'employees.full_name')
             ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
             ->where('work_date', $date)
-            ->orderBy('work_date', 'desc')
+            ->orderBy('employee_code', 'asc')
             ->get();
         }
         else
@@ -36,7 +36,7 @@ class AttendanceController
             ->join('employees', 'users.name', '=', 'employees.full_name')
             ->select('users.name','employee_code','work_date','check_in','check_out','attendances.status','confirm','attendances.id')
             ->where('work_date', $today)
-            ->orderBy('work_date', 'desc')
+            ->orderBy('employee_code', 'asc')
             ->get();
         }
         return view('qlcl.attendances.index', compact('attendances'));

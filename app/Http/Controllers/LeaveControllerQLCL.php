@@ -139,7 +139,7 @@ class LeaveControllerQLCL
                 DB::raw('SUM(number_days) as number_days_used'),
                 DB::raw('12 - SUM(number_days) as number_days_resume')
             )
-            ->groupBy('employee_code', 'name')
+            ->groupBy('name', 'employee_code')
             ->orderBy('employee_code', 'asc')
             ->get();
         
