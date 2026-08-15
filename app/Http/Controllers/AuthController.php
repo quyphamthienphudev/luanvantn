@@ -72,6 +72,10 @@ class AuthController
     // LOGOUT
     public function logout()
     {
+        if(!auth()->check())
+        {
+            return back();
+        }
         Auth::logout();
         return redirect('/login');
     }
