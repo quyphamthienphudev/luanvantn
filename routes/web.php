@@ -28,7 +28,6 @@ use App\Http\Controllers\PayrollControllerUser;
 use App\Http\Controllers\PositionControllerAdmin;
 use App\Http\Controllers\RoleController;
 
-//-----------------------------------------------------------------------------------
 Route::get('/', function () {
     if (auth()->check()) 
     {
@@ -56,7 +55,6 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'showLogin']);
 Route::post('/login', [AuthController::class, 'login']);
 
-//----------------------------------------------------------------------------
 Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('auth')->group(function () {
