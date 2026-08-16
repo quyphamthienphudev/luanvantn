@@ -120,7 +120,7 @@ class RoleController
         $roles = DB::table('roles')
             ->when($search, function ($query) use ($search) {
 
-            // Tìm theo id, name hoặc description
+            // Tìm theo name hoặc description
             $query->where('name', 'like', '%' . $search . '%')
                   ->orWhere('description', 'like', '%' . $search . '%');
             })
