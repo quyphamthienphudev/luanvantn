@@ -81,7 +81,7 @@ class RoleController
         ]);
 
         DB::table('roles')
-        ->where('id',$id)
+        ->where('id', $id)
         ->update(['description' => $request->description]);
 
         return redirect('/httt/roles')->with('success', 'Cập nhật quyền truy cập thành công');

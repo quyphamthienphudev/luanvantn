@@ -13,7 +13,7 @@ class ManageEmployeeControllerAdmin
 {
 
     // INDEX
-    public function index(Request $request)
+    public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
         {

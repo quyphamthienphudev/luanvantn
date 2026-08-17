@@ -100,7 +100,7 @@ class PositionControllerAdmin
         ]);
         
         DB::table('positions')
-        ->where('id',$id)
+        ->where('id', $id)
         ->update([
             'name' => $request->name,
             'base_salary' => $request->base_salary,

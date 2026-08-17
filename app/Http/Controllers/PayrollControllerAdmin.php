@@ -320,8 +320,8 @@ class PayrollControllerAdmin
             return back();
         }
 
-        $payroll = DB::table('payrolls')->where('id', $id)->first();
         DB::table('payrolls')->where('id', $id)->delete();
+        
         return back()->with('success', 'Xóa bảng lương thành công');
     }
 

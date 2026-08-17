@@ -100,7 +100,7 @@ class ManageUserControllerAdmin
         ]);
         
         DB::table('users')
-        ->where('id',$id)
+        ->where('id', $id)
         ->update([
             'name' => $request->name,
             'email' => $request->email,

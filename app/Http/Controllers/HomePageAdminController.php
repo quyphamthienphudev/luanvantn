@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class HomePageAdminController 
 {
     // HOME PAGE
-    public function homePage(Request $request)
+    public function homePage()
     {
         if (auth()->user()->role->name !== 'admin') 
         {
