@@ -40,11 +40,12 @@ class PositionControllerAdmin
         }
 
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:positions,name',
             'base_salary' => 'required|numeric|min:0',
             'max_salary' => 'required|numeric|min:0|gte:base_salary'
         ],[
             'name.required' => 'Tên công việc không được để trống.',
+            'name.unique' => 'Công việc này đã tồn tại, vui lòng kiểm tra lại.',
             'base_salary.required' => 'Lương cơ bản không được để trống.',
             'base_salary.numeric' => 'Lương cơ bản không hợp lệ, vui lòng kiểm tra lại.',
             'base_salary.min' => 'Lương cơ bản không hợp lệ, vui lòng kiểm tra lại.',
@@ -53,12 +54,6 @@ class PositionControllerAdmin
             'max_salary.min' => 'Lương cao nhất không hợp lệ, vui lòng kiểm tra lại.',
             'max_salary.gte' => 'Lương cao nhất không được ít hơn lương cơ bản.'
         ]);
-
-        $position = DB::table('positions')->where('name', $request->name)->exists();
-        if($position)
-        {
-            return back()->with('error', 'Công việc này đã tồn tại, vui lòng kiểm tra lại');
-        }
 
         DB::table('positions')->insert([
             'name' => $request->name,
@@ -89,11 +84,12 @@ class PositionControllerAdmin
         }
 
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:positions,name',
             'base_salary' => 'required|numeric|min:0',
             'max_salary' => 'required|numeric|min:0|gte:base_salary'
         ],[
             'name.required' => 'Tên công việc không được để trống.',
+            'name.unique' => 'Công việc này đã tồn tại, vui lòng kiểm tra lại.',
             'base_salary.required' => 'Lương cơ bản không được để trống.',
             'base_salary.numeric' => 'Lương cơ bản không hợp lệ, vui lòng kiểm tra lại.',
             'base_salary.min' => 'Lương cơ bản không hợp lệ, vui lòng kiểm tra lại.',
@@ -102,12 +98,6 @@ class PositionControllerAdmin
             'max_salary.min' => 'Lương cao nhất không hợp lệ, vui lòng kiểm tra lại.',
             'max_salary.gte' => 'Lương cao nhất không được ít hơn lương cơ bản.'
         ]);
-
-        $position = DB::table('positions')->where('name', $request->name)->exists();
-        if($position)
-        {
-            return back()->with('error', 'Công việc này đã tồn tại, vui lòng kiểm tra lại');
-        }
         
         DB::table('positions')
         ->where('id',$id)

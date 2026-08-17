@@ -15,12 +15,6 @@
     <a href="/hcns/positions" class="btn btn-secondary" title="← Quay lại">
         ← Quay lại
     </a>
-    @if(session('error'))
-    <div class="bg-red-200 text-red-800 p-3 rounded shadow w-1/2">
-        {{ session('error') }}
-    </div>
-    @endif
-    <br>
     <h1 class="text-2xl font-bold mb-6">
         Cập nhật thông tin công việc
     </h1>
