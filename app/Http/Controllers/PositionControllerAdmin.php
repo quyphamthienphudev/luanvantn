@@ -54,6 +54,12 @@ class PositionControllerAdmin
             'max_salary.gte' => 'Lương cao nhất không được ít hơn lương cơ bản.'
         ]);
 
+        $position = DB::table('positions')->where('name', $request->name)->exists();
+        if($position)
+        {
+            return back()->with('error', 'Công việc này đã tồn tại, vui lòng kiểm tra lại');
+        }
+
         DB::table('positions')->insert([
             'name' => $request->name,
             'base_salary' => $request->base_salary,
@@ -97,6 +103,12 @@ class PositionControllerAdmin
             'max_salary.gte' => 'Lương cao nhất không được ít hơn lương cơ bản.'
         ]);
 
+        $position = DB::table('positions')->where('name', $request->name)->exists();
+        if($position)
+        {
+            return back()->with('error', 'Công việc này đã tồn tại, vui lòng kiểm tra lại');
+        }
+        
         DB::table('positions')
         ->where('id',$id)
         ->update([
