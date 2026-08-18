@@ -251,7 +251,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Chức năng chấm công cho nhân viên
-Route::middleware('auth','company.network')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/attendances', [AttendanceControllerNV::class, 'index']);
     Route::post('/attendances/checkin', [AttendanceControllerNV::class, 'checkIn']);
     Route::post('/attendances/checkout', [AttendanceControllerNV::class, 'checkOut']);
