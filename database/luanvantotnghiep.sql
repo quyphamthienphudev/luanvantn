@@ -11,7 +11,7 @@
  Target Server Version : 80407 (8.4.7)
  File Encoding         : 65001
 
- Date: 13/08/2026 09:50:08
+ Date: 18/08/2026 11:36:06
 */
 
 SET NAMES utf8mb4;
@@ -7549,7 +7549,7 @@ CREATE TABLE `candidates`  (
   `gender` enum('male','female') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `date_of_birth` date NULL DEFAULT NULL,
   `phone` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
-  `education` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `education` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `email` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `street` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,

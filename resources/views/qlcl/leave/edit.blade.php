@@ -70,6 +70,14 @@
 <a href="/qlcl/leave" class="btn btn-secondary" title="← Quay lại">
     ← Quay lại
 </a>
+<br>
+<br>
+@if(session('error'))
+    <div class="bg-red-200 text-red-800 p-3 rounded shadow w-1/2">
+        {{ session('error') }}
+    </div>
+@endif
+<br>
 <h1 class="text-2xl font-bold mb-6">
     Chỉnh sửa đơn xin nghỉ phép
 </h1>
@@ -77,9 +85,6 @@
 <form action="/qlcl/leave/update/{{ $leave->id }}" method="post" class="bg-white p-6 rounded shadow w-1/2">
 
     @csrf
-    @if(session('error'))
-    <div style="color: red; ">{{ session('error') }}</div>
-    @endif
     <div class="row">
         <div class="col-md-6 mb-4">
             <label class="form-label fw-bold small">

@@ -74,6 +74,7 @@ class PayrollControllerAdmin
             ->where('employee_code', '!=', 'EMP001')
             ->where('employee_code', '!=', 'EMP016')
             ->where('employee_code', '!=', 'EMP021')
+            ->orderBy('employee_code', 'asc')
             ->get();
         }
         
@@ -93,6 +94,7 @@ class PayrollControllerAdmin
             ->where('employee_code', '!=', 'EMP001')
             ->where('employee_code', '!=', 'EMP016')
             ->where('employee_code', '!=', 'EMP021')
+            ->orderBy('employee_code', 'asc')
             ->get();
         $month = $request->get('month', date('m'));
         $year = $request->get('year', date('Y'));

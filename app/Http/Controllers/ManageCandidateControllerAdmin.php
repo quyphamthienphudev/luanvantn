@@ -54,7 +54,7 @@ class ManageCandidateControllerAdmin
             'first_name.required' => 'Vui lòng nhập tên.',
             'last_name.required' => 'Vui lòng nhập họ.',
             'email.required' => 'Vui lòng nhập email.',
-            'email.email' => 'Email không đúng định dạng.',
+            'email.email' => 'Email không đúng định dạng, vui lòng kiểm tra lại.',
             'date_of_birth.required' => 'Vui lòng chọn ngày sinh.',
             'date_of_birth.before' => 'Ngày sinh không hợp lệ, vui lòng kiểm tra lại.',
             'phone.required' => 'Vui lòng nhập số điện thoại.',

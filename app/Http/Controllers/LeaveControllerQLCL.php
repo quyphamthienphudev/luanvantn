@@ -139,6 +139,7 @@ class LeaveControllerQLCL
                 DB::raw('SUM(number_days) as number_days_used'),
                 DB::raw('12 - SUM(number_days) as number_days_resume')
             )
+            ->where('leave_requests.status', 'approved')
             ->groupBy('name', 'employee_code')
             ->orderBy('employee_code', 'asc')
             ->get();
