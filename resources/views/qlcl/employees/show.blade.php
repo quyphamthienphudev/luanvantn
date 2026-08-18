@@ -15,7 +15,7 @@
 
 <body>
     <a href="/qlcl/employees" title="← Quay lại">← Quay lại</a>
-    <div class="bg-white p-6">
+    <div @class(['bg-white', 'p-6'])>
         <p>Mã nhân viên: {{ $employee->employee_code }}</p>
         <p>Họ tên nhân viên: {{ $employee->full_name }}</p>
         <p>Phòng ban: {{ $employee->department->name }}</p>

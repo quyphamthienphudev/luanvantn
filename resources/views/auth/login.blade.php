@@ -10,16 +10,16 @@
 
 </head>
 
-<body class="bg-gradient-to-r from-blue-500 to-indigo-600 min-h-screen flex items-center justify-center">
+<body @class(['bg-gradient-to-r', 'from-blue-500', 'to-indigo-600', 'min-h-screen', 'flex', 'items-center', 'justify-center'])>
 
-    <div class="bg-white p-8 rounded-2xl shadow-2xl w-96">
+    <div @class(['bg-white', 'p-8', 'rounded-2xl', 'shadow-2xl', 'w-96'])>
 
-        <h2 class="text-2xl font-bold text-center mb-6 text-gray-700">
+        <h2 @class(['text-2xl', 'font-bold', 'text-center', 'mb-6', 'text-gray-700'])>
             Hệ thống quản lý nhân sự
         </h2>
 
         @if(session('error'))
-        <div class="text-red-500 text-center mb-4">
+        <div @class(['text-red-500', 'text-center', 'mb-4'])>
             {{ session('error') }}
         </div>
         @endif
@@ -27,17 +27,17 @@
         <form action="/login" method="post">
             @csrf
 
-            <div class="mb-4">
+            <div @class(['mb-4'])>
                 <input type="text" name="email"
-                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="Email">
+                    @class(['w-full', 'px-4', 'py-2', 'border', 'rounded-lg', 'focus:ring-2', 'focus:ring-blue-400']) placeholder="Email">
             </div>
 
-            <div class="mb-4">
+            <div @class(['mb-4'])>
                 <input type="password" name="password"
-                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400" placeholder="Password">
+                    @class(['w-full', 'px-4', 'py-2', 'border', 'rounded-lg', 'focus:ring-2', 'focus:ring-blue-400']) placeholder="Password">
             </div>
 
-            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition" title="Đăng nhập">
+            <button type="submit" @class(['w-full', 'bg-blue-600', 'text-white', 'py-2', 'rounded-lg', 'hover:bg-blue-700', 'transition']) title="Đăng nhập">
                 Đăng nhập
             </button>
         </form>

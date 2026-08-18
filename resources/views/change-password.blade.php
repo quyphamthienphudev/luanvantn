@@ -14,36 +14,36 @@
 </head>
 
 <body>
-    <div class="bg-white p-6 rounded-xl shadow w-1/2">
+    <div @class(['bg-white', 'p-6', 'rounded-xl', 'shadow', 'w-1/2'])>
         @if(session('error'))
-        <div class="text-red-600 mb-4">
+        <div @class(['text-red-600', 'mb-4'])>
             {{ session('error') }}
         </div>
         @endif
         @if(session('success'))
-        <div class="text-green-600 mb-4">
+        <div @class(['text-green-600', 'mb-4'])>
             {{ session('success') }}
         </div>
         @endif
         <form method="post">
             @csrf
-            <div class="mb-4">
-                <label class="block mb-2">Mật khẩu hiện tại</label>
-                <input type="password" name="current_password" class="w-full px-4 py-2 border rounded"
+            <div @class(['mb-4'])>
+                <label @class(['block', 'mb-2'])>Mật khẩu hiện tại</label>
+                <input type="password" name="current_password" @class(['w-full', 'px-4', 'py-2', 'border', 'rounded'])
                     placeholder="Mật khẩu hiện tại" value="{{ old('current_password') }}">
                 @error('current_password')
-                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                <div @class(['text-red-500', 'text-sm', 'mt-1'])>{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mb-4">
-                <label class="block mb-2">Mật khẩu mới</label>
-                <input type="password" name="new_password" class="w-full px-4 py-2 border rounded"
+            <div @class(['mb-4'])>
+                <label @class(['block', 'mb-2'])>Mật khẩu mới</label>
+                <input type="password" name="new_password" @class(['w-full', 'px-4', 'py-2', 'border', 'rounded'])
                     placeholder="Mật khẩu mới" value="{{ old('new_password') }}">
                 @error('new_password')
-                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                <div @class(['text-red-500', 'text-sm', 'mt-1'])>{{ $message }}</div>
                 @enderror
             </div>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded" title="Đổi mật khẩu">
+            <button @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded']) title="Đổi mật khẩu">
                 Đổi mật khẩu
             </button>
         </form>

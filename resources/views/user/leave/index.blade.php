@@ -79,62 +79,62 @@
 
 <p>Số ngày nghỉ phép còn lại: <b style="color: red; ">{{ $resumeLeave }}</b> ngày</p>
 @if(session('success'))
-<div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
+<div @class(['alert', 'alert-success', 'alert-dismissible', 'fade', 'show', 'border-0', 'shadow-sm']) role="alert">
     {{ session('success') }}
 </div>
 @endif
 @if(session('error'))
-<div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm" role="alert">
+<div @class(['alert', 'alert-danger', 'alert-dismissible', 'fade', 'show', 'border-0', 'shadow-sm']) role="alert">
     {{ session('error') }}
 </div>
 @endif
-<div class="rounded mt-6">
-    <div class="row">
+<div @class(['rounded', 'mt-6'])>
+    <div @class(['row'])>
         <!-- Form đăng ký nghỉ phép -->
-        <div class="col-lg-4 mb-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-header py-3 text-center">
+        <div @class(['col-lg-4', 'mb-4'])>
+            <div @class(['card', 'shadow-sm', 'border-0'])>
+                <div @class(['card-header', 'py-3', 'text-center'])>
                     Tạo đơn xin nghỉ phép
                 </div>
-                <div class="card-body p-4">
+                <div @class(['card-body', 'p-4'])>
                     <form action="/leave/store" method="post">
                         @csrf
                         <!-- Ngày bắt đầu & ngày kết thúc -->
-                        <div class="row">
-                            <div class="col-6 mb-3">
-                                <label class="form-label fw-bold small text-secondary">Ngày bắt đầu</label>
+                        <div @class(['row'])>
+                            <div @class(['col-6', 'mb-3'])>
+                                <label @class(['form-label', 'fw-bold', 'small', 'text-secondary'])>Ngày bắt đầu</label>
                                 <input type="date" name="start_date" id="start_date"
-                                    class="form-control"
+                                    @class(['form-control'])
                                     value="{{ old('start_date') }}">
                                 @error('start_date')
-                                <p class="text-red-500 text-sm">{{ $message }}</p>
+                                <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
                                 @enderror
                             </div>
             
-                            <div class="col-6 mb-3">
-                                <label class="form-label fw-bold small text-secondary">Ngày kết thúc</label>
+                            <div @class(['col-6', 'mb-3'])>
+                                <label @class(['form-label', 'fw-bold', 'small', 'text-secondary'])>Ngày kết thúc</label>
                                 <input type="date" name="end_date" id="end_date"
-                                    class="form-control"
+                                    @class(['form-control'])
                                     value="{{ old('end_date') }}">
                                 @error('end_date')
-                                <p class="text-red-500 text-sm">{{ $message }}</p>
+                                <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
 
                         <!-- Lý do -->
-                        <div class="mb-3">
-                            <label class="form-label fw-bold small text-secondary">Lý do xin nghỉ
+                        <div @class(['mb-3'])>
+                            <label @class(['form-label', 'fw-bold', 'small', 'text-secondary'])>Lý do xin nghỉ
                                 phép</label>
                             @error('reason')
-                            <p class="text-red-500 text-sm">{{ $message }}</p>
+                            <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
                             @enderror
-                            <textarea name="reason" class="form-control"
+                            <textarea name="reason" @class(['form-control'])
                                 rows="4">{{ old('reason') }}</textarea>
                         </div>
 
-                        <div class="d-grid mt-4">
-                            <button class="btn btn-primary shadow" title="Gửi đơn">
+                        <div @class(['d-grid', 'mt-4'])>
+                            <button @class(['btn', 'btn-primary', 'shadow']) title="Gửi đơn">
                                 Gửi đơn
                             </button>
                         </div>
@@ -143,60 +143,60 @@
             </div>
         </div>
 
-        <div class="col-lg-8">
-            <div class="card shadow-sm border-0">
-                <div class="card-header bg-dark text-white py-3">
+        <div @class(['col-lg-8'])>
+            <div @class(['card', 'shadow-sm', 'border-0'])>
+                <div @class(['card-header', 'bg-dark', 'text-white', 'py-3'])>
                     Lịch sử tạo đơn xin nghỉ phép
                 </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover mb-0 align-middle">
-                            <thead class="table-light text-uppercase small fw-bold">
+                <div @class(['card-body', 'p-0'])>
+                    <div @class(['table-responsive'])>
+                        <table @class(['table', 'table-hover', 'mb-0', 'align-middle'])>
+                            <thead @class(['table-light', 'text-uppercase', 'small', 'fw-bold'])>
                                 <tr>
-                                    <th class="ps-4 py-3 text-secondary">Thời gian</th>
-                                    <th class="ps-4 py-3 text-secondary">Nhân viên</th>
-                                    <th class="ps-4 py-3 text-secondary">Trạng thái</th>
-                                    <th class="ps-4 py-3 text-secondary">Thao tác</th>
+                                    <th @class(['ps-4', 'py-3', 'text-secondary'])>Thời gian</th>
+                                    <th @class(['ps-4', 'py-3', 'text-secondary'])>Nhân viên</th>
+                                    <th @class(['ps-4', 'py-3', 'text-secondary'])>Trạng thái</th>
+                                    <th @class(['ps-4', 'py-3', 'text-secondary'])>Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($leaves as $l)
                                 <tr>
-                                    <td class="ps-4">
-                                        <div class="fw-bold">{{ $l->start_date ? date('d/m/Y', strtotime($l->start_date)) : '' }}</div>
-                                        <div class="text-muted small">đến {{ $l->end_date ? date('d/m/Y', strtotime($l->end_date)) : '' }}</div>
+                                    <td @class(['ps-4'])>
+                                        <div @class(['fw-bold'])>{{ $l->start_date ? date('d/m/Y', strtotime($l->start_date)) : '' }}</div>
+                                        <div @class(['text-muted', 'small'])>đến {{ $l->end_date ? date('d/m/Y', strtotime($l->end_date)) : '' }}</div>
                                     </td>
                                     <td>
-                                        <div class="fw-bold text-primary">{{ Auth::user()->name }}</div>
-                                        <small class="text-muted">Lý do: {{ $l->reason }}</small>
+                                        <div @class(['fw-bold', 'text-primary'])>{{ Auth::user()->name }}</div>
+                                        <small @class(['text-muted'])>Lý do: {{ $l->reason }}</small>
                                     </td>
                                     <td>
                                         @if($l->status == 'pending')
-                                        <span class="badge bg-warning text-dark status-badge"><i
-                                                class="fas fa-spinner fa-spin me-1"></i> Chờ duyệt</span>
+                                        <span @class(['badge', 'bg-warning', 'text-dark', 'status-badge'])><i
+                                                @class(['fas', 'fa-spinner', 'fa-spin', 'me-1'])></i> Chờ duyệt</span>
                                         @elseif($l->status == 'approved')
-                                        <span class="badge bg-success shadow-sm"><i
-                                                class="fas fa-check-circle me-1"></i> Đồng ý</span>
+                                        <span @class(['badge', 'bg-success', 'shadow-sm'])><i
+                                                @class(['fas', 'fa-check-circle', 'me-1'])></i> Đồng ý</span>
                                         @else
-                                        <span class="badge bg-danger shadow-sm"><i class="fas fa-times-circle me-1"></i>
+                                        <span @class(['badge', 'bg-danger', 'shadow-sm'])><i @class(['fas', 'fa-times-circle', 'me-1'])></i>
                                             Từ chối</span>
                                         @endif
                                     </td>
-                                    <td class="text-center pe-4">
+                                    <td @class(['text-center', 'pe-4'])>
                                         @if($l->status == 'pending')
-                                        <a href="/leave/edit/{{ $l->id }}" class="btn btn-sm btn-outline-primary shadow-sm px-3" title="Sửa">
-                                                <i class="fas fa-edit me-1"></i> Sửa
+                                        <a href="/leave/edit/{{ $l->id }}" @class(['btn', 'btn-sm', 'btn-outline-primary', 'shadow-sm', 'px-3']) title="Sửa">
+                                                <i @class(['fas', 'fa-edit', 'me-1'])></i> Sửa
                                             </a>
                                         @else
-                                        <span class="text-muted small fw-italic"><i class="fas fa-lock"></i> Đã hoàn
+                                        <span @class(['text-muted', 'small', 'fw-italic'])><i @class(['fas', 'fa-lock'])></i> Đã hoàn
                                             tất</span>
                                         @endif
                                     </td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="4" class="text-center py-5 text-muted">
-                                        <i class="fas fa-3x mb-3 d-block opacity-25"></i>
+                                    <td colspan="4" @class(['text-center', 'py-5', 'text-muted'])>
+                                        <i @class(['fas', 'fa-3x', 'mb-3', 'd-block', 'opacity-25'])></i>
                                         Bạn chưa tạo đơn xin nghỉ phép nào
                                     </td>
                                 </tr>

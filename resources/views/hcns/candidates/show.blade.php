@@ -15,7 +15,7 @@
 
 <body>
     <a href="/hcns/candidates" title="← Quay lại">← Quay lại</a>
-    <div class="bg-white p-6">
+    <div @class(['bg-white', 'p-6'])>
         <p>Mã hồ sơ: {{ $candidate->candidate_id }}</p>
         <p>Họ và tên: {{ $candidate->full_name }}</p>
         <p>Tên: {{ $candidate->first_name }}</p>

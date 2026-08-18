@@ -14,8 +14,8 @@
 </head>
 
 <body>
-    <div class="max-w-md mx-auto mt-4 px-4">
-        <span class="text-red-600">
+    <div @class(['max-w-md', 'mx-auto', 'mt-4', 'px-4'])>
+        <span @class(['text-red-600'])>
             Nhân viên đã xin nghỉ phép hôm nay, vui lòng liên hệ phòng quản lý chất lượng 
             để biết thông tin chi tiết.
         </span>

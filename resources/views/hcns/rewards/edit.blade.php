@@ -15,41 +15,41 @@
 
 <body>
     <a href="/hcns/rewards" title="← Quay lại">← Quay lại</a>
-    <form action="/hcns/rewards/update/{{ $rewards->id }}" method="post" class="bg-white p-6 w-1/2">
+    <form action="/hcns/rewards/update/{{ $rewards->id }}" method="post" @class(['bg-white', 'p-6', 'w-1/2'])>
         @csrf
-        <div class="mb-4">
+        <div @class(['mb-4'])>
             <label>Nhân viên</label>
-            <input type="text" value="{{ $rewards->employee->full_name }}" class="w-full border p-2 rounded bg-gray-100" readonly>
+            <input type="text" value="{{ $rewards->employee->full_name }}" @class(['w-full', 'border', 'p-2', 'rounded', 'bg-gray-100']) readonly>
         </div>
-        <div class="mb-4">
+        <div @class(['mb-4'])>
             <label>Mã nhân viên</label>
-            <input type="text" value="{{ $rewards->employee->employee_code }}" class="w-full border p-2 rounded bg-gray-100" readonly>
+            <input type="text" value="{{ $rewards->employee->employee_code }}" @class(['w-full', 'border', 'p-2', 'rounded', 'bg-gray-100']) readonly>
         </div>
-        <div class="mb-4">
+        <div @class(['mb-4'])>
             <label>Nội dung khen thưởng</label>
-            <input type="text" name="title" value="{{ old('title', $rewards->title) }}" class="w-full border p-2 rounded"
+            <input type="text" name="title" value="{{ old('title', $rewards->title) }}" @class(['w-full', 'border', 'p-2', 'rounded'])
                 placeholder="Nội dung khen thưởng">
             @error('title')
-            <p class="text-red-500 text-sm">{{ $message }}</p>
+            <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
-        <div class="mb-4">
+        <div @class(['mb-4'])>
             <label>Số tiền</label>
-            <input type="text" name="amount" value="{{ old('amount', $rewards->amount) }}" class="w-full border p-2 rounded"
+            <input type="text" name="amount" value="{{ old('amount', $rewards->amount) }}" @class(['w-full', 'border', 'p-2', 'rounded'])
                 placeholder="Số tiền">
             @error('amount')
-            <p class="text-red-500 text-sm">{{ $message }}</p>
+            <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
-        <div class="mb-4">
+        <div @class(['mb-4'])>
             <label>Ngày ra quyết định</label>
             <input type="date" name="decision_date" value="{{ old('decision_date', $rewards->decision_date) }}"
-                class="w-full border p-2 rounded">
+                @class(['w-full', 'border', 'p-2', 'rounded'])>
             @error('decision_date')
-            <p class="text-red-500 text-sm">{{ $message }}</p>
+            <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
-        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" title="Cập nhật">Cập nhật</button>
+        <button @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-blue-700']) title="Cập nhật">Cập nhật</button>
     </form>
 </body>
 

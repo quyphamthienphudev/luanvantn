@@ -14,41 +14,41 @@
 </head>
 
 <body> 
-    <div class="flex space-x-2">
-        <a href="/hcns/contracts/create" class="bg-blue-600 text-white px-4 py-2 rounded" title="Thêm hợp đồng lao động">
+    <div @class(['flex', 'space-x-2'])>
+        <a href="/hcns/contracts/create" @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded']) title="Thêm hợp đồng lao động">
             Thêm hợp đồng lao động
         </a>
     </div>
-    <form action="/hcns/contracts" method="get" class="mt-4">
+    <form action="/hcns/contracts" method="get" @class(['mt-4'])>
         @csrf
-        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" class="border p-2"
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" @class(['border', 'p-2'])
             placeholder="Tìm theo mã hợp đồng hoặc nhân viên" style="width:300px;">
-        <button class="bg-gray-500 text-white px-3 py-2 rounded" title="Tìm">Tìm</button>
+        <button @class(['bg-gray-500', 'text-white', 'px-3', 'py-2', 'rounded']) title="Tìm">Tìm</button>
     </form>
     @if(session('success'))
-    <div class="bg-green-200 text-green-800 p-3 rounded mt-4">
+    <div @class(['bg-green-200', 'text-green-800', 'p-3', 'rounded', 'mt-4'])>
         {{ session('success') }}
     </div>
     @endif
-    <div class="bg-white shadow rounded mt-6">
-        <table class="w-full text-left">
-            <thead class="bg-gray-200">
+    <div @class(['bg-white', 'shadow', 'rounded', 'mt-6'])>
+        <table @class(['w-full', 'text-left'])>
+            <thead @class(['bg-gray-200'])>
                 <tr>
-                    <th class="p-3">Mã hợp đồng</th>
-                    <th class="p-3">Nhân viên</th>
-                    <th class="p-3">Loại hợp đồng</th>
-                    <th class="p-3">Ngày bắt đầu</th>
-                    <th class="p-3">Ngày kết thúc</th>
-                    <th class="p-3">Trạng thái</th>
-                    <th class="p-3 text-center">Hành động</th>
+                    <th @class(['p-3'])>Mã hợp đồng</th>
+                    <th @class(['p-3'])>Nhân viên</th>
+                    <th @class(['p-3'])>Loại hợp đồng</th>
+                    <th @class(['p-3'])>Ngày bắt đầu</th>
+                    <th @class(['p-3'])>Ngày kết thúc</th>
+                    <th @class(['p-3'])>Trạng thái</th>
+                    <th @class(['p-3', 'text-center'])>Hành động</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($contracts as $c)
-                <tr class="border-b">
-                    <td class="p-3">{{ $c->contract_code }}</td>
-                    <td class="p-3">{{ $c->employee->full_name }}</td>
-                    <td class="p-3">
+                <tr @class(['border-b'])>
+                    <td @class(['p-3'])>{{ $c->contract_code }}</td>
+                    <td @class(['p-3'])>{{ $c->employee->full_name }}</td>
+                    <td @class(['p-3'])>
                         @if($c->contract_type == 'probation')
                         Hợp đồng thử việc
                         @endif
@@ -59,13 +59,13 @@
                         Hợp đồng không xác định thời hạn
                         @endif
                     </td>
-                    <td class="p-3">
+                    <td @class(['p-3'])>
                         {{ $c->start_date ? date('d/m/Y', strtotime($c->start_date)) : '' }}
                     </td>
-                    <td class="p-3">
+                    <td @class(['p-3'])>
                         {{ $c->end_date ? date('d/m/Y', strtotime($c->end_date)) : 'Không có' }}
                     </td>
-                    <td class="p-3">
+                    <td @class(['p-3'])>
                         @if($c->status == 'active')
                         Còn hạn
                         @endif
@@ -76,42 +76,42 @@
                         Đã thanh lý
                         @endif
                     </td>
-                    <td class="p-3" align="center">
-                        <div class="flex space-x-2">
+                    <td @class(['p-3']) align="center">
+                        <div @class(['flex', 'space-x-2'])>
                             @if($c->status == 'terminated' || $c->status == 'expired')
                                 @if($c->contract_file)
-                                    <a href="/hcns/contracts/view/{{ $c->id }}" class="bg-blue-600 text-white px-3 py-1 rounded" title="Xem">Xem</a>
+                                    <a href="/hcns/contracts/view/{{ $c->id }}" @class(['bg-blue-600', 'text-white', 'px-3', 'py-1', 'rounded']) title="Xem">Xem</a>
                                 @else
-                                    <a href="" class="bg-blue-600 text-white px-3 py-1 rounded" onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
+                                    <a href="" @class(['bg-blue-600', 'text-white', 'px-3', 'py-1', 'rounded']) onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
                                 @endif
                             @elseif($c->contract_type == 'probation' || $c->contract_type == 'indefinite')
                                 <form action="/hcns/contracts/terminate/{{ $c->id }}" method="post">
                                     @csrf
-                                    <button class="bg-red-600 text-white px-3 py-1 rounded" title="Thanh lý">Thanh lý</button>
+                                    <button @class(['bg-red-600', 'text-white', 'px-3', 'py-1', 'rounded']) title="Thanh lý">Thanh lý</button>
                                 </form>
                                 @if($c->contract_file)
-                                    <a href="/hcns/contracts/view/{{ $c->id }}" class="bg-blue-600 text-white px-3 py-1 rounded" title="Xem">Xem</a>
+                                    <a href="/hcns/contracts/view/{{ $c->id }}" @class(['bg-blue-600', 'text-white', 'px-3', 'py-1', 'rounded']) title="Xem">Xem</a>
                                 @else
-                                    <a href="" class="bg-blue-600 text-white px-3 py-1 rounded" onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
+                                    <a href="" @class(['bg-blue-600', 'text-white', 'px-3', 'py-1', 'rounded']) onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
                                 @endif
                             @else
-                                <a href="/hcns/contracts/edit/{{ $c->id }}" class="bg-yellow-500 text-white px-3 py-1 rounded" title="Gia hạn">Gia hạn</a>
+                                <a href="/hcns/contracts/edit/{{ $c->id }}" @class(['bg-yellow-500', 'text-white', 'px-3', 'py-1', 'rounded']) title="Gia hạn">Gia hạn</a>
                                 <form action="/hcns/contracts/terminate/{{ $c->id }}" method="post">
                                     @csrf
-                                    <button class="bg-red-600 text-white px-3 py-1 rounded" title="Thanh lý">Thanh lý</button>
+                                    <button @class(['bg-red-600', 'text-white', 'px-3', 'py-1', 'rounded']) title="Thanh lý">Thanh lý</button>
                                 </form>
                                 @if($c->contract_file)
-                                    <a href="/hcns/contracts/view/{{ $c->id }}" class="bg-blue-600 text-white px-3 py-1 rounded" title="Xem">Xem</a>
+                                    <a href="/hcns/contracts/view/{{ $c->id }}" @class(['bg-blue-600', 'text-white', 'px-3', 'py-1', 'rounded']) title="Xem">Xem</a>
                                 @else
-                                    <a href="" class="bg-blue-600 text-white px-3 py-1 rounded" onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
+                                    <a href="" @class(['bg-blue-600', 'text-white', 'px-3', 'py-1', 'rounded']) onclick="return alert('File không tồn tại')" title="Xem">Xem</a>
                                 @endif
                             @endif
                         </div>
                     </td>
                 </tr>
                 @empty
-                <tr class="border-b">
-                    <td colspan="8" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
+                <tr @class(['border-b'])>
+                    <td colspan="8" @class(['text-center', 'py-10', 'text-gray-500'])>Không có dữ liệu</td>
                 </tr>
                 @endforelse
             </tbody>

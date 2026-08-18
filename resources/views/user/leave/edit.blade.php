@@ -66,63 +66,63 @@
 
 @section('content')
 
-<a href="/leave" class="btn btn-secondary" title="← Quay lại">
+<a href="/leave" @class(['btn', 'btn-secondary']) title="← Quay lại">
     ← Quay lại
 </a>
 
-<h1 class="text-2xl font-bold mb-6">
+<h1 @class(['text-2xl', 'font-bold', 'mb-6'])>
     Chỉnh sửa đơn xin nghỉ phép
 </h1>
 
-<form action="/leave/update/{{ $leave->id }}" method="post" class="bg-white p-6 rounded shadow w-1/2">
+<form action="/leave/update/{{ $leave->id }}" method="post" @class(['bg-white', 'p-6', 'rounded', 'shadow', 'w-1/2'])>
 
     @csrf
     @if(session('error'))
     <div style="color: red; ">{{ session('error') }}</div>
     @endif
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <label class="form-label fw-bold small">
+    <div @class(['row'])>
+        <div @class(['col-md-6', 'mb-4'])>
+            <label @class(['form-label', 'fw-bold', 'small'])>
                 Nhân viên
             </label>
-            <input type="text" class="form-control shadow-sm bg-gray-100" value="{{ $leave->user->name }}" readonly>
+            <input type="text" @class(['form-control', 'shadow-sm', 'bg-gray-100']) value="{{ $leave->user->name }}" readonly>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <label class="form-label fw-bold small">
+    <div @class(['row'])>
+        <div @class(['col-md-6', 'mb-4'])>
+            <label @class(['form-label', 'fw-bold', 'small'])>
                 Ngày bắt đầu
             </label>
-            <input type="date" name="start_date" class="form-control shadow-sm" value="{{ old('start_date', $leave->start_date) }}">
+            <input type="date" name="start_date" @class(['form-control', 'shadow-sm']) value="{{ old('start_date', $leave->start_date) }}">
             @error('start_date')
-            <p class="text-red-500 text-sm">{{ $message }}</p>
+            <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
 
-        <div class="col-md-6 mb-4">
-            <label class="form-label fw-bold small">
+        <div @class(['col-md-6', 'mb-4'])>
+            <label @class(['form-label', 'fw-bold', 'small'])>
                 Ngày kết thúc
             </label>
-            <input type="date" name="end_date" class="form-control shadow-sm" value="{{ old('end_date', $leave->end_date) }}">
+            <input type="date" name="end_date" @class(['form-control', 'shadow-sm']) value="{{ old('end_date', $leave->end_date) }}">
             @error('end_date')
-            <p class="text-red-500 text-sm">{{ $message }}</p>
+            <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
     </div>
 
-    <div class="mb-4">
-        <label class="form-label fw-bold small">
+    <div @class(['mb-4'])>
+        <label @class(['form-label', 'fw-bold', 'small'])>
             Lý do xin nghỉ phép
         </label>
         @error('reason')
-        <p class="text-red-500 text-sm">{{ $message }}</p>
+        <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
         @enderror
-        <textarea name="reason" class="form-control shadow-sm" rows="4">{{ old('reason', $leave->reason) }}</textarea>
+        <textarea name="reason" @class(['form-control', 'shadow-sm']) rows="4">{{ old('reason', $leave->reason) }}</textarea>
     </div>
 
-    <div class="d-flex flex-column flex-sm-row gap-3">
-        <button class="btn btn-save flex-grow-1" title="Lưu thay đổi">
+    <div @class(['d-flex', 'flex-column', 'flex-sm-row', 'gap-3'])>
+        <button @class(['btn', 'btn-save', 'flex-grow-1']) title="Lưu thay đổi">
             Lưu thay đổi
         </button>
     </div>

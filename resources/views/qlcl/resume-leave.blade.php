@@ -31,46 +31,46 @@
 
 @section('content')
 
-<div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-bold text-gray-800">Danh sách nhân viên</h2>
+<div @class(['flex', 'justify-between', 'items-center', 'mb-6'])>
+    <h2 @class(['text-2xl', 'font-bold', 'text-gray-800'])>Danh sách nhân viên</h2>
 </div>
 
-<div class="bg-white shadow rounded mt-6">
-    <table class="w-full text-left">
+<div @class(['bg-white', 'shadow', 'rounded', 'mt-6'])>
+    <table @class(['w-full', 'text-left'])>
 
-        <thead class="bg-gray-200">
+        <thead @class(['bg-gray-200'])>
             <tr>
-                <th class="p-3">Nhân viên</th>
-                <th class="p-3">Số ngày đã sử dụng</th>
-                <th class="p-3">Số ngày còn lại</th>
-                <th class="p-3">Trạng thái</th>
+                <th @class(['p-3'])>Nhân viên</th>
+                <th @class(['p-3'])>Số ngày đã sử dụng</th>
+                <th @class(['p-3'])>Số ngày còn lại</th>
+                <th @class(['p-3'])>Trạng thái</th>
             </tr>
         </thead>
 
         <tbody>
             @forelse($countResumeLeave as $c)
-            <tr class="border-b">
-                <td class="ps-3">
-                    <div class="fw-bold">{{ $c->name ?? 'N/A' }}</div>
-                    <small class="text-muted">Mã nhân viên: {{ $c->employee_code }}</small>
+            <tr @class(['border-b'])>
+                <td @class(['ps-3'])>
+                    <div @class(['fw-bold'])>{{ $c->name ?? 'N/A' }}</div>
+                    <small @class(['text-muted'])>Mã nhân viên: {{ $c->employee_code }}</small>
                 </td>
-                <td class="ps-3">
+                <td @class(['ps-3'])>
                     <div>{{ $c->number_days_used }} ngày</div>
                 </td>
-                <td class="ps-3">
+                <td @class(['ps-3'])>
                     <div>{{ $c->number_days_resume }} ngày</div>
                 </td>
-                <td class="ps-3">
+                <td @class(['ps-3'])>
                     @if($c->number_days_resume == 0)
-                    <span class="badge bg-danger status-badge">Hết ngày nghỉ</span>
+                    <span @class(['badge', 'bg-danger', 'status-badge'])>Hết ngày nghỉ</span>
                     @else
-                    <span class="badge bg-success status-badge">Còn ngày nghỉ</span>
+                    <span @class(['badge', 'bg-success', 'status-badge'])>Còn ngày nghỉ</span>
                     @endif
                 </td>
             </tr>
             @empty
-            <tr class="border-b">
-                <td colspan="4" class="text-center py-10 text-gray-500">Không có dữ liệu</td>
+            <tr @class(['border-b'])>
+                <td colspan="4" @class(['text-center', 'py-10', 'text-gray-500'])>Không có dữ liệu</td>
             </tr>
             @endforelse
         </tbody>

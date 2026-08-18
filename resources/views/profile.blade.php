@@ -14,36 +14,36 @@
 </head>
 
 <body>
-    <div class="bg-white p-6 rounded-xl shadow w-1/2">
+    <div @class(['bg-white', 'p-6', 'rounded-xl', 'shadow', 'w-1/2'])>
         @if(session('success'))
-        <div class="text-green-600 mb-4">
+        <div @class(['text-green-600', 'mb-4'])>
             {{ session('success') }}
         </div>
         @endif
         @if(session('error'))
-        <div class="text-green-600 mb-4">
+        <div @class(['text-green-600', 'mb-4'])>
             {{ session('error') }}
         </div>
         @endif
         <form method="post">
             @csrf
-            <div class="mb-4">
-                <label class="block mb-2">Họ tên</label>
+            <div @class(['mb-4'])>
+                <label @class(['block', 'mb-2'])>Họ tên</label>
                 <input type="text" value="{{ auth()->user()->name }}"
-                    class="w-full px-4 py-2 border rounded bg-gray-100" placeholder="Họ tên" readonly>
+                    @class(['w-full', 'px-4', 'py-2', 'border', 'rounded', 'bg-gray-100']) placeholder="Họ tên" readonly>
                 <!-- @error('name')
-                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                <div @class(['text-red-500', 'text-sm', 'mt-1'])>{{ $message }}</div>
                 @enderror -->
             </div>
-            <div class="mb-4">
-                <label class="block mb-2">Email</label>
+            <div @class(['mb-4'])>
+                <label @class(['block', 'mb-2'])>Email</label>
                 <input type="text" name="email" value="{{ old('email', auth()->user()->email) }}"
-                    class="w-full px-4 py-2 border rounded" placeholder="Email" maxlength="150">
+                    @class(['w-full', 'px-4', 'py-2', 'border', 'rounded']) placeholder="Email" maxlength="150">
                 @error('email')
-                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                <div @class(['text-red-500', 'text-sm', 'mt-1'])>{{ $message }}</div>
                 @enderror
             </div>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded" title="Cập nhật">
+            <button @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded']) title="Cập nhật">
                 Cập nhật
             </button>
         </form>

@@ -14,59 +14,59 @@
 </head>
 
 <body>
-    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
-        <h2 class="text-xl font-bold mb-4">Tạo bảng lương mới</h2>
+    <div @class(['max-w-2xl', 'mx-auto', 'bg-white', 'rounded-lg', 'shadow', 'p-6'])>
+        <h2 @class(['text-xl', 'font-bold', 'mb-4'])>Tạo bảng lương mới</h2>
         @if(session('error'))
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <div @class(['bg-red-100', 'border', 'border-red-400', 'text-red-700', 'px-4', 'py-3', 'rounded', 'mb-4'])>
             {{ session('error') }}
         </div>
         @endif
         <form action="/hcns/payrolls" method="post">
             @csrf
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2">Nhân viên</label>
-                <select name="employee_id" id="employee_id" class="w-full border rounded px-3 py-2">
+            <div @class(['mb-4'])>
+                <label @class(['block', 'text-gray-700', 'font-bold', 'mb-2'])>Nhân viên</label>
+                <select name="employee_id" id="employee_id" @class(['w-full', 'border', 'rounded', 'px-3', 'py-2'])>
                     @foreach($employees as $e)
                     <option value="{{ $e->id }}">{{ $e->full_name }}</option>
                     @endforeach
                 </select>
             </div>
 
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2">Mã nhân viên</label>
-                <input type="text" id="employee_code" class="w-full border p-2 rounded bg-gray-100" readonly>
+            <div @class(['mb-4'])>
+                <label @class(['block', 'text-gray-700', 'font-bold', 'mb-2'])>Mã nhân viên</label>
+                <input type="text" id="employee_code" @class(['w-full', 'border', 'p-2', 'rounded', 'bg-gray-100']) readonly>
             </div>
 
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2">Công việc</label>
-                <input type="text" id="position_name" class="w-full border p-2 rounded bg-gray-100" readonly>
+            <div @class(['mb-4'])>
+                <label @class(['block', 'text-gray-700', 'font-bold', 'mb-2'])>Công việc</label>
+                <input type="text" id="position_name" @class(['w-full', 'border', 'p-2', 'rounded', 'bg-gray-100']) readonly>
             </div>
 
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2">Lương cơ bản (VNĐ)</label>
-                <input type="text" id="base_salary" class="w-full border p-2 rounded bg-gray-100" readonly>
+            <div @class(['mb-4'])>
+                <label @class(['block', 'text-gray-700', 'font-bold', 'mb-2'])>Lương cơ bản (VNĐ)</label>
+                <input type="text" id="base_salary" @class(['w-full', 'border', 'p-2', 'rounded', 'bg-gray-100']) readonly>
             </div>
 
-            <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2">Phụ cấp (VNĐ)</label>
-                <input type="text" name="allowance" class="w-full border p-2 rounded" value="{{ old('allowance') }}" placeholder="Phụ cấp">
+            <div @class(['mb-4'])>
+                <label @class(['block', 'text-gray-700', 'font-bold', 'mb-2'])>Phụ cấp (VNĐ)</label>
+                <input type="text" name="allowance" @class(['w-full', 'border', 'p-2', 'rounded']) value="{{ old('allowance') }}" placeholder="Phụ cấp">
                 @error('allowance')
-                <div class="text-red-700">{{ $message }}</div>
+                <div @class(['text-red-700'])>{{ $message }}</div>
                 @enderror
             </div>
 
-            <div class="grid grid-cols-2 gap-4 mb-4">
+            <div @class(['grid', 'grid-cols-2', 'gap-4', 'mb-4'])>
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2">Tháng</label>
-                    <select name="month" class="w-full border rounded px-3 py-2">
+                    <label @class(['block', 'text-gray-700', 'font-bold', 'mb-2'])>Tháng</label>
+                    <select name="month" @class(['w-full', 'border', 'rounded', 'px-3', 'py-2'])>
                         @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng
                             {{ $i }}</option>
                         @endfor
                     </select>
                 </div>
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2">Năm</label>
-                    <select name="year" class="w-full border rounded px-3 py-2">
+                    <label @class(['block', 'text-gray-700', 'font-bold', 'mb-2'])>Năm</label>
+                    <select name="year" @class(['w-full', 'border', 'rounded', 'px-3', 'py-2'])>
                         @for($i = 2001; $i <= 2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>Năm
                             {{ $i }}</option>
                         @endfor
@@ -74,9 +74,9 @@
                 </div>
             </div>
 
-            <div class="flex gap-2 justify-end">
-                <a href="/hcns/payrolls" class="bg-gray-500 text-white px-4 py-2 rounded" title="Huỷ">Huỷ</a>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded" title="Lưu">Lưu</button>
+            <div @class(['flex', 'gap-2', 'justify-end'])>
+                <a href="/hcns/payrolls" @class(['bg-gray-500', 'text-white', 'px-4', 'py-2', 'rounded']) title="Huỷ">Huỷ</a>
+                <button @class(['bg-blue-500', 'text-white', 'px-4', 'py-2', 'rounded']) title="Lưu">Lưu</button>
             </div>
         </form>
     </div>
