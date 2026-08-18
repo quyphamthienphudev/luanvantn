@@ -35,6 +35,13 @@ class Response implements ArrayAccess, Stringable
     protected $decoded;
 
     /**
+     * Indicates if the JSON response has been decoded.
+     *
+     * @var bool
+     */
+    protected bool $decodedJson = false;
+
+    /**
      * The flags that were used when decoding the JSON response.
      *
      * @var int-mask<JSON_BIGINT_AS_STRING, JSON_INVALID_UTF8_IGNORE, JSON_INVALID_UTF8_SUBSTITUTE, JSON_OBJECT_AS_ARRAY, JSON_THROW_ON_ERROR>
@@ -90,7 +97,7 @@ class Response implements ArrayAccess, Stringable
     }
 
     /**
-     * Get the JSON decoded body of the response as an array or scalar value.
+     * Get the decoded JSON body of the response as an array or scalar value.
      *
      * @param  string|null  $key
      * @param  mixed  $default
@@ -99,14 +106,15 @@ class Response implements ArrayAccess, Stringable
      */
     public function json($key = null, $default = null, $flags = null)
     {
-        $flags = $flags ?? self::$defaultJsonDecodingFlags;
+        $flags ??= self::$defaultJsonDecodingFlags;
 
-        if (! $this->decoded || (isset($this->decodingFlags) && $this->decodingFlags !== $flags)) {
+        if (! $this->decodedJson || $this->decodingFlags !== $flags) {
             $this->decoded = json_decode(
                 $this->body(), true, flags: $flags
             );
 
             $this->decodingFlags = $flags;
+            $this->decodedJson = true;
         }
 
         if (is_null($key)) {
@@ -117,7 +125,7 @@ class Response implements ArrayAccess, Stringable
     }
 
     /**
-     * Get the JSON decoded body of the response as an object.
+     * Get the decoded JSON body of the response as an object.
      *
      * @param  int-mask<JSON_BIGINT_AS_STRING, JSON_INVALID_UTF8_IGNORE, JSON_INVALID_UTF8_SUBSTITUTE, JSON_OBJECT_AS_ARRAY, JSON_THROW_ON_ERROR>|null  $flags
      * @return object|null
@@ -128,7 +136,7 @@ class Response implements ArrayAccess, Stringable
     }
 
     /**
-     * Get the JSON decoded body of the response as a collection.
+     * Get the decoded JSON body of the response as a collection.
      *
      * @param  string|null  $key
      * @param  int-mask<JSON_BIGINT_AS_STRING, JSON_INVALID_UTF8_IGNORE, JSON_INVALID_UTF8_SUBSTITUTE, JSON_OBJECT_AS_ARRAY, JSON_THROW_ON_ERROR>|null  $flags
@@ -140,7 +148,7 @@ class Response implements ArrayAccess, Stringable
     }
 
     /**
-     * Get the JSON decoded body of the response as a fluent object.
+     * Get the decoded JSON body of the response as a fluent object.
      *
      * @param  string|null  $key
      * @param  int-mask<JSON_BIGINT_AS_STRING, JSON_INVALID_UTF8_IGNORE, JSON_INVALID_UTF8_SUBSTITUTE, JSON_OBJECT_AS_ARRAY, JSON_THROW_ON_ERROR>|null  $flags
@@ -336,14 +344,13 @@ class Response implements ArrayAccess, Stringable
     /**
      * Throw an exception if a server or client error occurred.
      *
+     * @param  null|(\Closure(\Illuminate\Http\Client\Response, \Illuminate\Http\Client\RequestException): mixed)  $callback
      * @return $this
      *
      * @throws \Illuminate\Http\Client\RequestException
      */
-    public function throw()
+    public function throw($callback = null)
     {
-        $callback = func_get_args()[0] ?? null;
-
         if ($this->failed()) {
             throw tap($this->toException(), function ($exception) use ($callback) {
                 if ($callback && is_callable($callback)) {
@@ -359,13 +366,14 @@ class Response implements ArrayAccess, Stringable
      * Throw an exception if a server or client error occurred and the given condition evaluates to true.
      *
      * @param  \Closure|bool  $condition
+     * @param  null|(\Closure(\Illuminate\Http\Client\Response, \Illuminate\Http\Client\RequestException): mixed)  $callback
      * @return $this
      *
      * @throws \Illuminate\Http\Client\RequestException
      */
-    public function throwIf($condition)
+    public function throwIf($condition, $callback = null)
     {
-        return value($condition, $this) ? $this->throw(func_get_args()[1] ?? null) : $this;
+        return value($condition, $this) ? $this->throw($callback) : $this;
     }
 
     /**
@@ -393,10 +401,10 @@ class Response implements ArrayAccess, Stringable
     {
         if (is_callable($statusCode) &&
             $statusCode($this->status(), $this)) {
-            return $this->throw();
+            throw new RequestException($this, $this->truncateExceptionsAt);
         }
 
-        return $this->status() === $statusCode ? $this->throw() : $this;
+        return $this->status() === $statusCode ? throw new RequestException($this, $this->truncateExceptionsAt) : $this;
     }
 
     /**
@@ -410,10 +418,10 @@ class Response implements ArrayAccess, Stringable
     public function throwUnlessStatus($statusCode)
     {
         if (is_callable($statusCode)) {
-            return $statusCode($this->status(), $this) ? $this : $this->throw();
+            return $statusCode($this->status(), $this) ? $this : throw new RequestException($this, $this->truncateExceptionsAt);
         }
 
-        return $this->status() === $statusCode ? $this : $this->throw();
+        return $this->status() === $statusCode ? $this : throw new RequestException($this, $this->truncateExceptionsAt);
     }
 
     /**
@@ -481,11 +489,11 @@ class Response implements ArrayAccess, Stringable
             $content = $json;
         }
 
-        if (! is_null($key)) {
-            dump(data_get($content, $key));
-        } else {
-            dump($content);
+        if ($request = $this->transferStats?->getRequest()) {
+            dump('"'.$request->getMethod().' '.$request->getUri().'" '.$this->status());
         }
+
+        dump(is_null($key) ? $content : data_get($content, $key));
 
         return $this;
     }

@@ -7,7 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 use function Illuminate\Support\enum_value;
 
 /**
- * @method static \Illuminate\Contracts\Filesystem\Filesystem drive(string|null $name = null)
+ * @method static \Illuminate\Contracts\Filesystem\Filesystem drive(\UnitEnum|string|null $name = null)
  * @method static \Illuminate\Contracts\Filesystem\Filesystem disk(\UnitEnum|string|null $name = null)
  * @method static \Illuminate\Contracts\Filesystem\Cloud cloud()
  * @method static \Illuminate\Contracts\Filesystem\Filesystem build(string|array $config)
@@ -50,6 +50,7 @@ use function Illuminate\Support\enum_value;
  * @method static \Illuminate\Filesystem\FilesystemAdapter assertCount(string $path, int $count, bool $recursive = false)
  * @method static \Illuminate\Filesystem\FilesystemAdapter assertMissing(string|array $path)
  * @method static \Illuminate\Filesystem\FilesystemAdapter assertDirectoryEmpty(string $path)
+ * @method static \Illuminate\Filesystem\FilesystemAdapter assertEmpty()
  * @method static bool missing(string $path)
  * @method static bool fileExists(string $path)
  * @method static bool fileMissing(string $path)
@@ -59,10 +60,12 @@ use function Illuminate\Support\enum_value;
  * @method static \Symfony\Component\HttpFoundation\StreamedResponse response(string $path, string|null $name = null, array $headers = [], string|null $disposition = 'inline')
  * @method static \Symfony\Component\HttpFoundation\StreamedResponse serve(\Illuminate\Http\Request $request, string $path, string|null $name = null, array $headers = [])
  * @method static \Symfony\Component\HttpFoundation\StreamedResponse download(string $path, string|null $name = null, array $headers = [])
+ * @method static \Illuminate\Image\Image image(string $path)
  * @method static string|false checksum(string $path, array $options = [])
  * @method static string|false mimeType(string $path)
  * @method static string url(string $path)
  * @method static bool providesTemporaryUrls()
+ * @method static bool providesTemporaryUploadUrls()
  * @method static string temporaryUrl(string $path, \DateTimeInterface $expiration, array $options = [])
  * @method static array temporaryUploadUrl(string $path, \DateTimeInterface $expiration, array $options = [])
  * @method static \League\Flysystem\FilesystemOperator getDriver()
@@ -70,6 +73,7 @@ use function Illuminate\Support\enum_value;
  * @method static array getConfig()
  * @method static void serveUsing(\Closure $callback)
  * @method static void buildTemporaryUrlsUsing(\Closure $callback)
+ * @method static void buildTemporaryUploadUrlsUsing(\Closure $callback)
  * @method static \Illuminate\Filesystem\FilesystemAdapter|mixed when(\Closure|mixed|null $value = null, callable|null $callback = null, callable|null $default = null)
  * @method static \Illuminate\Filesystem\FilesystemAdapter|mixed unless(\Closure|mixed|null $value = null, callable|null $callback = null, callable|null $default = null)
  * @method static void macro(string $name, object|callable $macro)
@@ -94,7 +98,7 @@ class Storage extends Facade
      *
      * @param  \UnitEnum|string|null  $disk
      * @param  array  $config
-     * @return \Illuminate\Contracts\Filesystem\Filesystem
+     * @return \Illuminate\Filesystem\LocalFilesystemAdapter
      */
     public static function fake($disk = null, array $config = [])
     {
@@ -110,8 +114,14 @@ class Storage extends Facade
             self::buildDiskConfiguration($disk, $config, root: $root)
         ));
 
-        return tap($fake)->buildTemporaryUrlsUsing(function ($path, $expiration) {
-            return URL::to($path.'?expiration='.$expiration->getTimestamp());
+        return tap($fake, function ($fake) {
+            $fake->buildTemporaryUrlsUsing(function ($path, $expiration) {
+                return URL::to($path.'?expiration='.$expiration->getTimestamp());
+            });
+
+            $fake->buildTemporaryUploadUrlsUsing(function ($path, $expiration) {
+                return ['url' => URL::to($path.'?expiration='.$expiration->getTimestamp()), 'headers' => []];
+            });
         });
     }
 
@@ -120,7 +130,7 @@ class Storage extends Facade
      *
      * @param  \UnitEnum|string|null  $disk
      * @param  array  $config
-     * @return \Illuminate\Contracts\Filesystem\Filesystem
+     * @return \Illuminate\Filesystem\LocalFilesystemAdapter
      */
     public static function persistentFake($disk = null, array $config = [])
     {
