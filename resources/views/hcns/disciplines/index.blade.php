@@ -30,7 +30,7 @@
         <table @class(['w-full', 'text-left'])>
             <thead @class(['bg-gray-200'])>
                 <tr>
-                    <th @class(['p-3'])>Mã nhân viên</th>
+                    <th>Mã nhân viên</th>
                     <th @class(['p-3'])>Tên nhân viên</th>
                     <th @class(['p-3'])>Nội dung kỷ luật</th>
                     <th @class(['p-3'])>Số tiền</th>
@@ -61,7 +61,7 @@
                 </tr>
                 @empty
                 <tr @class(['border-b'])>
-                    <td colspan="5" @class(['text-center', 'py-10', 'text-gray-500'])>Không có dữ liệu</td>
+                    <td colspan="6" @class(['text-center', 'py-10', 'text-gray-500'])>Không có dữ liệu</td>
                 </tr>
                 @endforelse
             </tbody>

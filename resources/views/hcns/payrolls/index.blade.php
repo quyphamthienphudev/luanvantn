@@ -96,7 +96,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="11" @class(['text-center', 'py-10', 'text-gray-500'])>Không có dữ liệu</td>
+                        <td colspan="12" @class(['text-center', 'py-10', 'text-gray-500'])>Không có dữ liệu</td>
                     </tr>
                     @endforelse
                 </tbody>
