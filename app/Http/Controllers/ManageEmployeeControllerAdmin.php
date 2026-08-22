@@ -111,6 +111,7 @@ class ManageEmployeeControllerAdmin
         }
 
         $request->validate([
+        // Họ tên phải có ít nhất 2 từ
         'full_name' => 'required|regex:/^\S+\s+\S+.*$/',
         'hire_date' => 'required|date',
         'email' => 'required|email',
