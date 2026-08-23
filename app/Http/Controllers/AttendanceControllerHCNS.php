@@ -107,7 +107,12 @@ class AttendanceControllerHCNS
         {
             return back();
         }
-        Attendance::findOrFail($id)->delete();
-        return back()->with('success', 'Xóa dữ liệu chấm công thành công');
+        $exists = DB::table('attendances')->where('id', $id)->exists();
+        if($exists)
+        {
+            Attendance::findOrFail($id)->delete();
+            return back()->with('success', 'Xóa dữ liệu chấm công thành công');
+        }
+        return back();
     }
 }
