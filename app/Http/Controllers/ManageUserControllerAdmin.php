@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Role;
 
@@ -17,7 +18,7 @@ class ManageUserControllerAdmin
         {
             return back();
         }
-        $users = User::with('role')->select('users.name', 'email', 'description', 'status', 'users.id')->get();
+        $users = User::with('role')->select('users.name', 'email', 'description', 'status', 'users.id')->where('users.id', '!=', Auth::id())->get();
         return view('httt.accounts.index', compact('users'));
     }
 
@@ -71,9 +72,14 @@ class ManageUserControllerAdmin
         {
             return back();
         }
-        $user = DB::table('users')->where('id', $id)->first();
-        $roles = Role::all();
-        return view('httt.accounts.edit', compact('user', 'roles'));
+        $exists = DB::table('users')->where('users.id', '!=', Auth::id())->where('id', $id)->exists();
+        if($exists)
+        {
+            $user = DB::table('users')->where('users.id', '!=', Auth::id())->where('id', $id)->first();
+            $roles = Role::all();
+            return view('httt.accounts.edit', compact('user', 'roles'));
+        }
+        return back();
     }
 
     // UPDATE
@@ -143,7 +149,7 @@ class ManageUserControllerAdmin
 
         $search = $request->search;
 
-        $users = DB::table('users')
+        $users = DB::table('users')->where('users.id', '!=', Auth::id())
             ->when($search, function ($query) use ($search) {
 
             // Tìm theo name hoặc email
@@ -163,7 +169,7 @@ class ManageUserControllerAdmin
             return back();
         }
         
-        $users = DB::table('users')->select('id', 'name', 'email')->get();
+        $users = DB::table('users')->select('id', 'name', 'email')->where('users.id', '!=' , Auth::id())->get();
         
         if ($users->isEmpty()) 
         {

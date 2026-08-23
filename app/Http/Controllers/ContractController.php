@@ -167,6 +167,11 @@ class ContractController
             return back();
         }
         Contract::findOrFail($id)->update(['status' => 'terminated']);
+        DB::table('users')
+            ->join('employees', 'users.name', '=', 'employees.full_name')
+            ->join('contracts', 'employees.id', '=', 'contracts.employee_id')
+            ->where('users.id', $id)
+            ->update(['users.status' => 'suspend']);
         return redirect('/hcns/contracts')->with('success', 'Thanh lý hợp đồng thành công');
     }
 
