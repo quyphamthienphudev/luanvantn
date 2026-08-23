@@ -65,8 +65,13 @@ class ManageEmployeeRewardController
         {
             return back();
         }
-        $rewards = RewardDiscipline::findOrFail($id);
-        return view('hcns.rewards.edit', compact('rewards'));
+        $exists = DB::table('reward_discipline')->where('id', $id)->exists();
+        if($exists)
+        {
+            $rewards = RewardDiscipline::findOrFail($id);
+            return view('hcns.rewards.edit', compact('rewards'));
+        }
+        return back();
     }
 
     // UPDATE

@@ -101,9 +101,14 @@ class ContractController
         {
             return back();
         }
-        $contract = Contract::findOrFail($id);
-        $employees = Employee::all();
-        return view('hcns.contracts.edit', compact('contract', 'employees'));
+        $exists = DB::table('contracts')->where('id', $id)->exists();
+        if($exists)
+        {
+            $contract = Contract::findOrFail($id);
+            $employees = Employee::all();
+            return view('hcns.contracts.edit', compact('contract', 'employees'));
+        }
+        return back();
     }
 
     // EXTEND

@@ -74,8 +74,13 @@ class ManageCandidateControllerAdmin
         {
             return back();
         }
-        $candidates = DB::table('candidates')->where('id', $id)->first();
-        return view('hcns.candidates.edit',compact('candidates'));
+        $exists = DB::table('candidates')->where('id', $id)->exists();
+        if($exists)
+        {
+            $candidates = DB::table('candidates')->where('id', $id)->first();
+            return view('hcns.candidates.edit',compact('candidates'));
+        }
+        return back();
     }
 
     // UPDATE

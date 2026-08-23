@@ -62,7 +62,7 @@
                     <td @class(['p-3'])>{{ $a->check_in }}</td>
                     <td @class(['p-3'])>{{ $a->check_out }}</td>
                     <td @class(['p-3'])>
-                        <span @class(['px-2', 'py-1', 'rounded', 'text-xs', '{{', '$a->status', '==', ''present'', '?', ''bg-green-100', 'text-green-800'', ':', ''bg-yellow-100', 'text-yellow-800'', '}}'])>
+                        <span @class(['px-2', 'py-1', 'rounded', 'text-xs', '{{', '$a->status', '==', 'present', '?', 'bg-green-100', 'text-green-800', ':', 'bg-yellow-100', 'text-yellow-800', '}}'])>
                             @if($a->status == 'present')
                             Đúng giờ
                             @endif

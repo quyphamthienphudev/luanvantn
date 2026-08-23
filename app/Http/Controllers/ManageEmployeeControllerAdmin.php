@@ -96,10 +96,15 @@ class ManageEmployeeControllerAdmin
         {
             return back();
         }
-        $employee = Employee::findOrFail($id);
-        $departments = Department::all();
-        $positions = Position::all();
-        return view('hcns.employees.edit', compact('employee', 'departments', 'positions'));
+        $exixts = DB::table('employees')->where('id', $id)->exists();
+        if($exixts)
+        {
+            $employee = Employee::findOrFail($id);
+            $departments = Department::all();
+            $positions = Position::all();
+            return view('hcns.employees.edit', compact('employee', 'departments', 'positions'));
+        }
+        return back();
     }
 
     // UPDATE
@@ -190,8 +195,13 @@ class ManageEmployeeControllerAdmin
         {
             return back();
         }
-        $employee = Employee::with('department', 'position', 'certificates')->findOrFail($id);
-        return view('hcns.employees.show', compact('employee'));
+        $exists = DB::table('employees')->where('id', $id)->exists();
+        if($exists)
+        {
+            $employee = Employee::with('department', 'position', 'certificates')->findOrFail($id);
+            return view('hcns.employees.show', compact('employee'));
+        }
+        return back();
     }
 
     // EXPORT FILE

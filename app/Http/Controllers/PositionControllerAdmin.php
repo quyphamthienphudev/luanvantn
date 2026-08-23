@@ -70,8 +70,13 @@ class PositionControllerAdmin
         {
             return back();
         }
-        $position = DB::table('positions')->where('id', $id)->first();
-        return view('hcns.positions.edit', compact('position'));
+        $exists = DB::table('positions')->where('id', $id)->exists();
+        if($exists)
+        {
+            $position = DB::table('positions')->where('id', $id)->first();
+            return view('hcns.positions.edit', compact('position'));
+        }
+        return back();
     }
 
     // UPDATE

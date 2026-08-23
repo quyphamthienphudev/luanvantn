@@ -58,8 +58,13 @@ class DepartmentControllerAdmin
         {
             return back();
         }
-        $department = Department::findOrFail($id);
-        return view('hcns.departments.edit', compact('department'));
+        $exists = DB::table('departments')->where('id', $id)->exists();
+        if($exists)
+        {
+            $department = Department::findOrFail($id);
+            return view('hcns.departments.edit', compact('department'));
+        }
+        return back();
     }
 
     // UPDATE

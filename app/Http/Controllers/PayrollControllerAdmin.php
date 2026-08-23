@@ -219,17 +219,21 @@ class PayrollControllerAdmin
         {
             return back();
         }
-
-        $payroll = DB::table('payrolls')->where('id', $id)->first();
-        $employees = DB::table('employees')
-            ->join('positions', 'employees.position_id', '=', 'positions.id')
-            ->select('employees.*', 'positions.name as position_name', 'base_salary')
-            ->where('employee_code', '!=', 'EMP001')
-            ->where('employee_code', '!=', 'EMP016')
-            ->where('employee_code', '!=', 'EMP021')
-            ->get();
-        $request = DB::table('payrolls')->select('allowance')->where('id', $id)->first();
-        return view('hcns.payrolls.edit', compact('payroll', 'employees', 'request'));
+        $exists = DB::table('payrolls')->where('id', $id)->exists();
+        if($exists)
+        {
+            $payroll = DB::table('payrolls')->where('id', $id)->first();
+            $employees = DB::table('employees')
+                ->join('positions', 'employees.position_id', '=', 'positions.id')
+                ->select('employees.*', 'positions.name as position_name', 'base_salary')
+                ->where('employee_code', '!=', 'EMP001')
+                ->where('employee_code', '!=', 'EMP016')
+                ->where('employee_code', '!=', 'EMP021')
+                ->get();
+            $request = DB::table('payrolls')->select('allowance')->where('id', $id)->first();
+            return view('hcns.payrolls.edit', compact('payroll', 'employees', 'request'));
+        }
+        return back();
     }
 
     public function update(Request $request, $id)
