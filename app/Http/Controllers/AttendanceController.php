@@ -48,13 +48,23 @@ class AttendanceController
         {
             return back();
         }
-        $attendance = DB::table('attendances')
+        $exists = DB::table('attendances')
+                ->join('users', 'attendances.users_id', '=', 'users.id')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->select('employee_code','users.name','work_date','check_in','check_out','attendances.id')
+                ->where('attendances.id', $id)
+                ->exists();
+        if($exists)
+        {
+            $attendance = DB::table('attendances')
                 ->join('users', 'attendances.users_id', '=', 'users.id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('employee_code','users.name','work_date','check_in','check_out','attendances.id')
                 ->where('attendances.id', $id)
                 ->first();
-        return view('qlcl.attendances.edit', compact('attendance'));
+            return view('qlcl.attendances.edit', compact('attendance'));
+        }
+        return back();
     }
 
     public function update(Request $request, $id)
@@ -95,7 +105,6 @@ class AttendanceController
         {
             return back();
         }
-
         Attendance::findOrFail($id)->delete();
         return back()->with('success', 'Xóa dữ liệu chấm công thành công');
     }

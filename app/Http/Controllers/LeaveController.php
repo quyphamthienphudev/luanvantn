@@ -79,12 +79,20 @@ class LeaveController
         {
             return back();
         }
-        $leave = LeaveRequest::where('id', $id)
+        $exists = LeaveRequest::where('id', $id)
+                ->where('users_id', Auth::id())
+                ->where('status', 'pending')
+                ->exists();
+        if($exists)
+        {
+            $leave = LeaveRequest::where('id', $id)
                 ->where('users_id', Auth::id())
                 ->where('status', 'pending')
                 ->first();
 
-        return view('user.leave.edit', compact('leave'));
+            return view('user.leave.edit', compact('leave'));
+        }
+        return back();
     }
 
     public function update(Request $request, $id) 

@@ -44,13 +44,23 @@ class LeaveControllerQLCL
         {
             return back();
         }
-        $leave = DB::table('leave_requests')
+        $exists = DB::table('leave_requests')
+                ->join('users', 'leave_requests.users_id', '=', 'users.id')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->select('employee_code', 'name', 'start_date', 'end_date', 'reason', 'leave_requests.id')
+                ->where('leave_requests.id', $id)
+                ->exists();
+        if($exists)
+        {
+            $leave = DB::table('leave_requests')
                 ->join('users', 'leave_requests.users_id', '=', 'users.id')
                 ->join('employees', 'users.name', '=', 'employees.full_name')
                 ->select('employee_code', 'name', 'start_date', 'end_date', 'reason', 'leave_requests.id')
                 ->where('leave_requests.id', $id)
                 ->first();
-        return view('qlcl.leave.edit', compact('leave'));
+            return view('qlcl.leave.edit', compact('leave'));
+        }
+        return back();
     }
 
     public function update(Request $request, $id) 

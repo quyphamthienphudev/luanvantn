@@ -62,8 +62,13 @@ class RoleController
         {
             return back();
         }
-        $roles = DB::table('roles')->where('id', $id)->first();
-        return view('httt.roles.edit', compact('roles'));
+        $exists = DB::table('roles')->where('id', $id)->exists();
+        if($exists)
+        {
+            $roles = DB::table('roles')->where('id', $id)->first();
+            return view('httt.roles.edit', compact('roles'));
+        }
+        return back();
     }
 
     // UPDATE
