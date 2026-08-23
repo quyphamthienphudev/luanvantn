@@ -48,12 +48,7 @@ class AttendanceController
         {
             return back();
         }
-        $exists = DB::table('attendances')
-                ->join('users', 'attendances.users_id', '=', 'users.id')
-                ->join('employees', 'users.name', '=', 'employees.full_name')
-                ->select('employee_code','users.name','work_date','check_in','check_out','attendances.id')
-                ->where('attendances.id', $id)
-                ->exists();
+        $exists = DB::table('attendances')->where('id', $id)->exists();
         if($exists)
         {
             $attendance = DB::table('attendances')

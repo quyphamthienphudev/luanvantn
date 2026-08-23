@@ -79,10 +79,7 @@ class LeaveController
         {
             return back();
         }
-        $exists = LeaveRequest::where('id', $id)
-                ->where('users_id', Auth::id())
-                ->where('status', 'pending')
-                ->exists();
+        $exists = DB::table('leave_requests')->where('id', $id)->exists();
         if($exists)
         {
             $leave = LeaveRequest::where('id', $id)
