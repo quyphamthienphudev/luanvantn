@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Role;
 
@@ -134,9 +133,13 @@ class ManageUserControllerAdmin
         {
             return back()->with('error', 'Tài khoản này đang được sử dụng, không thể xoá tài khoản này');
         }
-
-        DB::table('users')->where('id', $id)->delete();
-        return redirect('/httt/accounts')->with('success', 'Xóa tài khoản thành công');
+        $exists = DB::table('users')->where('id', $id)->exists();
+        if($exists)
+        {
+            DB::table('users')->where('id', $id)->delete();
+            return redirect('/httt/accounts')->with('success', 'Xóa tài khoản thành công');
+        }
+        return back();
     }
 
     // SEARCH

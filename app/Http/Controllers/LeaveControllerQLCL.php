@@ -2,8 +2,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\LeaveRequest;
 
@@ -104,8 +104,13 @@ class LeaveControllerQLCL
         {
             return back();
         }
-        LeaveRequest::findOrFail($id)->delete();
-        return back()->with('success', 'Đã xóa đơn nghỉ phép');
+        $exists = DB::table('leave_requests')->where('id', $id)->exists();
+        if($exists)
+        {
+            LeaveRequest::findOrFail($id)->delete();
+            return back()->with('success', 'Đã xóa đơn nghỉ phép');
+        }
+        return back();
     }
 
     public function approve(Request $request, $id)
@@ -114,8 +119,13 @@ class LeaveControllerQLCL
         {
             return back();
         }
-        LeaveRequest::findOrFail($id)->update(['status' => 'approved']);
-        return back()->with('success', 'Đã duyệt đơn nghỉ phép thành công');
+        $exists = DB::table('leave_requests')->where('id', $id)->exists();
+        if($exists)
+        {
+            LeaveRequest::findOrFail($id)->update(['status' => 'approved']);
+            return back()->with('success', 'Đã duyệt đơn nghỉ phép thành công');
+        }
+        return back();
     }
 
     public function reject(Request $request, $id)
@@ -124,8 +134,13 @@ class LeaveControllerQLCL
         {
             return back();
         }
-        LeaveRequest::findOrFail($id)->update(['status' => 'rejected']);
-        return back()->with('success', 'Đã từ chối đơn nghỉ phép');
+        $exists = DB::table('leave_requests')->where('id', $id)->exists();
+        if($exists)
+        {
+            LeaveRequest::findOrFail($id)->update(['status' => 'rejected']);
+            return back()->with('success', 'Đã từ chối đơn nghỉ phép');
+        }
+        return back();
     }
 
     public function countResumeLeave()

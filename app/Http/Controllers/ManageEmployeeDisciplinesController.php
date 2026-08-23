@@ -104,8 +104,13 @@ class ManageEmployeeDisciplinesController
         {
             return back();
         }
-        RewardDiscipline::findOrFail($id)->delete();
-        return back()->with('success', 'Xóa kỷ luật thành công');
+        $exists = DB::table('reward_discipline')->where('id', $id)->exists();
+        if($exists)
+        {
+            RewardDiscipline::findOrFail($id)->delete();
+            return back()->with('success', 'Xóa kỷ luật thành công');
+        }
+        return back();
     }
 
 }

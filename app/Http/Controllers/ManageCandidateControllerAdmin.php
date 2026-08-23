@@ -141,8 +141,13 @@ class ManageCandidateControllerAdmin
         {
             return back();
         }
-        DB::table('candidates')->where('id', $id)->delete();
-        return redirect('/hcns/candidates')->with('success', 'Xóa hồ sơ thành công');
+        $exists =  DB::table('candidates')->where('id', $id)->exists();
+        if($exists)
+        {
+            DB::table('candidates')->where('id', $id)->delete();
+            return redirect('/hcns/candidates')->with('success', 'Xóa hồ sơ thành công');
+        }
+        return back();
     }
 
     // SHOW DETAIL
@@ -152,8 +157,13 @@ class ManageCandidateControllerAdmin
         {
             return back();
         }
-        $candidate = Candidate::findOrFail($id);
-        return view('hcns.candidates.show', compact('candidate'));
+        $exists =  DB::table('candidates')->where('id', $id)->exists();
+        if($exists)
+        {
+            $candidate = Candidate::findOrFail($id);
+            return view('hcns.candidates.show', compact('candidate'));
+        }
+        return back();
     }
 
     // SEARCH

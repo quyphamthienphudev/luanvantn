@@ -187,30 +187,34 @@ class PayrollControllerAdmin
         {
             return back();
         }
-
-        $payroll = DB::table('payrolls')
-            ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
-            ->join('positions', 'employees.position_id', '=', 'positions.id')
-            ->join('departments', 'employees.department_id', '=', 'departments.id')
-            ->select(
-                'employee_code',
-                'full_name',
-                'departments.name as department_name',
-                'positions.name as position_name',
-                'payrolls.base_salary',
-                'allowance',
-                'bonus',
-                'deduction',
-                'work_numbers',
-                'month_salary',
-                'total_salary',
-                'month',
-                'year'
-            )
-            ->where('payrolls.id', $id)
-            ->first();
+        $exists = DB::table('payrolls')->where('id', $id)->exists();
+        if($exists)
+        {
+            $payroll = DB::table('payrolls')
+                ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
+                ->join('positions', 'employees.position_id', '=', 'positions.id')
+                ->join('departments', 'employees.department_id', '=', 'departments.id')
+                ->select(
+                    'employee_code',
+                    'full_name',
+                    'departments.name as department_name',
+                    'positions.name as position_name',
+                    'payrolls.base_salary',
+                    'allowance',
+                    'bonus',
+                    'deduction',
+                    'work_numbers',
+                    'month_salary',
+                    'total_salary',
+                    'month',
+                    'year'
+                )
+                ->where('payrolls.id', $id)
+                ->first();
             
-        return view('hcns.payrolls.show', compact('payroll'));
+            return view('hcns.payrolls.show', compact('payroll'));
+        }
+        return back();
     }
 
     public function edit($id)
@@ -324,10 +328,13 @@ class PayrollControllerAdmin
         {
             return back();
         }
-
-        DB::table('payrolls')->where('id', $id)->delete();
-        
-        return back()->with('success', 'Xóa bảng lương thành công');
+        $exists = DB::table('payrolls')->where('id', $id)->exists();
+        if($exists)
+        {
+            DB::table('payrolls')->where('id', $id)->delete();
+            return back()->with('success', 'Xóa bảng lương thành công');
+        }
+        return back();
     }
 
     public function export()

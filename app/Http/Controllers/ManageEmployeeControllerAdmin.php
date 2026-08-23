@@ -183,9 +183,13 @@ class ManageEmployeeControllerAdmin
         {
             return back()->with('error', 'Nhân viên đã có chứng chỉ, không thể xoá nhân viên này');
         }
-        
-        Employee::findOrFail($id)->delete();
-        return back()->with('success','Xóa nhân viên thành công');
+        $exists = DB::table('employees')->where('id', $id)->exists();
+        if($exists)
+        {
+            Employee::findOrFail($id)->delete();
+            return back()->with('success','Xóa nhân viên thành công');
+        }
+        return back();
     }
 
     // SHOW

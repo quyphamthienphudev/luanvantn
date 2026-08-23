@@ -2,8 +2,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\LeaveRequest;
 
 class LeaveControllerHCNS 
@@ -86,7 +86,12 @@ class LeaveControllerHCNS
         {
             return back();
         }
-        LeaveRequest::findOrFail($id)->delete();
-        return back()->with('success', 'Đã xóa đơn nghỉ phép');
+        $exists = DB::table('leave_requests')->where('id', $id)->exists();
+        if($exists)
+        {
+            LeaveRequest::findOrFail($id)->delete();
+            return back()->with('success', 'Đã xóa đơn nghỉ phép');
+        }
+        return back();
     }
 } 

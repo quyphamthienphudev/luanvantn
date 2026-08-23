@@ -118,50 +118,54 @@ class ContractController
         {
             return back();
         }
-
-        $old = Contract::findOrFail($id);
-
-        if($request->end_date == '')
+        $exists = DB::table('contracts')->where('id', $id)->exists();
+        if($exists)
         {
-            Contract::create([
-                'employee_id' => $old->employee_id,
-                'contract_code' => $old->contract_code,
-                'contract_type' => 'indefinite',
-                'start_date' => $old->end_date,
-                'end_date' => $request->end_date,
-                'salary' => $old->salary,
-                'description' => $request->description,
-                'contract_file' => $old->contract_file,
-                'status' => 'active'
-            ]);
+            $old = Contract::findOrFail($id);
+
+            if($request->end_date == '')
+            {
+                Contract::create([
+                    'employee_id' => $old->employee_id,
+                    'contract_code' => $old->contract_code,
+                    'contract_type' => 'indefinite',
+                    'start_date' => $old->end_date,
+                    'end_date' => $request->end_date,
+                    'salary' => $old->salary,
+                    'description' => $request->description,
+                    'contract_file' => $old->contract_file,
+                    'status' => 'active'
+                ]);
 
             $old->update(['status'=>'expired']);
-        }
+            }
 
-        else
-        {
-            $request->validate([
-                'end_date' => 'date|after:today',
-            ],[
-                'end_date.after' => 'Ngày kết thúc không hợp lệ, vui lòng kiểm tra lại.',
-            ]);
+            else
+            {
+                $request->validate([
+                    'end_date' => 'date|after:today',
+                ],[
+                    'end_date.after' => 'Ngày kết thúc không hợp lệ, vui lòng kiểm tra lại.',
+                ]);
 
-            Contract::create([
-                'employee_id' => $old->employee_id,
-                'contract_code' => $old->contract_code,
-                'contract_type' => $old->contract_type,
-                'start_date' => $old->end_date,
-                'end_date' => $request->end_date,
-                'salary' => $old->salary,
-                'description' => $request->description,
-                'contract_file' => $old->contract_file,
-                'status' => 'active'
-            ]);
+                Contract::create([
+                    'employee_id' => $old->employee_id,
+                    'contract_code' => $old->contract_code,
+                    'contract_type' => $old->contract_type,
+                    'start_date' => $old->end_date,
+                    'end_date' => $request->end_date,
+                    'salary' => $old->salary,
+                    'description' => $request->description,
+                    'contract_file' => $old->contract_file,
+                    'status' => 'active'
+                ]);
 
-            $old->update(['status'=>'expired']);
-        }
+                $old->update(['status'=>'expired']);
+            }
         
-        return redirect('/hcns/contracts')->with('success', 'Gia hạn hợp đồng thành công');
+            return redirect('/hcns/contracts')->with('success', 'Gia hạn hợp đồng thành công');
+        }
+        return back();
     }
 
     // TERMINATE
@@ -171,13 +175,18 @@ class ContractController
         {
             return back();
         }
-        Contract::findOrFail($id)->update(['status' => 'terminated']);
-        DB::table('users')
-            ->join('employees', 'users.name', '=', 'employees.full_name')
-            ->join('contracts', 'employees.id', '=', 'contracts.employee_id')
-            ->where('users.id', $id)
-            ->update(['users.status' => 'suspend']);
-        return redirect('/hcns/contracts')->with('success', 'Thanh lý hợp đồng thành công');
+        $exists = DB::table('contracts')->where('id', $id)->exists();
+        if($exists)
+        {
+            Contract::findOrFail($id)->update(['status' => 'terminated']);
+            DB::table('users')
+                ->join('employees', 'users.name', '=', 'employees.full_name')
+                ->join('contracts', 'employees.id', '=', 'contracts.employee_id')
+                ->where('users.id', $id)
+                ->update(['users.status' => 'suspend']);
+            return redirect('/hcns/contracts')->with('success', 'Thanh lý hợp đồng thành công');
+        }
+        return back();
     }
 
     // VIEW FILE

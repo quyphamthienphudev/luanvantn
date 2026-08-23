@@ -115,7 +115,12 @@ class AttendanceController
         {
             return back();
         }
-        DB::table('attendances')->where('id', $id)->update(['confirm' => 'yes']);
-        return redirect('/qlcl/attendances')->with('success', 'Xác nhận chấm công thành công');
+        $exists = DB::table('attendances')->where('id', $id)->exists();
+        if($exists)
+        {
+            DB::table('attendances')->where('id', $id)->update(['confirm' => 'yes']);
+            return redirect('/qlcl/attendances')->with('success', 'Xác nhận chấm công thành công');
+        }
+        return back();
     }
 }

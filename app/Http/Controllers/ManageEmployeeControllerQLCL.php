@@ -32,8 +32,13 @@ class ManageEmployeeControllerQLCL
         {
             return back();
         }
-        $employee = Employee::with('department', 'position')->findOrFail($id);
-        return view('qlcl.employees.show', compact('employee'));
+        $exists = DB::table('employees')->where('department_id', '14')->where('id', $id)->exists();
+        if($exists)
+        {
+            $employee = Employee::with('department', 'position')->findOrFail($id);
+            return view('qlcl.employees.show', compact('employee'));
+        }
+        return back();
     }
 
     // SEARCH
