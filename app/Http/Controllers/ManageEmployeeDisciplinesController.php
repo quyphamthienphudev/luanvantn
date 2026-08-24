@@ -9,8 +9,6 @@ use App\Models\RewardDiscipline;
 
 class ManageEmployeeDisciplinesController 
 {
-
-    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -21,7 +19,6 @@ class ManageEmployeeDisciplinesController
         return view('hcns.disciplines.index', compact('disciplines'));
     }
 
-    // SHOW CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -33,18 +30,16 @@ class ManageEmployeeDisciplinesController
         return view('hcns.disciplines.create', compact('disciplines', 'employees'));
     }
 
-    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $request->validate([
-        'title' => 'required',
-        'amount' => 'required|numeric|min:0',
-        'decision_date' => 'required'
+            'title' => 'required',
+            'amount' => 'required|numeric|min:0',
+            'decision_date' => 'required'
         ],[
             'title.required' => 'Vui lòng nhập nội dung kỷ luật.',
             'amount.required' => 'Vui lòng nhập số tiền.',
@@ -58,7 +53,6 @@ class ManageEmployeeDisciplinesController
         return redirect('/hcns/disciplines')->with('success', 'Thêm kỷ luật thành công');
     }
 
-    // EDIT
     public function edit($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -74,18 +68,16 @@ class ManageEmployeeDisciplinesController
         return back();
     }
 
-    // UPDATE
     public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $request->validate([
-        'title' => 'required',
-        'amount' => 'required|numeric|min:0',
-        'decision_date' => 'required'
+            'title' => 'required',
+            'amount' => 'required|numeric|min:0',
+            'decision_date' => 'required'
         ],[
             'title.required' => 'Vui lòng nhập nội dung kỷ luật.',
             'amount.required' => 'Vui lòng nhập số tiền.',
@@ -97,7 +89,6 @@ class ManageEmployeeDisciplinesController
         return redirect('/hcns/disciplines')->with('success', 'Cập nhật kỷ luật thành công');
     }
 
-    // DELETE
     public function delete($id)
     {
         if (auth()->user()->role->name !== 'hcns') 

@@ -76,25 +76,17 @@ class LeaveControllerQLCL
             'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu.',
             'reason.required' => 'Vui lòng nhập lý do nghỉ phép.'
         ]);
-
-        // Đếm số lượng ngày nghỉ phép
         $countLeave = LeaveRequest::where('users_id', Auth::id())->where('status', 'approved')->sum('number_days');
-        
         $resumeLeave = 12 - $countLeave;
-
-        // Tính số ngày nghỉ (bao gồm cả ngày bắt đầu và ngày kết thúc)
         $startDate = Carbon::parse($validate['start_date']);
         $endDate   = Carbon::parse($validate['end_date']);
         $numberDays = $startDate->diffInDays($endDate) + 1;
-        // Kiểm tra số ngày nghỉ phép
         if($numberDays > $resumeLeave)
         {
             return back()->with('error', 'Số ngày nghỉ phép còn lại không đủ, vui lòng kiểm tra lại');
         }
-
         $validate['number_days'] = $startDate->diffInDays($endDate) + 1;
         $leave->update($validate);
-
         return redirect('/qlcl/leave')->with('success', 'Cập nhật đơn nghỉ phép thành công');
     }
 
@@ -149,7 +141,6 @@ class LeaveControllerQLCL
         {
             return back();
         }
-
         $countResumeLeave = DB::table('leave_requests')
             ->join('users', 'leave_requests.users_id', '=', 'users.id')
             ->join('employees', 'users.name', '=', 'employees.full_name')
@@ -163,7 +154,6 @@ class LeaveControllerQLCL
             ->groupBy('name', 'employee_code')
             ->orderBy('employee_code', 'asc')
             ->get();
-        
         return view('qlcl.resume-leave', compact('countResumeLeave'));
     }
 } 

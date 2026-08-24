@@ -8,8 +8,6 @@ use App\Models\Position;
 
 class PositionControllerAdmin 
 {
-
-    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -20,7 +18,6 @@ class PositionControllerAdmin
         return view('hcns.positions.index', compact('positions'));
     }
 
-    // SHOW CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -30,14 +27,12 @@ class PositionControllerAdmin
         return view('hcns.positions.create');
     }
 
-    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $request->validate([
             'name' => 'required|unique:positions,name',
             'base_salary' => 'required|numeric|min:0',
@@ -53,17 +48,14 @@ class PositionControllerAdmin
             'max_salary.min' => 'Lương cao nhất không hợp lệ, vui lòng kiểm tra lại.',
             'max_salary.gte' => 'Lương cao nhất không được ít hơn lương cơ bản.'
         ]);
-
         DB::table('positions')->insert([
             'name' => $request->name,
             'base_salary' => $request->base_salary,
             'max_salary' => $request->max_salary
         ]);
-
         return redirect('/hcns/positions')->with('success', 'Thêm công việc thành công');
     }
 
-    // SHOW EDIT
     public function edit($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -79,14 +71,12 @@ class PositionControllerAdmin
         return back();
     }
 
-    // UPDATE
     public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $request->validate([
             'name' => 'required|unique:positions,name',
             'base_salary' => 'required|numeric|min:0',
@@ -102,7 +92,6 @@ class PositionControllerAdmin
             'max_salary.min' => 'Lương cao nhất không hợp lệ, vui lòng kiểm tra lại.',
             'max_salary.gte' => 'Lương cao nhất không được ít hơn lương cơ bản.'
         ]);
-        
         DB::table('positions')
         ->where('id', $id)
         ->update([
@@ -110,78 +99,57 @@ class PositionControllerAdmin
             'base_salary' => $request->base_salary,
             'max_salary' => $request->max_salary
         ]);
-
         return redirect('/hcns/positions')->with('success', 'Cập nhật công việc thành công');
     }
 
-    // DELETE
     public function delete($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
-        $hasEmployee = DB::table('employees')
-            ->where('position_id', $id)
-            ->exists();
-
+        $hasEmployee = DB::table('employees')->where('position_id', $id)->exists();
         if($hasEmployee)
         {
             return back()->with('error', 'Công việc này đang có nhân viên, không thể xóa');
         }
-
         DB::table('positions')->where('id', $id)->delete();
-
         return redirect('/hcns/positions')->with('success', 'Xóa công việc thành công');
     }
 
-    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $search = $request->search;
-
         $positions = DB::table('positions')
             ->when($search, function ($query) use ($search) {
-
-            // Tìm theo name hoặc base_salary
             $query->where('name', 'like', '%' . $search . '%')
                   ->orWhere('base_salary', 'like', '%' . $search . '%');
             })
         ->get();
-
         return view('hcns.positions.index', compact('search', 'positions'));
     }
 
-    // EXPORT FILE
     public function export()
     {   
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-        
         $positions = DB::table('positions')->select('name', 'base_salary', 'max_salary')->get();
-        
         if ($positions->isEmpty()) 
         {
             return back()->with('error', 'Không có dữ liệu');
         }
-        
         $filename = 'ds_cong_viec' . '.csv';
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
-        
         $output = fopen('php://output', 'w');
         fwrite($output, "\xEF\xBB\xBF");
-        
         fputcsv($output, ['STT', 'Công việc', 'Lương cơ bản', 'Lương cao nhất']);
-        
         $stt = 1;
         foreach ($positions as $position) 
         {
@@ -193,7 +161,6 @@ class PositionControllerAdmin
             ]);
             $stt++;
         }
-        
         fclose($output);
         exit;
     }

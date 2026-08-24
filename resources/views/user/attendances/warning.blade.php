@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Quản lý chấm công')
-
 @section('content')
 
 <!DOCTYPE html>
@@ -15,13 +13,9 @@
 
 <body>
     <div @class(['max-w-md', 'mx-auto', 'mt-4', 'px-4'])>
-        <span @class(['text-red-600'])>
-            Nhân viên đã xin nghỉ phép hôm nay, vui lòng liên hệ phòng quản lý chất lượng 
-            để biết thông tin chi tiết.
-        </span>
+        <span @class(['text-red-600'])>Nhân viên đã xin nghỉ phép hôm nay, vui lòng liên hệ phòng quản lý chất lượng để biết thông tin chi tiết.</span>
     </div>
 </body>
 
 </html>
-
 @endsection

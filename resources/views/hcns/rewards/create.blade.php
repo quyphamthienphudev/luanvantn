@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title','Thêm khen thưởng')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,5 +48,4 @@
 </body>
 
 </html>
-
 @endsection

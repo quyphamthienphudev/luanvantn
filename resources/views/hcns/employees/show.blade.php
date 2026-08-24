@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title','Chi tiết nhân viên')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,9 +23,9 @@
                 <p>
                     Giới tính:
                     @if($employee->gender == 'male')
-                        Nam
+                    Nam
                     @else
-                        Nữ
+                    Nữ
                     @endif
                 </p>
                 <p>Ngày sinh: {{ $employee->date_of_birth ? date('d/m/Y', strtotime($employee->date_of_birth)) : '' }}</p>
@@ -43,9 +40,9 @@
                 <p>
                     Trạng thái:
                     @if($employee->status == 'working')
-                        Đang làm việc
+                    Đang làm việc
                     @else
-                        Đã nghỉ việc
+                    Đã nghỉ việc
                     @endif
                 </p>
             </td>
@@ -54,11 +51,8 @@
             </td>
         </table>
         <hr @class(['my-4'])>
-        <h3 @class(['font-bold', 'text-lg'])>
-            Chứng chỉ
-        </h3>
-        <form action="/hcns/employees/{{ $employee->id }}/certificate/store" method="post"
-            enctype="multipart/form-data">
+        <h3 @class(['font-bold', 'text-lg'])>Chứng chỉ</h3>
+        <form action="/hcns/employees/{{ $employee->id }}/certificate/store" method="post" enctype="multipart/form-data">
             @csrf
             <div @class(['mb-3'])>
                 <label>Tên chứng chỉ</label>
@@ -125,5 +119,4 @@
     </div>
 </body>
 </html>
-
 @endsection

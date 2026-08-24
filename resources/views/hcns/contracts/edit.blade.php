@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title','Gia hạn hợp đồng lao động')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,13 +16,11 @@
         @csrf
         <div @class(['mb-4'])>
             <label>Mã hợp đồng</label>
-            <input type="text" value="{{ $contract->contract_code }}"
-                @class(['w-full', 'border', 'p-2', 'rounded', 'bg-gray-100']) readonly>
+            <input type="text" value="{{ $contract->contract_code }}" @class(['w-full', 'border', 'p-2', 'rounded', 'bg-gray-100']) readonly>
         </div>
         <div @class(['mb-4'])>
             <label>Nhân viên</label>
-            <input type="text" value="{{ $contract->employee->full_name }}"
-                @class(['w-full', 'border', 'p-2', 'rounded', 'bg-gray-100']) readonly>
+            <input type="text" value="{{ $contract->employee->full_name }}" @class(['w-full', 'border', 'p-2', 'rounded', 'bg-gray-100']) readonly>
         </div>
         <div @class(['mb-4'])>
             <label>Ngày bắt đầu</label>
@@ -47,5 +42,4 @@
 </body>
 
 </html>
-
 @endsection

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Contract extends Model
 {
     protected $table = 'contracts';
-
     protected $fillable = [
         'employee_id',
         'contract_code',
@@ -19,9 +18,7 @@ class Contract extends Model
         'contract_file',
         'status'
     ];
-
     public $timestamps = false;
-
     public function employee()
     {
         return $this->belongsTo(Employee::class);

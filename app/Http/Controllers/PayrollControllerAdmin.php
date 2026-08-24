@@ -13,11 +13,9 @@ class PayrollControllerAdmin
         {
             return back();
         }
-
         $month = $request->get('month', date('m'));
         $year = $request->get('year', date('Y'));
         $search = $request->search;
-
         if($search)
         {
             $payrolls = DB::table('payrolls')
@@ -40,8 +38,6 @@ class PayrollControllerAdmin
             ->where('month', $month)
             ->where('year', $year)
             ->when($search, function ($query) use ($search) {
-
-            // Tìm theo mã nhân viên, họ tên, tên phòng ban hoặc tên công việc
             $query->where('employee_code', 'like', '%' . $search . '%')
                   ->orWhere('full_name', 'like', '%' . $search . '%')
                   ->orWhere('departments.name', 'like', '%' . $search . '%')
@@ -76,7 +72,6 @@ class PayrollControllerAdmin
             ->orderBy('employee_code', 'asc')
             ->get();
         }
-        
         return view('hcns.payrolls.index', compact('month', 'year', 'search', 'payrolls'));
     }
 
@@ -86,7 +81,6 @@ class PayrollControllerAdmin
         {
             return back();
         }
-
         $employees = DB::table('employees')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
             ->select('employees.*', 'positions.name as position_name', 'base_salary')
@@ -106,7 +100,6 @@ class PayrollControllerAdmin
         {
             return back();
         }
-
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
             'month' => 'required|integer|min:1|max:12',
@@ -211,7 +204,6 @@ class PayrollControllerAdmin
                 )
                 ->where('payrolls.id', $id)
                 ->first();
-            
             return view('hcns.payrolls.show', compact('payroll'));
         }
         return back();
@@ -246,7 +238,6 @@ class PayrollControllerAdmin
         {
             return back();
         }
-
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
             'month' => 'required|integer|min:1|max:12',
@@ -367,21 +358,16 @@ class PayrollControllerAdmin
             ->orderBy('month', 'asc')
             ->orderBy('year', 'asc')
             ->get();
-
         if ($payrolls->isEmpty()) 
         {
             return back()->with('error', 'Không có dữ liệu');
         }
-        
         $filename = 'bang_luong' . '.csv';
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
-        
         $output = fopen('php://output', 'w');
         fwrite($output, "\xEF\xBB\xBF");
-        
         fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên', 'Phòng ban', 'Công việc', 'Tháng', 'Năm', 'Lương cơ bản', 'Phụ cấp', 'Thưởng', 'Khấu trừ', 'Số ngày làm việc', 'Lương thực lãnh']);
-        
         $stt = 1;
         foreach ($payrolls as $payroll) 
         {
@@ -402,7 +388,6 @@ class PayrollControllerAdmin
             ]);
             $stt++;
         }
-        
         fclose($output);
         exit;
     }

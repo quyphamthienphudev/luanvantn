@@ -8,7 +8,6 @@ use App\Models\Candidate;
 
 class ManageCandidateControllerAdmin 
 {
-    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -19,7 +18,6 @@ class ManageCandidateControllerAdmin
         return view('hcns.candidates.index',compact('candidates'));
     }
 
-    // SHOW CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -29,14 +27,12 @@ class ManageCandidateControllerAdmin
         return view('hcns.candidates.create');
     }
 
-    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $request->validate([
         'candidate_id' => 'required|unique:candidates,candidate_id|regex:/^[A-Za-z0-9_-]+$/',
         'full_name' => 'required',
@@ -44,7 +40,6 @@ class ManageCandidateControllerAdmin
         'last_name' => 'required',
         'email' => 'required|email',
         'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
-        // Số điện thoại bắt đầu bằng số 0
         'phone' => 'required|regex:/^0[0-9]+$/|min:10|max:11'
         ],[
             'candidate_id.required' => 'Vui lòng nhập mã hồ sơ.',
@@ -67,7 +62,6 @@ class ManageCandidateControllerAdmin
         return redirect('/hcns/candidates')->with('success', 'Thêm hồ sơ thành công');
     }
 
-    // EDIT
     public function edit($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -83,21 +77,18 @@ class ManageCandidateControllerAdmin
         return back();
     }
 
-    // UPDATE
     public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $request->validate([
         'full_name' => 'required',
         'first_name' => 'required',
         'last_name' => 'required',
         'email' => 'required|email',
         'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
-        // Số điện thoại bắt đầu bằng số 0
         'phone' => 'required|regex:/^0[0-9]+$/|min:10|max:11'
         ],[
             'full_name.required' => 'Vui lòng nhập họ tên ứng viên.',
@@ -112,7 +103,6 @@ class ManageCandidateControllerAdmin
             'phone.min' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.',
             'phone.max' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
         ]);
-
         DB::table('candidates')
         ->where('id',$id)
         ->update([
@@ -129,12 +119,10 @@ class ManageCandidateControllerAdmin
             'ward' => $request->ward,
             'province' => $request->province
         ]);
-        
         Candidate::findOrFail($id)->update($request->all());
         return redirect('/hcns/candidates')->with('success', 'Cập nhật hồ sơ thành công');
     }
 
-    // DELETE
     public function delete($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -150,7 +138,6 @@ class ManageCandidateControllerAdmin
         return back();
     }
 
-    // SHOW DETAIL
     public function show($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -166,23 +153,19 @@ class ManageCandidateControllerAdmin
         return back();
     }
 
-    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-        
         $search = $request->search;
-
         $candidates = DB::table('candidates')
             ->when($search, function ($query) use ($search) {
                 $query->where('candidate_id', 'like', '%' . $search . '%')
                     ->orWhere('full_name', 'like', '%' . $search . '%');
             })
             ->get();
-
         return view('hcns.candidates.index', compact('search', 'candidates'));
     }
 }

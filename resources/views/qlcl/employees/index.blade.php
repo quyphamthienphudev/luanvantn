@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title','Quản lý nhân viên')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,11 +13,9 @@
 <body>
     <form action="/qlcl/employees" method="get" @class(['mt-4'])>
         @csrf
-        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" @class(['border', 'p-2']) style="width:400px;"
-        placeholder="Tìm theo mã nhân viên hoặc họ tên nhân viên">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" @class(['border', 'p-2']) style="width:400px;" placeholder="Tìm theo mã nhân viên hoặc họ tên nhân viên">
         <button @class(['bg-gray-500', 'text-white', 'px-3', 'py-2', 'rounded']) title="Tìm">Tìm</button>
     </form>
-
     <div @class(['bg-white', 'shadow', 'rounded', 'mt-6'])>
         <table @class(['w-full', 'text-left'])>
             <thead @class(['bg-gray-200'])>
@@ -31,7 +26,6 @@
                     <th @class(['p-3'])>Hành động</th>
                 </tr>
             </thead>
-
             <tbody>
                 @forelse($employees as $e)
                 <tr @class(['border-b'])>
@@ -41,8 +35,7 @@
                     <td @class(['p-3', 'space-x-2'])>
                         <form action="/qlcl/employees/show/{{ $e->id }}" method="post">
                             @csrf
-                            <button @class(['bg-blue-500', 'text-white', 'px-3', 'py-1', 'rounded']) title="Xem chi tiết">Xem
-                                chi tiết</button>
+                            <button @class(['bg-blue-500', 'text-white', 'px-3', 'py-1', 'rounded']) title="Xem chi tiết">Xem chi tiết</button>
                         </form>
                     </td>
                 </tr>
@@ -58,5 +51,4 @@
 </body>
 
 </html>
-
 @endsection

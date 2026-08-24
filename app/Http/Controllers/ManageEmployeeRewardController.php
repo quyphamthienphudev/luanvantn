@@ -9,8 +9,6 @@ use App\Models\RewardDiscipline;
 
 class ManageEmployeeRewardController 
 {
-
-    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -21,7 +19,6 @@ class ManageEmployeeRewardController
         return view('hcns.rewards.index', compact('rewards'));
     }
 
-    // SHOW CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -33,18 +30,16 @@ class ManageEmployeeRewardController
         return view('hcns.rewards.create', compact('rewards', 'employees'));
     }
 
-    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $request->validate([
-        'title' => 'required',
-        'amount' => 'required|numeric|min:0',
-        'decision_date' => 'required'
+            'title' => 'required',
+            'amount' => 'required|numeric|min:0',
+            'decision_date' => 'required'
         ],[
             'title.required' => 'Vui lòng nhập nội dung khen thưởng.',
             'amount.required' => 'Vui lòng nhập số tiền.',
@@ -58,7 +53,6 @@ class ManageEmployeeRewardController
         return redirect('/hcns/rewards')->with('success', 'Thêm khen thưởng thành công');
     }
 
-    // EDIT
     public function edit($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -74,7 +68,6 @@ class ManageEmployeeRewardController
         return back();
     }
 
-    // UPDATE
     public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -82,9 +75,9 @@ class ManageEmployeeRewardController
             return back();
         }
         $request->validate([
-        'title' => 'required',
-        'amount' => 'required|numeric|min:0',
-        'decision_date' => 'required'
+            'title' => 'required',
+            'amount' => 'required|numeric|min:0',
+            'decision_date' => 'required'
         ],[
             'title.required' => 'Vui lòng nhập nội dung khen thưởng.',
             'amount.required' => 'Vui lòng nhập số tiền.',
@@ -96,7 +89,6 @@ class ManageEmployeeRewardController
         return redirect('/hcns/rewards')->with('success', 'Cập nhật khen thưởng thành công');
     }
 
-    // DELETE
     public function delete($id)
     {
         if (auth()->user()->role->name !== 'hcns') 

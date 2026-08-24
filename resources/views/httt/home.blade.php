@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title', 'Trang chủ')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +13,7 @@
 <body>
     <div @class(['container', 'mt-4'])>
         <div @class(['row', 'g-4'])>
-            <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>
-                Thống kê số lượng tài khoản
-            </h1>
-            <!-- ACCOUNTS -->
+            <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>Thống kê số lượng tài khoản</h1>
             <div @class(['grid', 'grid-cols-4', 'gap-6'])>
                 <div @class(['bg-white', 'p-6', 'rounded-xl', 'shadow'])>
                     <h3 @class(['text-gray-500'])>Số lượng tài khoản đang hoạt động</h3>
@@ -33,7 +27,6 @@
                     <h3 @class(['text-gray-500'])>Số lượng tài khoản tất cả</h3>
                     <p @class(['text-3xl', 'font-bold', 'text-blue-600'])>{{ $accounts }}</p>
                 </div>
-                <!-- CONTENT -->
                 <div @class(['flex-1', 'p-8'])>
                     @yield('content')
                 </div>
@@ -43,5 +36,4 @@
 </body>
 
 </html>
-
 @endsection

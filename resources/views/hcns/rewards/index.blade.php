@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title','Quản lý khen thưởng')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,16 +12,13 @@
 
 <body>
     <div @class(['flex', 'space-x-2'])>
-        <a href="/hcns/rewards/create" @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded']) title="Thêm khen thưởng">
-            Thêm khen thưởng
-        </a>
+        <a href="/hcns/rewards/create" @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded']) title="Thêm khen thưởng">Thêm khen thưởng</a>
     </div>
     @if(session('success'))
     <div @class(['bg-green-200', 'text-green-800', 'p-3', 'rounded', 'mt-4'])>
         {{ session('success') }}
     </div>
     @endif
-
     <div @class(['bg-white', 'shadow', 'rounded', 'mt-6'])>
         <table @class(['w-full', 'text-left'])>
             <thead @class(['bg-gray-200'])>
@@ -48,12 +42,10 @@
                     <td @class(['p-3'])>{{ $r->decision_date ? date('d/m/Y', strtotime($r->decision_date)) : '' }}</td>
                     <td @class(['p-3'])>
                         <div @class(['flex', 'space-x-2'])>
-                            <a href="/hcns/rewards/edit/{{ $r->id }}"
-                                @class(['bg-yellow-500', 'text-white', 'px-3', 'py-1', 'rounded']) title="Sửa">Sửa</a>
+                            <a href="/hcns/rewards/edit/{{ $r->id }}" @class(['bg-yellow-500', 'text-white', 'px-3', 'py-1', 'rounded']) title="Sửa">Sửa</a>
                             <form action="/hcns/rewards/delete/{{ $r->id }}" method="post">
                                 @csrf 
-                                <button @class(['bg-red-600', 'text-white', 'px-3', 'py-1', 'rounded'])
-                                    onclick="return confirm('Bạn có muốn xoá khen thưởng này ?')" title="Xoá">Xoá</button>
+                                <button @class(['bg-red-600', 'text-white', 'px-3', 'py-1', 'rounded']) onclick="return confirm('Bạn có muốn xoá khen thưởng này ?')" title="Xoá">Xoá</button>
                             </form>
                         </div>
                     </td>
@@ -70,5 +62,4 @@
 </body>
 
 </html>
-
 @endsection

@@ -17,7 +17,6 @@ class EmployeeCertificateController
         {
             return back();
         }
-
         $request->validate([
             'certificate_name' => 'required',
             'issue_date' => 'required',
@@ -33,14 +32,11 @@ class EmployeeCertificateController
             'certificate_file.uploaded' => 'Vui lòng tải lên file dưới 2 MB.',
             'certificate_file.max' => 'Vui lòng tải lên file dưới 2 MB.'
         ]);
-
         $fileName = null;
-
         if($request->hasFile('certificate_file'))
         {
             $fileName = $request->file('certificate_file')->store('certificates');
         }
-
         EmployeeCertificate::create([
             'employee_id' => $employee_id,
             'certificate_name' => $request->certificate_name,
@@ -48,7 +44,6 @@ class EmployeeCertificateController
             'issue_date' => $request->issue_date,
             'expiry_date' => $request->expiry_date
         ]);
-
         return back()->with('success', 'Thêm chứng chỉ thành công');
     }
 
@@ -58,23 +53,16 @@ class EmployeeCertificateController
         {
             return back();
         }
-        
         $certificate = EmployeeCertificate::findOrFail($id);
-
         if (!$certificate->certificate_file)
         {
-            // abort(404, 'Không tìm thấy file');
             return back();
         }
-
         $path = storage_path('app/private/' . $certificate->certificate_file);
-
         if (!file_exists($path))
         {
-            // abort(404, 'File không tồn tại');
             return back();
         }
-        
         return response()->file($path);
     }
 }

@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title','Thêm hợp đồng lao động')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,8 +18,7 @@
     </div>
     @endif
     <br>
-    <form action="/hcns/contracts/store" method="post" @class(['bg-white', 'p-6', 'rounded', 'shadow', 'w-1/2'])
-        enctype="multipart/form-data">
+    <form action="/hcns/contracts/store" method="post" @class(['bg-white', 'p-6', 'rounded', 'shadow', 'w-1/2']) enctype="multipart/form-data">
         @csrf
         <div @class(['mb-4'])>
             <label>Mã hợp đồng</label>
@@ -87,31 +83,25 @@
         </div>
         <button @class(['bg-green-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-green-700']) title="Lưu">Lưu</button>
     </form>
-    <!-- javascript cập nhật mã nhân viên khi thay đổi chọn nhân viên -->
     <script>
         const employees = @json($employees);
-
         const employeeSelect = document.getElementById('employee_id');
         const employeeCodeInput = document.getElementById('employee_code');
-
-        function updateEmployeeCode() {
+        function updateEmployeeCode() 
+        {
             let employeeId = employeeSelect.value;
-
             let employee = employees.find(
                 item => item.id == employeeId
             );
-
-            if (employee) {
+            if (employee) 
+            {
                 employeeCodeInput.value = employee.employee_code;
             }
         }
-
         employeeSelect.addEventListener('change', updateEmployeeCode);
-
         updateEmployeeCode();
     </script>
 </body>
 
 </html>
-
 @endsection

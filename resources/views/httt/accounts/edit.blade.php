@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,26 +10,20 @@
 </head>
 
 <body>
-    <a href="/httt/accounts" @class(['btn', 'btn-secondary']) title="← Quay lại">
-        ← Quay lại
-    </a>
-    <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>
-        Cập nhật thông tin tài khoản
-    </h1>
+    <a href="/httt/accounts" @class(['btn', 'btn-secondary']) title="← Quay lại">← Quay lại</a>
+    <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>Cập nhật thông tin tài khoản</h1>
     <form action="/httt/accounts/update/{{ $user->id }}" method="post" @class(['bg-white', 'p-6', 'rounded', 'shadow', 'w-1/2'])>
         @csrf
         <div @class(['mb-4'])>
             <label>Họ tên</label>
-            <input type="text" name="name" value="{{ old('name', $user->name) }}" @class(['w-full', 'border', 'p-2', 'rounded'])
-                placeholder="Họ tên">
+            <input type="text" name="name" value="{{ old('name', $user->name) }}" @class(['w-full', 'border', 'p-2', 'rounded']) placeholder="Họ tên">
             @error('name')
             <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
         <div @class(['mb-4'])>
             <label>Email</label>
-            <input type="text" name="email" value="{{ old('email', $user->email) }}" @class(['w-full', 'border', 'p-2', 'rounded'])
-                placeholder="Email" maxlength="150">
+            <input type="text" name="email" value="{{ old('email', $user->email) }}" @class(['w-full', 'border', 'p-2', 'rounded']) placeholder="Email" maxlength="150">
             @error('email')
             <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
@@ -40,9 +32,7 @@
             <label>Quyền</label>
             <select name="role" @class(['w-full', 'border', 'p-2', 'rounded'])>
                 @foreach($roles as $r)
-                <option value="{{ $r->id }}" {{ $user->role_id == $r->id ? 'selected' : '' }}>
-                    {{ $r->description }}
-                </option>
+                <option value="{{ $r->id }}" {{ $user->role_id == $r->id ? 'selected' : '' }}>{{ $r->description }}</option>
                 @endforeach
             </select>
         </div>
@@ -55,12 +45,9 @@
                     >Tạm dừng</option>
             </select>
         </div>
-        <button @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-blue-700']) title="Cập nhật">
-            Cập nhật
-        </button>
+        <button @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-blue-700']) title="Cập nhật">Cập nhật</button>
     </form>
 </body>
 
 </html>
-
 @endsection

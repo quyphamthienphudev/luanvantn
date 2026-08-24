@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title','Thêm nhân viên')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,40 +67,35 @@
         </div>
         <div @class(['mb-4'])>
             <label>CCCD</label>
-            <input type="text" name="identify" @class(['w-full', 'border', 'p-2', 'rounded']) value="{{ old('identify') }}"
-                placeholder="CCCD">
+            <input type="text" name="identify" @class(['w-full', 'border', 'p-2', 'rounded']) value="{{ old('identify') }}" placeholder="CCCD">
             @error('identify')
             <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
         <div @class(['mb-4'])>
             <label>Quốc tịch</label>
-            <input type="text" name="national" @class(['w-full', 'border', 'p-2', 'rounded']) value="{{ old('national') }}"
-                placeholder="Quốc tịch">
+            <input type="text" name="national" @class(['w-full', 'border', 'p-2', 'rounded']) value="{{ old('national') }}" placeholder="Quốc tịch">
             @error('national')
             <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
         <div @class(['mb-4'])>
             <label>Nơi sinh</label>
-            <input type="text" name="birthplace" @class(['w-full', 'border', 'p-2', 'rounded']) value="{{ old('birthplace') }}"
-                placeholder="Nơi sinh">
+            <input type="text" name="birthplace" @class(['w-full', 'border', 'p-2', 'rounded']) value="{{ old('birthplace') }}" placeholder="Nơi sinh">
             @error('birthplace')
             <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
         <div @class(['mb-4'])>
             <label>Ngày cấp</label>
-            <input type="date" name="issue_date"
-                @class(['w-full', 'border', 'p-2', 'rounded']) value="{{ old('issue_date') }}">
+            <input type="date" name="issue_date" @class(['w-full', 'border', 'p-2', 'rounded']) value="{{ old('issue_date') }}">
             @error('issue_date')
             <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
         <div @class(['mb-4'])>
             <label>Dân tộc</label>
-            <input type="text" name="ethnic_group" @class(['w-full', 'border', 'p-2', 'rounded']) value="{{ old('ethnic_group') }}"
-                placeholder="Dân tộc">
+            <input type="text" name="ethnic_group" @class(['w-full', 'border', 'p-2', 'rounded']) value="{{ old('ethnic_group') }}" placeholder="Dân tộc">
             @error('ethnic_group')
             <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
@@ -136,5 +128,4 @@
 </body>
 
 </html>
-
 @endsection

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class EmployeeCertificate extends Model
 {
     protected $table = 'employee_certificates';
-
     protected $fillable = [
         'employee_id',
         'certificate_name',
@@ -15,9 +14,7 @@ class EmployeeCertificate extends Model
         'issue_date',
         'expiry_date'
     ];
-
     public $timestamps = false;
-
     public function employee()
     {
         return $this->belongsTo(Employee::class);

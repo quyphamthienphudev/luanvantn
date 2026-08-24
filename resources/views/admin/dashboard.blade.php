@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title', 'Thống kê nâng cao')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,39 +13,26 @@
 <body>
     <div @class(['container', 'mt-4'])>
         <div @class(['row', 'g-4'])>
-        <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>
-            Tổng chi phí lương theo tháng và năm
-        </h1>
+        <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>Tổng chi phí lương theo tháng và năm</h1>
         <form action="/admin/dashboard" method="get" @class(['bg-white', 'p-6', 'rounded', 'shadow', 'w-1/2'])>
             @csrf
-            <!-- Chọn tháng -->
             <div @class(['mb-4'])>
                 <label>Tháng</label>
                 <select name="month" @class(['w-full', 'border', 'p-2', 'rounded'])>
-                    @for($i=1;$i<=12;$i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' :'' }}>
-                        Tháng {{ $i }}
-                        </option>
+                    @for($i=1;$i<=12;$i++) 
+                    <option value="{{ $i }}" {{ $month == $i ? 'selected' :'' }}>Tháng {{ $i }}</option>
                     @endfor
                 </select>
             </div>
-            
-            <!-- Chọn năm -->
             <div @class(['mb-4'])>
                 <label>Năm</label>
                 <select name="year" @class(['w-full', 'border', 'p-2', 'rounded'])>
-                    @for($i=2001; $i<=2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' :'' }}>
-                        Năm {{ $i }}
-                        </option>
+                    @for($i=2001; $i<=2099; $i++) 
+                    <option value="{{ $i }}" {{ $year == $i ? 'selected' :'' }}>Năm {{ $i }}</option>
                     @endfor
                 </select>
             </div>
-
-            <!-- Button -->
-            <button name="filter_month"
-                @class(['bg-green-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-green-700']) title="Thống kê">
-                Thống kê
-            </button>
-
+            <button name="filter_month" @class(['bg-green-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-green-700']) title="Thống kê">Thống kê</button>
         </form>
         <br>
         <div @class(['bg-white', 'p-6', 'rounded', 'shadow', 'w-1/2'])>
@@ -58,28 +42,18 @@
             @endif
         </div>
         <br>
-        <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>
-            Tổng chi phí lương theo năm
-        </h1>
+        <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>Tổng chi phí lương theo năm</h1>
         <form action="/admin/dashboard" method="get" @class(['bg-white', 'p-6', 'rounded', 'shadow', 'w-1/2'])>
             @csrf
-            <!-- Chọn năm -->
             <div @class(['mb-4'])>
                 <label>Năm</label>
                 <select name="year" @class(['w-full', 'border', 'p-2', 'rounded'])>
-                    @for($i=2001; $i<=2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' :'' }}>
-                        Năm {{ $i }}
-                        </option>
+                    @for($i=2001; $i<=2099; $i++) 
+                    <option value="{{ $i }}" {{ $year == $i ? 'selected' :'' }}>Năm {{ $i }}</option>
                     @endfor
                 </select>
             </div>
-
-            <!-- Button -->
-            <button name="filter_year"
-                @class(['bg-green-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-green-700']) title="Thống kê">
-                Thống kê
-            </button>
-
+            <button name="filter_year" @class(['bg-green-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-green-700']) title="Thống kê">Thống kê</button>
         </form>
         <br>
         <div @class(['bg-white', 'p-6', 'rounded', 'shadow', 'w-1/2'])>
@@ -92,5 +66,4 @@
 </body>
 
 </html>
-
 @endsection

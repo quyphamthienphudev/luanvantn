@@ -12,7 +12,6 @@ use App\Models\Employee;
 
 class ContractController 
 {
-    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -23,7 +22,6 @@ class ContractController
         return view('hcns.contracts.index', compact('contracts'));
     }
 
-    // CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -34,25 +32,21 @@ class ContractController
         return view('hcns.contracts.create', compact('employees'));
     }
 
-    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-        
         $countContract = DB::table('contracts')
                         ->where('contract_type', 'fixed_term')
                         ->where('status', 'expired')
                         ->where('employee_id', $request->employee_id)
                         ->count();
-        
         if($countContract >= 2)
         {
             return back()->with('error', 'Không thể tạo thêm hợp đồng lao động xác định thời hạn, vui lòng kiểm tra lại');
         }
-
         $request->validate([
             'employee_id' => 'required',
             'contract_code' => 'required',
@@ -71,14 +65,11 @@ class ContractController
             'contract_file.uploaded' => 'Vui lòng tải lên file dưới 2 MB.',
             'contract_file.max' => 'Vui lòng tải lên file dưới 2 MB.'
         ]);
-
         $fileName = null;
-
         if($request->hasFile('contract_file'))
         {
              $fileName = $request->file('contract_file')->store('contracts');
         }
-
         Contract::create([
             'employee_id' => $request->employee_id,
             'contract_code' => $request->contract_code,
@@ -90,11 +81,9 @@ class ContractController
             'contract_file' => $fileName,
             'status' => 'active'
         ]);
-
         return redirect('/hcns/contracts')->with('success', 'Thêm hợp đồng thành công');
     }
 
-    // EDIT
     public function edit($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -111,7 +100,6 @@ class ContractController
         return back();
     }
 
-    // EXTEND
     public function extend(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -122,7 +110,6 @@ class ContractController
         if($exists)
         {
             $old = Contract::findOrFail($id);
-
             if($request->end_date == '')
             {
                 Contract::create([
@@ -136,10 +123,8 @@ class ContractController
                     'contract_file' => $old->contract_file,
                     'status' => 'active'
                 ]);
-
             $old->update(['status'=>'expired']);
             }
-
             else
             {
                 $request->validate([
@@ -147,7 +132,6 @@ class ContractController
                 ],[
                     'end_date.after' => 'Ngày kết thúc không hợp lệ, vui lòng kiểm tra lại.',
                 ]);
-
                 Contract::create([
                     'employee_id' => $old->employee_id,
                     'contract_code' => $old->contract_code,
@@ -159,16 +143,13 @@ class ContractController
                     'contract_file' => $old->contract_file,
                     'status' => 'active'
                 ]);
-
                 $old->update(['status'=>'expired']);
             }
-        
             return redirect('/hcns/contracts')->with('success', 'Gia hạn hợp đồng thành công');
         }
         return back();
     }
 
-    // TERMINATE
     public function terminate($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -189,53 +170,40 @@ class ContractController
         return back();
     }
 
-    // VIEW FILE
     public function viewFile($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-        
         $contract = Contract::findOrFail($id);
-
         if (!$contract->contract_file)
         {
-            // abort(404, 'Không tìm thấy file');
             return back();
         }
-
         $path = storage_path('app/private/' . $contract->contract_file);
-
         if (!file_exists($path))
         {
-            // abort(404, 'File không tồn tại');
             return back();
         }
-
         return response()->file($path);
     }
 
-    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $search = $request->search;
-
         $contracts = Contract::with('employee')
             ->when($search, function ($query) use ($search) {
-
             $query->where('contract_code', 'like', '%' . $search . '%')
                   ->orWhereHas('employee', function($query) use ($search){
                         $query->where('full_name', 'like', '%'. $search .'%');
                     });
         })
         ->get();
-
         return view('hcns.contracts.index', compact('search', 'contracts'));
     }
 }

@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title', 'Quản lý lương')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,15 +26,16 @@
             <form action="/hcns/payrolls" method="get" @class(['flex', 'gap-2'])>
                 @csrf
                 <select name="month" @class(['border', 'rounded', 'px-3', 'py-2'])>
-                    @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng {{ $i }}</option>
+                    @for($i = 1; $i <= 12; $i++) 
+                    <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>Tháng {{ $i }}</option>
                     @endfor
                 </select>
                 <select name="year" @class(['border', 'rounded', 'px-3', 'py-2'])>
-                    @for($i = 2001; $i <= 2099; $i++) <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>Năm {{ $i }}</option>
+                    @for($i = 2001; $i <= 2099; $i++) 
+                    <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>Năm {{ $i }}</option>
                     @endfor
                 </select>
-                <input type="text" name="search" value="{{ $search }}" @class(['border', 'p-2'])
-                    placeholder="Tìm theo mã nhân viên, họ tên, phòng ban hoặc chức vụ" style="width:450px;">
+                <input type="text" name="search" value="{{ $search }}" @class(['border', 'p-2']) placeholder="Tìm theo mã nhân viên, họ tên, phòng ban hoặc chức vụ" style="width:450px;">
                 <button @class(['bg-blue-500', 'text-white', 'px-4', 'py-2', 'rounded']) title="Xem bảng lương">Xem bảng lương</button>
             </form>
             <div @class(['flex', 'gap-2'])>
@@ -105,5 +103,4 @@
     </div>
 </body>
 </html>
-
 @endsection

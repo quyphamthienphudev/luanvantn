@@ -51,26 +51,19 @@ Route::get('/', function () {
     }
     return redirect('/login');
 });
-
 Route::get('/login', [AuthController::class, 'showLogin']);
 Route::post('/login', [AuthController::class, 'login']);
-
 Route::post('/logout', [AuthController::class, 'logout']);
-
 Route::middleware('auth')->group(function () {
-
     Route::get('/admin/home', [HomePageAdminController::class, 'homePage']);
     Route::get('/hcns/home', [HomePageHCNSController::class, 'homePage']);
     Route::get('/qlcl/home', [HomePageQLCLController::class, 'homePage']);
     Route::get('/httt/home', [HomePageITController::class, 'homePage']);
     Route::get('/home', [HomePageUserController::class, 'homePage']);
-
     Route::get('/profile', [ManageUserControllerUser::class, 'editProfile']);
     Route::post('/profile', [ManageUserControllerUser::class, 'updateProfile']);
-
     Route::get('/change-password', [ManageUserControllerUser::class, 'showChangePassword']);
     Route::post('/change-password', [ManageUserControllerUser::class, 'changePassword']);
-
     Route::get('/httt/accounts', [ManageUserControllerAdmin::class,'index']);
     Route::get('/httt/accounts/create', [ManageUserControllerAdmin::class,'create']);
     Route::post('/httt/accounts/store', [ManageUserControllerAdmin::class,'store']);
@@ -80,13 +73,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/httt/accounts', [ManageUserControllerAdmin::class,'search']);
     Route::post('/httt/accounts/export', [ManageUserControllerAdmin::class,'export']);
 });
-
-// Chức năng báo cáo thống kê
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard',[DashboardAdvancedControllerAdmin::class,'dashboardAdvanced']);
 });
-
-// Chức năng quản lý nhân viên của phòng hành chính nhân sự
 Route::middleware('auth')->group(function () {
     Route::get('/hcns/employees',[ManageEmployeeControllerAdmin::class,'index']);
     Route::get('/hcns/employees/create',[ManageEmployeeControllerAdmin::class,'create']);
@@ -98,12 +87,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/hcns/employees/export',[ManageEmployeeControllerAdmin::class,'export']);
     Route::post('/hcns/employees/detail',[ManageEmployeeControllerAdmin::class,'detail']);
     Route::get('/hcns/employees',[ManageEmployeeControllerAdmin::class,'search']);
-    // Quản lý chứng chỉ
     Route::post('/hcns/employees/{id}/certificate/store', [EmployeeCertificateController::class,'store']);
     Route::get('/hcns/employees/certificate/view/{id}', [EmployeeCertificateController::class,'viewFile']);
 });
-
-// Chức năng quản lý phòng ban
 Route::middleware('auth')->group(function () {
     Route::get('/hcns/departments',[DepartmentControllerAdmin::class,'index']);
     Route::get('/hcns/departments/create',[DepartmentControllerAdmin::class,'create']);
@@ -114,8 +100,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/hcns/departments',[DepartmentControllerAdmin::class,'search']);
     Route::post('/hcns/departments/export',[DepartmentControllerAdmin::class,'export']);
 });
-
-// Chức năng quản lý công việc
 Route::middleware('auth')->group(function () {
     Route::get('/hcns/positions', [PositionControllerAdmin::class,'index']);
     Route::get('/hcns/positions/create', [PositionControllerAdmin::class,'create']);
@@ -126,8 +110,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/hcns/positions', [PositionControllerAdmin::class,'search']);
     Route::post('/hcns/positions/export', [PositionControllerAdmin::class,'export']);
 });
-
-// Chức năng quản lý hồ sơ ứng viên
 Route::middleware('auth')->group(function () {
     Route::get('/hcns/candidates',[ManageCandidateControllerAdmin::class,'index']);
     Route::get('/hcns/candidates/create',[ManageCandidateControllerAdmin::class,'create']);
@@ -138,8 +120,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/hcns/candidates/show/{id}',[ManageCandidateControllerAdmin::class,'show']);
     Route::get('/hcns/candidates',[ManageCandidateControllerAdmin::class,'search']);
 });
-
-// Chức năng quản lý lương phòng hành chính nhân sự
 Route::middleware(['auth'])->group(function () {
     Route::get('/hcns/payrolls', [PayrollControllerAdmin::class, 'index']);
     Route::get('/hcns/payrolls/create', [PayrollControllerAdmin::class, 'create']);
@@ -150,21 +130,15 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/hcns/payrolls/delete/{id}', [PayrollControllerAdmin::class, 'delete']);
     Route::get('/hcns/payrolls/export', [PayrollControllerAdmin::class, 'export']);
 });
-
-// Chức năng xem bảng lương của nhân viên
 Route::middleware(['auth'])->group(function () {
     Route::get('/payrolls', [PayrollControllerUser::class, 'show']);
 });
-
-// Chức năng quản lý đơn xin nghỉ phép của nhân viên
 Route::middleware(['auth'])->group(function () {
     Route::get('/leave', [LeaveController::class, 'index']);
     Route::post('/leave/store', [LeaveController::class, 'store']);
     Route::get('/leave/edit/{id}', [LeaveController::class, 'edit']);
     Route::post('/leave/update/{id}', [LeaveController::class, 'update']);
 });
-
-// Chức năng quản lý đơn xin nghỉ phép của từng phòng ban
 Route::middleware(['auth'])->group(function () {
     Route::get('/qlcl/leave', [LeaveControllerQLCL::class, 'index']);
     Route::post('/qlcl/leave/approve/{id}', [LeaveControllerQLCL::class, 'approve']);
@@ -174,16 +148,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/qlcl/leave/delete/{id}', [LeaveControllerQLCL::class, 'delete']);
     Route::get('/qlcl/leave/resume', [LeaveControllerQLCL::class, 'countResumeLeave']);
 });
-
-// Chức năng quản lý đơn xin nghỉ phép phòng hành chính nhân sự
 Route::middleware(['auth'])->group(function () {
     Route::get('/hcns/leave', [LeaveControllerHCNS::class, 'index']);
     Route::get('/hcns/leave/edit/{id}', [LeaveControllerHCNS::class, 'edit']);
     Route::post('/hcns/leave/update/{id}', [LeaveControllerHCNS::class, 'update']);
     Route::post('/hcns/leave/delete/{id}', [LeaveControllerHCNS::class, 'delete']);
 });
-
-// Chức năng quản lý quyền truy cập
 Route::middleware('auth')->group(function () {
     Route::get('/httt/roles', [RoleController::class,'index']);
     Route::get('/httt/roles/create', [RoleController::class,'create']);
@@ -193,8 +163,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/httt/roles/delete/{id}', [RoleController::class,'delete']);
     Route::get('/httt/roles', [RoleController::class,'search']);
 });
-
-// Chức năng quản lý chấm công của từng phòng ban
 Route::middleware('auth')->group(function () {
     Route::get('/qlcl/attendances', [AttendanceController::class, 'index']);
     Route::get('/qlcl/attendances/edit/{id}', [AttendanceController::class, 'edit']);
@@ -202,23 +170,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/qlcl/attendances/delete/{id}', [AttendanceController::class, 'delete']);
     Route::post('/qlcl/attendances/confirm/{id}', [AttendanceController::class,'confirm']);
 });
-
-// Chức năng quản lý chấm công phòng hành chính nhân sự
 Route::middleware('auth')->group(function () {
     Route::get('/hcns/attendances', [AttendanceControllerHCNS::class, 'index']);
     Route::get('/hcns/attendances/edit/{id}', [AttendanceControllerHCNS::class, 'edit']);
     Route::post('/hcns/attendances/update/{id}', [AttendanceControllerHCNS::class, 'update']);
     Route::get('/hcns/attendances/delete/{id}', [AttendanceControllerHCNS::class, 'delete']);
 });
-
-// Chức năng quản lý nhân viên của từng phòng ban
 Route::middleware('auth')->group(function () {
     Route::get('/qlcl/employees',[ManageEmployeeControllerQLCL::class,'index']);
     Route::get('/qlcl/employees',[ManageEmployeeControllerQLCL::class,'search']);
     Route::post('/qlcl/employees/show/{id}',[ManageEmployeeControllerQLCL::class,'show']);
 });
-
-// Chức năng quản lý hợp đồng lao động
 Route::middleware('auth')->group(function () {
     Route::get('/hcns/contracts', [ContractController::class,'index']);
     Route::get('/hcns/contracts/create', [ContractController::class,'create']);
@@ -229,8 +191,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/hcns/contracts/view/{id}', [ContractController::class,'viewFile']);
     Route::get('/hcns/contracts', [ContractController::class,'search']);
 });
-
-// Chức năng quản lý khen thưởng
 Route::middleware('auth')->group(function () {
     Route::get('/hcns/rewards',[ManageEmployeeRewardController::class,'index']);
     Route::get('/hcns/rewards/create',[ManageEmployeeRewardController::class,'create']);
@@ -239,8 +199,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/hcns/rewards/update/{id}',[ManageEmployeeRewardController::class,'update']);
     Route::post('/hcns/rewards/delete/{id}',[ManageEmployeeRewardController::class,'delete']);
 });
-
-// Chức năng quản lý kỷ luật
 Route::middleware('auth')->group(function () {
     Route::get('/hcns/disciplines',[ManageEmployeeDisciplinesController::class,'index']);
     Route::get('/hcns/disciplines/create',[ManageEmployeeDisciplinesController::class,'create']);
@@ -249,15 +207,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/hcns/disciplines/update/{id}',[ManageEmployeeDisciplinesController::class,'update']);
     Route::post('/hcns/disciplines/delete/{id}',[ManageEmployeeDisciplinesController::class,'delete']);
 });
-
-// Chức năng chấm công cho nhân viên
 Route::middleware('auth')->group(function () {
     Route::get('/attendances', [AttendanceControllerNV::class, 'index']);
     Route::post('/attendances/checkin', [AttendanceControllerNV::class, 'checkIn']);
     Route::post('/attendances/checkout', [AttendanceControllerNV::class, 'checkOut']);
 });
-
-// Kiểm tra route hợp lệ
 Route::fallback(function () {
     if (!auth()->check()) 
     {

@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title','Quản lý hợp đồng lao động')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,14 +12,11 @@
 
 <body> 
     <div @class(['flex', 'space-x-2'])>
-        <a href="/hcns/contracts/create" @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded']) title="Thêm hợp đồng lao động">
-            Thêm hợp đồng lao động
-        </a>
+        <a href="/hcns/contracts/create" @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded']) title="Thêm hợp đồng lao động">Thêm hợp đồng lao động</a>
     </div>
     <form action="/hcns/contracts" method="get" @class(['mt-4'])>
         @csrf
-        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" @class(['border', 'p-2'])
-            placeholder="Tìm theo mã hợp đồng hoặc nhân viên" style="width:300px;">
+        Tìm kiếm: <input type="text" name="search" value="{{ $search }}" @class(['border', 'p-2']) placeholder="Tìm theo mã hợp đồng hoặc nhân viên" style="width:300px;">
         <button @class(['bg-gray-500', 'text-white', 'px-3', 'py-2', 'rounded']) title="Tìm">Tìm</button>
     </form>
     @if(session('success'))
@@ -59,12 +53,8 @@
                         Hợp đồng không xác định thời hạn
                         @endif
                     </td>
-                    <td @class(['p-3'])>
-                        {{ $c->start_date ? date('d/m/Y', strtotime($c->start_date)) : '' }}
-                    </td>
-                    <td @class(['p-3'])>
-                        {{ $c->end_date ? date('d/m/Y', strtotime($c->end_date)) : 'Không có' }}
-                    </td>
+                    <td @class(['p-3'])>{{ $c->start_date ? date('d/m/Y', strtotime($c->start_date)) : '' }}</td>
+                    <td @class(['p-3'])>{{ $c->end_date ? date('d/m/Y', strtotime($c->end_date)) : 'Không có' }}</td>
                     <td @class(['p-3'])>
                         @if($c->status == 'active')
                         Còn hạn
@@ -120,5 +110,4 @@
 </body>
 
 </html>
-
 @endsection

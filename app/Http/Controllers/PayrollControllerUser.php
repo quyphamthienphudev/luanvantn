@@ -8,18 +8,15 @@ use Carbon\Carbon;
 
 class PayrollControllerUser 
 {
-
     public function show()
     {
         if (auth()->user()->role->name !== 'user') 
         {
             return back();
         }
-
         $fullName = auth()->user()->name;
         $month = Carbon::today()->month;
         $year = Carbon::today()->year;
-
         $payroll = DB::table('payrolls')
             ->join('employees', 'payrolls.employee_id', '=', 'employees.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
@@ -43,7 +40,6 @@ class PayrollControllerUser
             ->where('month', $month)
             ->where('year', $year)
             ->first();
-
         return view('user.payrolls.show', compact('payroll'));
     }
 }

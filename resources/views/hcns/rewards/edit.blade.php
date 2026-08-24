@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title','Cập nhật thông tin khen thưởng')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,24 +24,21 @@
         </div>
         <div @class(['mb-4'])>
             <label>Nội dung khen thưởng</label>
-            <input type="text" name="title" value="{{ old('title', $rewards->title) }}" @class(['w-full', 'border', 'p-2', 'rounded'])
-                placeholder="Nội dung khen thưởng">
+            <input type="text" name="title" value="{{ old('title', $rewards->title) }}" @class(['w-full', 'border', 'p-2', 'rounded']) placeholder="Nội dung khen thưởng">
             @error('title')
             <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
         <div @class(['mb-4'])>
             <label>Số tiền</label>
-            <input type="text" name="amount" value="{{ old('amount', $rewards->amount) }}" @class(['w-full', 'border', 'p-2', 'rounded'])
-                placeholder="Số tiền">
+            <input type="text" name="amount" value="{{ old('amount', $rewards->amount) }}" @class(['w-full', 'border', 'p-2', 'rounded']) placeholder="Số tiền">
             @error('amount')
             <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
         <div @class(['mb-4'])>
             <label>Ngày ra quyết định</label>
-            <input type="date" name="decision_date" value="{{ old('decision_date', $rewards->decision_date) }}"
-                @class(['w-full', 'border', 'p-2', 'rounded'])>
+            <input type="date" name="decision_date" value="{{ old('decision_date', $rewards->decision_date) }}" @class(['w-full', 'border', 'p-2', 'rounded'])>
             @error('decision_date')
             <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
@@ -54,5 +48,4 @@
 </body>
 
 </html>
-
 @endsection

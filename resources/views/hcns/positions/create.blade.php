@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,12 +10,8 @@
 </head>
 
 <body>
-    <a href="/hcns/positions" @class(['btn', 'btn-secondary']) title="← Quay lại">
-        ← Quay lại
-    </a>
-    <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>
-        Thêm công việc
-    </h1>
+    <a href="/hcns/positions" @class(['btn', 'btn-secondary']) title="← Quay lại">← Quay lại</a>
+    <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>Thêm công việc</h1>
     <form action="/hcns/positions/store" method="post" @class(['bg-white', 'p-6', 'rounded', 'shadow', 'w-1/2'])>
         @csrf
         <div @class(['mb-4'])>
@@ -41,12 +35,9 @@
             <p @class(['text-red-500', 'text-sm'])>{{ $message }}</p>
             @enderror
         </div>
-        <button @class(['bg-green-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-green-700']) title="Lưu">
-            Lưu
-        </button>
+        <button @class(['bg-green-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-green-700']) title="Lưu">Lưu</button>
     </form>
 </body>
 
 </html>
-
 @endsection

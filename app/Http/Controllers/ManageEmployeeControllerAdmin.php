@@ -11,8 +11,6 @@ use App\Models\Department;
 
 class ManageEmployeeControllerAdmin 
 {
-
-    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -23,7 +21,6 @@ class ManageEmployeeControllerAdmin
         return view('hcns.employees.index', compact('employees'));
     }
 
-    // SHOW CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -35,18 +32,15 @@ class ManageEmployeeControllerAdmin
         return view('hcns.employees.create', compact('departments', 'positions'));
     }
 
-    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $request->validate([
         'employee_code' => 'required|unique:employees,employee_code|regex:/^[A-Za-z0-9_-]+$/',
         'full_name' => 'required',
-        // Họ tên phải có ít nhất 2 từ
         'full_name' => 'required|regex:/^\S+\s+\S+.*$/',
         'email' => 'required|email',
         'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
@@ -55,7 +49,6 @@ class ManageEmployeeControllerAdmin
         'birthplace' => 'required',
         'issue_date' => 'required',
         'ethnic_group' => 'required',
-        // Số điện thoại bắt đầu bằng số 0
         'phone' => 'required|regex:/^0[0-9]+$/|min:10|max:11'
         ],[
             'employee_code.required' => 'Vui lòng nhập mã nhân viên.',
@@ -81,15 +74,12 @@ class ManageEmployeeControllerAdmin
             'phone.max' => 'Số điện thoại không hợp lệ, vui lòng kiểm tra lại.'
         ]);
         $data = $request->all();
-        // Tự động set ngày vào làm
         $data['hire_date'] = date('Y-m-d');
-        // Trạng thái mặc định
         $data['status'] = 'working';
         Employee::create($data);
         return redirect('/hcns/employees')->with('success', 'Thêm nhân viên thành công');
     }
 
-    // EDIT
     public function edit($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -107,27 +97,23 @@ class ManageEmployeeControllerAdmin
         return back();
     }
 
-    // UPDATE
     public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $request->validate([
-        // Họ tên phải có ít nhất 2 từ
-        'full_name' => 'required|regex:/^\S+\s+\S+.*$/',
-        'hire_date' => 'required|date',
-        'email' => 'required|email',
-        'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
-        'identify' => 'required|regex:/^0[A-Za-z0-9_-]+$/|min:12|max:12',
-        'national' => 'required',
-        'birthplace' => 'required',
-        'issue_date' => 'required',
-        'ethnic_group' => 'required',
-        // Số điện thoại bắt đầu bằng số 0
-        'phone' => 'required|regex:/^0[0-9]+$/|min:10|max:11'
+            'full_name' => 'required|regex:/^\S+\s+\S+.*$/',
+            'hire_date' => 'required|date',
+            'email' => 'required|email',
+            'date_of_birth' => 'required|before:' . now()->subYears(18)->format('Y-m-d'),
+            'identify' => 'required|regex:/^0[A-Za-z0-9_-]+$/|min:12|max:12',
+            'national' => 'required',
+            'birthplace' => 'required',
+            'issue_date' => 'required',
+            'ethnic_group' => 'required',
+            'phone' => 'required|regex:/^0[0-9]+$/|min:10|max:11'
         ],[
             'full_name.required' => 'Vui lòng nhập họ tên nhân viên.',
             'full_name.regex' => 'Họ tên nhân viên không hợp lệ, vui lòng kiểm tra lại.',
@@ -155,14 +141,12 @@ class ManageEmployeeControllerAdmin
         return redirect('/hcns/employees')->with('success','Cập nhật thông tin thành công');
     }
 
-    // DELETE
     public function delete($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-        // Kiểm tra ràng buộc dữ liệu
         $contract = DB::table('contracts')->where('employee_id', $id)->exists();
         if ($contract) 
         {
@@ -192,7 +176,6 @@ class ManageEmployeeControllerAdmin
         return back();
     }
 
-    // SHOW
     public function show($id)
     {
         if (auth()->user()->role->name !== 'hcns') 
@@ -208,14 +191,12 @@ class ManageEmployeeControllerAdmin
         return back();
     }
 
-    // EXPORT FILE
     public function export()
     {   
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-        
         $employees = DB::table('employees')
             ->join('departments', 'employees.department_id', '=', 'departments.id')
             ->join('positions', 'employees.position_id', '=', 'positions.id')
@@ -235,33 +216,25 @@ class ManageEmployeeControllerAdmin
             )
             ->where('status', 'working')
             ->get();
-        
         if ($employees->isEmpty()) 
         {
             return back()->with('error', 'Không có dữ liệu');
         }
-        
         $filename = 'ds_nhan_vien' . '.csv';
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
-        
         $output = fopen('php://output', 'w');
         fwrite($output, "\xEF\xBB\xBF");
-        
         fputcsv($output, ['STT', 'Mã nhân viên', 'Họ tên nhân viên', 'Phòng ban', 'Công việc', 'Giới tính', 'Ngày sinh', 'Số điện thoại', 'Email', 'Địa chỉ']);
-        
         $stt = 1;
         foreach ($employees as $employee) 
         {
-            // Hiển thị giới tính Nam hoặc Nữ khi xuất file
             $gender = '';
-
             if ($employee->gender == 'male') {
                 $gender = 'Nam';
             } elseif ($employee->gender == 'female') {
                 $gender = 'Nữ';
             }
-
             fputcsv($output, [
                 $stt,
                 $employee->employee_code ?? '',
@@ -270,26 +243,22 @@ class ManageEmployeeControllerAdmin
                 $employee->position_name ?? '',
                 $gender,
                 $employee->date_of_birth ? date('d/m/Y', strtotime($employee->date_of_birth)) : '',
-                // Hiển thị đầy đủ số điện thoại có số 0 ở đầu
                 "\t" . ($employee->phone ?? ''),
                 $employee->email ?? '',
                 ($employee->address ?? '') . ", " . ($employee->street ?? '') . ", " . ($employee->ward ?? '') . ", " . ($employee->province ?? '')
             ]);
             $stt++;
         }
-        
         fclose($output);
         exit;
     }
 
-    // DETAIL
     public function detail(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $employees = DB::table('employees')
                     ->select('full_name', 'employee_code')
                     ->where('employee_code', '!=', 'EMP001')
@@ -300,7 +269,6 @@ class ManageEmployeeControllerAdmin
         $attendances = [];
         $rewards = [];
         $disciplines = [];
-
         if($request->has('detail'))
         {
             $attendances = DB::table('attendances')
@@ -311,7 +279,6 @@ class ManageEmployeeControllerAdmin
                 ->where('confirm', 'yes')
                 ->orderBy('work_date','asc')
                 ->get();
-
             $rewards = DB::table('reward_discipline')
                 ->join('employees', 'reward_discipline.employee_id', '=', 'employees.id')
                 ->select('employee_code', 'full_name', 'title', 'amount', 'decision_date')
@@ -319,7 +286,6 @@ class ManageEmployeeControllerAdmin
                 ->where('type', 'reward')
                 ->orderBy('decision_date', 'asc')
                 ->get();
-
             $disciplines = DB::table('reward_discipline')
                 ->join('employees', 'reward_discipline.employee_id', '=', 'employees.id')
                 ->select('employee_code', 'full_name', 'title', 'amount', 'decision_date')
@@ -328,31 +294,25 @@ class ManageEmployeeControllerAdmin
                 ->orderBy('decision_date', 'asc')
                 ->get();
         }
-
         return view('hcns.employees.detail', compact('employees', 'attendances', 'rewards', 'disciplines'));
     }
 
-    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'hcns') 
         {
             return back();
         }
-
         $search = $request->search;
-
         $employees = Employee::with('department')
             ->when($search, function($q) use ($search){
                 $q->where('full_name', 'like', '%'. $search .'%')
                   ->orWhere('employee_code', $search)
-                  // Tìm theo tên phòng ban
                   ->orWhereHas('department', function($query) use ($search){
                         $query->where('name', 'like', '%'. $search .'%');
                     });
             })
             ->get();
-        
         return view('hcns.employees.index', compact('search', 'employees'));
     }
 }

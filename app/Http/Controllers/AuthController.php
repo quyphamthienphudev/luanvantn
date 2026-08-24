@@ -8,7 +8,6 @@ use App\Models\User;
 
 class AuthController 
 {
-    // SHOW LOGIN
     public function showLogin()
     {
         if (auth()->check()) 
@@ -34,7 +33,6 @@ class AuthController
         return view('auth.login');
     }
 
-    // LOGIN
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -69,7 +67,6 @@ class AuthController
         return back()->with('error', 'Email hoặc mật khẩu không đúng');
     }
 
-    // LOGOUT
     public function logout()
     {
         if(!auth()->check())

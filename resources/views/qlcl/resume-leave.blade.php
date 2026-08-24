@@ -5,17 +5,14 @@
     .table th {
         vertical-align: middle;
     }
-
     .status-badge {
         width: 100px;
         display: inline-block;
         text-align: center;
     }
-
     .action-group {
         white-space: nowrap;
     }
-
     .btn-action {
         width: 32px;
         height: 32px;
@@ -24,20 +21,14 @@
         border-radius: 6px;
     }
 </style>
-
 @extends('layouts.app')
-
 @section('title', 'Xem số ngày nghỉ phép còn lại')
-
 @section('content')
-
 <div @class(['flex', 'justify-between', 'items-center', 'mb-6'])>
     <h2 @class(['text-2xl', 'font-bold', 'text-gray-800'])>Danh sách nhân viên</h2>
 </div>
-
 <div @class(['bg-white', 'shadow', 'rounded', 'mt-6'])>
     <table @class(['w-full', 'text-left'])>
-
         <thead @class(['bg-gray-200'])>
             <tr>
                 <th @class(['p-3'])>Nhân viên</th>
@@ -46,7 +37,6 @@
                 <th @class(['p-3'])>Trạng thái</th>
             </tr>
         </thead>
-
         <tbody>
             @forelse($countResumeLeave as $c)
             <tr @class(['border-b'])>
@@ -74,10 +64,7 @@
             </tr>
             @endforelse
         </tbody>
-
     </table>
-
 </div>
 <br>
-
 @endsection

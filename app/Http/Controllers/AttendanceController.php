@@ -68,12 +68,8 @@ class AttendanceController
         {
             return back();
         }
-
         $attendance = Attendance::findOrFail($id);
-        
-        // Xác định trạng thái theo giờ vào
         $status = 'absent';
-
         if(!empty($request->check_in))
         {
             if($request->check_in < '08:01')
@@ -85,7 +81,6 @@ class AttendanceController
                 $status = 'late';
             }
         }
-
         $attendance->update([
             'check_in'  => $request->check_in,
             'check_out' => $request->check_out,

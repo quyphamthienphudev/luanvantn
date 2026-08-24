@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 class Candidate extends Model 
 {
     protected $table = 'candidates';
-    
     protected $fillable = [
         'candidate_id',
         'full_name',
@@ -22,6 +21,5 @@ class Candidate extends Model
         'ward',
         'province'
     ];
-
     public $timestamps = false;
 }

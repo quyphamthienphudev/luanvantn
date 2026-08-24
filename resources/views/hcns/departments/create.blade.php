@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,12 +10,8 @@
 </head>
 
 <body>
-    <a href="/hcns/departments" @class(['btn', 'btn-secondary']) title="← Quay lại">
-        ← Quay lại
-    </a>
-    <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>
-        Thêm phòng ban
-    </h1>
+    <a href="/hcns/departments" @class(['btn', 'btn-secondary']) title="← Quay lại">← Quay lại</a>
+    <h1 @class(['text-2xl', 'font-bold', 'mb-6'])>Thêm phòng ban</h1>
     <form action="/hcns/departments/store" method="post" @class(['bg-white', 'p-6', 'rounded', 'shadow', 'w-1/2'])>
         @csrf
         <div @class(['mb-4'])>
@@ -39,5 +33,4 @@
 </body>
 
 </html>
-
 @endsection

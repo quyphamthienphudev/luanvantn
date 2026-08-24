@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title', 'Quản lý chấm công')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,20 +18,16 @@
             <form action="/qlcl/attendances" method="get">
                 @csrf 
                 <input type="date" name="date" @class(['border', 'p-2', 'rounded'])>
-                <button @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded']) title="Xem">
-                    Xem
-                </button>
+                <button @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded']) title="Xem">Xem</button>
             </form>
         </div>
         <br>
         <div @class(['flex', 'justify-between', 'items-center', 'mb-6'])>
             <h2 @class(['text-2xl', 'font-bold', 'text-gray-800'])>Danh sách chấm công nhân viên</h2>
         </div>
-
         @if(session('success'))
         <div @class(['bg-green-100', 'text-green-700', 'p-3', 'rounded', 'mb-4'])>{{ session('success') }}</div>
         @endif
-
         <div @class(['bg-white', 'shadow', 'rounded-lg', 'overflow-hidden'])>
             <table @class(['w-full', 'text-left', 'border-collapse'])>
                 <thead @class(['bg-blue-600', 'text-white'])>
@@ -59,8 +52,7 @@
                         <td @class(['p-3', 'font-medium'])>{{ $atd->check_in ?? 'Chưa có dữ liệu' }}</td>
                         <td @class(['p-3', 'font-medium'])>{{ $atd->check_out ?? 'Chưa có dữ liệu' }}</td>
                         <td @class(['p-3'])>
-                            <span
-                                @class(['px-2', 'py-1', 'rounded', 'text-xs', '{{', '$atd->status', '==', 'present', '?', 'bg-green-100', 'text-green-800', ':', 'bg-yellow-100', 'text-yellow-800', '}}'])>
+                            <span @class(['px-2', 'py-1', 'rounded', 'text-xs', '{{', '$atd->status', '==', 'present', '?', 'bg-green-100', 'text-green-800', ':', 'bg-yellow-100', 'text-yellow-800', '}}'])>
                                 @if($atd->status == 'present')
                                 Đúng giờ
                                 @endif
@@ -76,8 +68,7 @@
                         <td @class(['p-3', 'text-center'])>
                             <div @class(['flex', 'space-x-2'])>
                                 <a href="/qlcl/attendances/edit/{{ $atd->id }}" @class(['bg-yellow-500', 'text-white', 'px-3', 'py-1', 'rounded']) title="Sửa">Sửa</a>
-                                <a href="/qlcl/attendances/delete/{{ $atd->id }}" @class(['bg-red-600', 'text-white', 'px-3', 'py-1', 'rounded'])
-                                    onclick="return confirm('Bạn có muốn xóa bảng chấm công này?')" title="Xoá">Xoá</a>
+                                <a href="/qlcl/attendances/delete/{{ $atd->id }}" @class(['bg-red-600', 'text-white', 'px-3', 'py-1', 'rounded']) onclick="return confirm('Bạn có muốn xóa bảng chấm công này?')" title="Xoá">Xoá</a>
                                 @if($atd->confirm == 'no')
                                 <form action="/qlcl/attendances/confirm/{{ $atd->id }}" method="post" onsubmit="return confirm('Bạn có muốn xác nhận bảng chấm công này?')">
                                     @csrf
@@ -99,5 +90,4 @@
 </body>
 
 </html>
-
 @endsection

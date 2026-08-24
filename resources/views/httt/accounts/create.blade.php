@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,12 +10,8 @@
 </head>
 
 <body>
-    <a href="/httt/accounts" @class(['btn', 'btn-secondary']) title="← Quay lại">
-        ← Quay lại
-    </a>
-    <h1 @class(['text-2xl', 'font-bold', 'mb-6']) title="Thêm tài khoản">
-        Thêm tài khoản
-    </h1>
+    <a href="/httt/accounts" @class(['btn', 'btn-secondary']) title="← Quay lại">← Quay lại</a>
+    <h1 @class(['text-2xl', 'font-bold', 'mb-6']) title="Thêm tài khoản">Thêm tài khoản</h1>
     <form action="/httt/accounts/store" method="post" @class(['bg-white', 'p-6', 'rounded', 'shadow', 'w-1/2'])>
         @csrf
         <div @class(['mb-4'])>
@@ -49,12 +43,9 @@
                 @endforeach
             </select>
         </div>
-        <button @class(['bg-green-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-green-700']) title="Lưu">
-            Lưu
-        </button>
+        <button @class(['bg-green-600', 'text-white', 'px-4', 'py-2', 'rounded', 'hover:bg-green-700']) title="Lưu">Lưu</button>
     </form>
 </body>
 
 </html>
-
 @endsection

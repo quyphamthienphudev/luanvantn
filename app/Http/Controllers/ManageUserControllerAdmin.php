@@ -10,7 +10,6 @@ use App\Models\Role;
 
 class ManageUserControllerAdmin 
 {
-    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -21,7 +20,6 @@ class ManageUserControllerAdmin
         return view('httt.accounts.index', compact('users'));
     }
 
-    // SHOW CREATE
     public function create()
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -32,14 +30,12 @@ class ManageUserControllerAdmin
         return view('httt.accounts.create', compact('roles'));
     }
 
-    // STORE
     public function store(Request $request)
     {
         if (auth()->user()->role->name !== 'httt') 
         {
             return back();
         }
-
         $request->validate([
             'name' => 'required|regex:/^[\p{L}\p{N}\s]+$/u',
             'email' => 'required|email|unique:users,email',
@@ -53,18 +49,15 @@ class ManageUserControllerAdmin
             'password.required' => 'Mật khẩu không được để trống.',
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.'
         ]);
-
         DB::table('users')->insert([
             'role_id' => $request->role,
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-
         return redirect('/httt/accounts')->with('success', 'Thêm tài khoản thành công');
     }
 
-    // SHOW EDIT
     public function edit($id)
     {
         if (auth()->user()->role->name !== 'httt') 
@@ -81,14 +74,12 @@ class ManageUserControllerAdmin
         return back();
     }
 
-    // UPDATE
     public function update(Request $request, $id)
     {
         if (auth()->user()->role->name !== 'httt') 
         {
             return back();
         }
-
         $request->validate([
             'name' => 'required|regex:/^[\p{L}\p{N}\s]+$/u',
             'email'=>'required|email|unique:users,email',
@@ -102,7 +93,6 @@ class ManageUserControllerAdmin
             'password.required' => 'Mật khẩu không được để trống.',
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.'
         ]);
-        
         DB::table('users')
         ->where('id', $id)
         ->update([
@@ -111,18 +101,15 @@ class ManageUserControllerAdmin
             'status' => $request->status,
             'role_id' => $request->role
         ]);
-
         return redirect('/httt/accounts')->with('success', 'Cập nhật tài khoản thành công');
     }
 
-    // DELETE
     public function delete($id)
     {
         if (auth()->user()->role->name !== 'httt') 
         {
             return back();
         }
-        // Kiểm tra ràng buộc dữ liệu
         $attendance = DB::table('attendances')->where('users_id', $id)->exists();
         if ($attendance) 
         {
@@ -142,52 +129,39 @@ class ManageUserControllerAdmin
         return back();
     }
 
-    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'httt') 
         {
             return back();
         }
-
         $search = $request->search;
-
         $users = DB::table('users')->where('users.id', '!=', Auth::id())
             ->when($search, function ($query) use ($search) {
-
-            // Tìm theo name hoặc email
             $query->where('name', 'like', '%' . $search . '%')
                   ->orWhere('email', 'like', '%' . $search . '%');
         })
         ->get();
-
         return view('httt.accounts.index', compact('search', 'users'));
     }
 
-    // EXPORT FILE
     public function export()
     {   
         if (auth()->user()->role->name !== 'httt') 
         {
             return back();
         }
-        
         $users = DB::table('users')->select('id', 'name', 'email')->where('users.id', '!=' , Auth::id())->get();
-        
         if ($users->isEmpty()) 
         {
             return back()->with('error', 'Không có dữ liệu');
         }
-        
         $filename = 'ds_tai_khoan' . '.csv';
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
-        
         $output = fopen('php://output', 'w');
         fwrite($output, "\xEF\xBB\xBF");
-        
         fputcsv($output, ['STT', 'Họ tên', 'Email']);
-        
         foreach ($users as $user) 
         {
             fputcsv($output, [
@@ -196,7 +170,6 @@ class ManageUserControllerAdmin
                 $user->email ?? ''
             ]);
         }
-        
         fclose($output);
         exit;
     }

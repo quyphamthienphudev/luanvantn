@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title','Cập nhật thông tin hồ sơ ứng viên')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 

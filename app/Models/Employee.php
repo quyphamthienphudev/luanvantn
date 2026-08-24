@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model 
 {
     protected $table = 'employees';
-    
     protected $fillable = [
         'department_id',
         'position_id',
@@ -28,29 +27,23 @@ class Employee extends Model
         'hire_date',
         'status'
     ];
-
     public $timestamps = false;
-
     public function department()
     {
         return $this->belongsTo(Department::class);
     }
-
     public function position()
     {
         return $this->belongsTo(Position::class);
     }
-
     public function certificates()
     {
         return $this->hasMany(EmployeeCertificate::class);
     }
-
     public function contracts()
     {
         return $this->hasMany(Contract::class);
     }
-
     public function rewardDisciplines()
     {
         return $this->hasMany(RewardDiscipline::class,'employee_id');

@@ -10,22 +10,16 @@ use App\Models\Position;
 
 class ManageEmployeeControllerQLCL 
 {
-
-    // INDEX
     public function index()
     {
         if (auth()->user()->role->name !== 'qlcl') 
         {
             return back();
         }
-        $employees = Employee::with('department')
-            ->where('department_id', '14')
-            ->get();
-
+        $employees = Employee::with('department')->where('department_id', '14')->get();
         return view('qlcl.employees.index', compact('employees'));
     }
 
-    // SHOW DETAIL
     public function show($id)
     {
         if (auth()->user()->role->name !== 'qlcl') 
@@ -41,16 +35,13 @@ class ManageEmployeeControllerQLCL
         return back();
     }
 
-    // SEARCH
     public function search(Request $request)
     {
         if (auth()->user()->role->name !== 'qlcl') 
         {
             return back();
         }
-        
         $search = $request->search;
-
         $employees = Employee::with('department')
             ->where('department_id', '=', '14')
             ->when($search, function ($query) use ($search) {
@@ -60,7 +51,6 @@ class ManageEmployeeControllerQLCL
                 });
             })
             ->get();
-
         return view('qlcl.employees.index', compact('search', 'employees'));
     }
 }

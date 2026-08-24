@@ -11,7 +11,6 @@ use App\Models\User;
 
 class AttendanceControllerNV 
 {
-    // SHOW ATTENDANCE
     public function index()
     {
         if (auth()->user()->role->name !== 'user') 
@@ -29,7 +28,6 @@ class AttendanceControllerNV
         return view('user.attendances.index', compact('attendance'));
     }
 
-    // CHECK IN
     public function checkIn()
     {
         if (auth()->user()->role->name !== 'user') 
@@ -65,7 +63,6 @@ class AttendanceControllerNV
         return back()->with('success', 'Chấm công vào làm thành công');
     }
 
-    // CHECK OUT
     public function checkOut()
     {
         if (auth()->user()->role->name !== 'user') 

@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('title','Chi tiết hồ sơ ứng viên')
-
 @section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +17,8 @@
         <p>Họ và tên: {{ $candidate->full_name }}</p>
         <p>Tên: {{ $candidate->first_name }}</p>
         <p>Họ: {{ $candidate->last_name }}</p>
-        <p>Giới tính:
+        <p>
+            Giới tính:
             @if($candidate->gender == 'male')
             Nam
             @else
@@ -36,5 +34,4 @@
 </body>
 
 </html>
-
 @endsection

@@ -5,17 +5,14 @@
     .table th {
         vertical-align: middle;
     }
-
     .status-badge {
         width: 100px;
         display: inline-block;
         text-align: center;
     }
-
     .action-group {
         white-space: nowrap;
     }
-
     .btn-action {
         width: 32px;
         height: 32px;
@@ -24,39 +21,28 @@
         border-radius: 6px;
     }
 </style>
-
 @extends('layouts.app')
-
 @section('title', 'Quản lý nghỉ phép')
-
 @section('content')
-
 <h2 @class(['text-2xl', 'font-bold', 'text-gray-800'])>Chọn ngày để xem danh sách nghỉ phép</h2>
 <br>
 <div @class(['flex', 'space-x-2'])>
     <form action="/hcns/leave" method="get">
         @csrf 
         <input type="date" name="date" @class(['border', 'p-2', 'rounded'])>
-        <button @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded']) title="Xem">
-            Xem
-        </button>
+        <button @class(['bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded']) title="Xem">Xem</button>
     </form>
 </div>
-
 <div @class(['flex', 'justify-between', 'items-center', 'mb-6'])>
     <h2 @class(['text-2xl', 'font-bold', 'text-gray-800'])>Danh sách đơn xin nghỉ phép</h2>
 </div>
-
 @if(session('success'))
 <div @class(['alert', 'alert-success', 'alert-dismissible', 'fade', 'show', 'border-0', 'shadow-sm']) role="alert">
     {{ session('success') }}
 </div>
 @endif
-
 <div @class(['bg-white', 'shadow', 'rounded', 'mt-6'])>
-
     <table @class(['w-full', 'text-left'])>
-
         <thead @class(['bg-gray-200'])>
             <tr>
                 <th @class(['p-3'])>Nhân viên</th>
@@ -66,7 +52,6 @@
                 <th @class(['text-center'])>Hành động</th>
             </tr>
         </thead>
-
         <tbody>
             @forelse($allLeaves as $leave)
             <tr @class(['border-b'])>
@@ -92,17 +77,14 @@
                 </td>
                 <td @class(['text-center'])>
                     <div @class(['d-flex', 'justify-content-center', 'align-items-center', 'gap-2', 'action-group'])>
-
                         <a href="/hcns/leave/edit/{{ $leave->id }}">
                             <button @class(['btn', 'btn-info', 'btn-sm', 'btn-action', 'text-white']) title="Chỉnh sửa">
                                 <i @class(['fas', 'fa-edit'])></i>
                             </button>
                         </a>
-                        
                         <form action="/hcns/leave/delete/{{ $leave->id }}" method="post" @class(['m-0', 'p-0'])>
                             @csrf 
-                            <button @class(['btn', 'btn-danger', 'btn-sm', 'btn-action']) title="Xoá"
-                            onclick="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
+                            <button @class(['btn', 'btn-danger', 'btn-sm', 'btn-action']) title="Xoá" onclick="return confirm('Bạn có muốn xóa đơn xin nghỉ phép này?')">
                                 <i @class(['fas', 'fa-trash'])></i>
                             </button>
                         </form>
@@ -119,5 +101,4 @@
     </table>
 
 </div>
-
 @endsection
