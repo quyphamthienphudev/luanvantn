@@ -2,7 +2,7 @@
 @section('title', 'Thống kê nâng cao')
 @section('content')
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">

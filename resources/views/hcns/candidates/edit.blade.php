@@ -2,7 +2,7 @@
 @section('title','Cập nhật thông tin hồ sơ ứng viên')
 @section('content')
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">

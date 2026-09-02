@@ -2,7 +2,7 @@
 @section('title','Gia hạn hợp đồng lao động')
 @section('content')
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">

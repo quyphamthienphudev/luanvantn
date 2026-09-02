@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -117,7 +117,8 @@
         </main>
     </div>
     <script>
-        function toggleSidebar() {
+        function toggleSidebar() 
+        {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
             sidebar.classList.toggle('-translate-x-full');
